@@ -1,0 +1,26 @@
+# Agent Profile Layer 配置
+#
+# 作用：
+# - 将 profile/ 目录下的 Markdown 加载为 system prompt 上下文
+# - 通过长度和顺序控制，避免 prompt 失控
+
+enabled: true
+
+# 每个 profile 文件的最大注入字符数（超过会截断）
+max_chars_per_file: 2500
+
+# 注入顺序（按需调整；user/memory 为可选，默认不注入以节省 token）
+prompt_sections_order:
+  - identity
+  - soul
+  - agent
+  - tools
+
+# 文件映射（相对项目根目录）
+files:
+  identity: profile/identity.md
+  soul: profile/soul.md
+  agent: profile/agent.md
+  tools: profile/tools.md
+  user: profile/user.md
+  memory: profile/memory.md

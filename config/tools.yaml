@@ -1,0 +1,17 @@
+auto_discover: true
+
+search_packages:
+  - tools
+
+include_modules: []
+
+exclude_modules:
+  - tools.__init__
+
+enabled_tools:
+  - analyze_topic
+  - intl_comm_reply
+  - retrieve_evidence
+  - get_persona_style
+
+disabled_tools: []

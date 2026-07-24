@@ -1,0 +1,31 @@
+enabled: true
+auto_activate: true
+discover_files: false
+
+max_chars_per_skill: 1200
+max_active_skills: 1
+max_total_chars: 2000
+
+manual_activation:
+  always_on: []
+  disabled: []
+
+skills:
+  intl_comm:
+    file: skills/intl-comm.md
+    enabled: true
+    priority: 100
+    keywords:
+      - 回复
+      - 评论
+      - 国际传播
+      - 主题
+      - 中国立场
+      - twitter
+      - 推特
+      - uyghur
+      - xinjiang
+      - 新疆
+      - 拟人
+      - ABSA
+      - 外交部

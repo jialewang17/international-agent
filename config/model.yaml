@@ -1,0 +1,21 @@
+# Model config — all profiles use Qwen (free tier friendly)
+
+main:
+  provider: qwen
+  model: qwen-plus
+  api_key_env: QWEN_APIKEY
+
+text_generation:
+  provider: qwen
+  model: qwen-plus
+  api_key_env: QWEN_APIKEY
+
+element_extraction:
+  provider: qwen
+  model: qwen-plus
+  api_key_env: QWEN_APIKEY
+
+code_generation:
+  provider: qwen
+  model: qwen-plus
+  api_key_env: QWEN_APIKEY
