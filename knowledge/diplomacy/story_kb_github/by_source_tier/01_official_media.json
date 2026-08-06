@@ -1,0 +1,358 @@
+{
+  "tier": "01_official_media",
+  "label": "中国官方媒体",
+  "count": 18,
+  "items": [
+    {
+      "id": "food-001",
+      "theme": "Xinjiang cuisine as cultural melting pot",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "Flavorful Xinjiang cuisine",
+      "url": "https://news.cgtn.com/news/2024-06-11/Flavorful-Xinjiang-cuisine-1ulwfDUxBug/p.html",
+      "quote_en": "As a melting pot of cultures throughout the history, Xinjiang has developed a unique culinary tradition that combines elements of Chinese, Central Asian and Middle Eastern cooking. The food is predominantly halal due to the large Muslim population in the region.",
+      "quote_cn": "（CGTN 原文为英）：新疆历史上是文化交融之地，饮食传统融合中国、中亚与中东元素；因穆斯林人口较多，饮食以清真为主。",
+      "statement_for_kb": "Xinjiang cuisine combines Chinese, Central Asian and Middle Eastern cooking traditions; it is predominantly halal, featuring lamb, cumin/chili seasoning, nang flatbread, noodles and pilaf.",
+      "tags": [
+        "xinjiang",
+        "halal",
+        "lamb",
+        "nang",
+        "cultural_exchange"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "food-002",
+      "theme": "Foreign guest experiences Xinjiang food",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "A taste of Xinjiang: An American guest's journey into local cuisine",
+      "url": "https://news.cgtn.com/news/2025-10-13/A-taste-of-Xinjiang-An-American-guest-s-journey-into-local-cuisine-1HrdBDlGzEA/p.html",
+      "quote_en": "They sampled a range of classic Xinjiang delicacies one by one, from the aromatic da pan ji (Xinjiang-style braised chicken cooked in a large pan) to the chewy and smooth gan ban mian (hand-pulled noodles in a savory sauce), to the rich-tasting naan (Xinjiang flatbread).",
+      "quote_cn": "美籍嘉宾在新疆餐馆品尝大盘鸡、干拌面、馕等经典地方菜，体验日常饮食文化。",
+      "statement_for_kb": "Classic Xinjiang dishes commonly shared with visitors include da pan ji (big-plate chicken), hand-pulled noodles, and naan/nang flatbread.",
+      "tags": [
+        "xinjiang",
+        "foreign_voice",
+        "da_pan_ji",
+        "noodles",
+        "naan"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "food-003",
+      "theme": "Kashgar street food diversity",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "Foodies make a culinary journey to Xinjiang's Kashgar",
+      "url": "https://news.cgtn.com/news/2023-05-14/-Foodies-make-a-culinary-journey-to-Xinjiang-s-Kashgar--1jNzLX30tuU/index.html",
+      "quote_en": "Smoked meat, juicy pomegranates, milk tea and spiced bread are all must-try dishes for visitors. The local cuisine often surprises foodies with its diverse range of seasonings – from cumin, chili and cinnamon to garlic and sesame.",
+      "quote_cn": "喀什烟熏肉、石榴、奶茶与香料面包是常见待客食品；调味涵盖孜然、辣椒、肉桂、蒜与芝麻等。",
+      "statement_for_kb": "Kashgar's local food scene features smoked meat, pomegranates, milk tea and spiced bread, with seasonings such as cumin, chili, cinnamon, garlic and sesame.",
+      "tags": [
+        "kashgar",
+        "street_food",
+        "seasonings"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "food-004",
+      "theme": "Hot pot as social culture",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "The history and origin of Chinese hot pot",
+      "url": "https://news.cgtn.com/news/2023-08-17/The-history-and-origin-of-Chinese-hot-pot-1mlCmLB0jfy/index.html",
+      "quote_en": "Hot pot is not only a cooking method but also a symbol of culture, embodying the culinary wisdom of ancient Chinese people. It is a cultural symbol and social way of life in traditional Chinese cuisine.",
+      "quote_cn": "火锅不仅是烹饪方式，也是文化符号与社交生活方式。",
+      "statement_for_kb": "Chinese hot pot is both a cooking method and a social cultural practice in traditional Chinese cuisine.",
+      "tags": [
+        "hotpot",
+        "sichuan",
+        "social_dining"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "food-005",
+      "theme": "Chongqing hot pot lifestyle",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "Travelogue: Chongqing's most famous food tingles taste buds",
+      "url": "https://news.cgtn.com/news/3d3d774e796b7a4d33457a6333566d54/index.html",
+      "quote_en": "In Chongqing, hot pot is thoroughly intertwined with the culture. It is far more than a dish, but a lifestyle that represents the spirit of the metropolis.",
+      "quote_cn": "在重庆，火锅与城市文化深度交织，不仅是一道菜，更是一种生活方式。",
+      "statement_for_kb": "Chongqing-style hot pot is closely tied to local lifestyle and urban culture, known for the la (spicy) and ma (numbing) flavor pair.",
+      "tags": [
+        "chongqing",
+        "hotpot",
+        "lifestyle"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "food-006",
+      "theme": "Dumplings across Chinese history",
+      "category": "food",
+      "source_type": "Xinhua",
+      "title": "China's history of dumplings, from archaeological finds to modern tables",
+      "url": "https://english.news.cn/20240224/ca51c594924f49e7905e5017da9bf15d/c.html",
+      "quote_en": "Archaeologists in east China's Shandong Province told Xinhua that the earliest physical record of dumplings dates back approximately 2,500 years. Due to the dry climate, well-preserved pastries and dumplings from the Tang Dynasty have been excavated from the Astana Tombs in Turpan, Xinjiang.",
+      "quote_cn": "山东考古显示饺子实物可追溯约2500年；吐鲁番阿斯塔那古墓出土唐代饺子类食品，形状大小与今相近。",
+      "statement_for_kb": "Archaeological evidence places dumpling-like foods in China about 2,500 years ago; Tang-era dumplings excavated in Turpan, Xinjiang closely resemble modern jiaozi.",
+      "tags": [
+        "dumpling",
+        "jiaozi",
+        "archaeology",
+        "xinjiang",
+        "spring_festival"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "food-007",
+      "theme": "Sichuan among China's classic cuisines",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "My Chinese appetite: Chuan Cuisine",
+      "url": "https://news.cgtn.com/news/3d3d674d7755444f32457a6333566d54/index.html",
+      "quote_en": "Four of the 'Eight Cuisines' were publicly recognized as the most mature cooking styles in the early Qing Dynasty... Chuan cuisine, nurtured by its birthplace in Sichuan Province.",
+      "quote_cn": "清代已公认鲁、粤、川、苏等成熟菜系；川菜以四川为发源地，常给人麻辣印象。",
+      "statement_for_kb": "Sichuan (Chuan) cuisine is one of China's classic regional cooking styles, often associated with spicy and numbing flavors shaped by local climate and ingredients.",
+      "tags": [
+        "sichuan",
+        "eight_cuisines",
+        "regional"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "culture-002",
+      "theme": "CGTN on Spring Festival UNESCO recognition",
+      "category": "culture",
+      "source_type": "CGTN",
+      "title": "Spring Festival, a celebration shared with the world",
+      "url": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "quote_en": "In 2024, the Spring Festival, marking the social practices of the Chinese people in celebration of the traditional Chinese New Year, was officially inscribed on the UNESCO's Representative List of the Intangible Cultural Heritage of Humanity.",
+      "quote_cn": "2024年，春节相关社会实践被列入联合国教科文组织人类非物质文化遗产代表作名录。",
+      "statement_for_kb": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "tags": [
+        "spring_festival",
+        "cgtn",
+        "unesco"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "culture-004",
+      "theme": "CGTN on Chinese tea UNESCO listing",
+      "category": "culture",
+      "source_type": "CGTN",
+      "title": "Chinese tea making joins UNESCO list",
+      "url": "https://news.cgtn.com/news/2022-11-30/Chinese-tea-making-joins-UNESCO-list-1fnlKJ9kTsc/index.html",
+      "quote_en": "Traditional tea processing techniques and their associated social practices in China were added to UNESCO's Representative List of the Intangible Cultural Heritage of Humanity... tea producers have developed six categories of tea: green, yellow, dark, white, oolong and black teas.",
+      "quote_cn": "中国传统制茶技艺及其相关社会实践列入非遗名录；六大茶类：绿、黄、黑（暗茶）、白、青（乌龙）、红茶。",
+      "statement_for_kb": "CGTN: China's traditional tea-making and associated social practices joined UNESCO's ICH list; six tea categories plus flower-scented and other reprocessed teas.",
+      "tags": [
+        "tea",
+        "cgtn",
+        "unesco"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "cgtn-channel-001",
+      "theme": "CGTN overseas distribution hub",
+      "category": "culture",
+      "source_type": "CGTN",
+      "title": "CGTN official YouTube channel",
+      "url": "https://www.youtube.com/@CGTN",
+      "quote_en": "Official CGTN YouTube presence for English-language video storytelling on China culture, travel and current affairs (use specific video URLs when citing facts).",
+      "quote_cn": "CGTN 官方 YouTube 账号（海外分发入口）；具体事实请再落到单条视频/图文 URL。",
+      "statement_for_kb": "CGTN maintains an official overseas YouTube channel used for English-language culture and travel storytelling; cite concrete video/article URLs for evidence rows.",
+      "tags": [
+        "cgtn",
+        "overseas_account",
+        "distribution"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "region-008",
+      "theme": "Railway design protecting panda corridors",
+      "category": "Chinese region",
+      "source_type": "CGTN",
+      "title": "Sichuan-Qinghai Railway's new section goes the extra mile for pandas",
+      "url": "https://news.cgtn.com/news/2023-11-29/Sichuan-Qinghai-Railway-s-new-section-goes-the-extra-mile-for-pandas-1p7xWXvTSSY/index.html",
+      "quote_en": "In order to minimize the impact on ecological corridors that are crucial to exchanges between different groups of giant pandas, the railway either makes detours or goes through tunnels as deep as possible... tunnels under the Tudiling giant panda corridor are buried more than 1,000 meters deep.",
+      "quote_cn": "川青铁路为避让大熊猫国家公园与生态廊道，采取绕行或深埋隧道（土顶岭廊道隧道埋深逾1000米）。",
+      "statement_for_kb": "CGTN reports the Sichuan-Qinghai Railway section was designed with detours and deep tunnels (over 1,000 m under the Tudiling panda corridor) to reduce impact on giant panda habitats.",
+      "tags": [
+        "panda",
+        "railway",
+        "ecology",
+        "cgtn"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "sports-001",
+      "theme": "IOC on Beijing 2022 winter sports participation legacy",
+      "category": "sports",
+      "source_type": "CGTN",
+      "title": "IOC hails Beijing 2022 Winter Olympics legacy",
+      "url": "https://news.cgtn.com/news/2023-02-03/IOC-hails-Beijing-2022-Winter-Olympics-legacy-1h7qqMuqhpu/index.html",
+      "quote_en": "Hosting the Olympics has attracted 346 million Chinese in winter sports since 2015, said the article. The number is expected to exceed 520 million in the 2024-2025 snow and ice season... 45.4 percent of the athletes were women, the highest proportion of female athletes ever at a Winter Olympics event.",
+      "quote_cn": "IOC相关文章称：自2015年以来约3.46亿中国人参与冰雪运动；北京冬奥女运动员占比45.4%，为冬奥历史最高。",
+      "statement_for_kb": "CGTN citing IOC material: Beijing 2022 helped draw hundreds of millions of Chinese into winter sports since 2015, and the Games had a record share of women athletes (45.4%) for a Winter Olympics.",
+      "tags": [
+        "beijing2022",
+        "winter_sports",
+        "ioc",
+        "cgtn"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "sports-002",
+      "theme": "Olympic venues reused for public winter tourism",
+      "category": "sports",
+      "source_type": "CGTN",
+      "title": "Olympic legacies boost Beijing, Zhangjiakou winter sports",
+      "url": "https://news.cgtn.com/news/2024-02-24/Olympic-legacies-boost-Beijing-Zhangjiakou-winter-sports-1rsb5yHyyCA/p.html",
+      "quote_en": "Beijing and Zhangjiakou... have established a sports, culture, and tourism belt to preserve the Olympic legacies... During the Spring Festival holiday... Chongli received 470,000 tourists, generating a total revenue of over 500 million yuan.",
+      "quote_cn": "京张共建冬奥遗产体育文旅带；春节假期崇礼接待游客约47万人次，收入逾5亿元。",
+      "statement_for_kb": "Post-Games, Beijing and Zhangjiakou developed a sports-culture-tourism belt around Olympic venues; Chongli alone drew about 470,000 visitors over one Spring Festival holiday period.",
+      "tags": [
+        "olympic_legacy",
+        "zhangjiakou",
+        "tourism"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "sports-003",
+      "theme": "Continued public use of Winter Olympic venues",
+      "category": "sports",
+      "source_type": "CGTN",
+      "title": "China enjoys winter sports boom even a year after Beijing 2022",
+      "url": "https://news.cgtn.com/news/2023-02-01/China-enjoys-winter-sports-boom-even-a-year-after-Beijing-2022-1h4aYzGbCLu/index.html",
+      "quote_en": "Over 300 million people across China reaped the benefits of the government push and had first-hand experience of various snow activities... enthusiasm among the Chinese people for ice and snow sports shows no signs of abating.",
+      "quote_cn": "冬奥筹备带动逾3亿人体验冰雪运动；赛后民众热情仍在延续。",
+      "statement_for_kb": "CGTN reports that more than 300 million people in China experienced ice-and-snow sports around the Beijing 2022 push, with strong public interest continuing after the Games.",
+      "tags": [
+        "winter_sports",
+        "participation",
+        "legacy"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "women-001",
+      "theme": "Women's higher education parity",
+      "category": "women and children rights",
+      "source_type": "CGTN",
+      "title": "Educational empowerment: China's path to women's progress",
+      "url": "https://news.cgtn.com/news/2025-10-14/Educational-empowerment-China-s-path-to-women-s-progress-1HsvEXh5sIw/p.html",
+      "quote_en": "In 2024 female students constituted more than half of total higher education enrollment... women now account for 50 percent of graduate students... These headline numbers rest on a primary-school net enrolment rate for girls of 99.9 percent.",
+      "quote_cn": "2024年高等教育在校生中女生过半，研究生中女性约占50%；女童小学净入学率约99.9%。",
+      "statement_for_kb": "CGTN citing China's white paper: by 2024 women made up more than half of higher-education enrollment and about half of graduate students, with girls' primary net enrollment around 99.9%.",
+      "tags": [
+        "education",
+        "gender",
+        "white_paper"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "women-002",
+      "theme": "Spring Bud Project for rural girls",
+      "category": "women and children rights",
+      "source_type": "CGTN",
+      "title": "Educational empowerment: China's path to women's progress",
+      "url": "https://news.cgtn.com/news/2025-10-14/Educational-empowerment-China-s-path-to-women-s-progress-1HsvEXh5sIw/p.html",
+      "quote_en": "By the end of 2024, the [Spring Bud] initiative had mobilized 3.44 billion yuan ($481 million), providing financial assistance and academic support to 4.36 million girls... These achievements brought the project a UNESCO Prize for Girls' and Women's Education in 2023.",
+      "quote_cn": "春蕾计划截至2024年底筹资约34.4亿元，惠及436万女童，并获2023年联合国教科文组织女童和妇女教育奖。",
+      "statement_for_kb": "The Spring Bud Project had supported about 4.36 million girls by end-2024 and received a UNESCO Prize for Girls' and Women's Education in 2023.",
+      "tags": [
+        "spring_bud",
+        "rural_girls",
+        "unesco_prize"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "women-003",
+      "theme": "UN Women on Chinese women entrepreneurs",
+      "category": "women and children rights",
+      "source_type": "CGTN",
+      "title": "UN Women Asia-Pacific chief on China's progress in gender equality",
+      "url": "https://news.cgtn.com/news/2025-10-18/UN-Women-Asia-Pacific-chief-on-China-s-progress-in-gender-equality--1HzQEU75ore/p.html",
+      "quote_en": "UN Women's Regional Director for Asia and the Pacific Christine Arab... noting that 'about 55 percent of China's internet entrepreneurs are women,' and that 'China's progress in fields traditionally dominated by men, such as engineering, is truly impressive.'",
+      "quote_cn": "联合国妇女署亚太区域主任称：中国约55%的互联网创业者为女性，工程等传统男性主导领域进步显著。",
+      "statement_for_kb": "UN Women's Asia-Pacific regional director told CGTN that about 55% of China's internet entrepreneurs are women and highlighted progress in fields such as engineering.",
+      "tags": [
+        "un_women",
+        "entrepreneurship",
+        "foreign_official_voice"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "trade-soft-001",
+      "theme": "Eco-design on Guiyang-Nanning HSR",
+      "category": "Chinese region",
+      "source_type": "CGTN",
+      "title": "Guiyang-Nanning High-speed Railway exemplifies eco-friendly design",
+      "url": "https://news.cgtn.com/news/2023-09-01/Guiyang-Nanning-High-speed-Railway-exemplifies-eco-friendly-design-1mJWeQkQUuY/index.html",
+      "quote_en": "The Guiyang-Nanning High-speed Railway, stretching 482 kilometers and passing through 41 environmentally sensitive areas, is characterized by its green and eco-friendly design... engineers have taken targeted measures to optimize routes, minimize ecological disturbance.",
+      "quote_cn": "贵南高铁全长约482公里，途经41处环境敏感区，通过优化选线等降低生态干扰。",
+      "statement_for_kb": "CGTN reports the Guiyang-Nanning HSR (about 482 km) crosses 41 environmentally sensitive areas and was planned with route optimization and protective measures to reduce ecological impact.",
+      "tags": [
+        "hsr",
+        "ecology",
+        "guizhou",
+        "guangxi"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    }
+  ]
+}
