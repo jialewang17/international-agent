@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>讲好中国故事</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/styles.css?v=20260911" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand-lockup">
+      <div class="brand-mark" aria-hidden="true">故</div>
+      <div class="brand-text">
+        <p class="brand-name">讲好中国故事</p>
+        <p class="brand-sub">国际传播工作台</p>
+      </div>
+    </div>
+
+    <div class="segmented" role="tablist" aria-label="场景">
+      <button type="button" class="seg active" data-scene="post" role="tab">发帖</button>
+      <button type="button" class="seg" data-scene="topics" role="tab">选题</button>
+      <button type="button" class="seg" data-scene="reply" role="tab">回复</button>
+    </div>
+
+    <div class="header-meta">
+      <span class="dot" id="apiDot" title="API"></span>
+      <kbd class="kbd-hint">Ctrl + Enter</kbd>
+    </div>
+  </header>
+
+  <main class="stage" id="stage">
+    <!-- LEFT: input stays put -->
+    <section class="pane pane-in" aria-label="输入">
+      <div class="pane-scroll">
+        <div class="scene-forms">
+          <form id="formPost" class="scene-form active" data-scene="post">
+            <div class="block">
+              <div class="block-label-row">
+                <label for="themeInput">你想讲什么</label>
+                <button type="button" class="text-btn" id="btnTogglePresets">快捷主题</button>
+              </div>
+              <textarea id="themeInput" name="theme" rows="4" placeholder="一句话主题，或完整 Brief…"></textarea>
+              <div class="preset-strip hidden" id="presetChips"></div>
+            </div>
+
+            <div class="block materials">
+              <div class="block-label-row">
+                <label for="userMaterials">参考资料 <span class="soft">可选</span></label>
+                <div class="inline-actions">
+                  <label class="text-btn file-label">导入
+                    <input type="file" id="fileMaterials" accept=".txt,.md,.markdown,text/plain" multiple hidden />
+                  </label>
+                  <button type="button" class="text-btn" id="btnSampleMaterials">样例</button>
+                  <button type="button" class="text-btn muted" id="btnClearMaterials">清空</button>
+                </div>
+              </div>
+              <textarea name="user_materials" id="userMaterials" rows="4" placeholder="粘贴通稿、采访或笔记，空行分段"></textarea>
+              <p class="micro" id="materialsHint">未添加资料</p>
+            </div>
+
+            <div class="block params">
+              <div class="block-label-row">
+                <span class="block-title">传播口径</span>
+                <button type="button" class="text-btn" id="btnToggleMore">更多</button>
+              </div>
+              <div class="pill-grid">
+                <label class="pill-field">受众
+                  <select name="country"></select>
+                </label>
+                <label class="pill-field">平台
+                  <select name="platform"></select>
+                </label>
+                <label class="pill-field">语气
+                  <select name="tone"></select>
+                </label>
+                <label class="pill-field">字数
+                  <input name="max_words" type="number" min="20" max="1200" value="80" />
+                </label>
+              </div>
+              <div class="more-params hidden" id="moreParams">
+                <div class="pill-grid">
+                  <label class="pill-field">身份<select name="identity"></select></label>
+                  <label class="pill-field">语言<select name="language"></select></label>
+                </div>
+                <label class="effect-field">期望效果
+                  <input name="desired_effect" type="text" value="Increase curiosity and positive understanding of China through a concrete, shareable story." />
+                </label>
+                <label class="check-line"><input name="use_emoji" type="checkbox" checked /> 允许 emoji</label>
+              </div>
+            </div>
+          </form>
+
+          <form id="formTopics" class="scene-form" data-scene="topics">
+            <div class="block">
+              <label for="seedInput">选题种子</label>
+              <input id="seedInput" name="seed" value="讲好中国故事 Instagram账号 目标受众America" />
+              <div class="pill-grid tight">
+                <label class="pill-field">平台<select name="platform"></select></label>
+                <label class="pill-field">数量<input name="n" type="number" min="1" max="8" value="5" /></label>
+              </div>
+            </div>
+          </form>
+
+          <form id="formReply" class="scene-form" data-scene="reply">
+            <div class="block">
+              <label for="commentInput">待回复评论</label>
+              <textarea id="commentInput" name="comment" rows="5" placeholder="粘贴外文评论…"></textarea>
+              <div class="pill-grid">
+                <label class="pill-field">受众<select name="country"></select></label>
+                <label class="pill-field">平台<select name="platform"></select></label>
+                <label class="pill-field">语气<select name="tone"></select></label>
+                <label class="pill-field">字数<input name="max_words" type="number" min="20" max="200" value="60" /></label>
+              </div>
+              <div class="more-params">
+                <div class="pill-grid">
+                  <label class="pill-field">身份<select name="identity"></select></label>
+                  <label class="pill-field">语言<select name="language"></select></label>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="dock">
+        <p class="dock-tip" id="aiTips">写好主题后生成</p>
+        <button type="button" class="btn-generate" id="btnPrimaryAction">生成草稿</button>
+      </div>
+    </section>
+
+    <section class="pane pane-out" aria-label="输出">
+      <div class="out-toolbar">
+        <div class="seg-mini" id="previewTabs">
+          <button type="button" class="seg-mini-btn active" data-preview="composer">成稿</button>
+          <button type="button" class="seg-mini-btn" data-preview="twitter">X</button>
+          <button type="button" class="seg-mini-btn" data-preview="instagram">IG</button>
+        </div>
+        <div class="out-actions">
+          <button type="button" class="icon-btn" id="btnCopy" title="复制">复制</button>
+          <button type="button" class="icon-btn" id="btnOpenEvidence" title="论据">论据</button>
+        </div>
+      </div>
+
+      <div id="pipelineViz" class="status-rail hidden"></div>
+      <div id="gateAlert" class="gate-banner hidden"></div>
+      <div id="genreNote" class="soft-banner hidden"></div>
+
+      <div class="out-body">
+        <div id="previewComposer" class="preview-pane active">
+          <textarea id="editorPost" rows="12" placeholder="成稿将显示在这里，可直接编辑"></textarea>
+
+          <div class="polish-bar" id="quickEdits">
+            <span class="polish-label">润色</span>
+            <button type="button" class="chip" data-polish="更短更有力，保留事实">更短</button>
+            <button type="button" class="chip" data-polish="增加适量 emoji，保持专业">emoji</button>
+            <button type="button" class="chip" data-polish="语气更严肃、克制">严肃</button>
+            <button type="button" class="chip" data-polish="更乐观、更有分享欲">乐观</button>
+            <button type="button" class="chip" data-polish="强化目标国受众桥梁，保持尊重">受众</button>
+          </div>
+
+          <div class="feedback-inline">
+            <input id="feedbackBox" type="text" placeholder="说明要改哪里，回车提交" />
+            <button type="button" class="btn-secondary" id="btnFeedbackPolish">改稿</button>
+          </div>
+
+          <details class="fold" id="metaFold">
+            <summary>策划与元信息</summary>
+            <div id="metaBlocks" class="meta-blocks"></div>
+          </details>
+        </div>
+
+        <div id="previewTwitter" class="preview-pane mock twitter-mock">
+          <div class="mock-header"><span class="avatar"></span><strong>ChinaStory</strong> <span class="handle">@chinastory</span></div>
+          <div class="mock-body" id="twitterBody">等待生成</div>
+          <div class="mock-tags" id="twitterTags"></div>
+        </div>
+
+        <div id="previewInstagram" class="preview-pane mock instagram-mock">
+          <div class="mock-ig-header"><strong>chinastory_official</strong></div>
+          <div class="mock-ig-image">视觉预览</div>
+          <div class="mock-ig-caption" id="instagramCaption">等待生成</div>
+          <div class="mock-tags" id="instagramTags"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Evidence as sheet: open near right pane, no long scroll -->
+  <aside class="sheet hidden" id="evidenceSheet" aria-label="论据">
+    <div class="sheet-scrim" id="sheetScrim"></div>
+    <div class="sheet-panel">
+      <div class="sheet-head">
+        <h2>论据</h2>
+        <div class="seg-mini">
+          <button type="button" class="seg-mini-btn active" data-evfilter="all">全部</button>
+          <button type="button" class="seg-mini-btn" data-evfilter="user">用户</button>
+          <button type="button" class="seg-mini-btn" data-evfilter="local">本地</button>
+        </div>
+        <button type="button" class="icon-btn" id="btnCloseEvidence">关闭</button>
+      </div>
+      <div class="seg-mini sheet-views">
+        <button type="button" class="seg-mini-btn active" data-evview="cards">卡片</button>
+        <button type="button" class="seg-mini-btn" data-evview="list">列表</button>
+        <button type="button" class="seg-mini-btn" data-evview="source">来源</button>
+      </div>
+      <p id="evidenceSummary" class="evidence-summary">尚未生成</p>
+      <div id="evidencePanel" class="evidence-panel empty">
+        <p>生成后可在此核对用户上传与本地库论据。</p>
+      </div>
+      <details class="fold">
+        <summary>原始 JSON</summary>
+        <pre id="rawJson"></pre>
+      </details>
+    </div>
+  </aside>
+
+  <div class="toast hidden" id="toast"></div>
+  <script src="/static/js/app.js?v=20260911"></script>
+</body>
+</html>

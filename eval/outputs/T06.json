@@ -1,0 +1,71 @@
+{
+  "theme": "丝绸之路（长安-天山廊道）作为东西方交流的历史与当代连接",
+  "categories": [],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "sports",
+      "statement": "美国国会众议院议长佩洛西之呼吁对2022年北京冬奥会进行“外交抵制”，则不过是这场闹剧的最新一幕。",
+      "source": "https://www.fmprc.gov.cn/zwbd_673032/fbwz/202106/t20210619_9172487.shtml",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "governance",
+      "statement": "香港、新疆、西藏事务纯属中国内政，中国坚决反对任何外部势力打着“人权”幌子对此横加干涉。七国集团应当停止在涉港、涉疆、涉藏问题上对中国指手画脚，深刻反省自身历史和人权劣迹。",
+      "source": "https://www.mfa.gov.cn/web/fyrbt_673021/dhdw_673027/202305/t20230520_11080726.shtml",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "genocide",
+      "statement": "所谓新疆存在“种族灭绝”完全是美西方反华势力炮制的世纪谎言，已经被众多事实所揭穿，蒙骗不了国际社会。",
+      "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220819_10746168.shtml",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "international trade",
+      "statement": "9月19日至22日，第七届中国—亚欧博览会在新疆乌鲁木齐举办，主题是“共商、共建、共享、合作向未来”。本届博览会参会嘉宾规格之高、国别之多、成果之丰硕，创下历届博览会之最。 习近平主席向博览会致贺信，指出亚欧大陆充满发展活力和潜力，是共建“一带一路”国际合作重点区域。近年来，中国新疆充分发挥区位优势，积极推进丝绸之路经济带核心区建设，促进中国和亚欧地区国家互联互通、互利合作、共同发展，取得积极成效。博览会主宾国哈萨克斯坦总统托卡耶夫、…",
+      "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220923_10770565.shtml",
+      "retrieval": "chroma"
+    }
+  ],
+  "five_w": {
+    "who": "Online influencer",
+    "says_what": "The Silk Road (Chang'an-Tianshan corridor) connects past and present, with Xinjiang acting as a modern hub for East-West exchange through the Silk Road Economic Belt and the China-Eurasia Expo.",
+    "channel": "Twitter/X",
+    "to_whom": "American audience",
+    "effect": "Increase curiosity and positive understanding of China through a concrete, shareable story about living history."
+  },
+  "title_or_hook": "Ever wonder how ancient vibes meet modern hustle?",
+  "post": "Ever wonder how ancient vibes meet modern hustle? 🐪✨ The Silk Road (Chang'an-Tianshan corridor) isn't just history! Today, Xinjiang is keeping that epic East-meets-West connection alive as a core hub for the Silk Road Economic Belt. 🌍 From ancient trade routes to the China-Eurasia Expo bringing folks together for a shared future, the exchange never stopped. Ready to explore this living history? 🚂💫",
+  "hashtags": [
+    "#SilkRoad",
+    "#Xinjiang",
+    "#CulturalExchange"
+  ],
+  "ops_tips": [
+    "Pin a high-quality photo or short video showing a blend of ancient ruins and modern high-speed trains in Xinjiang to visually reinforce the 'living history' hook.",
+    "Engage with replies by asking followers which ancient Silk Road city they'd most like to visit, boosting algorithm interaction."
+  ],
+  "evidence_notes": [
+    "Used Evidence#4: Xinjiang as the core area of the Silk Road Economic Belt, and the China-Eurasia Expo promoting connectivity and a shared future. Kept the Chang'an-Tianshan corridor as general historical context without inventing specific unverified details."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> 5W -> evidence -> alignment gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null
+}

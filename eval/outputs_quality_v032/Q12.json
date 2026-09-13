@@ -1,0 +1,106 @@
+{
+  "theme": "Brief: Platform=TikTok; Audience=UK GenZ; Tone=humorous; Length≈75; Angle=hotpot as social table culture; Deliverable=5W then caption; Must localize for UK readers.",
+  "categories": [
+    "food",
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "tiktok",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "CGTN maintains an official overseas YouTube channel used for English-language culture and travel storytelling; cite concrete video/article URLs for evidence rows.",
+      "source": "https://www.youtube.com/@CGTN",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "food",
+      "statement": "Xinjiang cuisine combines Chinese, Central Asian and Middle Eastern cooking traditions; it is predominantly halal, featuring lamb, cumin/chili seasoning, nang flatbread, noodles and pilaf.",
+      "source": "https://news.cgtn.com/news/2024-06-11/Flavorful-Xinjiang-cuisine-1ulwfDUxBug/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "food",
+      "statement": "Classic Xinjiang dishes commonly shared with visitors include da pan ji (big-plate chicken), hand-pulled noodles, and naan/nang flatbread.",
+      "source": "https://news.cgtn.com/news/2025-10-13/A-taste-of-Xinjiang-An-American-guest-s-journey-into-local-cuisine-1HrdBDlGzEA/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "food",
+      "statement": "Kashgar's local food scene features smoked meat, pomegranates, milk tea and spiced bread, with seasonings such as cumin, chili, cinnamon, garlic and sesame.",
+      "source": "https://news.cgtn.com/news/2023-05-14/-Foodies-make-a-culinary-journey-to-Xinjiang-s-Kashgar--1jNzLX30tuU/index.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 6
+  },
+  "five_w": {
+    "who": "A foodie travel influencer who loves sharing massive, flavorful communal meals with a humorous, high-energy vibe.",
+    "says_what": "Xinjiang's 'da pan ji' (big-plate chicken) and spiced flatbreads are served on a literally massive plate meant to be shared around the table, creating a chaotic but cozy communal feast.",
+    "channel": "TikTok. Fast-paced, visual food hook, slangy, high energy, approx 75 words.",
+    "to_whom": "UK GenZ. Bridge: Relates to their love for massive shared 'cheat meals' or Sunday roasts, but elevates it with Xinjiang's spicy, cumin-loaded communal dining style using local slang.",
+    "effect": "Spark curiosity about Xinjiang's communal food culture and prompt users to tag their foodie friends to share a massive meal."
+  },
+  "title_or_hook": "Forget tiny portions, we do MEGA plates 🍗",
+  "post": "Mate, forget splitting a tiny Sunday roast. In Xinjiang, we do 'da pan ji' (big-plate chicken). It’s literally a massive wok of spicy, cumin-loaded chicken and hand-pulled noodles meant for the whole table to dig into. It’s giving massive communal feast energy. You’re tearing naan bread and fighting for the last potato. Proper chaotic, proper cozy. Tag the mates you’d trust to share a mega plate with! 🍗🌶️🥢",
+  "hashtags": [
+    "#XinjiangFood",
+    "#DaPanJi",
+    "#FoodieUK",
+    "#CommunalFeast"
+  ],
+  "ops_tips": [
+    "Use a trending, upbeat audio track with a sudden beat drop when showing the massive plate of food.",
+    "Add on-screen text highlighting 'cumin-loaded' and 'hand-pulled' to boost visual retention and match the fast-paced TikTok style."
+  ],
+  "evidence_notes": [
+    "Evidence#3 -> Supports 'da pan ji' (big-plate chicken), hand-pulled noodles, naan/nang flatbread, and the concept of the dish being commonly shared with visitors.",
+    "Evidence#4 -> Supports the 'spicy, cumin-loaded' flavor profile, referencing cumin and chili seasonings in the local food scene."
+  ],
+  "identity": "online influencer",
+  "tone": "humorous",
+  "country": "UK",
+  "platform": "tiktok",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=6) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "Q12",
+    "prompt_style": "工作简报体",
+    "full_prompt": "Brief: Platform=TikTok; Audience=UK GenZ; Tone=humorous; Length≈75; Angle=hotpot as social table culture; Deliverable=5W then caption; Must localize for UK readers.",
+    "expect": "简报英文；英国社交桥梁",
+    "focus": "ToWhom+Channel",
+    "parsed_theme": "四川火锅作为社交餐桌文化"
+  }
+}

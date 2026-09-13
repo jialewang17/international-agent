@@ -1,0 +1,82 @@
+{
+  "theme": "请生成主动传播帖文。约束：（1）主题=春节非遗当代生活；（2）目标国=America；（3）平台=twitter；（4）先写满5W再写正文；（5）若论据含UNESCO须在正文或notes出现；（6）To Whom要写清美国读者为何会停；（7）Effect=引发好奇与正向理解；（8）字数约70；（9）禁止嘲讽美国节日。",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "帖文",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 3
+  },
+  "five_w": {
+    "who": "A trendy lifestyle influencer who shares cozy, aesthetic global traditions with an enthusiastic, internet-savvy voice.",
+    "says_what": "The modern, cozy reality of China's Spring Festival, highlighting how UNESCO-recognized family reunions and community harmony are experienced today through glowing street lanterns and shared neighborhood warmth.",
+    "channel": "Twitter/X. Concise, punchy, conversational, using influencer slang ('vibe', 'obsessed'), around 70 words.",
+    "to_whom": "American audience. Bridge: Appeals to their love for cozy holiday aesthetics, neighborhood gatherings, and the 'warm hug' feeling of community festivals, making an ancient tradition feel relatable and visually inviting.",
+    "effect": "Spark curiosity and positive understanding by framing an ancient cultural heritage as a modern, cozy, and highly shareable lifestyle experience."
+  },
+  "title_or_hook": "",
+  "post": "You know that cozy holiday vibe when the whole neighborhood just feels like a massive warm hug? 🏮 That’s exactly the energy of China’s Spring Festival right now! Just inscribed on the UNESCO Intangible Cultural Heritage list, it’s all about modern family reunions and glowing street lanterns. Honestly, the community aesthetics are totally unmatched. Who else is obsessed with festive street lights? ✨",
+  "hashtags": [
+    "#SpringFestival",
+    "#UNESCO"
+  ],
+  "ops_tips": [
+    "Pin a high-quality photo of glowing street lanterns or a cozy family dinner to match the 'aesthetic' hook.",
+    "Reply to early comments with more behind-the-scenes festival snacks or lantern-making clips to boost engagement."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> UNESCO inscribed Spring Festival social practices on the ICH list in 2024, highlighting family reunion and community harmony.",
+    "Evidence#2 -> Spring Festival social practices are increasingly shared worldwide, supporting the modern global sharing angle."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "Q13",
+    "prompt_style": "多约束长提示",
+    "full_prompt": "请生成主动传播帖文。约束：（1）主题=春节非遗当代生活；（2）目标国=America；（3）平台=twitter；（4）先写满5W再写正文；（5）若论据含UNESCO须在正文或notes出现；（6）To Whom要写清美国读者为何会停；（7）Effect=引发好奇与正向理解；（8）字数约70；（9）禁止嘲讽美国节日。",
+    "expect": "多约束；权威+受众双检",
+    "focus": "权威+ToWhom+5W",
+    "parsed_theme": "春节作为联合国教科文组织人类非物质文化遗产的当代生活意义"
+  }
+}

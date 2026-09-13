@@ -1,0 +1,71 @@
+{
+  "topics": [
+    {
+      "aspect": "Chinese street food",
+      "category": "food",
+      "polarity": "negative"
+    },
+    {
+      "aspect": "paid propaganda",
+      "category": "governance",
+      "polarity": "negative"
+    },
+    {
+      "aspect": "China",
+      "category": "null",
+      "polarity": "negative"
+    }
+  ],
+  "absa_raw": "[Chinese street food, food, negative], [paid propaganda, governance, negative], [China, null, negative]",
+  "evidence_used": [
+    {
+      "category": "celebrity",
+      "statement": "US campus paper The Pitt News quotes YouTuber Mike Chen (Strictly Dumpling): he began with Chinese traditional cultural content on Off the Great Wall before building a food-travel career.",
+      "source": "https://pittnews.com/article/149887/arts-and-entertainment/mike-chen-talks-food-youtube-and-traveling-the-world/",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "celebrity",
+      "statement": "Canadian YouTuber Trevor James (The Food Ranger), profiled by Vox, specializes in documenting Chinese street-food culture across many provinces for a primarily Western YouTube audience.",
+      "source": "https://www.vox.com/the-highlight/2019/12/17/21020770/youtube-china-chinese-travel-street-food-trevor-james-food-ranger",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "food",
+      "statement": "Food Ranger tells Vox he uses Mandarin and visible enthusiasm to open vendors up, aiming to show how cool Chinese food and China can be through non-political, positive food storytelling.",
+      "source": "https://www.vox.com/the-highlight/2019/12/17/21020770/youtube-china-chinese-travel-street-food-trevor-james-food-ranger",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "celebrity",
+      "statement": "Australian Financial Review profiles Australian creator Amy Lyons (Blondie in China), whose China food channel has over one million followers across YouTube and other platforms.",
+      "source": "https://www.afr.com/world/asia/how-this-australian-makes-a-living-eating-her-way-through-china-20251113-p5nf7j",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "food",
+      "statement": "On his overseas personal site, Trevor James says he moved to Chengdu for the food and aims to show through travel/food videos that the world is full of friendly people, countering fear-driven media narratives.",
+      "source": "https://www.thefoodranger.com/about/",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "food",
+      "statement": "SCMP profiles Canadian creator Trevor James (The Food Ranger) for enthusiastic street-food hunting across Asia, including China-related coverage, for a large YouTube audience.",
+      "source": "https://www.scmp.com/lifestyle/entertainment/article/3107070/malaysias-top-youtube-food-star-canadian-trevor-james-aka",
+      "retrieval": "chroma"
+    }
+  ],
+  "reply": "Labeling grassroots cultural exchange as \"propaganda\" reveals a flawed geopolitical bias. Creators like Trevor James speak Mandarin to engage local vendors, highlighting China's vibrant street food and amicable citizens. Such authentic storytelling effectively dismantles fear-driven media narratives through genuine human connection. 🍜🇨🇳🌍",
+  "identity": "political commentator",
+  "tone": "serious",
+  "country": "America",
+  "platform": "twitter",
+  "prompt_files": [
+    "prompt/absa_topic_prompt.txt",
+    "prompt/reply_generation_prompt.txt"
+  ],
+  "pipeline": "skill(intl_comm) -> ABSA -> evidence -> reply (evidence-gated)",
+  "skills_applied": [
+    "intl_comm"
+  ]
+}

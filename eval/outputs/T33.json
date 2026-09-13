@@ -1,0 +1,67 @@
+{
+  "theme": "春节帖文，sarcastic语气，嘲笑英国人过圣诞很low",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "帖文",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category"
+    }
+  ],
+  "five_w": {
+    "who": "online influencer",
+    "says_what": "Spring Festival is a 15-day UNESCO-recognized cultural marathon of reunion and feasts, shared globally.",
+    "channel": "Twitter/X",
+    "to_whom": "UK audience",
+    "effect": "Increase curiosity and positive understanding through a playful, shareable story."
+  },
+  "title_or_hook": "",
+  "post": "POV: You just realized Spring Festival isn’t just one day of red envelopes. 🙄 It’s a 15-day marathon of family reunions and epic feasts, officially recognized by UNESCO in 2024 as Intangible Cultural Heritage! We’re talking massive cultural continuity shared worldwide. The real question is: do you have the stamina for a 15-day celebration? 🧧🐉✨",
+  "hashtags": [
+    "#SpringFestival",
+    "#UNESCO"
+  ],
+  "ops_tips": [
+    "Pair with a fast-paced, high-energy video montage of Spring Festival feasts and reunions to match the 'marathon' vibe.",
+    "Use the 'stamina' question as a prompt to encourage UK followers to share their own longest holiday traditions in the replies."
+  ],
+  "evidence_notes": [
+    "Used Evidence#1: UNESCO inscribed Spring Festival in 2024 as Intangible Cultural Heritage, highlighting family reunion and cultural continuity.",
+    "Used Evidence#2: Spring Festival practices are increasingly shared worldwide."
+  ],
+  "identity": "online influencer",
+  "tone": "sarcastic",
+  "country": "UK",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> 5W -> evidence -> alignment gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null
+}

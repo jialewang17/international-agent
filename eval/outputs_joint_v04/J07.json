@@ -1,0 +1,92 @@
+{
+  "theme": "中国茶文化社交分享短帖",
+  "user_brief": "为英国读者写Twitter茶故事帖约70词。5W完整。优先用我提供的咖啡馆盖碗茶活动事实；本地库UNESCO茶条目可作权威背书；evidence_notes映射。",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "twitter",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "food",
+      "statement": "咖啡馆活动：周末办盖碗茶体验，讲解「观色闻香」三步。",
+      "source": "user_paste:用户资料#1",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 1,
+    "local": 3
+  },
+  "five_w": {
+    "who": "A trendy lifestyle influencer sharing aesthetic cultural experiences with an enthusiastic, conversational tone.",
+    "says_what": "Experiencing a traditional Chinese Gaiwan tea ritual at a weekend cafe pop-up, highlighting the mindful 'observe color, smell aroma' steps and the UNESCO-recognized 2,000+ tea varieties.",
+    "channel": "Twitter/X. Concise, punchy, conversational, around 70 words, sparse hashtags.",
+    "to_whom": "UK audience. Bridge: Connects to the British love for tea culture by offering a mindful, interactive upgrade from the standard daily tea bag.",
+    "effect": "Spark curiosity about the depth of Chinese tea culture and encourage the audience to try a Gaiwan tea experience themselves."
+  },
+  "title_or_hook": "",
+  "post": "We Brits take our tea seriously, but this weekend’s cafe pop-up is a total game changer! 🍵 Tried the traditional Chinese Gaiwan (lidded bowl) ritual. The 'observe color, smell aroma' steps make it so mindful. Fun fact: UNESCO recognizes over 2,000 tea varieties from China! 🤯 Ditch the tea bag and try this vibe. Ever had Gaiwan tea? ✨",
+  "hashtags": [
+    "#TeaTime",
+    "#ChineseTea"
+  ],
+  "ops_tips": [
+    "Pin a high-quality photo or short loop of the Gaiwan pouring setup to boost visual engagement.",
+    "Reply to early comments with a quick, friendly tip on water temperature to keep the conversation going."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> weekend cafe pop-up activity, Gaiwan (lidded bowl) tea experience, 'observe color, smell aroma' steps.",
+    "Evidence#4 -> UNESCO recognizes traditional tea processing techniques and social practices, over 2,000 tea varieties."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "UK",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post+evidence_user_materials) -> genre=post -> dual_evidence(user=1,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post",
+    "evidence_user_materials"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "J07",
+    "prompt_style": "茶活动+英国长提示",
+    "full_prompt": "为英国读者写Twitter茶故事帖约70词。5W完整。优先用我提供的咖啡馆盖碗茶活动事实；本地库UNESCO茶条目可作权威背书；evidence_notes映射。",
+    "expect": "用户活动+权威茶库；英国桥梁",
+    "focus": "双源权威",
+    "has_materials": true,
+    "expect_block": false
+  }
+}

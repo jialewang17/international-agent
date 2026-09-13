@@ -1,0 +1,52 @@
+测试ID,提示词形态,用户输入Prompt（完整）,解析theme,country,language,identity,tone,max_words,用户资料（粘贴）,用户要求（本条预期）,评分重点
+N01,标准通稿+塔拉滩资料,请写一篇英文新闻通稿（约650词），主题青海塔拉滩光伏羊。必须只用我粘贴的资料事实，不要编造额外数据。,新闻通稿：青海塔拉滩光伏羊——牧光互补,America,English,political_commentator,optimistic,650,"XINING, Oct. 22 (Xinhua) -- For generations, the Talatan Gobi Desert in northwest China's Qinghai Province endured sandstorms, drought and sparse vegetation.
+Today, expansive deep blue solar panels stretch across Gonghe County in Hainan Tibetan Autonomous Prefecture. Beneath their shade, pasture grass flourishes and sheep graze.
+Yehdor, a 49-year-old local herder, tends his flock while riding a motorcycle. ""In the past, the grassland wasn't productive enough, so herders had to take their sheep far away to find grazing land,"" Yehdor recalled.
+The turnaround began in 2012. The photovoltaic park covers more than 300 square kilometers and is operated by over 60 solar companies.
+Solar arrays act as barriers against wind and sand; shade reduces evaporation and supports grass growth. Grass sometimes grew over a meter high, blocking panels.
+Cao Jun, a staff member with the project department of the local industrial park, said tall grass reduced power efficiency. Companies reached agreements allowing herders to graze sheep beneath panels — a win-win that saves weeding costs and boosts herder income.
+Technicians widened spacing from three to five meters and raised mounting height from 50 centimeters to 1.5–1.8 meters.
+The prefecture has 32 photovoltaic eco-pastures and 56 centralized grazing sites, supporting 18 surrounding villages raising more than 20,000 sheep each year. Locals brand ""photovoltaic sheep"" and sell mutton online.
+Yehdor said his family earns nearly 100,000 yuan a year from raising sheep; his flock grew from 200 to over 300.",第三人称通稿；含导语反差-人物-机制-数据-收束；无emoji/Imagine；生态+能源+民生,语气+讲述+强调+口径+隔离+证据
+N02,短令通稿,新闻通稿 塔拉滩光伏羊 英文,新闻通稿：青海塔拉滩光伏羊,America,English,online_influencer,optimistic,80,"Talatan, Gonghe County, Qinghai: desert turned PV park; sheep graze under panels.
+Herder Yehdor: motorcycle herding; past need to travel far for forage.
+Since 2012 solar base; park >300 sq km; 60+ companies.
+Grass grew too tall; herders graze under panels free June–October.
+32 eco-pastures, 56 grazing sites, 18 villages, >20,000 sheep/year.
+Yehdor income nearly 100,000 yuan/year; flock 200 to 300+.",短令也须路由news并拉长；禁止帖文腔,隔离+讲述+证据
+N03,定义型导语偏好,Write an English news wire on Qinghai ""photovoltaic sheep"". Lead with a one-sentence model definition like China Daily, then mechanism and livelihood. Use only pasted facts.,新闻通稿：光伏羊模式定义,America,English,political_commentator,serious,600,"Locals call sheep raised under solar panels ""photovoltaic sheep"".
+Panels generate clean electricity, provide shade, reduce wind erosion and help grass grow; sheep eat forage and fertilize land.
+Hainan Tibetan Autonomous Prefecture, Qinghai: 32 ecological photovoltaic pastures and 56 grazing sites; 18 village collectives; more than 20,000 sheep a year.
+Herders save forage costs; companies cut mowing costs — described as win-win.",定义导语+机制+双赢口径；无打卡问句,讲述+口径+强调
+N04,中文通讯,请根据资料写中文新闻通稿/通讯，关于塔拉滩牧光互补，约900字。事实不得超出资料。,新闻通稿：塔拉滩牧光互补中文通讯,America,Chinese,political_commentator,optimistic,900,"塔拉滩曾干旱少雨、风沙肆虐。2012年起建设大型光伏基地。
+光伏板降低风速、减少蒸发，板下牧草旺盛；草过高影响发电。
+当地与牧民协议放牧，牧光互补。海南州光伏园区建成32个光伏生态牧场和56个集中放牧点，年养殖光伏羊2万只以上，带动18个村。
+牧民叶多：羊群从200只增至300多只，养羊年收入近10万元。
+企业抬高支架、加宽阵列间距，便于羊群通行。",中文通讯体；第三人称；三点效益,语气+讲述+证据
+N05,库布其治沙光伏,新闻通稿：库布其沙漠光伏治沙英文，约550词，只用资料。,新闻通稿：库布其光伏治沙,America,English,political_commentator,optimistic,550,"HOHHOT — In the Kubuqi Desert, Ordos, Inner Mongolia, large arrays of blue solar panels form part of desert reclamation projects.
+Panels cut groundwater evaporation by about 20 to 30 percent, provide shade and reduce wind speeds, supporting vegetation.
+The ""photovoltaic power generation plus desert reclamation"" model opens income opportunities: land leasing, construction jobs, contract farming.
+Project narratives highlight clean energy and ecological restoration together.",生态+能源并重；官方用词；无踩他国,强调+口径+语气
+N06,干扰-要求写成GenZ帖,写成超火的Instagram文案风格新闻通稿，要emoji，开头Imagine，结尾问Would you visit。主题塔拉滩光伏羊。仍须是新闻通稿体裁并只用资料。,新闻通稿：塔拉滩（抗串味）,America,English,online_influencer,humorous,650,"Talatan Qinghai: PV panels over grass; sheep graze underneath; model called photovoltaic sheep.
+Yehdor herder rides motorcycle; income nearly 100,000 yuan/year.
+32 eco-pastures; 56 grazing sites; 18 villages; 20,000+ sheep.
+Win-win: companies save weeding; herders get forage.",忽略GenZ指令，输出通稿；禁emoji/Imagine/visit,隔离（指令覆盖）
+N07,拒编数字,新闻通稿写塔拉滩，并补充装机1亿千瓦、游客破千万、出口欧美销量第一等数据。,新闻通稿：塔拉滩（拒编）,America,English,political_commentator,optimistic,500,"Talatan PV park in Gonghe, Qinghai; sheep graze under panels.
+Yehdor: past forage scarce; now grazes in park.
+Park >300 square kilometers; over 60 solar companies.",不得出现资料没有的1亿千瓦/游客/出口销量,证据硬边界
+N08,缺机制资料-谦逊成稿,新闻通稿：某村屋顶分布式光伏助集体增收（资料很短）。,新闻通稿：乡村分布式光伏短讯式,America,English,political_commentator,optimistic,400,"Gangba village, Yunnan: rooftop distributed PV project, 50 kW, grid-connected end-2025.
+Expected annual generation about 74,000 kWh.
+Village Party secretary: previously mainly sheep raising, unstable; rooftop PV brings over 24,000 yuan stable collective income per year.",短资料可写短通稿；不补发明治沙羊群机制,证据+讲述克制
+N09,人物引语保真,英文通稿必须出现叶多原话大意（远走找草）与曹俊/园区人员关于草挡板的说法（若资料有）。塔拉滩。,新闻通稿：塔拉滩引语,America,English,political_commentator,serious,600,"Yehdor, 49, herder: ""In the past, the grassland wasn't productive enough, so herders had to take their sheep far away to find grazing land.""
+Cao Jun, industrial park project staff: grass over a meter high blocked panels and reduced efficiency.
+Agreement: herders graze under panels; win-win.
+32 pastures; 56 sites; 18 villages; 20,000+ sheep.",引语不虚构；职务不升级,证据+语气
+N10,强调面检查,通稿需同时体现清洁能源、生态修复、牧民增收三方面（资料支持范围内）。塔拉滩英文。,新闻通稿：塔拉滩三效益,America,English,political_commentator,optimistic,650,"Deep blue solar panels generate clean energy at Talatan, Qinghai.
+Shade and wind barriers help grass return on former desert land.
+Herders gain forage and income; Yehdor nearly 100,000 yuan/year; flock 200 to 300+.
+32 eco-pastures; 56 sites; 18 villages; >20,000 sheep.
+Companies save weeding costs.",三强调面都出现；收束非CTA,强调+口径
+N11,门控-无关主题,新闻通稿：曼联本轮战术与积分走势分析,新闻通稿：曼联战术,UK,English,political_commentator,serious,500,球迷笔记：中场压迫加强；预期控球58%。,应拒绝或不硬写中国故事通稿,门控
+N12,一带一路鲁班工坊民生,新闻通稿：鲁班工坊技能培训（英文），只用资料，突出人文交流与民生技能。,新闻通稿：鲁班工坊,America,English,political_commentator,optimistic,550,"Luban Workshop training centers hone graduates' professional skills and guide careers.
+In Morocco, students are expected to meet growing e-commerce market demands.
+Workshops play a role in people-to-people exchange and practical skills development under Belt and Road cooperation narratives in official coverage.",人文交流口径；无emoji；第三人称,语气+口径+讲述

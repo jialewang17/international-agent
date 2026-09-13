@@ -1,0 +1,95 @@
+{
+  "theme": "新疆大盘鸡市井烟火短帖",
+  "user_brief": "大盘鸡 美国IG",
+  "categories": [
+    "Chinese region"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "food",
+      "statement": "探店笔记：乌鲁木齐某巷口大盘鸡配皮带面，香味先到；邻桌游客用手机拍拉面甩面。",
+      "source": "user_paste:用户资料#1",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    },
+    {
+      "category": "Chinese region",
+      "statement": "According to Lonely Planet, China operates the world's largest high-speed rail network connecting more than 500 cities, with trains reaching up to about 350 km/h.",
+      "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "Chinese region",
+      "statement": "Travel guides note that everyday life in Chinese cities is largely cashless, with WeChat Pay and Alipay widely used for metro fares, street food and other daily transactions.",
+      "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "Chinese region",
+      "statement": "Lonely Planet describes Beijing hutong districts around Gulou and the Lama Temple as places where visitors encounter historic alleyway life on a human scale.",
+      "source": "https://www.lonelyplanet.com/articles/best-neighborhoods-in-beijing-china",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 1,
+    "local": 3
+  },
+  "five_w": {
+    "who": "A foodie travel influencer sharing vibrant, immersive culinary experiences with an upbeat, internet-savvy tone.",
+    "says_what": "The sensory experience of Xinjiang Da Pan Ji (Big Plate Chicken) with hand-pulled belt noodles and the lively atmosphere of tourists filming the noodle-pulling show.",
+    "channel": "Instagram: highly visual, short, emoji-friendly, and scroll-stopping.",
+    "to_whom": "American audience: appeals to their love for massive portions, 'comfort food', and interactive, shareable dining experiences.",
+    "effect": "Sparks curiosity and appetite, encouraging them to tag friends and share the post."
+  },
+  "title_or_hook": "POV: You just found the ultimate carb heaven in a Xinjiang alley! 🍜✨",
+  "post": "POV: You just found the ultimate carb heaven in a Xinjiang alley! 🍜✨ Meet Da Pan Ji (Big Plate Chicken). The savory aroma hits you before you even see the giant, steaming pot of tender chicken and chewy, hand-pulled \"belt noodles.\" 🤤 Watching neighboring tourists film the noodle-pulling show is half the fun! If you love massive, flavor-packed comfort food, this is your new obsession. Who are you bringing to share this giant plate? 👇🔥",
+  "hashtags": [
+    "#DaPanJi",
+    "#XinjiangFood",
+    "#ChineseFood",
+    "#ComfortFood",
+    "#FoodieTravel",
+    "#NoodlePull"
+  ],
+  "ops_tips": [
+    "Pair with a high-quality, fast-paced Reel showing the steaming pot and the noodle-pulling action to maximize visual appeal.",
+    "Use a trending, upbeat audio track to boost algorithmic reach and match the enthusiastic vibe."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> Xinjiang alley setting, savory aroma arriving first, giant pot of chicken with hand-pulled 'belt noodles', and neighboring tourists filming the noodle-pulling show."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post+evidence_user_materials) -> genre=post -> dual_evidence(user=1,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post",
+    "evidence_user_materials"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "J06",
+    "prompt_style": "探店资料+短令",
+    "full_prompt": "大盘鸡 美国IG",
+    "expect": "用户探店细节进Says What；可叠加本地food库",
+    "focus": "双源美食",
+    "has_materials": true,
+    "expect_block": false
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "category": "celebrity",
+  "count": 4,
+  "items": [
+    {
+      "id": "ovi-001",
+      "theme": "Food Ranger shows Chinese street food to Western YouTube",
+      "category": "celebrity",
+      "source_type": "Vox",
+      "creator": "Trevor James / The Food Ranger",
+      "platform": "YouTube (overseas)",
+      "title": "Inside the world of one of YouTube's most popular food vloggers",
+      "url": "https://www.vox.com/the-highlight/2019/12/17/21020770/youtube-china-chinese-travel-street-food-trevor-james-food-ranger",
+      "social_urls": [
+        "https://www.youtube.com/@TheFoodRanger",
+        "https://www.thefoodranger.com/about/"
+      ],
+      "quote_en": "Today, the Food Ranger is one of the most popular food vloggers in the world. His specialty is China and the country's ancient street food culture that hides out in curbside shops all over the 26 provinces... In a country that's misunderstood by those outside of its borders, that outsider status is crucial to his appeal.",
+      "quote_cn": "Vox：加拿大籍 YouTuber Food Ranger（Trevor James）以中国街头美食闻名全球，向海外观众展示各省街头饮食文化。",
+      "statement_for_kb": "Canadian YouTuber Trevor James (The Food Ranger), profiled by Vox, specializes in documenting Chinese street-food culture across many provinces for a primarily Western YouTube audience.",
+      "tags": [
+        "overseas_media",
+        "youtube",
+        "street_food",
+        "foreign_creator"
+      ],
+      "_pack_file": "03_overseas_influencer.json",
+      "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
+      "_source_tier": "04_overseas_media_influencer"
+    },
+    {
+      "id": "ovi-005",
+      "theme": "Strictly Dumpling started from Chinese cultural content",
+      "category": "celebrity",
+      "source_type": "The Pitt News",
+      "creator": "Mike Chen / Strictly Dumpling",
+      "platform": "YouTube (US)",
+      "title": "Mike Chen talks food, YouTube and traveling the world",
+      "url": "https://pittnews.com/article/149887/arts-and-entertainment/mike-chen-talks-food-youtube-and-traveling-the-world/",
+      "social_urls": [
+        "https://www.youtube.com/@strictlydumpling"
+      ],
+      "quote_en": "I started out doing Chinese traditional cultural content on YouTube [about six years ago on a channel called Off the Great Wall], so I wasn't always doing this. Then one day I thought, 'I really want to eat and have people watch me.'... Then it just worked out and I was able to make a living off of it.",
+      "quote_cn": "美国大学媒体 The Pitt News：华裔美籍 YouTuber Mike Chen（Strictly Dumpling）早期做中国传统文化内容，后转向美食旅行并以此为业。",
+      "statement_for_kb": "US campus paper The Pitt News quotes YouTuber Mike Chen (Strictly Dumpling): he began with Chinese traditional cultural content on Off the Great Wall before building a food-travel career.",
+      "tags": [
+        "overseas_media",
+        "youtube",
+        "chinese_american",
+        "culture"
+      ],
+      "_pack_file": "03_overseas_influencer.json",
+      "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
+      "_source_tier": "04_overseas_media_influencer"
+    },
+    {
+      "id": "ovi-007",
+      "theme": "Blondie in China Australian creator on overseas AFR",
+      "category": "celebrity",
+      "source_type": "Australian Financial Review",
+      "creator": "Amy Lyons / Blondie in China",
+      "platform": "YouTube / TikTok / Bilibili",
+      "title": "Blondie in China: How this Australian made a living eating her way through China",
+      "url": "https://www.afr.com/world/asia/how-this-australian-makes-a-living-eating-her-way-through-china-20251113-p5nf7j",
+      "social_urls": [
+        "https://www.youtube.com/@BlondieinChina"
+      ],
+      "quote_en": "Amy Lyons, the 33-year-old star of Blondie in China, a food channel with more than one million followers across YouTube, TikTok, Bilibili and Xiaohongshu...",
+      "quote_cn": "澳大利亚金融评论报：澳籍创作者 Amy Lyons（Blondie in China）以吃遍中国为内容，海外与国内平台粉丝超百万。",
+      "statement_for_kb": "Australian Financial Review profiles Australian creator Amy Lyons (Blondie in China), whose China food channel has over one million followers across YouTube and other platforms.",
+      "tags": [
+        "afr",
+        "australia",
+        "overseas_media",
+        "food_vlogger"
+      ],
+      "_pack_file": "03_overseas_influencer.json",
+      "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
+      "_source_tier": "04_overseas_media_influencer"
+    },
+    {
+      "id": "ovi-013",
+      "theme": "Chicago Maroon on Strictly Dumpling positive energy",
+      "category": "celebrity",
+      "source_type": "Chicago Maroon",
+      "creator": "Mike Chen / Strictly Dumpling",
+      "platform": "YouTube",
+      "title": "Strictly Dumpling Talks Food, Fitness, and Identity",
+      "url": "https://chicagomaroon.com/28092/artsandculture/strictly-dumpling-talks-food-fitness-identity/",
+      "social_urls": [
+        "https://www.youtube.com/@strictlydumpling"
+      ],
+      "quote_en": "With over 3 million subscribers on YouTube, Mike Chen is an established celebrity in YouTube's massive food community. Those who watch his videos know his greatest appeal lies in the positive energy he exudes no matter where he is or what food he is trying.",
+      "quote_cn": "芝加哥大学学生报：Strictly Dumpling 以正向能量与全球美食探索吸引数百万订阅。",
+      "statement_for_kb": "University of Chicago's Chicago Maroon highlights Mike Chen (Strictly Dumpling) for positive-energy food travel content with millions of YouTube subscribers.",
+      "tags": [
+        "overseas_campus_media",
+        "youtube",
+        "positivity"
+      ],
+      "_pack_file": "03_overseas_influencer.json",
+      "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
+      "_source_tier": "04_overseas_media_influencer"
+    }
+  ]
+}

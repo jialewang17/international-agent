@@ -1,0 +1,52 @@
+{
+  "tier": "05_creator_personal_site",
+  "label": "创作者个人/品牌站",
+  "count": 2,
+  "items": [
+    {
+      "id": "ovi-003",
+      "theme": "Personal site: moved to Chengdu for food adventure",
+      "category": "food",
+      "source_type": "TheFoodRanger.com",
+      "creator": "Trevor James",
+      "platform": "Personal website (overseas)",
+      "title": "About - The Food Ranger",
+      "url": "https://www.thefoodranger.com/about/",
+      "social_urls": [
+        "https://www.youtube.com/@TheFoodRanger"
+      ],
+      "quote_en": "I moved to Chengdu for one reason: the food... There was this magical feeling on the streets that I couldn't get enough of... I've decided that apart from traveling and eating, I also want to inspire people and put some positivity out there in the world, showing people that the world is truly a beautiful place, full of friendly people and that it's not as scary as a lot of the media makes it out to be.",
+      "quote_cn": "Food Ranger 个人站：因美食移居成都；希望通过旅行美食内容展示世界友好，而不像部分媒体渲染得那么可怕。",
+      "statement_for_kb": "On his overseas personal site, Trevor James says he moved to Chengdu for the food and aims to show through travel/food videos that the world is full of friendly people, countering fear-driven media narratives.",
+      "tags": [
+        "personal_site",
+        "chengdu",
+        "positivity"
+      ],
+      "_pack_file": "03_overseas_influencer.json",
+      "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
+      "_source_tier": "05_creator_personal_site"
+    },
+    {
+      "id": "ovi-012",
+      "theme": "Lost Plate overseas site: food reveals local stories",
+      "category": "culture",
+      "source_type": "LostPlate.com",
+      "creator": "Lost Plate Food Tours",
+      "platform": "Company site (overseas/.com)",
+      "title": "Lost Plate Food Tours",
+      "url": "https://lostplate.com/",
+      "quote_en": "Food reveals things that the internet can't. Every dish has a story. It reflects local ingredients and preserves traditions that have been passed down for generations. A great food tour combines cuisine, culture, history, and neighborhood exploration into a single experience.",
+      "quote_cn": "Lost Plate 官网：食物能揭示互联网看不到的东西；每道菜都有故事，连接食材、传统与街区生活。",
+      "statement_for_kb": "Lost Plate's overseas website frames Chinese food tours as storytelling: each dish reflects local ingredients and generational traditions beyond what the internet shows.",
+      "tags": [
+        "personal_brand_site",
+        "food_culture",
+        "storytelling"
+      ],
+      "_pack_file": "03_overseas_influencer.json",
+      "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
+      "_source_tier": "05_creator_personal_site"
+    }
+  ]
+}

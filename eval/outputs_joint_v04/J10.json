@@ -1,0 +1,100 @@
+{
+  "theme": "校园国际日中国角海报文案",
+  "user_brief": "写美国校园国际日中国角Instagram文案约70词。5W完整。必须用我列的三条展台事实，不要编额外互动数据。",
+  "categories": [],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "instagram",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "user_material",
+      "statement": "1) 展台提供汉字名牌体验 2) 志愿讲解员介绍二十四节气卡片 3) 发放自制书签（竹纹图案）",
+      "source": "user_paste:用户资料#1",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    },
+    {
+      "category": "governance",
+      "statement": "香港、新疆、西藏事务纯属中国内政，中国坚决反对任何外部势力打着“人权”幌子对此横加干涉。七国集团应当停止在涉港、涉疆、涉藏问题上对中国指手画脚，深刻反省自身历史和人权劣迹。",
+      "source": "https://www.mfa.gov.cn/web/fyrbt_673021/dhdw_673027/202305/t20230520_11080726.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "international trade",
+      "statement": "美方打着“保护人权”幌子，编造“强迫劳动”等涉疆谎言谣言，并以此为依据出台所谓“维吾尔强迫劳动预防法案”，恶意打压新疆棉花、番茄、太阳能光伏等优势产业，遏制中国发展，扰乱国际贸易秩序，破坏全球产业链供应链稳定。",
+      "source": "https://www.mfa.gov.cn/web/wjbxw_673019/202206/t20220619_10706065.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "sports",
+      "statement": "美国国会众议院议长佩洛西之呼吁对2022年北京冬奥会进行“外交抵制”，则不过是这场闹剧的最新一幕。",
+      "source": "https://www.fmprc.gov.cn/zwbd_673032/fbwz/202106/t20210619_9172487.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "international trade",
+      "statement": "事实早已证明，所谓新疆存在“强迫劳动”是少数反华分子炮制的世纪谎言。美方以谎言为依据，制定并实施涉疆恶法，严重干扰中美正常光伏产品贸易，违背市场规律和国际经贸规则，损害全球光伏产业链供应链稳定和全球应对气候变化努力，最终也必将损害自身利益。",
+      "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202211/t20221111_10972853.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 1,
+    "local": 4
+  },
+  "five_w": {
+    "who": "A trendy college lifestyle vlogger sharing a vibrant, hands-on campus moment using Gen-Z friendly language.",
+    "says_what": "Experiencing Chinese culture interactively: getting a custom Chinese character name badge, learning the poetic 24 Solar Terms from volunteers, and taking home a DIY bamboo-pattern bookmark.",
+    "channel": "Instagram. Short, visual-friendly, emoji-rich, and highly scrollable for a college audience.",
+    "to_whom": "American college students. The bridge is the appeal of aesthetic, personalized takeaways (custom badges/bookmarks) and the unique, poetic concept of solar terms at a familiar campus event.",
+    "effect": "Spark curiosity about the aesthetic and poetic side of Chinese traditions, ending with a light, shareable call-to-action."
+  },
+  "title_or_hook": "POV: You just found the coolest booth at International Day! 🌏✨",
+  "post": "POV: You just found the coolest booth at International Day! 🌏✨ Instead of just watching, we’re getting hands-on. I got my name written in gorgeous Chinese characters on a custom badge! 🖌️ Plus, volunteers broke down the poetic '24 Solar Terms' cards, and I snagged a DIY bamboo-pattern bookmark. 🎋 Who knew learning about ancient timekeeping could be this aesthetic? Drop a 🎋 if you’d rock this bookmark!",
+  "hashtags": [
+    "#InternationalDay",
+    "#CampusLife",
+    "#ChineseCulture",
+    "#Aesthetic"
+  ],
+  "ops_tips": [
+    "Pair with a carousel: Slide 1 is the custom name badge, Slide 2 is the Solar Terms cards, Slide 3 is the bamboo bookmark.",
+    "Use a trending, upbeat lo-fi audio track to match the aesthetic vibe."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> 'name written in gorgeous Chinese characters on a custom badge' (汉字名牌体验)",
+    "Evidence#1 -> 'volunteers broke down the poetic 24 Solar Terms cards' (志愿讲解员介绍二十四节气卡片)",
+    "Evidence#1 -> 'snagged a DIY bamboo-pattern bookmark' (发放自制书签竹纹图案)"
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post+evidence_user_materials) -> genre=post -> dual_evidence(user=1,local=4) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post",
+    "evidence_user_materials"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "J10",
+    "prompt_style": "校园中国角列表资料",
+    "full_prompt": "写美国校园国际日中国角Instagram文案约70词。5W完整。必须用我列的三条展台事实，不要编额外互动数据。",
+    "expect": "列表资料入evidence；正文覆盖至少2条用户事实",
+    "focus": "用户事实覆盖+5W",
+    "has_materials": true,
+    "expect_block": false
+  }
+}

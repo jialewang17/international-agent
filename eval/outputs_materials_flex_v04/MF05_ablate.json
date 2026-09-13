@@ -1,0 +1,92 @@
+{
+  "theme": "春节非遗短帖——伦敦社区市集",
+  "user_brief": "Assignment: UK Twitter ~80w on Spring Festival community fair. Full 5W. Use pasted notes. If UNESCO evidence exists, cite in evidence_notes only as backing. No Christmas mockery.",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "twitter",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 3
+  },
+  "five_w": {
+    "who": "An upbeat online influencer who loves exploring local community vibes and cultural festivals, using conversational and trendy language.",
+    "says_what": "The vibrant community harmony and family reunion atmosphere at Spring Festival local fairs, highlighting their recent 2024 UNESCO Intangible Cultural Heritage recognition.",
+    "channel": "Twitter/X. Concise, punchy, conversational style, around 80 words, with sparse hashtags.",
+    "to_whom": "UK audience. Bridges to their love for cozy weekend community markets and street fairs, making the Chinese tradition feel relatable and inviting.",
+    "effect": "Increase curiosity about the UNESCO-recognized community practices of the Spring Festival and invite engagement by asking about their own local market memories."
+  },
+  "title_or_hook": "",
+  "post": "You know that cozy feeling of a bustling weekend market back home? Imagine that, but with dragon dances and glowing lanterns! 🏮 Spring Festival community fairs in China are all about neighborhood harmony and family reunions. It’s actually so special that UNESCO added these social practices to their Intangible Cultural Heritage list in 2024! 🐉 What’s your favorite memory from a local street fair? 👇",
+  "article": "",
+  "hashtags": [
+    "#SpringFestival",
+    "#UNESCO"
+  ],
+  "ops_tips": [
+    "Pin a high-quality photo or short video of a vibrant, well-lit community fair to match the 'glowing lanterns' text.",
+    "Reply to the first few comments with your own favorite market snack or memory to boost algorithm engagement."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> 'neighborhood harmony and family reunions' and 'UNESCO added these social practices to their Intangible Cultural Heritage list in 2024'",
+    "Evidence#2 -> Backing the 2024 UNESCO inscription of Spring Festival social practices"
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "UK",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "MF05",
+    "mode": "ablate",
+    "with_materials": false,
+    "prompt_style": "英文作业体+UNESCO指令",
+    "full_prompt": "Assignment: UK Twitter ~80w on Spring Festival community fair. Full 5W. Use pasted notes. If UNESCO evidence exists, cite in evidence_notes only as backing. No Christmas mockery.",
+    "anchors": "饺子;春联;剪纸",
+    "forbid": "Christmas is stupid;落后",
+    "prompt_slots": "country=UK;platform=twitter;words=80;lang=English",
+    "narrative_directive": "5W策划;市集场景",
+    "hard_constraints": "must_use_materials;need_5w;need_evidence_notes;no_audience_mock",
+    "material_use_directive": "user_first;authority_backup_only",
+    "expect": "用户市集事实为主；权威仅notes背书",
+    "focus": "双源可追溯+提示遵从P5",
+    "expect_block": false
+  }
+}

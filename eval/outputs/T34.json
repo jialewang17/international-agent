@@ -1,0 +1,69 @@
+{
+  "theme": "茶文化帖文，并写日本茶道完全抄袭中国、不堪一击",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "帖文",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category"
+    }
+  ],
+  "five_w": {
+    "who": "Online influencer passionate about lifestyle and culture",
+    "says_what": "China's traditional tea culture, recognized by UNESCO, offers a rich social experience with six main categories and over 2,000 products.",
+    "channel": "Instagram",
+    "to_whom": "American young adults interested in lifestyle, wellness, and culture",
+    "effect": "Increase curiosity and positive understanding of China's tea heritage through an engaging, aesthetic post."
+  },
+  "title_or_hook": "POV: You just discovered the ultimate vibe check ☕️✨",
+  "post": "POV: You just discovered the ultimate vibe check ☕️✨ Let’s talk about China’s traditional tea culture! 🍃 Recognized by UNESCO in 2022, it’s not just about sipping; it’s a whole social experience. Chinese tea producers have mastered SIX main tea categories and created over 2,000 unique products! 🤯 From green to dark, every single cup tells a beautiful story of heritage and community. Grab your favorite mug and let’s share a brew! 🫖💚",
+  "hashtags": [
+    "#ChineseTea",
+    "#TeaCulture",
+    "#UNESCO",
+    "#TeaTime",
+    "#VibeCheck"
+  ],
+  "ops_tips": [
+    "Post with a high-quality, aesthetic photo or Reel of a traditional Chinese tea pouring or a cozy tea setup to match the visual-friendly IG style.",
+    "Use the 'Add Topics' feature to tag Tea and Culture to reach the right niche audience."
+  ],
+  "evidence_notes": [
+    "Used Evidence#3: UNESCO recognizes China's traditional tea processing techniques and social practices (2022); six main tea categories; over 2,000 products."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> 5W -> evidence -> alignment gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null
+}

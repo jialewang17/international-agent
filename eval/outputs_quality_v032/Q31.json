@@ -1,0 +1,109 @@
+{
+  "theme": "北京冬奥会赛后体育文化旅游带（崇礼等场馆遗产与大众参与）",
+  "user_brief": "崇礼滑雪 美国",
+  "categories": [
+    "sports",
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "sports",
+      "statement": "美国国会众议院议长佩洛西之呼吁对2022年北京冬奥会进行“外交抵制”，则不过是这场闹剧的最新一幕。",
+      "source": "https://www.fmprc.gov.cn/zwbd_673032/fbwz/202106/t20210619_9172487.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN maintains an official overseas YouTube channel used for English-language culture and travel storytelling; cite concrete video/article URLs for evidence rows.",
+      "source": "https://www.youtube.com/@CGTN",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "sports",
+      "statement": "CGTN citing IOC material: Beijing 2022 helped draw hundreds of millions of Chinese into winter sports since 2015, and the Games had a record share of women athletes (45.4%) for a Winter Olympics.",
+      "source": "https://news.cgtn.com/news/2023-02-03/IOC-hails-Beijing-2022-Winter-Olympics-legacy-1h7qqMuqhpu/index.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "sports",
+      "statement": "Post-Games, Beijing and Zhangjiakou developed a sports-culture-tourism belt around Olympic venues; Chongli alone drew about 470,000 visitors over one Spring Festival holiday period.",
+      "source": "https://news.cgtn.com/news/2024-02-24/Olympic-legacies-boost-Beijing-Zhangjiakou-winter-sports-1rsb5yHyyCA/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "sports",
+      "statement": "CGTN reports that more than 300 million people in China experienced ice-and-snow sports around the Beijing 2022 push, with strong public interest continuing after the Games.",
+      "source": "https://news.cgtn.com/news/2023-02-01/China-enjoys-winter-sports-boom-even-a-year-after-Beijing-2022-1h4aYzGbCLu/index.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 6
+  },
+  "five_w": {
+    "who": "A trendy travel and lifestyle influencer who loves winter sports and uses internet slang to share exciting destinations.",
+    "says_what": "Chongli's transformation into a massive, Olympic-grade winter sports hub post-2022, drawing 470,000 visitors in one Spring Festival as part of China's 300-million-strong snow sports boom.",
+    "channel": "Instagram: Short, visually evocative, emoji-friendly, scroll-stopping hook, approx 80 words.",
+    "to_whom": "American ski enthusiasts and travelers. Bridge: Appeals to their desire for world-class powder destinations and next-level resort infrastructure, framing Chongli as the ultimate new winter obsession.",
+    "effect": "Spark curiosity about Chongli as a top-tier global ski destination and encourage sharing or tagging friends for future trip planning."
+  },
+  "title_or_hook": "POV: Your next winter obsession awaits 🏂",
+  "post": "POV: You just found your next winter obsession. 🏂 Post-2022 Olympics, Chongli, China, is the ultimate snow sports hub. During one Spring Festival alone, 470,000 visitors hit these Olympic-grade slopes! 🏔️ With 300 million Chinese now into snow sports, the resort energy is unmatched. Think world-class powder vibes with next-level infrastructure. ✨ Who are you taking on your next powder day? Drop a 🏔️ if you’re ready to shred in Chongli!",
+  "hashtags": [
+    "#Chongli",
+    "#Skiing",
+    "#WinterVibes",
+    "#ChinaTravel",
+    "#PowderDay"
+  ],
+  "ops_tips": [
+    "Pair with a high-energy POV video carving down an Olympic-grade slope in Chongli.",
+    "Use a trending upbeat audio track to match the 'winter obsession' vibe."
+  ],
+  "evidence_notes": [
+    "Evidence#4 -> Chongli drew about 470,000 visitors over one Spring Festival holiday period post-Games.",
+    "Evidence#5 -> More than 300 million people in China experienced ice-and-snow sports."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=6) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "Q31",
+    "prompt_style": "极短-稳定对D",
+    "full_prompt": "崇礼滑雪 美国",
+    "expect": "短令出具体体验点；遗产表述有据",
+    "focus": "短vs长稳定",
+    "parsed_theme": "北京冬奥会赛后体育文化旅游带（崇礼等场馆遗产与大众参与）",
+    "pair": "PAIR_D"
+  }
+}

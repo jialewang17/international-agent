@@ -1,0 +1,137 @@
+enabled: true
+auto_activate: true
+discover_files: true
+
+max_chars_per_skill: 3600
+max_active_skills: 3
+max_total_chars: 7800
+
+manual_activation:
+  always_on: []
+  disabled:
+    - planning
+    - coding
+    - research
+    - data_analysis
+
+skills:
+  intl_comm:
+    file: skills/intl-comm.md
+    title: 讲好中国故事（团队框架）
+    enabled: true
+    priority: 100
+    keywords:
+      - 讲好中国故事
+      - 中国故事
+      - 国际传播
+      - 发帖
+      - 帖文
+      - 选题
+      - 策划
+      - 回复
+      - 评论
+      - instagram
+      - twitter
+      - 推特
+      - 新疆
+      - 非遗
+      - 春节
+      - 美食
+      - ABSA
+
+  china_story_post:
+    file: skills/genres/china-story-post.md
+    title: 社交帖文体裁（5W）
+    enabled: true
+    priority: 96
+    keywords:
+      - 帖文
+      - 发帖
+      - 主动
+      - hashtag
+      - instagram
+      - twitter
+      - 5w
+
+  evidence_user_materials:
+    file: skills/evidence-user-materials.md
+    title: 用户资料论据双源
+    enabled: true
+    priority: 97
+    keywords:
+      - 上传
+      - 资料
+      - 用户材料
+      - user_materials
+      - 粘贴
+      - 论据
+
+  china_story_news:
+    file: skills/genres/china-story-news.md
+    title: 新闻通稿体裁（官媒语料）
+    enabled: true
+    priority: 94
+    keywords:
+      - 新闻稿
+      - 新闻通稿
+      - 通稿
+      - 消息稿
+      - 通讯
+      - 新华体
+      - press release
+      - news wire
+      - across china
+
+  china_story_feature:
+    file: skills/genres/china-story-feature.md
+    title: 深度报道体裁（占位·待南方周末材料）
+    enabled: true
+    priority: 93
+    keywords:
+      - 深度报道
+      - 专题
+      - longform
+
+  china_story_script:
+    file: skills/genres/china-story-script.md
+    title: 短视频脚本体裁（占位）
+    enabled: true
+    priority: 92
+    keywords:
+      - 短视频脚本
+      - 口播
+      - 分镜
+
+  china_story_active:
+    file: skills/china-story-active.md
+    title: 主动传播路由（兼容旧名）
+    enabled: true
+    priority: 90
+    keywords:
+      - 选题
+      - 运营
+      - 策划
+
+  planning:
+    file: skills/planning.md
+    enabled: false
+    priority: 90
+    keywords: ["规划", "计划"]
+
+  coding:
+    file: skills/coding.md
+    enabled: false
+    priority: 95
+    keywords: ["代码", "重构"]
+
+  research:
+    file: skills/research.md
+    enabled: false
+    priority: 80
+    keywords: ["调研"]
+
+  data_analysis:
+    file: skills/data-analysis.md
+    enabled: false
+    priority: 85
+    keywords: ["数据"]

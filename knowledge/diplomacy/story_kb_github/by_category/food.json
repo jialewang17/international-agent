@@ -1,0 +1,275 @@
+{
+  "category": "food",
+  "count": 13,
+  "items": [
+    {
+      "id": "food-001",
+      "theme": "Xinjiang cuisine as cultural melting pot",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "Flavorful Xinjiang cuisine",
+      "url": "https://news.cgtn.com/news/2024-06-11/Flavorful-Xinjiang-cuisine-1ulwfDUxBug/p.html",
+      "quote_en": "As a melting pot of cultures throughout the history, Xinjiang has developed a unique culinary tradition that combines elements of Chinese, Central Asian and Middle Eastern cooking. The food is predominantly halal due to the large Muslim population in the region.",
+      "quote_cn": "（CGTN 原文为英）：新疆历史上是文化交融之地，饮食传统融合中国、中亚与中东元素；因穆斯林人口较多，饮食以清真为主。",
+      "statement_for_kb": "Xinjiang cuisine combines Chinese, Central Asian and Middle Eastern cooking traditions; it is predominantly halal, featuring lamb, cumin/chili seasoning, nang flatbread, noodles and pilaf.",
+      "tags": [
+        "xinjiang",
+        "halal",
+        "lamb",
+        "nang",
+        "cultural_exchange"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "food-002",
+      "theme": "Foreign guest experiences Xinjiang food",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "A taste of Xinjiang: An American guest's journey into local cuisine",
+      "url": "https://news.cgtn.com/news/2025-10-13/A-taste-of-Xinjiang-An-American-guest-s-journey-into-local-cuisine-1HrdBDlGzEA/p.html",
+      "quote_en": "They sampled a range of classic Xinjiang delicacies one by one, from the aromatic da pan ji (Xinjiang-style braised chicken cooked in a large pan) to the chewy and smooth gan ban mian (hand-pulled noodles in a savory sauce), to the rich-tasting naan (Xinjiang flatbread).",
+      "quote_cn": "美籍嘉宾在新疆餐馆品尝大盘鸡、干拌面、馕等经典地方菜，体验日常饮食文化。",
+      "statement_for_kb": "Classic Xinjiang dishes commonly shared with visitors include da pan ji (big-plate chicken), hand-pulled noodles, and naan/nang flatbread.",
+      "tags": [
+        "xinjiang",
+        "foreign_voice",
+        "da_pan_ji",
+        "noodles",
+        "naan"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "food-003",
+      "theme": "Kashgar street food diversity",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "Foodies make a culinary journey to Xinjiang's Kashgar",
+      "url": "https://news.cgtn.com/news/2023-05-14/-Foodies-make-a-culinary-journey-to-Xinjiang-s-Kashgar--1jNzLX30tuU/index.html",
+      "quote_en": "Smoked meat, juicy pomegranates, milk tea and spiced bread are all must-try dishes for visitors. The local cuisine often surprises foodies with its diverse range of seasonings – from cumin, chili and cinnamon to garlic and sesame.",
+      "quote_cn": "喀什烟熏肉、石榴、奶茶与香料面包是常见待客食品；调味涵盖孜然、辣椒、肉桂、蒜与芝麻等。",
+      "statement_for_kb": "Kashgar's local food scene features smoked meat, pomegranates, milk tea and spiced bread, with seasonings such as cumin, chili, cinnamon, garlic and sesame.",
+      "tags": [
+        "kashgar",
+        "street_food",
+        "seasonings"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "food-004",
+      "theme": "Hot pot as social culture",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "The history and origin of Chinese hot pot",
+      "url": "https://news.cgtn.com/news/2023-08-17/The-history-and-origin-of-Chinese-hot-pot-1mlCmLB0jfy/index.html",
+      "quote_en": "Hot pot is not only a cooking method but also a symbol of culture, embodying the culinary wisdom of ancient Chinese people. It is a cultural symbol and social way of life in traditional Chinese cuisine.",
+      "quote_cn": "火锅不仅是烹饪方式，也是文化符号与社交生活方式。",
+      "statement_for_kb": "Chinese hot pot is both a cooking method and a social cultural practice in traditional Chinese cuisine.",
+      "tags": [
+        "hotpot",
+        "sichuan",
+        "social_dining"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "food-005",
+      "theme": "Chongqing hot pot lifestyle",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "Travelogue: Chongqing's most famous food tingles taste buds",
+      "url": "https://news.cgtn.com/news/3d3d774e796b7a4d33457a6333566d54/index.html",
+      "quote_en": "In Chongqing, hot pot is thoroughly intertwined with the culture. It is far more than a dish, but a lifestyle that represents the spirit of the metropolis.",
+      "quote_cn": "在重庆，火锅与城市文化深度交织，不仅是一道菜，更是一种生活方式。",
+      "statement_for_kb": "Chongqing-style hot pot is closely tied to local lifestyle and urban culture, known for the la (spicy) and ma (numbing) flavor pair.",
+      "tags": [
+        "chongqing",
+        "hotpot",
+        "lifestyle"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "food-006",
+      "theme": "Dumplings across Chinese history",
+      "category": "food",
+      "source_type": "Xinhua",
+      "title": "China's history of dumplings, from archaeological finds to modern tables",
+      "url": "https://english.news.cn/20240224/ca51c594924f49e7905e5017da9bf15d/c.html",
+      "quote_en": "Archaeologists in east China's Shandong Province told Xinhua that the earliest physical record of dumplings dates back approximately 2,500 years. Due to the dry climate, well-preserved pastries and dumplings from the Tang Dynasty have been excavated from the Astana Tombs in Turpan, Xinjiang.",
+      "quote_cn": "山东考古显示饺子实物可追溯约2500年；吐鲁番阿斯塔那古墓出土唐代饺子类食品，形状大小与今相近。",
+      "statement_for_kb": "Archaeological evidence places dumpling-like foods in China about 2,500 years ago; Tang-era dumplings excavated in Turpan, Xinjiang closely resemble modern jiaozi.",
+      "tags": [
+        "dumpling",
+        "jiaozi",
+        "archaeology",
+        "xinjiang",
+        "spring_festival"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "food-007",
+      "theme": "Sichuan among China's classic cuisines",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "My Chinese appetite: Chuan Cuisine",
+      "url": "https://news.cgtn.com/news/3d3d674d7755444f32457a6333566d54/index.html",
+      "quote_en": "Four of the 'Eight Cuisines' were publicly recognized as the most mature cooking styles in the early Qing Dynasty... Chuan cuisine, nurtured by its birthplace in Sichuan Province.",
+      "quote_cn": "清代已公认鲁、粤、川、苏等成熟菜系；川菜以四川为发源地，常给人麻辣印象。",
+      "statement_for_kb": "Sichuan (Chuan) cuisine is one of China's classic regional cooking styles, often associated with spicy and numbing flavors shaped by local climate and ingredients.",
+      "tags": [
+        "sichuan",
+        "eight_cuisines",
+        "regional"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "ovi-002",
+      "theme": "Mandarin + positivity as food diplomacy",
+      "category": "food",
+      "source_type": "Vox",
+      "creator": "Trevor James / The Food Ranger",
+      "platform": "YouTube",
+      "title": "Inside the world of one of YouTube's most popular food vloggers",
+      "url": "https://www.vox.com/the-highlight/2019/12/17/21020770/youtube-china-chinese-travel-street-food-trevor-james-food-ranger",
+      "quote_en": "I try to show them my excitement for the food, and how cool what they're creating is, and how cool China is in general... It's everyday for them, but here's a foreigner who thinks it's the coolest thing in the world... We like to stay away from any politics whatsoever... We do food and positivity.",
+      "quote_cn": "James：用兴奋感让摊主感到自己做的东西很酷、中国很酷；内容坚持食物与正面叙事，刻意远离政治。",
+      "statement_for_kb": "Food Ranger tells Vox he uses Mandarin and visible enthusiasm to open vendors up, aiming to show how cool Chinese food and China can be through non-political, positive food storytelling.",
+      "tags": [
+        "overseas_media",
+        "positive_narrative",
+        "mandarin"
+      ],
+      "_pack_file": "03_overseas_influencer.json",
+      "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
+      "_source_tier": "04_overseas_media_influencer"
+    },
+    {
+      "id": "ovi-003",
+      "theme": "Personal site: moved to Chengdu for food adventure",
+      "category": "food",
+      "source_type": "TheFoodRanger.com",
+      "creator": "Trevor James",
+      "platform": "Personal website (overseas)",
+      "title": "About - The Food Ranger",
+      "url": "https://www.thefoodranger.com/about/",
+      "social_urls": [
+        "https://www.youtube.com/@TheFoodRanger"
+      ],
+      "quote_en": "I moved to Chengdu for one reason: the food... There was this magical feeling on the streets that I couldn't get enough of... I've decided that apart from traveling and eating, I also want to inspire people and put some positivity out there in the world, showing people that the world is truly a beautiful place, full of friendly people and that it's not as scary as a lot of the media makes it out to be.",
+      "quote_cn": "Food Ranger 个人站：因美食移居成都；希望通过旅行美食内容展示世界友好，而不像部分媒体渲染得那么可怕。",
+      "statement_for_kb": "On his overseas personal site, Trevor James says he moved to Chengdu for the food and aims to show through travel/food videos that the world is full of friendly people, countering fear-driven media narratives.",
+      "tags": [
+        "personal_site",
+        "chengdu",
+        "positivity"
+      ],
+      "_pack_file": "03_overseas_influencer.json",
+      "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
+      "_source_tier": "05_creator_personal_site"
+    },
+    {
+      "id": "ovi-004",
+      "theme": "SCMP on Food Ranger street-food enthusiasm",
+      "category": "food",
+      "source_type": "SCMP",
+      "creator": "Trevor James / The Food Ranger",
+      "platform": "YouTube",
+      "title": "Malaysia's top YouTube food star is a Canadian – Trevor James, aka The Food Ranger",
+      "url": "https://www.scmp.com/lifestyle/entertainment/article/3107070/malaysias-top-youtube-food-star-canadian-trevor-james-aka",
+      "quote_en": "Trevor James' extreme enthusiasm for seeking out delicious street food in obscure places across Asia chimes with his 4.6 million subscribers... It's amazing that we get to do what we do, and I've always found excitement in travelling all over the world.",
+      "quote_cn": "南华早报（海外英文站）：加拿大创作者 Food Ranger 以寻访亚洲偏僻街头美食著称，拥有数百万订阅。",
+      "statement_for_kb": "SCMP profiles Canadian creator Trevor James (The Food Ranger) for enthusiastic street-food hunting across Asia, including China-related coverage, for a large YouTube audience.",
+      "tags": [
+        "scmp",
+        "overseas_media",
+        "street_food"
+      ],
+      "_pack_file": "03_overseas_influencer.json",
+      "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
+      "_source_tier": "04_overseas_media_influencer"
+    },
+    {
+      "id": "ovi-008",
+      "theme": "Fuchsia Dunlop bridges Chinese cuisine for Westerners (CNN)",
+      "category": "food",
+      "source_type": "CNN",
+      "creator": "Fuchsia Dunlop",
+      "platform": "Books / media (UK)",
+      "title": "Sichuan cuisine: More than just spice",
+      "url": "https://www.cnn.com/2012/10/09/world/asia/china-fuchsia-dunlop-sichuan-cuisine",
+      "quote_en": "Do you see yourself as a bridge between Chinese and Western foodies? That's what I'm trying to do. I think Chinese cuisine is probably the most diverse and sophisticated in the world... And it's very underrated and not very deeply understood in the West.",
+      "quote_cn": "CNN：英国美食作家 Fuchsia Dunlop 自视为中西美食爱好者之间的桥梁，认为中国菜极度丰富却在西方被低估、理解不深。",
+      "statement_for_kb": "CNN interview: British food writer Fuchsia Dunlop, first Western trainee at Sichuan's cooking institute, aims to bridge Chinese and Western food cultures and argues Chinese cuisine is underrated in the West.",
+      "tags": [
+        "cnn",
+        "overseas_media",
+        "sichuan",
+        "bridge"
+      ],
+      "_pack_file": "03_overseas_influencer.json",
+      "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
+      "_source_tier": "04_overseas_media_influencer"
+    },
+    {
+      "id": "ovi-009",
+      "theme": "Sichuan food more than hot and spicy",
+      "category": "food",
+      "source_type": "CNN",
+      "creator": "Fuchsia Dunlop",
+      "platform": "Books / media",
+      "title": "Sichuan cuisine: More than just spice",
+      "url": "https://www.cnn.com/2012/10/09/world/asia/china-fuchsia-dunlop-sichuan-cuisine",
+      "quote_en": "It's much more subtle than that... A good Sichuanese meal is not all hot; it's balanced. There's a saying: Yicaiyige baicaibaiwei, meaning, 'Each dish has its own style; a hundred dishes have a hundred different flavors.'",
+      "quote_cn": "Dunlop：川菜远不止“麻辣”，好的川菜讲究平衡；一菜一格、百菜百味。",
+      "statement_for_kb": "Fuchsia Dunlop explains on CNN that Sichuan cuisine is subtler than 'hot and spicy,' emphasizing balance and the ideal of a hundred dishes with a hundred flavors.",
+      "tags": [
+        "sichuan",
+        "cuisine_literacy",
+        "overseas_media"
+      ],
+      "_pack_file": "03_overseas_influencer.json",
+      "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
+      "_source_tier": "04_overseas_media_influencer"
+    },
+    {
+      "id": "ovi-014",
+      "theme": "Guardian on Jiangnan food ease and craft",
+      "category": "food",
+      "source_type": "The Guardian",
+      "creator": "Fuchsia Dunlop",
+      "platform": "Books / media",
+      "title": "China's best-kept food secret, revealed by Fuchsia Dunlop",
+      "url": "https://www.theguardian.com/lifeandstyle/2016/jul/17/china-best-kept-food-secret-fuchsia-dunlop-jiangnan-recipes-sea-bass-prawns",
+      "quote_en": "While every Chinese cuisine has its charms... I know of no other that can put one's heart so much at ease as the food of Jiangnan.",
+      "quote_cn": "卫报引 Dunlop：江南菜能让人心安，是中国饮食中极具魅力的一脉。",
+      "statement_for_kb": "In The Guardian, Fuchsia Dunlop writes that Jiangnan cuisine uniquely puts one's heart at ease among China's regional food cultures.",
+      "tags": [
+        "jiangnan",
+        "guardian",
+        "regional_cuisine"
+      ],
+      "_pack_file": "03_overseas_influencer.json",
+      "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
+      "_source_tier": "04_overseas_media_influencer"
+    }
+  ]
+}

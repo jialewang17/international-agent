@@ -1,0 +1,41 @@
+{
+  "error": "主题与「讲好中国故事」库外域（如海外足球俱乐部、网络梗图），且本地论据无法支撑该题，已跳过帖文生成。请换中国故事相关主题。",
+  "gate_reason": "off_topic_foreign",
+  "missing_anchors": [],
+  "theme": "iPhone 17 与安卓旗舰跑分对比评测",
+  "categories": [],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "international trade",
+      "statement": "美方打着“保护人权”幌子，编造“强迫劳动”等涉疆谎言谣言，并以此为依据出台所谓“维吾尔强迫劳动预防法案”，恶意打压新疆棉花、番茄、太阳能光伏等优势产业，遏制中国发展，扰乱国际贸易秩序，破坏全球产业链供应链稳定。",
+      "source": "https://www.mfa.gov.cn/web/wjbxw_673019/202206/t20220619_10706065.shtml",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "international trade",
+      "statement": "我注意到有报道称，当时出席美国驻广州总领馆与美国商界内部酒会的来宾在社交媒体上坦言，“在场的商会人士私下均表示这简直是疯了，捏造关于新疆的故事怎么可能对我们带来任何好处！我曾经多次去过新疆，每次都是美好的回忆。那儿根本没有发生任何关于种族灭绝、强迫劳动的事情。这些人完全是‘满口谎言’。曾几何时，中国人对我们友好，做生意也顺利，直到特朗普开始让事情变得糟糕。我曾以为拜登总统能很快纠正这些错误，但实际上并没有发生明显变化。直到听到这位领事…",
+      "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202206/t20220607_10699818.shtml",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "international trade",
+      "statement": "事实早已证明，所谓新疆存在“强迫劳动”是少数反华分子炮制的世纪谎言。美方以谎言为依据，制定并实施涉疆恶法，严重干扰中美正常光伏产品贸易，违背市场规律和国际经贸规则，损害全球光伏产业链供应链稳定和全球应对气候变化努力，最终也必将损害自身利益。",
+      "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202211/t20221111_10972853.shtml",
+      "retrieval": "chroma"
+    }
+  ],
+  "post": "",
+  "platform": "instagram",
+  "pipeline": "theme -> genre -> retrieve -> alignment gate -> STOP",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ]
+}

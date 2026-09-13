@@ -1,0 +1,80 @@
+{
+  "theme": "崇礼夜滑体验短帖",
+  "user_brief": "美国IG约60词。资料只有一句：崇礼某雪场夜滑，教练强调分层雪道。不要编冬奥奖牌数。",
+  "categories": [],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "sports",
+      "statement": "体验笔记：周末在崇礼某雪场夜滑，教练强调分层雪道。",
+      "source": "user_paste:用户资料#1",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    }
+  ],
+  "evidence_stats": {
+    "user": 1,
+    "local": 0
+  },
+  "five_w": {
+    "who": "A travel and lifestyle online influencer with a passion for winter sports, using trendy, upbeat internet slang.",
+    "says_what": "Experiencing night skiing in Chongli, where a professional coach highlights the well-designed tiered slopes for all skill levels.",
+    "channel": "Instagram: short, visually evocative, emoji-friendly, and highly scrollable caption of about 60 words.",
+    "to_whom": "American winter sports enthusiasts and young travelers, bridging through their familiarity with ski culture and the universal appeal of night skiing and tiered slopes.",
+    "effect": "Spark curiosity about China's modern winter tourism and encourage sharing with ski buddies through a relatable, shareable vibe rather than abstract slogans."
+  },
+  "title_or_hook": "Night Skiing Vibes",
+  "post": "POV: Night skiing in Chongli hits different! 🌙✨ My coach was super pro, breaking down the tiered slopes so every skill level gets the perfect run. 🏂 If you’re obsessed with hitting the mountain after dark, this setup is totally a vibe. Tag your ski buddy who needs to see this! 🏔️❄️",
+  "article": "",
+  "hashtags": [
+    "#Chongli",
+    "#NightSkiing",
+    "#SkiLife",
+    "#WinterVibes",
+    "#ChinaTravel"
+  ],
+  "ops_tips": [
+    "Pair with a high-quality, fast-paced Reel showing the glowing night slopes and the coach pointing out the different slope tiers.",
+    "Use a trending, upbeat audio track to match the 'hits different' vibe and boost algorithmic reach among US ski communities."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> Night skiing in Chongli (崇礼某雪场夜滑)",
+    "Evidence#1 -> Coach breaking down tiered slopes (教练强调分层雪道)"
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post+evidence_user_materials) -> genre=post -> dual_evidence(user=1,local=0) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post",
+    "evidence_user_materials"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "MF12",
+    "mode": "with",
+    "with_materials": true,
+    "prompt_style": "薄资料短写",
+    "full_prompt": "美国IG约60词。资料只有一句：崇礼某雪场夜滑，教练强调分层雪道。不要编冬奥奖牌数。",
+    "anchors": "夜滑;分层雪道;崇礼",
+    "forbid": "金牌数;奖牌;破纪录人次",
+    "prompt_slots": "country=America;platform=instagram;words=60",
+    "narrative_directive": "单场景短写",
+    "hard_constraints": "must_use_materials;no_fake_stats;allow_short",
+    "material_use_directive": "no_extra_plot",
+    "expect": "短资料短写；不补奖牌",
+    "focus": "越界+讲述克制",
+    "expect_block": false
+  }
+}

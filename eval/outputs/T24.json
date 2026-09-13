@@ -1,0 +1,49 @@
+{
+  "topics": [
+    {
+      "aspect": "Spring Festival",
+      "category": "culture",
+      "polarity": "negative"
+    }
+  ],
+  "absa_raw": "[Spring Festival, culture, negative]",
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN: China's traditional tea-making and associated social practices joined UNESCO's ICH list; six tea categories plus flower-scented and other reprocessed teas.",
+      "source": "https://news.cgtn.com/news/2022-11-30/Chinese-tea-making-joins-UNESCO-list-1fnlKJ9kTsc/index.html",
+      "retrieval": "category"
+    }
+  ],
+  "reply": "Equating the Spring Festival to Western New Year ignores China's cultural sovereignty. In 2024, UNESCO recognized its social practices as Intangible Cultural Heritage, highlighting family reunion and community harmony. It is profound cultural continuity shared globally, not a derivative copy. 🌏🏮",
+  "identity": "political commentator",
+  "tone": "serious",
+  "country": "America",
+  "platform": "twitter",
+  "prompt_files": [
+    "prompt/absa_topic_prompt.txt",
+    "prompt/reply_generation_prompt.txt"
+  ],
+  "pipeline": "skill(intl_comm) -> ABSA -> evidence -> reply (evidence-gated)",
+  "skills_applied": [
+    "intl_comm"
+  ]
+}

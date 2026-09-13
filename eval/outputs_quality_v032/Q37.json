@@ -1,0 +1,94 @@
+{
+  "theme": "中国剪纸（UNESCO）在节日装饰与家庭手工中的当代生命力",
+  "user_brief": "剪纸 日本 IG",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO's China ICH state page is the authoritative index of inscribed Chinese intangible heritage elements used for story-type grounding.",
+      "source": "https://ich.unesco.org/en/state/china-CN",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 4
+  },
+  "five_w": {
+    "who": "A lifestyle and aesthetic influencer who loves seasonal crafts, using trendy, warm, and visually-driven internet language.",
+    "says_what": "The visual magic of red paper-cutting on windows during the Spring Festival, highlighting the delicate craftsmanship and warm light, grounded in the UNESCO-recognized Spring Festival social practices.",
+    "channel": "Instagram. Short, highly visual, aesthetic focus, emoji-friendly, around 75 words.",
+    "to_whom": "Japan. Bridges to their cultural appreciation for seasonal transitions, delicate paper crafts, and the aesthetic of light filtering through windows.",
+    "effect": "Spark curiosity about the living tradition of Chinese paper-cutting as a beautiful winter aesthetic, inviting them to share their own handmade decor vibes."
+  },
+  "title_or_hook": "Winter light through red paper ✨",
+  "post": "Ever seen winter sunlight filter through delicate red paper? ✨ For the Spring Festival (a UNESCO Intangible Cultural Heritage!), Chinese families turn windows into glowing art with intricate paper-cuttings. 🪟🔴 If you appreciate the quiet beauty of seasonal handmade crafts, this cozy vibe will totally steal your heart. It’s literally a warm, visual greeting for the new year. 🧧 Who else loves adding handmade touches to their space? Drop a 🪟 if you’re team handmade decor!",
+  "hashtags": [
+    "#PaperCutting",
+    "#SpringFestival",
+    "#HandmadeDecor",
+    "#WinterVibes",
+    "#ChineseCulture"
+  ],
+  "ops_tips": [
+    "Pair with a high-res, warm-toned photo or Reel showing sunlight shining through a red paper-cutting on a glass window to maximize the visual hook.",
+    "Use a trending, cozy lo-fi or gentle traditional instrumental audio to boost the aesthetic and seasonal vibe."
+  ],
+  "evidence_notes": [
+    "Evidence#2 & #3 -> Supports the claim that Spring Festival social practices are a UNESCO Intangible Cultural Heritage.",
+    "Evidence#1 -> Provides general authoritative grounding for China's UNESCO ICH elements, contextualizing the paper-cutting tradition within recognized heritage."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "Japan",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=4) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "Q37",
+    "prompt_style": "极短-稳定对G",
+    "full_prompt": "剪纸 日本 IG",
+    "expect": "日本受众桥梁；手工/节日场景",
+    "focus": "短vs长稳定",
+    "parsed_theme": "中国剪纸（UNESCO）在节日装饰与家庭手工中的当代生命力",
+    "pair": "PAIR_G"
+  }
+}

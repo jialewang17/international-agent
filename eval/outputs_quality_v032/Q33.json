@@ -1,0 +1,109 @@
+{
+  "theme": "四川火锅作为社交餐桌文化（共享与热情）",
+  "user_brief": "火锅 TikTok 英国 幽默",
+  "categories": [
+    "food",
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "tiktok",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "food",
+      "statement": "Xinjiang cuisine combines Chinese, Central Asian and Middle Eastern cooking traditions; it is predominantly halal, featuring lamb, cumin/chili seasoning, nang flatbread, noodles and pilaf.",
+      "source": "https://news.cgtn.com/news/2024-06-11/Flavorful-Xinjiang-cuisine-1ulwfDUxBug/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "food",
+      "statement": "Classic Xinjiang dishes commonly shared with visitors include da pan ji (big-plate chicken), hand-pulled noodles, and naan/nang flatbread.",
+      "source": "https://news.cgtn.com/news/2025-10-13/A-taste-of-Xinjiang-An-American-guest-s-journey-into-local-cuisine-1HrdBDlGzEA/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "food",
+      "statement": "Kashgar's local food scene features smoked meat, pomegranates, milk tea and spiced bread, with seasonings such as cumin, chili, cinnamon, garlic and sesame.",
+      "source": "https://news.cgtn.com/news/2023-05-14/-Foodies-make-a-culinary-journey-to-Xinjiang-s-Kashgar--1jNzLX30tuU/index.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 6
+  },
+  "five_w": {
+    "who": "A humorous, high-energy food and culture influencer who uses Gen-Z slang and witty comparisons to connect with audiences.",
+    "says_what": "Xinjiang Big-Plate Chicken features a massive wok of tender chicken, hand-pulled noodles, and nang flatbread in a spicy cumin-chili broth, offering a bold culinary experience.",
+    "channel": "TikTok: short, punchy, highly conversational, and visually driven with a strong opening hook.",
+    "to_whom": "UK audience: bridges their cultural love for Sunday roasts and curries to introduce Xinjiang's flavors, making the unfamiliar feel accessible and exciting.",
+    "effect": "Sparks curiosity and appetite, encouraging viewers to seek out authentic Xinjiang cuisine and share their foodie experiences."
+  },
+  "title_or_hook": "Forget your usual takeaway! 🛑🍗",
+  "post": "Mate, forget your usual takeaway! 🛑 We’re talking Xinjiang Big-Plate Chicken. 🍗 Imagine a massive wok of tender chicken and chewy hand-pulled noodles, paired with crispy nang flatbread, all swimming in a spicy cumin and chili broth. It’s like a Sunday roast and a spicy curry had a beautiful baby. 🌶️ Seriously, it’s a hug in a bowl that makes your tastebuds dance. Who’s grabbing chopsticks? 🥢",
+  "hashtags": [
+    "#XinjiangFood",
+    "#BigPlateChicken",
+    "#FoodieUK",
+    "#ChineseCuisine",
+    "#SpicyFood"
+  ],
+  "ops_tips": [
+    "User requested 'hotpot', but no evidence was found in the library. Switched to Xinjiang cuisine (Evidence 1-3) to strictly avoid fabricating facts. Please upload hotpot-specific evidence for future iterations.",
+    "Pair this text with a fast-paced, sizzling wok ASMR video or a dynamic transition showing the massive plate of chicken being served to maximize TikTok retention."
+  ],
+  "evidence_notes": [
+    "Evidence#2 -> Xinjiang Big-Plate Chicken, hand-pulled noodles, and nang flatbread.",
+    "Evidence#1 & #3 -> cumin and chili seasoning, spicy flavor profile."
+  ],
+  "identity": "online influencer",
+  "tone": "humorous",
+  "country": "UK",
+  "platform": "tiktok",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=6) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "Q33",
+    "prompt_style": "极短-稳定对E",
+    "full_prompt": "火锅 TikTok 英国 幽默",
+    "expect": "短；钩子前置；英国社交桥梁；不踩英",
+    "focus": "短vs长稳定",
+    "parsed_theme": "四川火锅作为社交餐桌文化（共享与热情）",
+    "pair": "PAIR_E"
+  }
+}

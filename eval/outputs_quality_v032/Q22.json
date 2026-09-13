@@ -1,0 +1,92 @@
+{
+  "theme": "Please draft a careful Instagram post (~80 words) for American readers about Chinese tea as UNESCO-related living heritage in everyday sharing. Start from 5W planning. Keep claims evidence-bound. Include evidence_notes mapping. Tone optimistic. No fabricated cafe brand names.",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "instagram",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN: China's traditional tea-making and associated social practices joined UNESCO's ICH list; six tea categories plus flower-scented and other reprocessed teas.",
+      "source": "https://news.cgtn.com/news/2022-11-30/Chinese-tea-making-joins-UNESCO-list-1fnlKJ9kTsc/index.html",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "Lost Plate's overseas website frames Chinese food tours as storytelling: each dish reflects local ingredients and generational traditions beyond what the internet shows.",
+      "source": "https://lostplate.com/",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO's China ICH state page is the authoritative index of inscribed Chinese intangible heritage elements used for story-type grounding.",
+      "source": "https://ich.unesco.org/en/state/china-CN",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 4
+  },
+  "five_w": {
+    "who": "A lifestyle and travel influencer who loves aesthetic daily moments and authentic cultural experiences, using trendy internet slang to connect with followers.",
+    "says_what": "The UNESCO-recognized social practice of sharing Chinese tea, highlighting the 6 main categories and 2,000+ products as a mindful, screen-free alternative to the daily coffee run.",
+    "channel": "Instagram: short, visual-friendly, emoji-rich, and scroll-friendly caption (~80 words).",
+    "to_whom": "American audience: bridges their daily iced coffee culture and squad hangouts with the mindful Chinese tea social practice, making it relatable to their lifestyle.",
+    "effect": "Increase curiosity about Chinese tea heritage and encourage sharing a mindful tea moment with friends, ending with an engaging tag-a-friend prompt."
+  },
+  "title_or_hook": "Swap your iced coffee run for this! 🍵✨",
+  "post": "Swap your daily iced coffee run for this! 🍵✨ Did you know China’s traditional tea-making is a UNESCO Intangible Heritage? It’s not just about the 6 main tea categories or 2,000+ amazing blends (flower-scented teas are a total vibe 🌸). It’s really about the 'social practice' of slowing down. Imagine gathering your squad, brewing a fresh pot, and actually catching up screen-free. Tag your tea-date bestie below! 👇",
+  "hashtags": [
+    "#ChineseTea",
+    "#UNESCOHeritage",
+    "#TeaTime",
+    "#SlowLiving"
+  ],
+  "ops_tips": [
+    "Pair with a high-quality, aesthetic Reel or carousel of pouring flower-scented tea for friends.",
+    "Use a trending lo-fi or chill acoustic audio track to match the 'slowing down' vibe."
+  ],
+  "evidence_notes": [
+    "Evidence#1 & #2 -> China's traditional tea-making/processing is recognized as UNESCO Intangible Cultural Heritage.",
+    "Evidence#1 & #2 -> Includes 6 main tea categories and over 2,000 products, specifically mentioning flower-scented teas.",
+    "Evidence#1 & #2 -> Emphasizes the associated 'social practices' of tea sharing."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=4) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "Q22",
+    "prompt_style": "长叙事需求",
+    "full_prompt": "Please draft a careful Instagram post (~80 words) for American readers about Chinese tea as UNESCO-related living heritage in everyday sharing. Start from 5W planning. Keep claims evidence-bound. Include evidence_notes mapping. Tone optimistic. No fabricated cafe brand names.",
+    "expect": "英文长需求；权威映射",
+    "focus": "综合权威",
+    "parsed_theme": "中国茶文化UNESCO当代分享"
+  }
+}

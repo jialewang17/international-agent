@@ -1,0 +1,2021 @@
+{
+  "topics_raw": {
+    "governance": [
+      {
+        "statement": "新疆维吾尔自治区成立60多年来，地区经济总量增长了160倍，维吾尔族人口从220万增长到约1200万，人均预期寿命从30岁提高到74.7岁。当前新疆社会稳定、经济发展、民族团结、宗教和睦、民生改善。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202305/t20230516_11078417.shtml"
+      },
+      {
+        "statement": "中国的人权怎么样，中国人民最有发言权。过去70多年来，中国有超过8.5亿人口摆脱了贫困，人均预期寿命从35岁增至77岁。人类发展指数从1978年的0.410上升到2018年的0.758，是联合国发布该指数以来唯一从低人类发展水平跨越到高人类发展水平的国家。多年来，很多西方研究机构的独立民调结果都一致显示，中国共产党和中国政府在本国民众中的支持率和满意度在世界各国中始终高居榜首。 在大家比较关注的中国新疆地区，人权事业更是取得了巨大发展…",
+        "source": "https://www.mfa.gov.cn/web/wjbzhd/202105/t20210526_9137380.shtml"
+      },
+      {
+        "statement": "新疆的人权状况怎么样，新疆各族人民最有发言权。近年来，新疆经济持续发展，社会和谐稳定，民生不断改善，文化空前繁荣，宗教和睦和顺。新疆的少数民族群众、宗教人士、务工人员、教培中心结业学员等各界人士纷纷自发给人权高专写信，结合亲身经历，讲述新疆真实情况。去过新疆的外国朋友都认为，他们亲眼看到的新疆与西方媒体报道和反华势力描绘的完全不同。60多个主持正义的国家联名致函人权高专，反对发表这份虚假报告。近千个非政府组织和新疆各界人士向人权高专致…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220901_10759230.shtml"
+      },
+      {
+        "statement": "我们还对“民主与威权”的虚假叙事予以揭露，指出其本质是挑动国家对抗、分裂国际社会，以所谓“民主”之名，行干涉别国内政之实。我们阐释中国全过程人民民主成功实践，守护真正的民主精神，倡导正确的民主观，激浊扬清、明辨是非。世界上不接受垄断民主定义权、反对以意识形态搞分裂的呼声越来越强烈。",
+        "source": "https://www.mfa.gov.cn/web/wjbzhd/202212/t20221225_10994826.shtml"
+      },
+      {
+        "statement": "香港、新疆、西藏事务纯属中国内政，中国坚决反对任何外部势力打着“人权”幌子对此横加干涉。七国集团应当停止在涉港、涉疆、涉藏问题上对中国指手画脚，深刻反省自身历史和人权劣迹。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/dhdw_673027/202305/t20230520_11080726.shtml"
+      }
+    ],
+    "sports": [
+      {
+        "statement": "美国国会众议院议长佩洛西之呼吁对2022年北京冬奥会进行“外交抵制”，则不过是这场闹剧的最新一幕。",
+        "source": "https://www.fmprc.gov.cn/zwbd_673032/fbwz/202106/t20210619_9172487.shtml"
+      },
+      {
+        "statement": "CGTN citing IOC material: Beijing 2022 helped draw hundreds of millions of Chinese into winter sports since 2015, and the Games had a record share of women athletes (45.4%) for a Winter Olympics.",
+        "source": "https://news.cgtn.com/news/2023-02-03/IOC-hails-Beijing-2022-Winter-Olympics-legacy-1h7qqMuqhpu/index.html",
+        "theme": "IOC on Beijing 2022 winter sports participation legacy",
+        "category": "sports",
+        "source_type": "CGTN",
+        "id": "sports-001",
+        "quote_en": "Hosting the Olympics has attracted 346 million Chinese in winter sports since 2015, said the article. The number is expected to exceed 520 million in the 2024-2025 snow and ice season... 45.4 percent of the athletes were women, the highest proportion of female athletes ever at a Winter Olympics event.",
+        "quote_cn": "IOC相关文章称：自2015年以来约3.46亿中国人参与冰雪运动；北京冬奥女运动员占比45.4%，为冬奥历史最高。",
+        "tags": [
+          "beijing2022",
+          "winter_sports",
+          "ioc",
+          "cgtn"
+        ]
+      },
+      {
+        "statement": "Post-Games, Beijing and Zhangjiakou developed a sports-culture-tourism belt around Olympic venues; Chongli alone drew about 470,000 visitors over one Spring Festival holiday period.",
+        "source": "https://news.cgtn.com/news/2024-02-24/Olympic-legacies-boost-Beijing-Zhangjiakou-winter-sports-1rsb5yHyyCA/p.html",
+        "theme": "Olympic venues reused for public winter tourism",
+        "category": "sports",
+        "source_type": "CGTN",
+        "id": "sports-002",
+        "quote_en": "Beijing and Zhangjiakou... have established a sports, culture, and tourism belt to preserve the Olympic legacies... During the Spring Festival holiday... Chongli received 470,000 tourists, generating a total revenue of over 500 million yuan.",
+        "quote_cn": "京张共建冬奥遗产体育文旅带；春节假期崇礼接待游客约47万人次，收入逾5亿元。",
+        "tags": [
+          "olympic_legacy",
+          "zhangjiakou",
+          "tourism"
+        ]
+      },
+      {
+        "statement": "CGTN reports that more than 300 million people in China experienced ice-and-snow sports around the Beijing 2022 push, with strong public interest continuing after the Games.",
+        "source": "https://news.cgtn.com/news/2023-02-01/China-enjoys-winter-sports-boom-even-a-year-after-Beijing-2022-1h4aYzGbCLu/index.html",
+        "theme": "Continued public use of Winter Olympic venues",
+        "category": "sports",
+        "source_type": "CGTN",
+        "id": "sports-003",
+        "quote_en": "Over 300 million people across China reaped the benefits of the government push and had first-hand experience of various snow activities... enthusiasm among the Chinese people for ice and snow sports shows no signs of abating.",
+        "quote_cn": "冬奥筹备带动逾3亿人体验冰雪运动；赛后民众热情仍在延续。",
+        "tags": [
+          "winter_sports",
+          "participation",
+          "legacy"
+        ]
+      }
+    ],
+    "genocide": [
+      {
+        "statement": "所谓新疆“种族灭绝”的指控，违背事实和常识，挑战智商和良知，很多实地走访过新疆的国际人士，都对这种谎言予以了公开驳斥。",
+        "source": "https://www.mfa.gov.cn/web/wjbzhd/202105/t20210526_9137373.shtml"
+      },
+      {
+        "statement": "所谓新疆存在“种族灭绝”完全是美西方反华势力炮制的世纪谎言，已经被众多事实所揭穿，蒙骗不了国际社会。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220819_10746168.shtml"
+      },
+      {
+        "statement": "近年来，有100多个国家和国际组织的约2000多名政府官员、宗教人士和记者前往新疆参访，高度赞赏新疆社会稳定和繁荣发展，理解支持新疆反恐和去极端化成就。包括美国在内的许多国家有识之士讲述新疆真实情况，发出客观公正的声音。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202305/t20230516_11078417.shtml"
+      },
+      {
+        "statement": "事实上，美国内少数族裔宗教和生存状况却真正令人担忧。美国原住民群体长期受到忽视和歧视，印第安人文化遭到根本性破坏，生命和精神的代际存续受到严重威胁。美国对印第安人采取种族灭绝政策，使印第安人口数量从1492年的500万锐减到20世纪初的25万，减少到原来的二十分之一，这才是不折不扣的种族灭绝。美国《大西洋月刊》曾一针见血地指出，从历史上遭驱逐、屠戮和强制同化，到如今整体性的贫困和被忽视，原本是这片大陆主人的印第安人却在美国社会声音微弱…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202206/t20220606_10699238.shtml"
+      },
+      {
+        "statement": "美国想甩“锅”给中国，这些“锅”恰恰都是美国自己洗不净的原罪和恶行。先说说这些原罪，美国印第安人经历了惨遭种族灭绝、反人类罪的历史，至今还生活在保留地中；非裔美国人过去在棉花种植园被“强迫劳动”，现在仍旧“无法呼吸”，马丁·路德·金的“我有一个梦想”，目前仍是一个遥不可及的梦。此外，关于美国的恶行，那就更多了。美国政府“躺平”抗疫，让百万生命为其不负责任和无能埋单；美国持续不断的枪击案平均每天夺取110多人的生命，这些枪击案击碎的不仅…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202205/t20220531_10696664.shtml"
+      }
+    ],
+    "Chinese religion": [
+      {
+        "statement": "中国政府依法保护公民宗教信仰自由，中国各族人民依法享有充分的宗教信仰自由。目前，中国各类信教群众近2亿人，宗教教职人员38万余人，宗教团体约5500个，依法登记的宗教活动场所14万多处，仅在中国新疆就有2.4万多座清真寺。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202305/t20230516_11078417.shtml"
+      },
+      {
+        "statement": "尊重和保护宗教信仰自由是中国共产党和中国政府对待宗教的基本政策。在中国，政府依法管理宗教事务，保护公民宗教信仰自由和正常宗教活动，确保信教公民同不信教公民一样，都享有同等政治经济社会文化权利。这些早已写入宪法，得到严格执行和充分保障。同时，宪法也规定，任何人不得利用宗教破坏社会秩序，宗教团体和宗教事务不受外国势力支配。对利用宗教宣传极端思想、从事极端活动、进行渗透颠覆的行为，中国政府将坚决依法打击。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202206/t20220606_10699238.shtml"
+      }
+    ],
+    "forced labor": [
+      {
+        "statement": "新疆从来就不存在所谓的“强迫劳动”。中国政府始终坚持以人民为中心的发展思想，高度重视劳动者权益保障，依法保护各族劳动者的平等就业权，保障各族劳动者平等参与经济社会生活、享受经济社会发展成果的权利。一些势力操弄涉疆问题，炮制所谓“强迫劳动”的虚假信息，其实质是打着人权的幌子，企图破坏新疆地区的繁荣稳定、遏制中国发展振兴。他们的图谋绝不会得逞。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220817_10744880.shtml"
+      },
+      {
+        "statement": "王毅表示，上合组织国家对于域外势力干涉有着切肤之痛，我们要汲取历史经验，反对任何干涉他国内政、制造“颜色革命”、颠覆合法政权的图谋。我们要坚定支持彼此走符合国情的发展道路，支持彼此维护社会稳定的重大举措，共同为地区国家发展振兴营造良好环境。",
+        "source": "https://www.mfa.gov.cn/web/wjbzhd/202207/t20220729_10730291.shtml"
+      },
+      {
+        "statement": "国际社会严重关切美国社会存在的强迫劳动。国际劳工组织公约和建议书实施专家委员会、联合国人权理事会人口贩卖问题特别报告员等多次提出质疑和批评。然而美方非但充耳不闻，反而肆意诬蔑抹黑其他国家，散布所谓“强迫劳动”谎言。在事实面前，美方的双重标准和虚伪面目暴露无遗，美方炮制并散布的种种涉疆谎言也根本站不住脚。 铁的事实证明，美国自身存在诸如强迫劳动等严重的人权问题，根本没有资格充当“人权教师爷”对别国指手画脚，更不要说以“人权裁判官”自居，…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220810_10739931.shtml"
+      },
+      {
+        "statement": "中国政府始终坚持以人民为中心的发展思想，高度重视劳动者权益保障，保护各族劳动者的平等就业权，保障各族劳动者平等参与经济社会生活、享受经济社会发展成果的权利。近年来，新疆经济持续发展，社会和谐稳定，民生不断改善，文化空前繁荣，宗教和睦和顺。中国不存在所谓“强迫劳动”。同时，我们坚决反对利用所谓“强迫劳动”或者涉疆问题干涉中国内政。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220915_10766466.shtml"
+      },
+      {
+        "statement": "所谓新疆存在“强迫劳动”原本就是反华势力为抹黑中国炮制的弥天大谎，同新疆棉花等产业大规模机械化生产、新疆各族人民劳动权益得到切实保障的事实完全相反。 美方以谎言为依据，制定并实施“维吾尔强迫劳动预防法”，对新疆有关实体和个人进行制裁，是谎言的继续，也是美方打着人权幌子对华进行打压的升级，更是美国肆意破坏国际经贸规则、损害国际产业链供应链稳定的实证。 美方试图以所谓“法律形式”在新疆制造“强迫失业”，在全球推行同中国脱钩，这充分暴露了美…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202206/t20220621_10707146.shtml"
+      }
+    ],
+    "women and children rights": [
+      {
+        "statement": "美国应该看看自己的历史和现实。美国有着奴隶贸易的原罪，如今更是贩卖人口和强迫劳动的重灾区。美国至今仍未批准《1930年强迫劳动公约》《联合国儿童权利公约》和《消除对妇女一切形式歧视公约》。美国每年从境外贩卖至国内从事强迫劳动的人口近10万人，目前在美国至少有50万人遭受奴役；美国大量童工从事农业劳作，很多儿童从8岁开始工作；美国有24万至32.5万妇女和儿童遭受性奴役，有超过10万人被拘禁在私营监狱，长期从事高强度、低报酬的强迫劳动。…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202206/t20220608_10700334.shtml"
+      },
+      {
+        "statement": "CGTN citing China's white paper: by 2024 women made up more than half of higher-education enrollment and about half of graduate students, with girls' primary net enrollment around 99.9%.",
+        "source": "https://news.cgtn.com/news/2025-10-14/Educational-empowerment-China-s-path-to-women-s-progress-1HsvEXh5sIw/p.html",
+        "theme": "Women's higher education parity",
+        "category": "women and children rights",
+        "source_type": "CGTN",
+        "id": "women-001",
+        "quote_en": "In 2024 female students constituted more than half of total higher education enrollment... women now account for 50 percent of graduate students... These headline numbers rest on a primary-school net enrolment rate for girls of 99.9 percent.",
+        "quote_cn": "2024年高等教育在校生中女生过半，研究生中女性约占50%；女童小学净入学率约99.9%。",
+        "tags": [
+          "education",
+          "gender",
+          "white_paper"
+        ]
+      },
+      {
+        "statement": "The Spring Bud Project had supported about 4.36 million girls by end-2024 and received a UNESCO Prize for Girls' and Women's Education in 2023.",
+        "source": "https://news.cgtn.com/news/2025-10-14/Educational-empowerment-China-s-path-to-women-s-progress-1HsvEXh5sIw/p.html",
+        "theme": "Spring Bud Project for rural girls",
+        "category": "women and children rights",
+        "source_type": "CGTN",
+        "id": "women-002",
+        "quote_en": "By the end of 2024, the [Spring Bud] initiative had mobilized 3.44 billion yuan ($481 million), providing financial assistance and academic support to 4.36 million girls... These achievements brought the project a UNESCO Prize for Girls' and Women's Education in 2023.",
+        "quote_cn": "春蕾计划截至2024年底筹资约34.4亿元，惠及436万女童，并获2023年联合国教科文组织女童和妇女教育奖。",
+        "tags": [
+          "spring_bud",
+          "rural_girls",
+          "unesco_prize"
+        ]
+      },
+      {
+        "statement": "UN Women's Asia-Pacific regional director told CGTN that about 55% of China's internet entrepreneurs are women and highlighted progress in fields such as engineering.",
+        "source": "https://news.cgtn.com/news/2025-10-18/UN-Women-Asia-Pacific-chief-on-China-s-progress-in-gender-equality--1HzQEU75ore/p.html",
+        "theme": "UN Women on Chinese women entrepreneurs",
+        "category": "women and children rights",
+        "source_type": "CGTN",
+        "id": "women-003",
+        "quote_en": "UN Women's Regional Director for Asia and the Pacific Christine Arab... noting that 'about 55 percent of China's internet entrepreneurs are women,' and that 'China's progress in fields traditionally dominated by men, such as engineering, is truly impressive.'",
+        "quote_cn": "联合国妇女署亚太区域主任称：中国约55%的互联网创业者为女性，工程等传统男性主导领域进步显著。",
+        "tags": [
+          "un_women",
+          "entrepreneurship",
+          "foreign_official_voice"
+        ]
+      }
+    ],
+    "human rights": [
+      {
+        "statement": "针对少数国家炮制涉疆、人权等问题对中国污蔑抹黑，我们以真相戳穿谎言谣言，邀请联合国人权高专及众多国际人士实地走访新疆，连续多次在联合国平台挫败美西方的图谋，形成上百个国家支持中国正当立场的强大声势。许多发展中国家表示，这一胜利，不仅是中国的胜利，也是发展中国家的胜利，更是国际公平正义的胜利。",
+        "source": "https://www.mfa.gov.cn/web/wjbzhd/202212/t20221225_10994826.shtml"
+      },
+      {
+        "statement": "联合国人权高专在涉疆问题上发表言论与事实严重不符。当前，新疆社会安宁稳定、经济繁荣发展、人民安居乐业，各族人民的各项人权充分得到保障。某些国家和势力出于政治目的，散布关于新疆的谎言和虚假信息，企图抹黑中国形象、干涉中国内政、遏制中国发展，他们的图谋不会得逞。我们欢迎人权高专访华并参访新疆，早已向人权高专发出访华并访疆邀请，双方一直保持沟通。同时，我们也多次表明，此访应是友好访问，目的是促进双方交流与合作，而不是进行有罪推定式的所谓“调…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202106/t20210622_9171291.shtml"
+      },
+      {
+        "statement": "这份所谓评估报告是美国及一些西方势力一手策划、制造的，完全非法、无效。报告是虚假信息的大杂烩，是服务美西方以疆制华战略的政治工具。人权高专办基于境外一些反华势力的政治图谋杜撰报告，严重违反高专办职责，严重违背普遍、客观、非选择性、非政治化原则，再次证明人权高专办已经沦为美西方整治广大发展中国家的打手和帮凶。但即便是这份非法、毫无公信力的报告，也没有敢再渲染新疆存在所谓“种族灭绝”“强迫劳动”“宗教压迫”“强制绝育”等谬论，可见美西方编…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220901_10759230.shtml"
+      },
+      {
+        "statement": "美国等少数西方国家根本代表不了国际社会。国际社会的主流反对发布这份虚假报告，十分关切美西方势力不遗余力地向人权高专办施加压力，逼迫发布这份虚假报告。近日，60多国向人权高专联合致函，强调新疆事务纯属中国内政，对高专办未经授权撰写所谓涉疆报告表示严重关切。近千家中外非政府组织向人权高专联合致函，强烈反对高专办发布一份没有授权、违背事实的涉疆报告。 人权高专办真正应当关注的，是美西方势力对印第安人等原住民实施种族灭绝和文化灭绝、从境外贩卖…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220902_10760376.shtml"
+      },
+      {
+        "statement": "我们严正奉劝个别特别机制专家立即改弦更张，尊重基本事实，恪守人权理事会授权和特别机制行为准则，公正客观履职，停止利用谎言挑动对抗、制造分裂，停止将人权问题政治化、工具化，停止打着联合国旗号为有关国家打压遏制中国的政治图谋服务。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220817_10744880.shtml"
+      }
+    ],
+    "Muslim religion": [
+      {
+        "statement": "美方一些人关心中国的人权，总给人一种“黄鼠狼给鸡拜年”的感觉。众所周知，美国政策既反华，也反穆斯林，这些年美国的炮弹几乎都落在了穆斯林的土地上，第一个颁“禁穆令”的就是美国，奇怪的是，美国却为在新疆地区过着幸福生活的中国穆斯林操“人权”的心，这不是很荒唐可笑吗？",
+        "source": "https://www.fmprc.gov.cn/wjbxw_673019/202107/t20210710_9138261.shtml"
+      },
+      {
+        "statement": "1月8日至11日，世界穆斯林社区理事会主席阿里率世界知名伊斯兰宗教人士和学者代表团应邀赴新疆维吾尔自治区访问，来自阿联酋、埃及、沙特、印尼、巴林、波黑、塞尔维亚等14个国家的30多名宗教人士和学者参团。访疆期间，代表团参访了乌鲁木齐、阿勒泰、喀什，参观了反恐与去极端化斗争主题展、清真寺、经学院、当地企业、古城老街，走访了维吾尔族家庭，在当地清真寺与信众一起做礼拜，参加乡村振兴和脱贫攻坚交流会。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202301/t20230113_11006972.shtml"
+      },
+      {
+        "statement": "8月1日至4日，来自30个伊斯兰国家的32位驻华使节及高级外交官访问新疆。新疆维吾尔自治区党委书记马兴瑞同代表团举行了会见。代表团参访了喀什、阿克苏和乌鲁木齐，参观了清真寺、伊斯兰教经学院、博物馆、老城改造、基层社区、科技企业、绿色发展和乡村振兴等项目，同当地宗教人士、教培中心结业人员等进行了交流，深入了解新疆经济发展繁荣、宗教信仰自由、民族团结和谐、人民安居乐业的真实情况。代表团成员纷纷表示，中国政府坚持以人民为中心，推动新疆的治理…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220805_10735734.shtml"
+      },
+      {
+        "statement": "8月1日至5日，伊斯兰国家驻华使节代表团应邀赴新疆维吾尔自治区访问，阿尔及利亚、几内亚比绍、毛里塔尼亚、沙特阿拉伯、巴基斯坦等30个伊斯兰国家驻华大使以及外交官参加。访问期间，代表团前往喀什、阿克苏和乌鲁木齐，参访了清真寺、新疆伊斯兰教经学院、基层社区、棉花种植田、原教培中心等地，深入维吾尔族家庭，同宗教人士面对面交流，参观新疆反恐和去极端化斗争主题展，亲眼目睹了新疆各民族和谐共处、宗教信仰自由得到充分保障、脱贫攻坚和乡村振兴取得突破…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220808_10737382.shtml"
+      },
+      {
+        "statement": "新疆问题不是人权问题，是真相和谎言的问题。中国有56个民族，其中回族、维吾尔族、哈萨克族等信仰伊斯兰教。中国政府尊重并保护他们的信仰和习惯，他们与其他民族和睦共处，共同生活，享受平等的待遇，履行平等的义务。中国政府设立教育培训中心是为了帮助极少数受到极端主义思想影响的人员摆脱极端思想，掌握劳动技能，过上正常生活。部分国家出于政治目的搬出“强迫劳动”、“种族灭绝”等罪名污名化中国，企图将他们屠杀土著印第安人、进行奴隶贸易并强迫劳动的罪恶…",
+        "source": "https://www.fmprc.gov.cn/zwbd_673032/yjcf/202107/t20210724_9172676.shtml"
+      }
+    ],
+    "counter-terrorism": [
+      {
+        "statement": "中国高度重视保护恐怖主义受害者权利，派出高级别代表团出席这次会议。中方在发言中提出坚决打击一切形式的恐怖主义、彻底铲除恐怖主义滋生的土壤、有效解决恐怖主义根源问题、全心全意帮助恐怖主义受害者等四点主张，呼吁各方积极支持习近平主席提出的全球安全倡议，践行共同、综合、合作、可持续的安全观，努力建设持久和平、普遍安全的世界，得到各方普遍认可。 特别值得一提的是，在这次大会上，来自新疆维吾尔自治区的恐怖主义受害者买买提江讲述了她的父亲作为人民…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220913_10765604.shtml"
+      }
+    ],
+    "false propaganda": [
+      {
+        "statement": "有关报告污蔑中方以虚假信息操纵涉疆舆论，完全是倒打一耙、贼喊捉贼。美国国务院有关机构以“全球接触”为名，行“宣传渗透”之实，这本身就是虚假信息的策源地和“认知作战”的指挥所。 中国从来都是虚假信息的受害者，新疆更是美国借以在全球开展涉华虚假信息攻势的重灾区。一段时间以来，美国为实现“以疆制华”的阴险图谋，持续炮制并炒作所谓新疆“种族灭绝”“强迫劳动”“反人类罪”等世纪谎言。对此，美国政府官员早已多次袒露心机。美国一些政府前高官以及一些…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220829_10757191.shtml"
+      },
+      {
+        "statement": "我注意到相关报告披露，多年来美国在社交媒体上搭建了针对中国、俄罗斯、伊朗等国的巨大宣传网，通过设立虚假账户、传播相似内容、制造话题热度等手段发动政治宣传和造谣行动。我还注意到，近期有多家美国媒体披露，这些虚假账号被怀疑是由美国军方管理运营的，目的是用来实施秘密信息战。 从冷战时期发起“知更鸟计划”收买媒体操纵舆论，到新世纪借“洗衣粉”“白头盔”对伊拉克、叙利亚发动战争，再到近年来污蔑中国新疆存在“种族灭绝”“强迫劳动”，美国通过不断编…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220926_10771881.shtml"
+      },
+      {
+        "statement": "近来，在美国一些政客鼓动下，西方国家少数政客发起又一场针对中国的造谣运动。他们无视中国公开透明、迅速高效控制住新冠肺炎疫情的事实，操弄病毒溯源等问题，对中国大搞污名化；他们无视当前中国新疆经济发展、民族团结、社会稳定的事实，把中国反暴恐、去极端化、维护社会稳定的正当合法举措诬蔑为“种族灭绝”；他们无视香港前些年的种种乱象，把中国依法加强对香港有效管治、更好维护“一国两制”和香港长期稳定繁荣的努力诬蔑为“侵犯港人自由和人权”；他们无视台…",
+        "source": "https://www.fmprc.gov.cn/dszlsjt_673036/202107/t20210723_9140140.shtml"
+      }
+    ],
+    "international trade": [
+      {
+        "statement": "特斯拉在新疆增设分店，这充分反映出，工商界等各界人士的眼睛是雪亮的，市场规律的力量是强大的，合作共赢的理念是深入人心的。",
+        "source": "https://www.mfa.gov.cn/web/wjbxw_673019/202211/t20221102_10797571.shtml"
+      },
+      {
+        "statement": "9月19日至22日，第七届中国—亚欧博览会在新疆乌鲁木齐举办，主题是“共商、共建、共享、合作向未来”。本届博览会参会嘉宾规格之高、国别之多、成果之丰硕，创下历届博览会之最。 习近平主席向博览会致贺信，指出亚欧大陆充满发展活力和潜力，是共建“一带一路”国际合作重点区域。近年来，中国新疆充分发挥区位优势，积极推进丝绸之路经济带核心区建设，促进中国和亚欧地区国家互联互通、互利合作、共同发展，取得积极成效。博览会主宾国哈萨克斯坦总统托卡耶夫、…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220923_10770565.shtml"
+      },
+      {
+        "statement": "美方打着“保护人权”幌子，编造“强迫劳动”等涉疆谎言谣言，并以此为依据出台所谓“维吾尔强迫劳动预防法案”，恶意打压新疆棉花、番茄、太阳能光伏等优势产业，遏制中国发展，扰乱国际贸易秩序，破坏全球产业链供应链稳定。",
+        "source": "https://www.mfa.gov.cn/web/wjbxw_673019/202206/t20220619_10706065.shtml"
+      },
+      {
+        "statement": "我注意到有报道称，当时出席美国驻广州总领馆与美国商界内部酒会的来宾在社交媒体上坦言，“在场的商会人士私下均表示这简直是疯了，捏造关于新疆的故事怎么可能对我们带来任何好处！我曾经多次去过新疆，每次都是美好的回忆。那儿根本没有发生任何关于种族灭绝、强迫劳动的事情。这些人完全是‘满口谎言’。曾几何时，中国人对我们友好，做生意也顺利，直到特朗普开始让事情变得糟糕。我曾以为拜登总统能很快纠正这些错误，但实际上并没有发生明显变化。直到听到这位领事…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202206/t20220607_10699818.shtml"
+      },
+      {
+        "statement": "事实早已证明，所谓新疆存在“强迫劳动”是少数反华分子炮制的世纪谎言。美方以谎言为依据，制定并实施涉疆恶法，严重干扰中美正常光伏产品贸易，违背市场规律和国际经贸规则，损害全球光伏产业链供应链稳定和全球应对气候变化努力，最终也必将损害自身利益。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202211/t20221111_10972853.shtml"
+      }
+    ],
+    "food": [
+      {
+        "statement": "Xinjiang cuisine combines Chinese, Central Asian and Middle Eastern cooking traditions; it is predominantly halal, featuring lamb, cumin/chili seasoning, nang flatbread, noodles and pilaf.",
+        "source": "https://news.cgtn.com/news/2024-06-11/Flavorful-Xinjiang-cuisine-1ulwfDUxBug/p.html",
+        "theme": "Xinjiang cuisine as cultural melting pot",
+        "category": "food",
+        "source_type": "CGTN",
+        "id": "food-001",
+        "quote_en": "As a melting pot of cultures throughout the history, Xinjiang has developed a unique culinary tradition that combines elements of Chinese, Central Asian and Middle Eastern cooking. The food is predominantly halal due to the large Muslim population in the region.",
+        "quote_cn": "（CGTN 原文为英）：新疆历史上是文化交融之地，饮食传统融合中国、中亚与中东元素；因穆斯林人口较多，饮食以清真为主。",
+        "tags": [
+          "xinjiang",
+          "halal",
+          "lamb",
+          "nang",
+          "cultural_exchange"
+        ]
+      },
+      {
+        "statement": "Classic Xinjiang dishes commonly shared with visitors include da pan ji (big-plate chicken), hand-pulled noodles, and naan/nang flatbread.",
+        "source": "https://news.cgtn.com/news/2025-10-13/A-taste-of-Xinjiang-An-American-guest-s-journey-into-local-cuisine-1HrdBDlGzEA/p.html",
+        "theme": "Foreign guest experiences Xinjiang food",
+        "category": "food",
+        "source_type": "CGTN",
+        "id": "food-002",
+        "quote_en": "They sampled a range of classic Xinjiang delicacies one by one, from the aromatic da pan ji (Xinjiang-style braised chicken cooked in a large pan) to the chewy and smooth gan ban mian (hand-pulled noodles in a savory sauce), to the rich-tasting naan (Xinjiang flatbread).",
+        "quote_cn": "美籍嘉宾在新疆餐馆品尝大盘鸡、干拌面、馕等经典地方菜，体验日常饮食文化。",
+        "tags": [
+          "xinjiang",
+          "foreign_voice",
+          "da_pan_ji",
+          "noodles",
+          "naan"
+        ]
+      },
+      {
+        "statement": "Kashgar's local food scene features smoked meat, pomegranates, milk tea and spiced bread, with seasonings such as cumin, chili, cinnamon, garlic and sesame.",
+        "source": "https://news.cgtn.com/news/2023-05-14/-Foodies-make-a-culinary-journey-to-Xinjiang-s-Kashgar--1jNzLX30tuU/index.html",
+        "theme": "Kashgar street food diversity",
+        "category": "food",
+        "source_type": "CGTN",
+        "id": "food-003",
+        "quote_en": "Smoked meat, juicy pomegranates, milk tea and spiced bread are all must-try dishes for visitors. The local cuisine often surprises foodies with its diverse range of seasonings – from cumin, chili and cinnamon to garlic and sesame.",
+        "quote_cn": "喀什烟熏肉、石榴、奶茶与香料面包是常见待客食品；调味涵盖孜然、辣椒、肉桂、蒜与芝麻等。",
+        "tags": [
+          "kashgar",
+          "street_food",
+          "seasonings"
+        ]
+      },
+      {
+        "statement": "Chinese hot pot is both a cooking method and a social cultural practice in traditional Chinese cuisine.",
+        "source": "https://news.cgtn.com/news/2023-08-17/The-history-and-origin-of-Chinese-hot-pot-1mlCmLB0jfy/index.html",
+        "theme": "Hot pot as social culture",
+        "category": "food",
+        "source_type": "CGTN",
+        "id": "food-004",
+        "quote_en": "Hot pot is not only a cooking method but also a symbol of culture, embodying the culinary wisdom of ancient Chinese people. It is a cultural symbol and social way of life in traditional Chinese cuisine.",
+        "quote_cn": "火锅不仅是烹饪方式，也是文化符号与社交生活方式。",
+        "tags": [
+          "hotpot",
+          "sichuan",
+          "social_dining"
+        ]
+      },
+      {
+        "statement": "Chongqing-style hot pot is closely tied to local lifestyle and urban culture, known for the la (spicy) and ma (numbing) flavor pair.",
+        "source": "https://news.cgtn.com/news/3d3d774e796b7a4d33457a6333566d54/index.html",
+        "theme": "Chongqing hot pot lifestyle",
+        "category": "food",
+        "source_type": "CGTN",
+        "id": "food-005",
+        "quote_en": "In Chongqing, hot pot is thoroughly intertwined with the culture. It is far more than a dish, but a lifestyle that represents the spirit of the metropolis.",
+        "quote_cn": "在重庆，火锅与城市文化深度交织，不仅是一道菜，更是一种生活方式。",
+        "tags": [
+          "chongqing",
+          "hotpot",
+          "lifestyle"
+        ]
+      },
+      {
+        "statement": "Archaeological evidence places dumpling-like foods in China about 2,500 years ago; Tang-era dumplings excavated in Turpan, Xinjiang closely resemble modern jiaozi.",
+        "source": "https://english.news.cn/20240224/ca51c594924f49e7905e5017da9bf15d/c.html",
+        "theme": "Dumplings across Chinese history",
+        "category": "food",
+        "source_type": "Xinhua",
+        "id": "food-006",
+        "quote_en": "Archaeologists in east China's Shandong Province told Xinhua that the earliest physical record of dumplings dates back approximately 2,500 years. Due to the dry climate, well-preserved pastries and dumplings from the Tang Dynasty have been excavated from the Astana Tombs in Turpan, Xinjiang.",
+        "quote_cn": "山东考古显示饺子实物可追溯约2500年；吐鲁番阿斯塔那古墓出土唐代饺子类食品，形状大小与今相近。",
+        "tags": [
+          "dumpling",
+          "jiaozi",
+          "archaeology",
+          "xinjiang",
+          "spring_festival"
+        ]
+      },
+      {
+        "statement": "Sichuan (Chuan) cuisine is one of China's classic regional cooking styles, often associated with spicy and numbing flavors shaped by local climate and ingredients.",
+        "source": "https://news.cgtn.com/news/3d3d674d7755444f32457a6333566d54/index.html",
+        "theme": "Sichuan among China's classic cuisines",
+        "category": "food",
+        "source_type": "CGTN",
+        "id": "food-007",
+        "quote_en": "Four of the 'Eight Cuisines' were publicly recognized as the most mature cooking styles in the early Qing Dynasty... Chuan cuisine, nurtured by its birthplace in Sichuan Province.",
+        "quote_cn": "清代已公认鲁、粤、川、苏等成熟菜系；川菜以四川为发源地，常给人麻辣印象。",
+        "tags": [
+          "sichuan",
+          "eight_cuisines",
+          "regional"
+        ]
+      },
+      {
+        "statement": "Food Ranger tells Vox he uses Mandarin and visible enthusiasm to open vendors up, aiming to show how cool Chinese food and China can be through non-political, positive food storytelling.",
+        "source": "https://www.vox.com/the-highlight/2019/12/17/21020770/youtube-china-chinese-travel-street-food-trevor-james-food-ranger",
+        "theme": "Mandarin + positivity as food diplomacy",
+        "category": "food",
+        "source_type": "Vox",
+        "id": "ovi-002",
+        "creator": "Trevor James / The Food Ranger",
+        "quote_en": "I try to show them my excitement for the food, and how cool what they're creating is, and how cool China is in general... It's everyday for them, but here's a foreigner who thinks it's the coolest thing in the world... We like to stay away from any politics whatsoever... We do food and positivity.",
+        "quote_cn": "James：用兴奋感让摊主感到自己做的东西很酷、中国很酷；内容坚持食物与正面叙事，刻意远离政治。",
+        "tags": [
+          "overseas_media",
+          "positive_narrative",
+          "mandarin"
+        ]
+      },
+      {
+        "statement": "On his overseas personal site, Trevor James says he moved to Chengdu for the food and aims to show through travel/food videos that the world is full of friendly people, countering fear-driven media narratives.",
+        "source": "https://www.thefoodranger.com/about/",
+        "theme": "Personal site: moved to Chengdu for food adventure",
+        "category": "food",
+        "source_type": "TheFoodRanger.com",
+        "id": "ovi-003",
+        "creator": "Trevor James",
+        "quote_en": "I moved to Chengdu for one reason: the food... There was this magical feeling on the streets that I couldn't get enough of... I've decided that apart from traveling and eating, I also want to inspire people and put some positivity out there in the world, showing people that the world is truly a beautiful place, full of friendly people and that it's not as scary as a lot of the media makes it out to be.",
+        "quote_cn": "Food Ranger 个人站：因美食移居成都；希望通过旅行美食内容展示世界友好，而不像部分媒体渲染得那么可怕。",
+        "tags": [
+          "personal_site",
+          "chengdu",
+          "positivity"
+        ]
+      },
+      {
+        "statement": "SCMP profiles Canadian creator Trevor James (The Food Ranger) for enthusiastic street-food hunting across Asia, including China-related coverage, for a large YouTube audience.",
+        "source": "https://www.scmp.com/lifestyle/entertainment/article/3107070/malaysias-top-youtube-food-star-canadian-trevor-james-aka",
+        "theme": "SCMP on Food Ranger street-food enthusiasm",
+        "category": "food",
+        "source_type": "SCMP",
+        "id": "ovi-004",
+        "creator": "Trevor James / The Food Ranger",
+        "quote_en": "Trevor James' extreme enthusiasm for seeking out delicious street food in obscure places across Asia chimes with his 4.6 million subscribers... It's amazing that we get to do what we do, and I've always found excitement in travelling all over the world.",
+        "quote_cn": "南华早报（海外英文站）：加拿大创作者 Food Ranger 以寻访亚洲偏僻街头美食著称，拥有数百万订阅。",
+        "tags": [
+          "scmp",
+          "overseas_media",
+          "street_food"
+        ]
+      },
+      {
+        "statement": "CNN interview: British food writer Fuchsia Dunlop, first Western trainee at Sichuan's cooking institute, aims to bridge Chinese and Western food cultures and argues Chinese cuisine is underrated in the West.",
+        "source": "https://www.cnn.com/2012/10/09/world/asia/china-fuchsia-dunlop-sichuan-cuisine",
+        "theme": "Fuchsia Dunlop bridges Chinese cuisine for Westerners (CNN)",
+        "category": "food",
+        "source_type": "CNN",
+        "id": "ovi-008",
+        "creator": "Fuchsia Dunlop",
+        "quote_en": "Do you see yourself as a bridge between Chinese and Western foodies? That's what I'm trying to do. I think Chinese cuisine is probably the most diverse and sophisticated in the world... And it's very underrated and not very deeply understood in the West.",
+        "quote_cn": "CNN：英国美食作家 Fuchsia Dunlop 自视为中西美食爱好者之间的桥梁，认为中国菜极度丰富却在西方被低估、理解不深。",
+        "tags": [
+          "cnn",
+          "overseas_media",
+          "sichuan",
+          "bridge"
+        ]
+      },
+      {
+        "statement": "Fuchsia Dunlop explains on CNN that Sichuan cuisine is subtler than 'hot and spicy,' emphasizing balance and the ideal of a hundred dishes with a hundred flavors.",
+        "source": "https://www.cnn.com/2012/10/09/world/asia/china-fuchsia-dunlop-sichuan-cuisine",
+        "theme": "Sichuan food more than hot and spicy",
+        "category": "food",
+        "source_type": "CNN",
+        "id": "ovi-009",
+        "creator": "Fuchsia Dunlop",
+        "quote_en": "It's much more subtle than that... A good Sichuanese meal is not all hot; it's balanced. There's a saying: Yicaiyige baicaibaiwei, meaning, 'Each dish has its own style; a hundred dishes have a hundred different flavors.'",
+        "quote_cn": "Dunlop：川菜远不止“麻辣”，好的川菜讲究平衡；一菜一格、百菜百味。",
+        "tags": [
+          "sichuan",
+          "cuisine_literacy",
+          "overseas_media"
+        ]
+      },
+      {
+        "statement": "In The Guardian, Fuchsia Dunlop writes that Jiangnan cuisine uniquely puts one's heart at ease among China's regional food cultures.",
+        "source": "https://www.theguardian.com/lifeandstyle/2016/jul/17/china-best-kept-food-secret-fuchsia-dunlop-jiangnan-recipes-sea-bass-prawns",
+        "theme": "Guardian on Jiangnan food ease and craft",
+        "category": "food",
+        "source_type": "The Guardian",
+        "id": "ovi-014",
+        "creator": "Fuchsia Dunlop",
+        "quote_en": "While every Chinese cuisine has its charms... I know of no other that can put one's heart so much at ease as the food of Jiangnan.",
+        "quote_cn": "卫报引 Dunlop：江南菜能让人心安，是中国饮食中极具魅力的一脉。",
+        "tags": [
+          "jiangnan",
+          "guardian",
+          "regional_cuisine"
+        ]
+      }
+    ],
+    "culture": [
+      {
+        "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+        "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+        "theme": "Spring Festival UNESCO inscription 2024",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-001",
+        "quote_en": "In China, the spring festival marks the beginning of the new year... involves a variety of social practices to usher in the new year, pray for good fortune, celebrate family reunions and promote community harmony. The spring festival promotes family values, social cohesion and peace while providing a sense of identity and continuity for the Chinese people.",
+        "quote_cn": "春节是中国传统新年，包含辞旧迎新、祈福、家庭团圆与社区和谐等社会实践；传承家庭价值与社会认同。",
+        "tags": [
+          "spring_festival",
+          "unesco",
+          "ich",
+          "family"
+        ]
+      },
+      {
+        "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+        "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+        "theme": "CGTN on Spring Festival UNESCO recognition",
+        "category": "culture",
+        "source_type": "CGTN",
+        "id": "culture-002",
+        "quote_en": "In 2024, the Spring Festival, marking the social practices of the Chinese people in celebration of the traditional Chinese New Year, was officially inscribed on the UNESCO's Representative List of the Intangible Cultural Heritage of Humanity.",
+        "quote_cn": "2024年，春节相关社会实践被列入联合国教科文组织人类非物质文化遗产代表作名录。",
+        "tags": [
+          "spring_festival",
+          "cgtn",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+        "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+        "theme": "Traditional Chinese tea culture UNESCO 2022",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-003",
+        "quote_en": "Tea is ubiquitous in the Chinese people's daily life and is served steeped or boiled in homes, workplaces, tea houses, restaurants and temples. It is an important part of socialization and of ceremonies such as weddings and sacrifices.",
+        "quote_cn": "茶贯穿中国人日常生活，见于家庭、职场、茶馆、餐馆与寺庙；也是社交与婚嫁、祭祀等仪式的重要媒介。",
+        "tags": [
+          "tea",
+          "unesco",
+          "social_practice"
+        ]
+      },
+      {
+        "statement": "CGTN: China's traditional tea-making and associated social practices joined UNESCO's ICH list; six tea categories plus flower-scented and other reprocessed teas.",
+        "source": "https://news.cgtn.com/news/2022-11-30/Chinese-tea-making-joins-UNESCO-list-1fnlKJ9kTsc/index.html",
+        "theme": "CGTN on Chinese tea UNESCO listing",
+        "category": "culture",
+        "source_type": "CGTN",
+        "id": "culture-004",
+        "quote_en": "Traditional tea processing techniques and their associated social practices in China were added to UNESCO's Representative List of the Intangible Cultural Heritage of Humanity... tea producers have developed six categories of tea: green, yellow, dark, white, oolong and black teas.",
+        "quote_cn": "中国传统制茶技艺及其相关社会实践列入非遗名录；六大茶类：绿、黄、黑（暗茶）、白、青（乌龙）、红茶。",
+        "tags": [
+          "tea",
+          "cgtn",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "Chinese paper-cutting (inscribed 2009) is a widely practiced folk art across ethnic groups, used in decor, festivals and ritual contexts.",
+        "source": "https://ich.unesco.org/en/RL/chinese-paper-cut-00219",
+        "theme": "Chinese paper-cut UNESCO",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-005",
+        "quote_en": "Present throughout China and in various ethnic groups, paper-cut is a popular art integral to everyday lives... As a key part of Chinese social life in all ethnic groups, paper-cut expresses the moral principles, philosophies and aesthetic ideals of its exponents.",
+        "quote_cn": "剪纸流行于中国各民族日常生活，用于装饰、节庆与祈愿，表达道德观念与审美理想。",
+        "tags": [
+          "paper_cut",
+          "folk_art",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "Peking opera (inscribed 2010) combines singing, reciting, acting and martial arts; it remains a widely recognized element of China's cultural heritage.",
+        "source": "https://ich.unesco.org/en/RL/peking-opera-00418",
+        "theme": "Peking opera UNESCO",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-006",
+        "quote_en": "Peking opera is a performance art incorporating singing, reciting, acting, martial arts... They tell stories of history, politics, society and daily life and aspire to inform as they entertain.",
+        "quote_cn": "京剧融合唱、念、做、打，以北京、天津、上海等地为表演中心，讲述历史与社会生活故事。",
+        "tags": [
+          "peking_opera",
+          "performing_arts",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "Chinese calligraphy (inscribed 2009) is both communication and artistry, using seal, official, cursive, running and regular scripts; it remains central to cultural education and identity.",
+        "source": "https://ich.unesco.org/en/RL/chinese-calligraphy-00216",
+        "theme": "Chinese calligraphy UNESCO",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-007",
+        "quote_en": "Chinese calligraphy has always been more than simply a tool for communication, incorporating as it does the element of artistry... In its distinctive Chinese form, calligraphy offers an important channel for the appreciation of traditional culture and for arts education.",
+        "quote_cn": "书法不仅是书写工具，更是艺术；五种书体（篆、隶、草、行、楷）仍用于教育与文化认同。",
+        "tags": [
+          "calligraphy",
+          "cultural_symbol",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "The Uyghur Muqam of Xinjiang (inscribed 2008) is a suite of songs, dances and music reflecting Silk Road cultural exchange and Uyghur social life.",
+        "source": "https://ich.unesco.org/en/RL/uyghur-muqam-of-xinjiang-00109",
+        "theme": "Uyghur Muqam of Xinjiang UNESCO",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-008",
+        "quote_en": "Throughout its history, the Xinjiang region has been marked by a high degree of cultural exchange between East and West, due in large part to its central location along the Silk Road. Xinjiang Uyghur Muqam includes songs, dances, folk and classical music.",
+        "quote_cn": "新疆地处丝绸之路，历史上东西文化交流频繁；维吾尔木卡姆包含歌曲、舞蹈、民间与古典音乐。",
+        "tags": [
+          "muqam",
+          "xinjiang",
+          "uyghur",
+          "silk_road",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "Traditional Xuan paper making (inscribed 2009) in Jing County, Anhui supports calligraphy and painting; the handcraft process involves more than a hundred steps.",
+        "source": "https://ich.unesco.org/en/RL/traditional-handicrafts-of-making-xuan-paper-00201",
+        "theme": "Xuan paper craft UNESCO",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-009",
+        "quote_en": "Handmade from the tough bark of the Tara Wing-Celtis or Blue Sandalwood tree and rice straw, Xuan paper is known for its strong, smooth surface, its ability to absorb water and moisten ink... It has been widely used in calligraphy, painting and book printing.",
+        "quote_cn": "宣纸以青檀皮与稻草等手工制作，吸墨适中，广泛用于书法、绘画与印刷。",
+        "tags": [
+          "xuan_paper",
+          "craft",
+          "calligraphy",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "UNESCO's China ICH state page is the authoritative index of inscribed Chinese intangible heritage elements used for story-type grounding.",
+        "source": "https://ich.unesco.org/en/state/china-CN",
+        "theme": "China ICH overview list",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-010",
+        "quote_en": "Official UNESCO country page listing China's inscribed intangible cultural heritage elements (including Spring Festival 2024, tea 2022, Peking opera, calligraphy, paper-cut, Uyghur Muqam, etc.).",
+        "quote_cn": "联合国教科文组织中国非遗名录总览页，可核对各项入选年份与条目。",
+        "tags": [
+          "unesco",
+          "index",
+          "ich"
+        ]
+      },
+      {
+        "statement": "BBC Travel describes Xi'an as the eastern terminus of the Silk Road with a long tradition of welcoming international visitors; local food (dumplings, hotpot) is part of the city experience.",
+        "source": "https://www.bbc.com/travel/bespoke/specials/xian-through-the-senses/introduction.html",
+        "theme": "Xi'an Silk Road city welcome culture (third-party)",
+        "category": "culture",
+        "source_type": "BBC Travel",
+        "id": "thirdparty-001",
+        "quote_en": "Famed for being the eastern terminus of the Silk Road... Xi'an was usually the first port of call for visitors to the East, and has a long tradition of welcoming guests from across the globe.",
+        "quote_cn": "西安作为丝绸之路东端，长期接待来自全球的访客，具有开放迎客传统。",
+        "tags": [
+          "xian",
+          "silk_road",
+          "third_party",
+          "hospitality"
+        ]
+      },
+      {
+        "statement": "CGTN maintains an official overseas YouTube channel used for English-language culture and travel storytelling; cite concrete video/article URLs for evidence rows.",
+        "source": "https://www.youtube.com/@CGTN",
+        "theme": "CGTN overseas distribution hub",
+        "category": "culture",
+        "source_type": "CGTN",
+        "id": "cgtn-channel-001",
+        "quote_en": "Official CGTN YouTube presence for English-language video storytelling on China culture, travel and current affairs (use specific video URLs when citing facts).",
+        "quote_cn": "CGTN 官方 YouTube 账号（海外分发入口）；具体事实请再落到单条视频/图文 URL。",
+        "tags": [
+          "cgtn",
+          "overseas_account",
+          "distribution"
+        ]
+      },
+      {
+        "statement": "UNESCO's Silk Roads Chang'an-Tianshan Corridor (inscribed 2014) spans about 5,000 km from Chang'an/Luoyang into Central Asia and documents long-distance exchange of trade, beliefs, knowledge and arts.",
+        "source": "https://whc.unesco.org/en/list/1442/",
+        "theme": "Silk Roads Chang'an-Tianshan Corridor",
+        "category": "culture",
+        "source_type": "UNESCO WHC",
+        "id": "culture-011",
+        "quote_en": "This property is a 5,000 km section of the extensive Silk Roads network, stretching from Chang'an/Luoyang... to the Zhetysu region of Central Asia... linking multiple civilizations and facilitating far-reaching exchanges of activities in trade, religious beliefs, scientific knowledge, technological innovation, cultural practices and the arts.",
+        "quote_cn": "丝绸之路：长安—天山廊道（约5000公里）连接多文明，促进贸易、信仰、科技与文化交流。",
+        "tags": [
+          "silk_road",
+          "unesco",
+          "xian",
+          "exchange"
+        ]
+      },
+      {
+        "statement": "Mike Chen tells US students that firsthand travel showed him the world is not what secondhand stories suggest—an openness frame useful for culture storytelling.",
+        "source": "https://pittnews.com/article/149887/arts-and-entertainment/mike-chen-talks-food-youtube-and-traveling-the-world/",
+        "theme": "Travel breaks stereotypes about the world",
+        "category": "culture",
+        "source_type": "The Pitt News",
+        "id": "ovi-006",
+        "creator": "Mike Chen",
+        "quote_en": "That was when I first realized I wanted to get out there and see the world because it's not at all what you hear about from other people.",
+        "quote_cn": "Chen：亲身旅行后发现世界并不像别人转述的那样，想走出去亲眼看。",
+        "tags": [
+          "travel",
+          "stereotype",
+          "overseas_media"
+        ]
+      },
+      {
+        "statement": "The Guardian describes Fuchsia Dunlop as spending 30 years introducing Western audiences to Chinese food, saying she goes to China 'to eat' in order to understand.",
+        "source": "https://www.theguardian.com/food/2023/aug/20/i-eat-to-understand-cook-and-writer-fuchsia-dunlop-on-her-lifelong-love-of-chinese-cuisine",
+        "theme": "Guardian: Dunlop matchmakes Westerners with Chinese food",
+        "category": "culture",
+        "source_type": "The Guardian",
+        "id": "ovi-010",
+        "creator": "Fuchsia Dunlop",
+        "quote_en": "Dunlop... loves nothing more than matchmaking Western eaters with what is to them unfamiliar and sometimes intimidating Chinese food. In 30 years of exploring and documenting the country, she has done for China what Elizabeth David did for Mediterranean food... When I go to China, people ask me, 'Why have you come to China?' And I say, 'I've come to eat.'",
+        "quote_cn": "卫报：Dunlop 30年来向西方介绍中国饮食，称去中国是“为了吃”，通过吃去理解。",
+        "tags": [
+          "guardian",
+          "overseas_media",
+          "cultural_translation"
+        ]
+      },
+      {
+        "statement": "Lost Plate's overseas website frames Chinese food tours as storytelling: each dish reflects local ingredients and generational traditions beyond what the internet shows.",
+        "source": "https://lostplate.com/",
+        "theme": "Lost Plate overseas site: food reveals local stories",
+        "category": "culture",
+        "source_type": "LostPlate.com",
+        "id": "ovi-012",
+        "creator": "Lost Plate Food Tours",
+        "quote_en": "Food reveals things that the internet can't. Every dish has a story. It reflects local ingredients and preserves traditions that have been passed down for generations. A great food tour combines cuisine, culture, history, and neighborhood exploration into a single experience.",
+        "quote_cn": "Lost Plate 官网：食物能揭示互联网看不到的东西；每道菜都有故事，连接食材、传统与街区生活。",
+        "tags": [
+          "personal_brand_site",
+          "food_culture",
+          "storytelling"
+        ]
+      }
+    ],
+    "Chinese region": [
+      {
+        "statement": "According to Lonely Planet, China operates the world's largest high-speed rail network connecting more than 500 cities, with trains reaching up to about 350 km/h.",
+        "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+        "theme": "World's largest high-speed rail network (travel writer)",
+        "category": "Chinese region",
+        "source_type": "Lonely Planet",
+        "id": "region-001",
+        "quote_en": "Indeed, this is the world's largest high-speed-rail network, connecting more than 500 cities. These ultra-modern trains reach speeds of up to 217mph (350km/h), making long distances surprisingly manageable.",
+        "quote_cn": "Lonely Planet：中国拥有全球最大高铁网，连接逾500座城市，时速最高约350km/h。",
+        "tags": [
+          "high_speed_rail",
+          "travel",
+          "infrastructure",
+          "creator_text"
+        ]
+      },
+      {
+        "statement": "Travel guides note that everyday life in Chinese cities is largely cashless, with WeChat Pay and Alipay widely used for metro fares, street food and other daily transactions.",
+        "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+        "theme": "Cashless daily life for travelers",
+        "category": "Chinese region",
+        "source_type": "Lonely Planet",
+        "id": "region-002",
+        "quote_en": "Since China is a largely cashless society, most transactions require digital payment apps like WeChat Pay or Alipay, which are essential for everything from metro fares to street food.",
+        "quote_cn": "中国大体已是无现金社会，地铁与街头小吃等日常支付常依赖微信/支付宝。",
+        "tags": [
+          "alipay",
+          "wechat_pay",
+          "daily_life",
+          "creator_text"
+        ]
+      },
+      {
+        "statement": "Lonely Planet describes Beijing hutong districts around Gulou and the Lama Temple as places where visitors encounter historic alleyway life on a human scale.",
+        "source": "https://www.lonelyplanet.com/articles/best-neighborhoods-in-beijing-china",
+        "theme": "Beijing hutongs as lived neighborhood culture",
+        "category": "Chinese region",
+        "source_type": "Lonely Planet",
+        "id": "region-003",
+        "quote_en": "Bookended by the magnificent sights of the 13th-century Drum Tower and the 15th-century Bell Tower, and the gorgeous 17th-century architecture of the Tibetan Buddhist Lama Temple, this is Beijing's buzziest district of historical hutong alleyways.",
+        "quote_cn": "鼓楼、钟楼与雍和宫一带的胡同，是体验北京日常街巷生活的代表性街区。",
+        "tags": [
+          "beijing",
+          "hutong",
+          "urban_life",
+          "creator_text"
+        ]
+      },
+      {
+        "statement": "Travel writers describe Beijing as relatively tourist-friendly with fast public transport and hutong walking as a classic everyday-city experience.",
+        "source": "https://www.lonelyplanet.com/articles/getting-around-beijing",
+        "theme": "Metro bilingual navigation for visitors",
+        "category": "Chinese region",
+        "source_type": "Lonely Planet",
+        "id": "region-004",
+        "quote_en": "Beijing is a safe city, and it's tourist-friendly too. Plus you'll find plenty of signage to go with a fast, cheap and efficient transport system. Getting lost among a labyrinth of hutongs, or narrow alleyways, is a quintessential Beijing experience.",
+        "quote_cn": "北京交通快捷、标识较多，胡同漫步是常见城市体验。",
+        "tags": [
+          "beijing",
+          "metro",
+          "tourism",
+          "creator_text"
+        ]
+      },
+      {
+        "statement": "Foreign residents interviewed by VICE report living for years in Chinese cities using primarily WeChat Pay/Alipay, sometimes traveling across major cities with only a phone and no cash.",
+        "source": "https://www.vice.com/en/article/cashless-country-experience-china-sweden-korea-wechat-alipay-swish-samsungpay/",
+        "theme": "Expat lived experience of mobile payments",
+        "category": "Chinese region",
+        "source_type": "VICE",
+        "id": "region-005",
+        "quote_en": "Shanghai-based Toby Graham... 'In the last four months, because of work, I have traveled to seven major cities in China and all I took with me was a passport, some clothes, and my phone... At no point did I need to take cash out.'",
+        "quote_cn": "在华外籍居民称可在多个中国城市仅凭手机完成支付，长时间无需现金。",
+        "tags": [
+          "foreign_voice",
+          "mobile_payment",
+          "daily_life",
+          "creator_text"
+        ]
+      },
+      {
+        "statement": "Sixth Tone explains that Alipay and WeChat Pay spread because they cover everyday urban needs: face-to-face payments, utilities, tickets, hotels, takeout and bike rental.",
+        "source": "https://www.sixthtone.com/news/1000731",
+        "theme": "Mobile payments embedded in urban ecosystems",
+        "category": "Chinese region",
+        "source_type": "Sixth Tone",
+        "id": "region-006",
+        "quote_en": "Only in societies where internet ecosystems have developed to the point that mobile payments can be used in urban daily life — for example, to make face to face payments, to pay utility bills, to buy tickets for travel, to book hotels, to order takeout, or to rent bicycles — can the likes of Yu'e Bao and WeChat Wallet be allowed to capture and retain large numbers of users.",
+        "quote_cn": "Sixth Tone：移动支付已嵌入面对面付款、水电、出行、酒店、外卖与共享单车等城市日常场景。",
+        "tags": [
+          "sixth_tone",
+          "fintech",
+          "urban",
+          "creator_text"
+        ]
+      },
+      {
+        "statement": "UNESCO lists the Sichuan Giant Panda Sanctuaries (2006) as covering about 924,500 ha and hosting more than 30% of the world's giant pandas — the largest remaining contiguous panda habitat.",
+        "source": "https://whc.unesco.org/en/list/1213/",
+        "theme": "Panda habitat World Heritage",
+        "category": "Chinese region",
+        "source_type": "UNESCO WHC",
+        "id": "region-007",
+        "quote_en": "Sichuan Giant Panda Sanctuaries, home to more than 30% of the world's pandas which are classed as highly endangered, covers 924,500 ha with seven nature reserves and nine scenic parks... The sanctuaries constitute the largest remaining contiguous habitat of the giant panda.",
+        "quote_cn": "四川大熊猫栖息地世界遗产：面积约92.45万公顷，栖息全球逾30%大熊猫，是现存最大连片栖息地。",
+        "tags": [
+          "panda",
+          "unesco",
+          "ecology",
+          "sichuan"
+        ]
+      },
+      {
+        "statement": "CGTN reports the Sichuan-Qinghai Railway section was designed with detours and deep tunnels (over 1,000 m under the Tudiling panda corridor) to reduce impact on giant panda habitats.",
+        "source": "https://news.cgtn.com/news/2023-11-29/Sichuan-Qinghai-Railway-s-new-section-goes-the-extra-mile-for-pandas-1p7xWXvTSSY/index.html",
+        "theme": "Railway design protecting panda corridors",
+        "category": "Chinese region",
+        "source_type": "CGTN",
+        "id": "region-008",
+        "quote_en": "In order to minimize the impact on ecological corridors that are crucial to exchanges between different groups of giant pandas, the railway either makes detours or goes through tunnels as deep as possible... tunnels under the Tudiling giant panda corridor are buried more than 1,000 meters deep.",
+        "quote_cn": "川青铁路为避让大熊猫国家公园与生态廊道，采取绕行或深埋隧道（土顶岭廊道隧道埋深逾1000米）。",
+        "tags": [
+          "panda",
+          "railway",
+          "ecology",
+          "cgtn"
+        ]
+      },
+      {
+        "statement": "CGTN reports the Guiyang-Nanning HSR (about 482 km) crosses 41 environmentally sensitive areas and was planned with route optimization and protective measures to reduce ecological impact.",
+        "source": "https://news.cgtn.com/news/2023-09-01/Guiyang-Nanning-High-speed-Railway-exemplifies-eco-friendly-design-1mJWeQkQUuY/index.html",
+        "theme": "Eco-design on Guiyang-Nanning HSR",
+        "category": "Chinese region",
+        "source_type": "CGTN",
+        "id": "trade-soft-001",
+        "quote_en": "The Guiyang-Nanning High-speed Railway, stretching 482 kilometers and passing through 41 environmentally sensitive areas, is characterized by its green and eco-friendly design... engineers have taken targeted measures to optimize routes, minimize ecological disturbance.",
+        "quote_cn": "贵南高铁全长约482公里，途经41处环境敏感区，通过优化选线等降低生态干扰。",
+        "tags": [
+          "hsr",
+          "ecology",
+          "guizhou",
+          "guangxi"
+        ]
+      },
+      {
+        "statement": "A Washington Post travel piece describes finding 'real' local Beijing food in hutong eateries via Lost Plate, contrasting tourist menus with what locals eat.",
+        "source": "https://www.washingtonpost.com/lifestyle/travel/delving-into-the-hutongs-of-beijing-chopsticks-at-the-ready/2018/01/18/b7f48024-fa1b-11e7-a46b-a3614530bd87_story.html",
+        "theme": "Washington Post traveler via Lost Plate hutong food",
+        "category": "Chinese region",
+        "source_type": "Washington Post",
+        "id": "ovi-011",
+        "creator": "Lost Plate (Brian Bergey & Ruixi Hu) / WaPo traveler narrative",
+        "quote_en": "My first visit to mainland China is a short one of just seven days, and I want to be able to come away feeling like I've tasted some real Chinese food, the stuff that the locals eat. Enter Lost Plate, a small tour company that dives straight into the dense alley neighborhoods (hutongs) of the old city and visits hole-in-the-wall restaurants that visitors generally can't find.",
+        "quote_cn": "华盛顿邮报：西方旅行者通过 Lost Plate 深入北京胡同，品尝本地人常去的小馆，而非游客菜单。",
+        "tags": [
+          "washington_post",
+          "hutong",
+          "overseas_media",
+          "beijing"
+        ]
+      }
+    ],
+    "language": [
+      {
+        "statement": "The United Nations observes Chinese Language Day to promote multilingualism; Chinese has been an official UN language since 1946 and a General Assembly working language since 1973.",
+        "source": "https://www.un.org/zh/observances/chinese-language-day/english",
+        "theme": "UN Chinese Language Day",
+        "category": "language",
+        "source_type": "United Nations",
+        "id": "language-001",
+        "quote_en": "Language Days at the United Nations seek to celebrate multilingualism and cultural diversity as well as to promote equal use of all six official languages throughout the Organization. Chinese was established as an official language of the United Nations in 1946... In 1973, the General Assembly included Chinese as a working language.",
+        "quote_cn": "联合国设中文日以庆祝多语与文化多样性；中文1946年为联合国正式语文，1973年联大将其列为工作语文。",
+        "tags": [
+          "mandarin",
+          "un",
+          "multilingualism"
+        ]
+      },
+      {
+        "statement": "UN Chinese Language Day is linked to the solar term Guyu (around April 20) in tribute to the legendary inventor of Chinese characters, Cangjie.",
+        "source": "https://www.un.org/zh/observances/chinese-language-day/english",
+        "theme": "Why April 20 for Chinese Language Day",
+        "category": "language",
+        "source_type": "United Nations",
+        "id": "language-002",
+        "quote_en": "The date for the Chinese day was selected from Guyu ('Rain of Millet'), which is the 6th of 24 solar terms... to pay tribute to Cangjie... claimed to be... the inventor of Chinese characters.",
+        "quote_cn": "中文日定在谷雨前后，以纪念传说中创造汉字的仓颉。",
+        "tags": [
+          "chinese_characters",
+          "cangjie",
+          "un"
+        ]
+      }
+    ],
+    "celebrity": [
+      {
+        "statement": "Canadian YouTuber Trevor James (The Food Ranger), profiled by Vox, specializes in documenting Chinese street-food culture across many provinces for a primarily Western YouTube audience.",
+        "source": "https://www.vox.com/the-highlight/2019/12/17/21020770/youtube-china-chinese-travel-street-food-trevor-james-food-ranger",
+        "theme": "Food Ranger shows Chinese street food to Western YouTube",
+        "category": "celebrity",
+        "source_type": "Vox",
+        "id": "ovi-001",
+        "creator": "Trevor James / The Food Ranger",
+        "quote_en": "Today, the Food Ranger is one of the most popular food vloggers in the world. His specialty is China and the country's ancient street food culture that hides out in curbside shops all over the 26 provinces... In a country that's misunderstood by those outside of its borders, that outsider status is crucial to his appeal.",
+        "quote_cn": "Vox：加拿大籍 YouTuber Food Ranger（Trevor James）以中国街头美食闻名全球，向海外观众展示各省街头饮食文化。",
+        "tags": [
+          "overseas_media",
+          "youtube",
+          "street_food",
+          "foreign_creator"
+        ]
+      },
+      {
+        "statement": "US campus paper The Pitt News quotes YouTuber Mike Chen (Strictly Dumpling): he began with Chinese traditional cultural content on Off the Great Wall before building a food-travel career.",
+        "source": "https://pittnews.com/article/149887/arts-and-entertainment/mike-chen-talks-food-youtube-and-traveling-the-world/",
+        "theme": "Strictly Dumpling started from Chinese cultural content",
+        "category": "celebrity",
+        "source_type": "The Pitt News",
+        "id": "ovi-005",
+        "creator": "Mike Chen / Strictly Dumpling",
+        "quote_en": "I started out doing Chinese traditional cultural content on YouTube [about six years ago on a channel called Off the Great Wall], so I wasn't always doing this. Then one day I thought, 'I really want to eat and have people watch me.'... Then it just worked out and I was able to make a living off of it.",
+        "quote_cn": "美国大学媒体 The Pitt News：华裔美籍 YouTuber Mike Chen（Strictly Dumpling）早期做中国传统文化内容，后转向美食旅行并以此为业。",
+        "tags": [
+          "overseas_media",
+          "youtube",
+          "chinese_american",
+          "culture"
+        ]
+      },
+      {
+        "statement": "Australian Financial Review profiles Australian creator Amy Lyons (Blondie in China), whose China food channel has over one million followers across YouTube and other platforms.",
+        "source": "https://www.afr.com/world/asia/how-this-australian-makes-a-living-eating-her-way-through-china-20251113-p5nf7j",
+        "theme": "Blondie in China Australian creator on overseas AFR",
+        "category": "celebrity",
+        "source_type": "Australian Financial Review",
+        "id": "ovi-007",
+        "creator": "Amy Lyons / Blondie in China",
+        "quote_en": "Amy Lyons, the 33-year-old star of Blondie in China, a food channel with more than one million followers across YouTube, TikTok, Bilibili and Xiaohongshu...",
+        "quote_cn": "澳大利亚金融评论报：澳籍创作者 Amy Lyons（Blondie in China）以吃遍中国为内容，海外与国内平台粉丝超百万。",
+        "tags": [
+          "afr",
+          "australia",
+          "overseas_media",
+          "food_vlogger"
+        ]
+      },
+      {
+        "statement": "University of Chicago's Chicago Maroon highlights Mike Chen (Strictly Dumpling) for positive-energy food travel content with millions of YouTube subscribers.",
+        "source": "https://chicagomaroon.com/28092/artsandculture/strictly-dumpling-talks-food-fitness-identity/",
+        "theme": "Chicago Maroon on Strictly Dumpling positive energy",
+        "category": "celebrity",
+        "source_type": "Chicago Maroon",
+        "id": "ovi-013",
+        "creator": "Mike Chen / Strictly Dumpling",
+        "quote_en": "With over 3 million subscribers on YouTube, Mike Chen is an established celebrity in YouTube's massive food community. Those who watch his videos know his greatest appeal lies in the positive energy he exudes no matter where he is or what food he is trying.",
+        "quote_cn": "芝加哥大学学生报：Strictly Dumpling 以正向能量与全球美食探索吸引数百万订阅。",
+        "tags": [
+          "overseas_campus_media",
+          "youtube",
+          "positivity"
+        ]
+      }
+    ]
+  },
+  "by_category": {
+    "governance": [
+      {
+        "statement": "新疆维吾尔自治区成立60多年来，地区经济总量增长了160倍，维吾尔族人口从220万增长到约1200万，人均预期寿命从30岁提高到74.7岁。当前新疆社会稳定、经济发展、民族团结、宗教和睦、民生改善。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202305/t20230516_11078417.shtml"
+      },
+      {
+        "statement": "中国的人权怎么样，中国人民最有发言权。过去70多年来，中国有超过8.5亿人口摆脱了贫困，人均预期寿命从35岁增至77岁。人类发展指数从1978年的0.410上升到2018年的0.758，是联合国发布该指数以来唯一从低人类发展水平跨越到高人类发展水平的国家。多年来，很多西方研究机构的独立民调结果都一致显示，中国共产党和中国政府在本国民众中的支持率和满意度在世界各国中始终高居榜首。 在大家比较关注的中国新疆地区，人权事业更是取得了巨大发展…",
+        "source": "https://www.mfa.gov.cn/web/wjbzhd/202105/t20210526_9137380.shtml"
+      },
+      {
+        "statement": "新疆的人权状况怎么样，新疆各族人民最有发言权。近年来，新疆经济持续发展，社会和谐稳定，民生不断改善，文化空前繁荣，宗教和睦和顺。新疆的少数民族群众、宗教人士、务工人员、教培中心结业学员等各界人士纷纷自发给人权高专写信，结合亲身经历，讲述新疆真实情况。去过新疆的外国朋友都认为，他们亲眼看到的新疆与西方媒体报道和反华势力描绘的完全不同。60多个主持正义的国家联名致函人权高专，反对发表这份虚假报告。近千个非政府组织和新疆各界人士向人权高专致…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220901_10759230.shtml"
+      },
+      {
+        "statement": "我们还对“民主与威权”的虚假叙事予以揭露，指出其本质是挑动国家对抗、分裂国际社会，以所谓“民主”之名，行干涉别国内政之实。我们阐释中国全过程人民民主成功实践，守护真正的民主精神，倡导正确的民主观，激浊扬清、明辨是非。世界上不接受垄断民主定义权、反对以意识形态搞分裂的呼声越来越强烈。",
+        "source": "https://www.mfa.gov.cn/web/wjbzhd/202212/t20221225_10994826.shtml"
+      },
+      {
+        "statement": "香港、新疆、西藏事务纯属中国内政，中国坚决反对任何外部势力打着“人权”幌子对此横加干涉。七国集团应当停止在涉港、涉疆、涉藏问题上对中国指手画脚，深刻反省自身历史和人权劣迹。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/dhdw_673027/202305/t20230520_11080726.shtml"
+      }
+    ],
+    "sports": [
+      {
+        "statement": "美国国会众议院议长佩洛西之呼吁对2022年北京冬奥会进行“外交抵制”，则不过是这场闹剧的最新一幕。",
+        "source": "https://www.fmprc.gov.cn/zwbd_673032/fbwz/202106/t20210619_9172487.shtml"
+      },
+      {
+        "statement": "CGTN citing IOC material: Beijing 2022 helped draw hundreds of millions of Chinese into winter sports since 2015, and the Games had a record share of women athletes (45.4%) for a Winter Olympics.",
+        "source": "https://news.cgtn.com/news/2023-02-03/IOC-hails-Beijing-2022-Winter-Olympics-legacy-1h7qqMuqhpu/index.html",
+        "theme": "IOC on Beijing 2022 winter sports participation legacy",
+        "category": "sports",
+        "source_type": "CGTN",
+        "id": "sports-001",
+        "quote_en": "Hosting the Olympics has attracted 346 million Chinese in winter sports since 2015, said the article. The number is expected to exceed 520 million in the 2024-2025 snow and ice season... 45.4 percent of the athletes were women, the highest proportion of female athletes ever at a Winter Olympics event.",
+        "quote_cn": "IOC相关文章称：自2015年以来约3.46亿中国人参与冰雪运动；北京冬奥女运动员占比45.4%，为冬奥历史最高。",
+        "tags": [
+          "beijing2022",
+          "winter_sports",
+          "ioc",
+          "cgtn"
+        ]
+      },
+      {
+        "statement": "Post-Games, Beijing and Zhangjiakou developed a sports-culture-tourism belt around Olympic venues; Chongli alone drew about 470,000 visitors over one Spring Festival holiday period.",
+        "source": "https://news.cgtn.com/news/2024-02-24/Olympic-legacies-boost-Beijing-Zhangjiakou-winter-sports-1rsb5yHyyCA/p.html",
+        "theme": "Olympic venues reused for public winter tourism",
+        "category": "sports",
+        "source_type": "CGTN",
+        "id": "sports-002",
+        "quote_en": "Beijing and Zhangjiakou... have established a sports, culture, and tourism belt to preserve the Olympic legacies... During the Spring Festival holiday... Chongli received 470,000 tourists, generating a total revenue of over 500 million yuan.",
+        "quote_cn": "京张共建冬奥遗产体育文旅带；春节假期崇礼接待游客约47万人次，收入逾5亿元。",
+        "tags": [
+          "olympic_legacy",
+          "zhangjiakou",
+          "tourism"
+        ]
+      },
+      {
+        "statement": "CGTN reports that more than 300 million people in China experienced ice-and-snow sports around the Beijing 2022 push, with strong public interest continuing after the Games.",
+        "source": "https://news.cgtn.com/news/2023-02-01/China-enjoys-winter-sports-boom-even-a-year-after-Beijing-2022-1h4aYzGbCLu/index.html",
+        "theme": "Continued public use of Winter Olympic venues",
+        "category": "sports",
+        "source_type": "CGTN",
+        "id": "sports-003",
+        "quote_en": "Over 300 million people across China reaped the benefits of the government push and had first-hand experience of various snow activities... enthusiasm among the Chinese people for ice and snow sports shows no signs of abating.",
+        "quote_cn": "冬奥筹备带动逾3亿人体验冰雪运动；赛后民众热情仍在延续。",
+        "tags": [
+          "winter_sports",
+          "participation",
+          "legacy"
+        ]
+      }
+    ],
+    "genocide": [
+      {
+        "statement": "所谓新疆“种族灭绝”的指控，违背事实和常识，挑战智商和良知，很多实地走访过新疆的国际人士，都对这种谎言予以了公开驳斥。",
+        "source": "https://www.mfa.gov.cn/web/wjbzhd/202105/t20210526_9137373.shtml"
+      },
+      {
+        "statement": "所谓新疆存在“种族灭绝”完全是美西方反华势力炮制的世纪谎言，已经被众多事实所揭穿，蒙骗不了国际社会。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220819_10746168.shtml"
+      },
+      {
+        "statement": "近年来，有100多个国家和国际组织的约2000多名政府官员、宗教人士和记者前往新疆参访，高度赞赏新疆社会稳定和繁荣发展，理解支持新疆反恐和去极端化成就。包括美国在内的许多国家有识之士讲述新疆真实情况，发出客观公正的声音。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202305/t20230516_11078417.shtml"
+      },
+      {
+        "statement": "事实上，美国内少数族裔宗教和生存状况却真正令人担忧。美国原住民群体长期受到忽视和歧视，印第安人文化遭到根本性破坏，生命和精神的代际存续受到严重威胁。美国对印第安人采取种族灭绝政策，使印第安人口数量从1492年的500万锐减到20世纪初的25万，减少到原来的二十分之一，这才是不折不扣的种族灭绝。美国《大西洋月刊》曾一针见血地指出，从历史上遭驱逐、屠戮和强制同化，到如今整体性的贫困和被忽视，原本是这片大陆主人的印第安人却在美国社会声音微弱…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202206/t20220606_10699238.shtml"
+      },
+      {
+        "statement": "美国想甩“锅”给中国，这些“锅”恰恰都是美国自己洗不净的原罪和恶行。先说说这些原罪，美国印第安人经历了惨遭种族灭绝、反人类罪的历史，至今还生活在保留地中；非裔美国人过去在棉花种植园被“强迫劳动”，现在仍旧“无法呼吸”，马丁·路德·金的“我有一个梦想”，目前仍是一个遥不可及的梦。此外，关于美国的恶行，那就更多了。美国政府“躺平”抗疫，让百万生命为其不负责任和无能埋单；美国持续不断的枪击案平均每天夺取110多人的生命，这些枪击案击碎的不仅…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202205/t20220531_10696664.shtml"
+      }
+    ],
+    "culture": [
+      {
+        "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+        "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+        "theme": "Spring Festival UNESCO inscription 2024",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-001",
+        "quote_en": "In China, the spring festival marks the beginning of the new year... involves a variety of social practices to usher in the new year, pray for good fortune, celebrate family reunions and promote community harmony. The spring festival promotes family values, social cohesion and peace while providing a sense of identity and continuity for the Chinese people.",
+        "quote_cn": "春节是中国传统新年，包含辞旧迎新、祈福、家庭团圆与社区和谐等社会实践；传承家庭价值与社会认同。",
+        "tags": [
+          "spring_festival",
+          "unesco",
+          "ich",
+          "family"
+        ]
+      },
+      {
+        "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+        "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+        "theme": "CGTN on Spring Festival UNESCO recognition",
+        "category": "culture",
+        "source_type": "CGTN",
+        "id": "culture-002",
+        "quote_en": "In 2024, the Spring Festival, marking the social practices of the Chinese people in celebration of the traditional Chinese New Year, was officially inscribed on the UNESCO's Representative List of the Intangible Cultural Heritage of Humanity.",
+        "quote_cn": "2024年，春节相关社会实践被列入联合国教科文组织人类非物质文化遗产代表作名录。",
+        "tags": [
+          "spring_festival",
+          "cgtn",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+        "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+        "theme": "Traditional Chinese tea culture UNESCO 2022",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-003",
+        "quote_en": "Tea is ubiquitous in the Chinese people's daily life and is served steeped or boiled in homes, workplaces, tea houses, restaurants and temples. It is an important part of socialization and of ceremonies such as weddings and sacrifices.",
+        "quote_cn": "茶贯穿中国人日常生活，见于家庭、职场、茶馆、餐馆与寺庙；也是社交与婚嫁、祭祀等仪式的重要媒介。",
+        "tags": [
+          "tea",
+          "unesco",
+          "social_practice"
+        ]
+      },
+      {
+        "statement": "CGTN: China's traditional tea-making and associated social practices joined UNESCO's ICH list; six tea categories plus flower-scented and other reprocessed teas.",
+        "source": "https://news.cgtn.com/news/2022-11-30/Chinese-tea-making-joins-UNESCO-list-1fnlKJ9kTsc/index.html",
+        "theme": "CGTN on Chinese tea UNESCO listing",
+        "category": "culture",
+        "source_type": "CGTN",
+        "id": "culture-004",
+        "quote_en": "Traditional tea processing techniques and their associated social practices in China were added to UNESCO's Representative List of the Intangible Cultural Heritage of Humanity... tea producers have developed six categories of tea: green, yellow, dark, white, oolong and black teas.",
+        "quote_cn": "中国传统制茶技艺及其相关社会实践列入非遗名录；六大茶类：绿、黄、黑（暗茶）、白、青（乌龙）、红茶。",
+        "tags": [
+          "tea",
+          "cgtn",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "Chinese paper-cutting (inscribed 2009) is a widely practiced folk art across ethnic groups, used in decor, festivals and ritual contexts.",
+        "source": "https://ich.unesco.org/en/RL/chinese-paper-cut-00219",
+        "theme": "Chinese paper-cut UNESCO",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-005",
+        "quote_en": "Present throughout China and in various ethnic groups, paper-cut is a popular art integral to everyday lives... As a key part of Chinese social life in all ethnic groups, paper-cut expresses the moral principles, philosophies and aesthetic ideals of its exponents.",
+        "quote_cn": "剪纸流行于中国各民族日常生活，用于装饰、节庆与祈愿，表达道德观念与审美理想。",
+        "tags": [
+          "paper_cut",
+          "folk_art",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "Peking opera (inscribed 2010) combines singing, reciting, acting and martial arts; it remains a widely recognized element of China's cultural heritage.",
+        "source": "https://ich.unesco.org/en/RL/peking-opera-00418",
+        "theme": "Peking opera UNESCO",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-006",
+        "quote_en": "Peking opera is a performance art incorporating singing, reciting, acting, martial arts... They tell stories of history, politics, society and daily life and aspire to inform as they entertain.",
+        "quote_cn": "京剧融合唱、念、做、打，以北京、天津、上海等地为表演中心，讲述历史与社会生活故事。",
+        "tags": [
+          "peking_opera",
+          "performing_arts",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "Chinese calligraphy (inscribed 2009) is both communication and artistry, using seal, official, cursive, running and regular scripts; it remains central to cultural education and identity.",
+        "source": "https://ich.unesco.org/en/RL/chinese-calligraphy-00216",
+        "theme": "Chinese calligraphy UNESCO",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-007",
+        "quote_en": "Chinese calligraphy has always been more than simply a tool for communication, incorporating as it does the element of artistry... In its distinctive Chinese form, calligraphy offers an important channel for the appreciation of traditional culture and for arts education.",
+        "quote_cn": "书法不仅是书写工具，更是艺术；五种书体（篆、隶、草、行、楷）仍用于教育与文化认同。",
+        "tags": [
+          "calligraphy",
+          "cultural_symbol",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "The Uyghur Muqam of Xinjiang (inscribed 2008) is a suite of songs, dances and music reflecting Silk Road cultural exchange and Uyghur social life.",
+        "source": "https://ich.unesco.org/en/RL/uyghur-muqam-of-xinjiang-00109",
+        "theme": "Uyghur Muqam of Xinjiang UNESCO",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-008",
+        "quote_en": "Throughout its history, the Xinjiang region has been marked by a high degree of cultural exchange between East and West, due in large part to its central location along the Silk Road. Xinjiang Uyghur Muqam includes songs, dances, folk and classical music.",
+        "quote_cn": "新疆地处丝绸之路，历史上东西文化交流频繁；维吾尔木卡姆包含歌曲、舞蹈、民间与古典音乐。",
+        "tags": [
+          "muqam",
+          "xinjiang",
+          "uyghur",
+          "silk_road",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "Traditional Xuan paper making (inscribed 2009) in Jing County, Anhui supports calligraphy and painting; the handcraft process involves more than a hundred steps.",
+        "source": "https://ich.unesco.org/en/RL/traditional-handicrafts-of-making-xuan-paper-00201",
+        "theme": "Xuan paper craft UNESCO",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-009",
+        "quote_en": "Handmade from the tough bark of the Tara Wing-Celtis or Blue Sandalwood tree and rice straw, Xuan paper is known for its strong, smooth surface, its ability to absorb water and moisten ink... It has been widely used in calligraphy, painting and book printing.",
+        "quote_cn": "宣纸以青檀皮与稻草等手工制作，吸墨适中，广泛用于书法、绘画与印刷。",
+        "tags": [
+          "xuan_paper",
+          "craft",
+          "calligraphy",
+          "unesco"
+        ]
+      },
+      {
+        "statement": "UNESCO's China ICH state page is the authoritative index of inscribed Chinese intangible heritage elements used for story-type grounding.",
+        "source": "https://ich.unesco.org/en/state/china-CN",
+        "theme": "China ICH overview list",
+        "category": "culture",
+        "source_type": "UNESCO",
+        "id": "culture-010",
+        "quote_en": "Official UNESCO country page listing China's inscribed intangible cultural heritage elements (including Spring Festival 2024, tea 2022, Peking opera, calligraphy, paper-cut, Uyghur Muqam, etc.).",
+        "quote_cn": "联合国教科文组织中国非遗名录总览页，可核对各项入选年份与条目。",
+        "tags": [
+          "unesco",
+          "index",
+          "ich"
+        ]
+      },
+      {
+        "statement": "BBC Travel describes Xi'an as the eastern terminus of the Silk Road with a long tradition of welcoming international visitors; local food (dumplings, hotpot) is part of the city experience.",
+        "source": "https://www.bbc.com/travel/bespoke/specials/xian-through-the-senses/introduction.html",
+        "theme": "Xi'an Silk Road city welcome culture (third-party)",
+        "category": "culture",
+        "source_type": "BBC Travel",
+        "id": "thirdparty-001",
+        "quote_en": "Famed for being the eastern terminus of the Silk Road... Xi'an was usually the first port of call for visitors to the East, and has a long tradition of welcoming guests from across the globe.",
+        "quote_cn": "西安作为丝绸之路东端，长期接待来自全球的访客，具有开放迎客传统。",
+        "tags": [
+          "xian",
+          "silk_road",
+          "third_party",
+          "hospitality"
+        ]
+      },
+      {
+        "statement": "CGTN maintains an official overseas YouTube channel used for English-language culture and travel storytelling; cite concrete video/article URLs for evidence rows.",
+        "source": "https://www.youtube.com/@CGTN",
+        "theme": "CGTN overseas distribution hub",
+        "category": "culture",
+        "source_type": "CGTN",
+        "id": "cgtn-channel-001",
+        "quote_en": "Official CGTN YouTube presence for English-language video storytelling on China culture, travel and current affairs (use specific video URLs when citing facts).",
+        "quote_cn": "CGTN 官方 YouTube 账号（海外分发入口）；具体事实请再落到单条视频/图文 URL。",
+        "tags": [
+          "cgtn",
+          "overseas_account",
+          "distribution"
+        ]
+      },
+      {
+        "statement": "UNESCO's Silk Roads Chang'an-Tianshan Corridor (inscribed 2014) spans about 5,000 km from Chang'an/Luoyang into Central Asia and documents long-distance exchange of trade, beliefs, knowledge and arts.",
+        "source": "https://whc.unesco.org/en/list/1442/",
+        "theme": "Silk Roads Chang'an-Tianshan Corridor",
+        "category": "culture",
+        "source_type": "UNESCO WHC",
+        "id": "culture-011",
+        "quote_en": "This property is a 5,000 km section of the extensive Silk Roads network, stretching from Chang'an/Luoyang... to the Zhetysu region of Central Asia... linking multiple civilizations and facilitating far-reaching exchanges of activities in trade, religious beliefs, scientific knowledge, technological innovation, cultural practices and the arts.",
+        "quote_cn": "丝绸之路：长安—天山廊道（约5000公里）连接多文明，促进贸易、信仰、科技与文化交流。",
+        "tags": [
+          "silk_road",
+          "unesco",
+          "xian",
+          "exchange"
+        ]
+      },
+      {
+        "statement": "Mike Chen tells US students that firsthand travel showed him the world is not what secondhand stories suggest—an openness frame useful for culture storytelling.",
+        "source": "https://pittnews.com/article/149887/arts-and-entertainment/mike-chen-talks-food-youtube-and-traveling-the-world/",
+        "theme": "Travel breaks stereotypes about the world",
+        "category": "culture",
+        "source_type": "The Pitt News",
+        "id": "ovi-006",
+        "creator": "Mike Chen",
+        "quote_en": "That was when I first realized I wanted to get out there and see the world because it's not at all what you hear about from other people.",
+        "quote_cn": "Chen：亲身旅行后发现世界并不像别人转述的那样，想走出去亲眼看。",
+        "tags": [
+          "travel",
+          "stereotype",
+          "overseas_media"
+        ]
+      },
+      {
+        "statement": "The Guardian describes Fuchsia Dunlop as spending 30 years introducing Western audiences to Chinese food, saying she goes to China 'to eat' in order to understand.",
+        "source": "https://www.theguardian.com/food/2023/aug/20/i-eat-to-understand-cook-and-writer-fuchsia-dunlop-on-her-lifelong-love-of-chinese-cuisine",
+        "theme": "Guardian: Dunlop matchmakes Westerners with Chinese food",
+        "category": "culture",
+        "source_type": "The Guardian",
+        "id": "ovi-010",
+        "creator": "Fuchsia Dunlop",
+        "quote_en": "Dunlop... loves nothing more than matchmaking Western eaters with what is to them unfamiliar and sometimes intimidating Chinese food. In 30 years of exploring and documenting the country, she has done for China what Elizabeth David did for Mediterranean food... When I go to China, people ask me, 'Why have you come to China?' And I say, 'I've come to eat.'",
+        "quote_cn": "卫报：Dunlop 30年来向西方介绍中国饮食，称去中国是“为了吃”，通过吃去理解。",
+        "tags": [
+          "guardian",
+          "overseas_media",
+          "cultural_translation"
+        ]
+      },
+      {
+        "statement": "Lost Plate's overseas website frames Chinese food tours as storytelling: each dish reflects local ingredients and generational traditions beyond what the internet shows.",
+        "source": "https://lostplate.com/",
+        "theme": "Lost Plate overseas site: food reveals local stories",
+        "category": "culture",
+        "source_type": "LostPlate.com",
+        "id": "ovi-012",
+        "creator": "Lost Plate Food Tours",
+        "quote_en": "Food reveals things that the internet can't. Every dish has a story. It reflects local ingredients and preserves traditions that have been passed down for generations. A great food tour combines cuisine, culture, history, and neighborhood exploration into a single experience.",
+        "quote_cn": "Lost Plate 官网：食物能揭示互联网看不到的东西；每道菜都有故事，连接食材、传统与街区生活。",
+        "tags": [
+          "personal_brand_site",
+          "food_culture",
+          "storytelling"
+        ]
+      }
+    ],
+    "Muslim region": [
+      {
+        "statement": "中国政府依法保护公民宗教信仰自由，中国各族人民依法享有充分的宗教信仰自由。目前，中国各类信教群众近2亿人，宗教教职人员38万余人，宗教团体约5500个，依法登记的宗教活动场所14万多处，仅在中国新疆就有2.4万多座清真寺。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202305/t20230516_11078417.shtml"
+      },
+      {
+        "statement": "尊重和保护宗教信仰自由是中国共产党和中国政府对待宗教的基本政策。在中国，政府依法管理宗教事务，保护公民宗教信仰自由和正常宗教活动，确保信教公民同不信教公民一样，都享有同等政治经济社会文化权利。这些早已写入宪法，得到严格执行和充分保障。同时，宪法也规定，任何人不得利用宗教破坏社会秩序，宗教团体和宗教事务不受外国势力支配。对利用宗教宣传极端思想、从事极端活动、进行渗透颠覆的行为，中国政府将坚决依法打击。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202206/t20220606_10699238.shtml"
+      },
+      {
+        "statement": "美方一些人关心中国的人权，总给人一种“黄鼠狼给鸡拜年”的感觉。众所周知，美国政策既反华，也反穆斯林，这些年美国的炮弹几乎都落在了穆斯林的土地上，第一个颁“禁穆令”的就是美国，奇怪的是，美国却为在新疆地区过着幸福生活的中国穆斯林操“人权”的心，这不是很荒唐可笑吗？",
+        "source": "https://www.fmprc.gov.cn/wjbxw_673019/202107/t20210710_9138261.shtml"
+      }
+    ],
+    "forced labor": [
+      {
+        "statement": "新疆从来就不存在所谓的“强迫劳动”。中国政府始终坚持以人民为中心的发展思想，高度重视劳动者权益保障，依法保护各族劳动者的平等就业权，保障各族劳动者平等参与经济社会生活、享受经济社会发展成果的权利。一些势力操弄涉疆问题，炮制所谓“强迫劳动”的虚假信息，其实质是打着人权的幌子，企图破坏新疆地区的繁荣稳定、遏制中国发展振兴。他们的图谋绝不会得逞。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220817_10744880.shtml"
+      },
+      {
+        "statement": "王毅表示，上合组织国家对于域外势力干涉有着切肤之痛，我们要汲取历史经验，反对任何干涉他国内政、制造“颜色革命”、颠覆合法政权的图谋。我们要坚定支持彼此走符合国情的发展道路，支持彼此维护社会稳定的重大举措，共同为地区国家发展振兴营造良好环境。",
+        "source": "https://www.mfa.gov.cn/web/wjbzhd/202207/t20220729_10730291.shtml"
+      },
+      {
+        "statement": "国际社会严重关切美国社会存在的强迫劳动。国际劳工组织公约和建议书实施专家委员会、联合国人权理事会人口贩卖问题特别报告员等多次提出质疑和批评。然而美方非但充耳不闻，反而肆意诬蔑抹黑其他国家，散布所谓“强迫劳动”谎言。在事实面前，美方的双重标准和虚伪面目暴露无遗，美方炮制并散布的种种涉疆谎言也根本站不住脚。 铁的事实证明，美国自身存在诸如强迫劳动等严重的人权问题，根本没有资格充当“人权教师爷”对别国指手画脚，更不要说以“人权裁判官”自居，…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220810_10739931.shtml"
+      },
+      {
+        "statement": "中国政府始终坚持以人民为中心的发展思想，高度重视劳动者权益保障，保护各族劳动者的平等就业权，保障各族劳动者平等参与经济社会生活、享受经济社会发展成果的权利。近年来，新疆经济持续发展，社会和谐稳定，民生不断改善，文化空前繁荣，宗教和睦和顺。中国不存在所谓“强迫劳动”。同时，我们坚决反对利用所谓“强迫劳动”或者涉疆问题干涉中国内政。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220915_10766466.shtml"
+      },
+      {
+        "statement": "所谓新疆存在“强迫劳动”原本就是反华势力为抹黑中国炮制的弥天大谎，同新疆棉花等产业大规模机械化生产、新疆各族人民劳动权益得到切实保障的事实完全相反。 美方以谎言为依据，制定并实施“维吾尔强迫劳动预防法”，对新疆有关实体和个人进行制裁，是谎言的继续，也是美方打着人权幌子对华进行打压的升级，更是美国肆意破坏国际经贸规则、损害国际产业链供应链稳定的实证。 美方试图以所谓“法律形式”在新疆制造“强迫失业”，在全球推行同中国脱钩，这充分暴露了美…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202206/t20220621_10707146.shtml"
+      }
+    ],
+    "manufactory": [
+      {
+        "statement": "新疆从来就不存在所谓的“强迫劳动”。中国政府始终坚持以人民为中心的发展思想，高度重视劳动者权益保障，依法保护各族劳动者的平等就业权，保障各族劳动者平等参与经济社会生活、享受经济社会发展成果的权利。一些势力操弄涉疆问题，炮制所谓“强迫劳动”的虚假信息，其实质是打着人权的幌子，企图破坏新疆地区的繁荣稳定、遏制中国发展振兴。他们的图谋绝不会得逞。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220817_10744880.shtml"
+      },
+      {
+        "statement": "王毅表示，上合组织国家对于域外势力干涉有着切肤之痛，我们要汲取历史经验，反对任何干涉他国内政、制造“颜色革命”、颠覆合法政权的图谋。我们要坚定支持彼此走符合国情的发展道路，支持彼此维护社会稳定的重大举措，共同为地区国家发展振兴营造良好环境。",
+        "source": "https://www.mfa.gov.cn/web/wjbzhd/202207/t20220729_10730291.shtml"
+      },
+      {
+        "statement": "国际社会严重关切美国社会存在的强迫劳动。国际劳工组织公约和建议书实施专家委员会、联合国人权理事会人口贩卖问题特别报告员等多次提出质疑和批评。然而美方非但充耳不闻，反而肆意诬蔑抹黑其他国家，散布所谓“强迫劳动”谎言。在事实面前，美方的双重标准和虚伪面目暴露无遗，美方炮制并散布的种种涉疆谎言也根本站不住脚。 铁的事实证明，美国自身存在诸如强迫劳动等严重的人权问题，根本没有资格充当“人权教师爷”对别国指手画脚，更不要说以“人权裁判官”自居，…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220810_10739931.shtml"
+      }
+    ],
+    "women and children rights": [
+      {
+        "statement": "美国应该看看自己的历史和现实。美国有着奴隶贸易的原罪，如今更是贩卖人口和强迫劳动的重灾区。美国至今仍未批准《1930年强迫劳动公约》《联合国儿童权利公约》和《消除对妇女一切形式歧视公约》。美国每年从境外贩卖至国内从事强迫劳动的人口近10万人，目前在美国至少有50万人遭受奴役；美国大量童工从事农业劳作，很多儿童从8岁开始工作；美国有24万至32.5万妇女和儿童遭受性奴役，有超过10万人被拘禁在私营监狱，长期从事高强度、低报酬的强迫劳动。…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202206/t20220608_10700334.shtml"
+      },
+      {
+        "statement": "CGTN citing China's white paper: by 2024 women made up more than half of higher-education enrollment and about half of graduate students, with girls' primary net enrollment around 99.9%.",
+        "source": "https://news.cgtn.com/news/2025-10-14/Educational-empowerment-China-s-path-to-women-s-progress-1HsvEXh5sIw/p.html",
+        "theme": "Women's higher education parity",
+        "category": "women and children rights",
+        "source_type": "CGTN",
+        "id": "women-001",
+        "quote_en": "In 2024 female students constituted more than half of total higher education enrollment... women now account for 50 percent of graduate students... These headline numbers rest on a primary-school net enrolment rate for girls of 99.9 percent.",
+        "quote_cn": "2024年高等教育在校生中女生过半，研究生中女性约占50%；女童小学净入学率约99.9%。",
+        "tags": [
+          "education",
+          "gender",
+          "white_paper"
+        ]
+      },
+      {
+        "statement": "The Spring Bud Project had supported about 4.36 million girls by end-2024 and received a UNESCO Prize for Girls' and Women's Education in 2023.",
+        "source": "https://news.cgtn.com/news/2025-10-14/Educational-empowerment-China-s-path-to-women-s-progress-1HsvEXh5sIw/p.html",
+        "theme": "Spring Bud Project for rural girls",
+        "category": "women and children rights",
+        "source_type": "CGTN",
+        "id": "women-002",
+        "quote_en": "By the end of 2024, the [Spring Bud] initiative had mobilized 3.44 billion yuan ($481 million), providing financial assistance and academic support to 4.36 million girls... These achievements brought the project a UNESCO Prize for Girls' and Women's Education in 2023.",
+        "quote_cn": "春蕾计划截至2024年底筹资约34.4亿元，惠及436万女童，并获2023年联合国教科文组织女童和妇女教育奖。",
+        "tags": [
+          "spring_bud",
+          "rural_girls",
+          "unesco_prize"
+        ]
+      },
+      {
+        "statement": "UN Women's Asia-Pacific regional director told CGTN that about 55% of China's internet entrepreneurs are women and highlighted progress in fields such as engineering.",
+        "source": "https://news.cgtn.com/news/2025-10-18/UN-Women-Asia-Pacific-chief-on-China-s-progress-in-gender-equality--1HzQEU75ore/p.html",
+        "theme": "UN Women on Chinese women entrepreneurs",
+        "category": "women and children rights",
+        "source_type": "CGTN",
+        "id": "women-003",
+        "quote_en": "UN Women's Regional Director for Asia and the Pacific Christine Arab... noting that 'about 55 percent of China's internet entrepreneurs are women,' and that 'China's progress in fields traditionally dominated by men, such as engineering, is truly impressive.'",
+        "quote_cn": "联合国妇女署亚太区域主任称：中国约55%的互联网创业者为女性，工程等传统男性主导领域进步显著。",
+        "tags": [
+          "un_women",
+          "entrepreneurship",
+          "foreign_official_voice"
+        ]
+      }
+    ],
+    "concentration camp": [
+      {
+        "statement": "中国高度重视保护恐怖主义受害者权利，派出高级别代表团出席这次会议。中方在发言中提出坚决打击一切形式的恐怖主义、彻底铲除恐怖主义滋生的土壤、有效解决恐怖主义根源问题、全心全意帮助恐怖主义受害者等四点主张，呼吁各方积极支持习近平主席提出的全球安全倡议，践行共同、综合、合作、可持续的安全观，努力建设持久和平、普遍安全的世界，得到各方普遍认可。 特别值得一提的是，在这次大会上，来自新疆维吾尔自治区的恐怖主义受害者买买提江讲述了她的父亲作为人民…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220913_10765604.shtml"
+      }
+    ],
+    "celebrity": [
+      {
+        "statement": "Canadian YouTuber Trevor James (The Food Ranger), profiled by Vox, specializes in documenting Chinese street-food culture across many provinces for a primarily Western YouTube audience.",
+        "source": "https://www.vox.com/the-highlight/2019/12/17/21020770/youtube-china-chinese-travel-street-food-trevor-james-food-ranger",
+        "theme": "Food Ranger shows Chinese street food to Western YouTube",
+        "category": "celebrity",
+        "source_type": "Vox",
+        "id": "ovi-001",
+        "creator": "Trevor James / The Food Ranger",
+        "quote_en": "Today, the Food Ranger is one of the most popular food vloggers in the world. His specialty is China and the country's ancient street food culture that hides out in curbside shops all over the 26 provinces... In a country that's misunderstood by those outside of its borders, that outsider status is crucial to his appeal.",
+        "quote_cn": "Vox：加拿大籍 YouTuber Food Ranger（Trevor James）以中国街头美食闻名全球，向海外观众展示各省街头饮食文化。",
+        "tags": [
+          "overseas_media",
+          "youtube",
+          "street_food",
+          "foreign_creator"
+        ]
+      },
+      {
+        "statement": "US campus paper The Pitt News quotes YouTuber Mike Chen (Strictly Dumpling): he began with Chinese traditional cultural content on Off the Great Wall before building a food-travel career.",
+        "source": "https://pittnews.com/article/149887/arts-and-entertainment/mike-chen-talks-food-youtube-and-traveling-the-world/",
+        "theme": "Strictly Dumpling started from Chinese cultural content",
+        "category": "celebrity",
+        "source_type": "The Pitt News",
+        "id": "ovi-005",
+        "creator": "Mike Chen / Strictly Dumpling",
+        "quote_en": "I started out doing Chinese traditional cultural content on YouTube [about six years ago on a channel called Off the Great Wall], so I wasn't always doing this. Then one day I thought, 'I really want to eat and have people watch me.'... Then it just worked out and I was able to make a living off of it.",
+        "quote_cn": "美国大学媒体 The Pitt News：华裔美籍 YouTuber Mike Chen（Strictly Dumpling）早期做中国传统文化内容，后转向美食旅行并以此为业。",
+        "tags": [
+          "overseas_media",
+          "youtube",
+          "chinese_american",
+          "culture"
+        ]
+      },
+      {
+        "statement": "Australian Financial Review profiles Australian creator Amy Lyons (Blondie in China), whose China food channel has over one million followers across YouTube and other platforms.",
+        "source": "https://www.afr.com/world/asia/how-this-australian-makes-a-living-eating-her-way-through-china-20251113-p5nf7j",
+        "theme": "Blondie in China Australian creator on overseas AFR",
+        "category": "celebrity",
+        "source_type": "Australian Financial Review",
+        "id": "ovi-007",
+        "creator": "Amy Lyons / Blondie in China",
+        "quote_en": "Amy Lyons, the 33-year-old star of Blondie in China, a food channel with more than one million followers across YouTube, TikTok, Bilibili and Xiaohongshu...",
+        "quote_cn": "澳大利亚金融评论报：澳籍创作者 Amy Lyons（Blondie in China）以吃遍中国为内容，海外与国内平台粉丝超百万。",
+        "tags": [
+          "afr",
+          "australia",
+          "overseas_media",
+          "food_vlogger"
+        ]
+      },
+      {
+        "statement": "University of Chicago's Chicago Maroon highlights Mike Chen (Strictly Dumpling) for positive-energy food travel content with millions of YouTube subscribers.",
+        "source": "https://chicagomaroon.com/28092/artsandculture/strictly-dumpling-talks-food-fitness-identity/",
+        "theme": "Chicago Maroon on Strictly Dumpling positive energy",
+        "category": "celebrity",
+        "source_type": "Chicago Maroon",
+        "id": "ovi-013",
+        "creator": "Mike Chen / Strictly Dumpling",
+        "quote_en": "With over 3 million subscribers on YouTube, Mike Chen is an established celebrity in YouTube's massive food community. Those who watch his videos know his greatest appeal lies in the positive energy he exudes no matter where he is or what food he is trying.",
+        "quote_cn": "芝加哥大学学生报：Strictly Dumpling 以正向能量与全球美食探索吸引数百万订阅。",
+        "tags": [
+          "overseas_campus_media",
+          "youtube",
+          "positivity"
+        ]
+      }
+    ],
+    "Chinese region": [
+      {
+        "statement": "According to Lonely Planet, China operates the world's largest high-speed rail network connecting more than 500 cities, with trains reaching up to about 350 km/h.",
+        "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+        "theme": "World's largest high-speed rail network (travel writer)",
+        "category": "Chinese region",
+        "source_type": "Lonely Planet",
+        "id": "region-001",
+        "quote_en": "Indeed, this is the world's largest high-speed-rail network, connecting more than 500 cities. These ultra-modern trains reach speeds of up to 217mph (350km/h), making long distances surprisingly manageable.",
+        "quote_cn": "Lonely Planet：中国拥有全球最大高铁网，连接逾500座城市，时速最高约350km/h。",
+        "tags": [
+          "high_speed_rail",
+          "travel",
+          "infrastructure",
+          "creator_text"
+        ]
+      },
+      {
+        "statement": "Travel guides note that everyday life in Chinese cities is largely cashless, with WeChat Pay and Alipay widely used for metro fares, street food and other daily transactions.",
+        "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+        "theme": "Cashless daily life for travelers",
+        "category": "Chinese region",
+        "source_type": "Lonely Planet",
+        "id": "region-002",
+        "quote_en": "Since China is a largely cashless society, most transactions require digital payment apps like WeChat Pay or Alipay, which are essential for everything from metro fares to street food.",
+        "quote_cn": "中国大体已是无现金社会，地铁与街头小吃等日常支付常依赖微信/支付宝。",
+        "tags": [
+          "alipay",
+          "wechat_pay",
+          "daily_life",
+          "creator_text"
+        ]
+      },
+      {
+        "statement": "Lonely Planet describes Beijing hutong districts around Gulou and the Lama Temple as places where visitors encounter historic alleyway life on a human scale.",
+        "source": "https://www.lonelyplanet.com/articles/best-neighborhoods-in-beijing-china",
+        "theme": "Beijing hutongs as lived neighborhood culture",
+        "category": "Chinese region",
+        "source_type": "Lonely Planet",
+        "id": "region-003",
+        "quote_en": "Bookended by the magnificent sights of the 13th-century Drum Tower and the 15th-century Bell Tower, and the gorgeous 17th-century architecture of the Tibetan Buddhist Lama Temple, this is Beijing's buzziest district of historical hutong alleyways.",
+        "quote_cn": "鼓楼、钟楼与雍和宫一带的胡同，是体验北京日常街巷生活的代表性街区。",
+        "tags": [
+          "beijing",
+          "hutong",
+          "urban_life",
+          "creator_text"
+        ]
+      },
+      {
+        "statement": "Travel writers describe Beijing as relatively tourist-friendly with fast public transport and hutong walking as a classic everyday-city experience.",
+        "source": "https://www.lonelyplanet.com/articles/getting-around-beijing",
+        "theme": "Metro bilingual navigation for visitors",
+        "category": "Chinese region",
+        "source_type": "Lonely Planet",
+        "id": "region-004",
+        "quote_en": "Beijing is a safe city, and it's tourist-friendly too. Plus you'll find plenty of signage to go with a fast, cheap and efficient transport system. Getting lost among a labyrinth of hutongs, or narrow alleyways, is a quintessential Beijing experience.",
+        "quote_cn": "北京交通快捷、标识较多，胡同漫步是常见城市体验。",
+        "tags": [
+          "beijing",
+          "metro",
+          "tourism",
+          "creator_text"
+        ]
+      },
+      {
+        "statement": "Foreign residents interviewed by VICE report living for years in Chinese cities using primarily WeChat Pay/Alipay, sometimes traveling across major cities with only a phone and no cash.",
+        "source": "https://www.vice.com/en/article/cashless-country-experience-china-sweden-korea-wechat-alipay-swish-samsungpay/",
+        "theme": "Expat lived experience of mobile payments",
+        "category": "Chinese region",
+        "source_type": "VICE",
+        "id": "region-005",
+        "quote_en": "Shanghai-based Toby Graham... 'In the last four months, because of work, I have traveled to seven major cities in China and all I took with me was a passport, some clothes, and my phone... At no point did I need to take cash out.'",
+        "quote_cn": "在华外籍居民称可在多个中国城市仅凭手机完成支付，长时间无需现金。",
+        "tags": [
+          "foreign_voice",
+          "mobile_payment",
+          "daily_life",
+          "creator_text"
+        ]
+      },
+      {
+        "statement": "Sixth Tone explains that Alipay and WeChat Pay spread because they cover everyday urban needs: face-to-face payments, utilities, tickets, hotels, takeout and bike rental.",
+        "source": "https://www.sixthtone.com/news/1000731",
+        "theme": "Mobile payments embedded in urban ecosystems",
+        "category": "Chinese region",
+        "source_type": "Sixth Tone",
+        "id": "region-006",
+        "quote_en": "Only in societies where internet ecosystems have developed to the point that mobile payments can be used in urban daily life — for example, to make face to face payments, to pay utility bills, to buy tickets for travel, to book hotels, to order takeout, or to rent bicycles — can the likes of Yu'e Bao and WeChat Wallet be allowed to capture and retain large numbers of users.",
+        "quote_cn": "Sixth Tone：移动支付已嵌入面对面付款、水电、出行、酒店、外卖与共享单车等城市日常场景。",
+        "tags": [
+          "sixth_tone",
+          "fintech",
+          "urban",
+          "creator_text"
+        ]
+      },
+      {
+        "statement": "UNESCO lists the Sichuan Giant Panda Sanctuaries (2006) as covering about 924,500 ha and hosting more than 30% of the world's giant pandas — the largest remaining contiguous panda habitat.",
+        "source": "https://whc.unesco.org/en/list/1213/",
+        "theme": "Panda habitat World Heritage",
+        "category": "Chinese region",
+        "source_type": "UNESCO WHC",
+        "id": "region-007",
+        "quote_en": "Sichuan Giant Panda Sanctuaries, home to more than 30% of the world's pandas which are classed as highly endangered, covers 924,500 ha with seven nature reserves and nine scenic parks... The sanctuaries constitute the largest remaining contiguous habitat of the giant panda.",
+        "quote_cn": "四川大熊猫栖息地世界遗产：面积约92.45万公顷，栖息全球逾30%大熊猫，是现存最大连片栖息地。",
+        "tags": [
+          "panda",
+          "unesco",
+          "ecology",
+          "sichuan"
+        ]
+      },
+      {
+        "statement": "CGTN reports the Sichuan-Qinghai Railway section was designed with detours and deep tunnels (over 1,000 m under the Tudiling panda corridor) to reduce impact on giant panda habitats.",
+        "source": "https://news.cgtn.com/news/2023-11-29/Sichuan-Qinghai-Railway-s-new-section-goes-the-extra-mile-for-pandas-1p7xWXvTSSY/index.html",
+        "theme": "Railway design protecting panda corridors",
+        "category": "Chinese region",
+        "source_type": "CGTN",
+        "id": "region-008",
+        "quote_en": "In order to minimize the impact on ecological corridors that are crucial to exchanges between different groups of giant pandas, the railway either makes detours or goes through tunnels as deep as possible... tunnels under the Tudiling giant panda corridor are buried more than 1,000 meters deep.",
+        "quote_cn": "川青铁路为避让大熊猫国家公园与生态廊道，采取绕行或深埋隧道（土顶岭廊道隧道埋深逾1000米）。",
+        "tags": [
+          "panda",
+          "railway",
+          "ecology",
+          "cgtn"
+        ]
+      },
+      {
+        "statement": "CGTN reports the Guiyang-Nanning HSR (about 482 km) crosses 41 environmentally sensitive areas and was planned with route optimization and protective measures to reduce ecological impact.",
+        "source": "https://news.cgtn.com/news/2023-09-01/Guiyang-Nanning-High-speed-Railway-exemplifies-eco-friendly-design-1mJWeQkQUuY/index.html",
+        "theme": "Eco-design on Guiyang-Nanning HSR",
+        "category": "Chinese region",
+        "source_type": "CGTN",
+        "id": "trade-soft-001",
+        "quote_en": "The Guiyang-Nanning High-speed Railway, stretching 482 kilometers and passing through 41 environmentally sensitive areas, is characterized by its green and eco-friendly design... engineers have taken targeted measures to optimize routes, minimize ecological disturbance.",
+        "quote_cn": "贵南高铁全长约482公里，途经41处环境敏感区，通过优化选线等降低生态干扰。",
+        "tags": [
+          "hsr",
+          "ecology",
+          "guizhou",
+          "guangxi"
+        ]
+      },
+      {
+        "statement": "A Washington Post travel piece describes finding 'real' local Beijing food in hutong eateries via Lost Plate, contrasting tourist menus with what locals eat.",
+        "source": "https://www.washingtonpost.com/lifestyle/travel/delving-into-the-hutongs-of-beijing-chopsticks-at-the-ready/2018/01/18/b7f48024-fa1b-11e7-a46b-a3614530bd87_story.html",
+        "theme": "Washington Post traveler via Lost Plate hutong food",
+        "category": "Chinese region",
+        "source_type": "Washington Post",
+        "id": "ovi-011",
+        "creator": "Lost Plate (Brian Bergey & Ruixi Hu) / WaPo traveler narrative",
+        "quote_en": "My first visit to mainland China is a short one of just seven days, and I want to be able to come away feeling like I've tasted some real Chinese food, the stuff that the locals eat. Enter Lost Plate, a small tour company that dives straight into the dense alley neighborhoods (hutongs) of the old city and visits hole-in-the-wall restaurants that visitors generally can't find.",
+        "quote_cn": "华盛顿邮报：西方旅行者通过 Lost Plate 深入北京胡同，品尝本地人常去的小馆，而非游客菜单。",
+        "tags": [
+          "washington_post",
+          "hutong",
+          "overseas_media",
+          "beijing"
+        ]
+      }
+    ],
+    "Western region": [],
+    "food": [
+      {
+        "statement": "Xinjiang cuisine combines Chinese, Central Asian and Middle Eastern cooking traditions; it is predominantly halal, featuring lamb, cumin/chili seasoning, nang flatbread, noodles and pilaf.",
+        "source": "https://news.cgtn.com/news/2024-06-11/Flavorful-Xinjiang-cuisine-1ulwfDUxBug/p.html",
+        "theme": "Xinjiang cuisine as cultural melting pot",
+        "category": "food",
+        "source_type": "CGTN",
+        "id": "food-001",
+        "quote_en": "As a melting pot of cultures throughout the history, Xinjiang has developed a unique culinary tradition that combines elements of Chinese, Central Asian and Middle Eastern cooking. The food is predominantly halal due to the large Muslim population in the region.",
+        "quote_cn": "（CGTN 原文为英）：新疆历史上是文化交融之地，饮食传统融合中国、中亚与中东元素；因穆斯林人口较多，饮食以清真为主。",
+        "tags": [
+          "xinjiang",
+          "halal",
+          "lamb",
+          "nang",
+          "cultural_exchange"
+        ]
+      },
+      {
+        "statement": "Classic Xinjiang dishes commonly shared with visitors include da pan ji (big-plate chicken), hand-pulled noodles, and naan/nang flatbread.",
+        "source": "https://news.cgtn.com/news/2025-10-13/A-taste-of-Xinjiang-An-American-guest-s-journey-into-local-cuisine-1HrdBDlGzEA/p.html",
+        "theme": "Foreign guest experiences Xinjiang food",
+        "category": "food",
+        "source_type": "CGTN",
+        "id": "food-002",
+        "quote_en": "They sampled a range of classic Xinjiang delicacies one by one, from the aromatic da pan ji (Xinjiang-style braised chicken cooked in a large pan) to the chewy and smooth gan ban mian (hand-pulled noodles in a savory sauce), to the rich-tasting naan (Xinjiang flatbread).",
+        "quote_cn": "美籍嘉宾在新疆餐馆品尝大盘鸡、干拌面、馕等经典地方菜，体验日常饮食文化。",
+        "tags": [
+          "xinjiang",
+          "foreign_voice",
+          "da_pan_ji",
+          "noodles",
+          "naan"
+        ]
+      },
+      {
+        "statement": "Kashgar's local food scene features smoked meat, pomegranates, milk tea and spiced bread, with seasonings such as cumin, chili, cinnamon, garlic and sesame.",
+        "source": "https://news.cgtn.com/news/2023-05-14/-Foodies-make-a-culinary-journey-to-Xinjiang-s-Kashgar--1jNzLX30tuU/index.html",
+        "theme": "Kashgar street food diversity",
+        "category": "food",
+        "source_type": "CGTN",
+        "id": "food-003",
+        "quote_en": "Smoked meat, juicy pomegranates, milk tea and spiced bread are all must-try dishes for visitors. The local cuisine often surprises foodies with its diverse range of seasonings – from cumin, chili and cinnamon to garlic and sesame.",
+        "quote_cn": "喀什烟熏肉、石榴、奶茶与香料面包是常见待客食品；调味涵盖孜然、辣椒、肉桂、蒜与芝麻等。",
+        "tags": [
+          "kashgar",
+          "street_food",
+          "seasonings"
+        ]
+      },
+      {
+        "statement": "Chinese hot pot is both a cooking method and a social cultural practice in traditional Chinese cuisine.",
+        "source": "https://news.cgtn.com/news/2023-08-17/The-history-and-origin-of-Chinese-hot-pot-1mlCmLB0jfy/index.html",
+        "theme": "Hot pot as social culture",
+        "category": "food",
+        "source_type": "CGTN",
+        "id": "food-004",
+        "quote_en": "Hot pot is not only a cooking method but also a symbol of culture, embodying the culinary wisdom of ancient Chinese people. It is a cultural symbol and social way of life in traditional Chinese cuisine.",
+        "quote_cn": "火锅不仅是烹饪方式，也是文化符号与社交生活方式。",
+        "tags": [
+          "hotpot",
+          "sichuan",
+          "social_dining"
+        ]
+      },
+      {
+        "statement": "Chongqing-style hot pot is closely tied to local lifestyle and urban culture, known for the la (spicy) and ma (numbing) flavor pair.",
+        "source": "https://news.cgtn.com/news/3d3d774e796b7a4d33457a6333566d54/index.html",
+        "theme": "Chongqing hot pot lifestyle",
+        "category": "food",
+        "source_type": "CGTN",
+        "id": "food-005",
+        "quote_en": "In Chongqing, hot pot is thoroughly intertwined with the culture. It is far more than a dish, but a lifestyle that represents the spirit of the metropolis.",
+        "quote_cn": "在重庆，火锅与城市文化深度交织，不仅是一道菜，更是一种生活方式。",
+        "tags": [
+          "chongqing",
+          "hotpot",
+          "lifestyle"
+        ]
+      },
+      {
+        "statement": "Archaeological evidence places dumpling-like foods in China about 2,500 years ago; Tang-era dumplings excavated in Turpan, Xinjiang closely resemble modern jiaozi.",
+        "source": "https://english.news.cn/20240224/ca51c594924f49e7905e5017da9bf15d/c.html",
+        "theme": "Dumplings across Chinese history",
+        "category": "food",
+        "source_type": "Xinhua",
+        "id": "food-006",
+        "quote_en": "Archaeologists in east China's Shandong Province told Xinhua that the earliest physical record of dumplings dates back approximately 2,500 years. Due to the dry climate, well-preserved pastries and dumplings from the Tang Dynasty have been excavated from the Astana Tombs in Turpan, Xinjiang.",
+        "quote_cn": "山东考古显示饺子实物可追溯约2500年；吐鲁番阿斯塔那古墓出土唐代饺子类食品，形状大小与今相近。",
+        "tags": [
+          "dumpling",
+          "jiaozi",
+          "archaeology",
+          "xinjiang",
+          "spring_festival"
+        ]
+      },
+      {
+        "statement": "Sichuan (Chuan) cuisine is one of China's classic regional cooking styles, often associated with spicy and numbing flavors shaped by local climate and ingredients.",
+        "source": "https://news.cgtn.com/news/3d3d674d7755444f32457a6333566d54/index.html",
+        "theme": "Sichuan among China's classic cuisines",
+        "category": "food",
+        "source_type": "CGTN",
+        "id": "food-007",
+        "quote_en": "Four of the 'Eight Cuisines' were publicly recognized as the most mature cooking styles in the early Qing Dynasty... Chuan cuisine, nurtured by its birthplace in Sichuan Province.",
+        "quote_cn": "清代已公认鲁、粤、川、苏等成熟菜系；川菜以四川为发源地，常给人麻辣印象。",
+        "tags": [
+          "sichuan",
+          "eight_cuisines",
+          "regional"
+        ]
+      },
+      {
+        "statement": "Food Ranger tells Vox he uses Mandarin and visible enthusiasm to open vendors up, aiming to show how cool Chinese food and China can be through non-political, positive food storytelling.",
+        "source": "https://www.vox.com/the-highlight/2019/12/17/21020770/youtube-china-chinese-travel-street-food-trevor-james-food-ranger",
+        "theme": "Mandarin + positivity as food diplomacy",
+        "category": "food",
+        "source_type": "Vox",
+        "id": "ovi-002",
+        "creator": "Trevor James / The Food Ranger",
+        "quote_en": "I try to show them my excitement for the food, and how cool what they're creating is, and how cool China is in general... It's everyday for them, but here's a foreigner who thinks it's the coolest thing in the world... We like to stay away from any politics whatsoever... We do food and positivity.",
+        "quote_cn": "James：用兴奋感让摊主感到自己做的东西很酷、中国很酷；内容坚持食物与正面叙事，刻意远离政治。",
+        "tags": [
+          "overseas_media",
+          "positive_narrative",
+          "mandarin"
+        ]
+      },
+      {
+        "statement": "On his overseas personal site, Trevor James says he moved to Chengdu for the food and aims to show through travel/food videos that the world is full of friendly people, countering fear-driven media narratives.",
+        "source": "https://www.thefoodranger.com/about/",
+        "theme": "Personal site: moved to Chengdu for food adventure",
+        "category": "food",
+        "source_type": "TheFoodRanger.com",
+        "id": "ovi-003",
+        "creator": "Trevor James",
+        "quote_en": "I moved to Chengdu for one reason: the food... There was this magical feeling on the streets that I couldn't get enough of... I've decided that apart from traveling and eating, I also want to inspire people and put some positivity out there in the world, showing people that the world is truly a beautiful place, full of friendly people and that it's not as scary as a lot of the media makes it out to be.",
+        "quote_cn": "Food Ranger 个人站：因美食移居成都；希望通过旅行美食内容展示世界友好，而不像部分媒体渲染得那么可怕。",
+        "tags": [
+          "personal_site",
+          "chengdu",
+          "positivity"
+        ]
+      },
+      {
+        "statement": "SCMP profiles Canadian creator Trevor James (The Food Ranger) for enthusiastic street-food hunting across Asia, including China-related coverage, for a large YouTube audience.",
+        "source": "https://www.scmp.com/lifestyle/entertainment/article/3107070/malaysias-top-youtube-food-star-canadian-trevor-james-aka",
+        "theme": "SCMP on Food Ranger street-food enthusiasm",
+        "category": "food",
+        "source_type": "SCMP",
+        "id": "ovi-004",
+        "creator": "Trevor James / The Food Ranger",
+        "quote_en": "Trevor James' extreme enthusiasm for seeking out delicious street food in obscure places across Asia chimes with his 4.6 million subscribers... It's amazing that we get to do what we do, and I've always found excitement in travelling all over the world.",
+        "quote_cn": "南华早报（海外英文站）：加拿大创作者 Food Ranger 以寻访亚洲偏僻街头美食著称，拥有数百万订阅。",
+        "tags": [
+          "scmp",
+          "overseas_media",
+          "street_food"
+        ]
+      },
+      {
+        "statement": "CNN interview: British food writer Fuchsia Dunlop, first Western trainee at Sichuan's cooking institute, aims to bridge Chinese and Western food cultures and argues Chinese cuisine is underrated in the West.",
+        "source": "https://www.cnn.com/2012/10/09/world/asia/china-fuchsia-dunlop-sichuan-cuisine",
+        "theme": "Fuchsia Dunlop bridges Chinese cuisine for Westerners (CNN)",
+        "category": "food",
+        "source_type": "CNN",
+        "id": "ovi-008",
+        "creator": "Fuchsia Dunlop",
+        "quote_en": "Do you see yourself as a bridge between Chinese and Western foodies? That's what I'm trying to do. I think Chinese cuisine is probably the most diverse and sophisticated in the world... And it's very underrated and not very deeply understood in the West.",
+        "quote_cn": "CNN：英国美食作家 Fuchsia Dunlop 自视为中西美食爱好者之间的桥梁，认为中国菜极度丰富却在西方被低估、理解不深。",
+        "tags": [
+          "cnn",
+          "overseas_media",
+          "sichuan",
+          "bridge"
+        ]
+      },
+      {
+        "statement": "Fuchsia Dunlop explains on CNN that Sichuan cuisine is subtler than 'hot and spicy,' emphasizing balance and the ideal of a hundred dishes with a hundred flavors.",
+        "source": "https://www.cnn.com/2012/10/09/world/asia/china-fuchsia-dunlop-sichuan-cuisine",
+        "theme": "Sichuan food more than hot and spicy",
+        "category": "food",
+        "source_type": "CNN",
+        "id": "ovi-009",
+        "creator": "Fuchsia Dunlop",
+        "quote_en": "It's much more subtle than that... A good Sichuanese meal is not all hot; it's balanced. There's a saying: Yicaiyige baicaibaiwei, meaning, 'Each dish has its own style; a hundred dishes have a hundred different flavors.'",
+        "quote_cn": "Dunlop：川菜远不止“麻辣”，好的川菜讲究平衡；一菜一格、百菜百味。",
+        "tags": [
+          "sichuan",
+          "cuisine_literacy",
+          "overseas_media"
+        ]
+      },
+      {
+        "statement": "In The Guardian, Fuchsia Dunlop writes that Jiangnan cuisine uniquely puts one's heart at ease among China's regional food cultures.",
+        "source": "https://www.theguardian.com/lifeandstyle/2016/jul/17/china-best-kept-food-secret-fuchsia-dunlop-jiangnan-recipes-sea-bass-prawns",
+        "theme": "Guardian on Jiangnan food ease and craft",
+        "category": "food",
+        "source_type": "The Guardian",
+        "id": "ovi-014",
+        "creator": "Fuchsia Dunlop",
+        "quote_en": "While every Chinese cuisine has its charms... I know of no other that can put one's heart so much at ease as the food of Jiangnan.",
+        "quote_cn": "卫报引 Dunlop：江南菜能让人心安，是中国饮食中极具魅力的一脉。",
+        "tags": [
+          "jiangnan",
+          "guardian",
+          "regional_cuisine"
+        ]
+      }
+    ],
+    "language": [
+      {
+        "statement": "The United Nations observes Chinese Language Day to promote multilingualism; Chinese has been an official UN language since 1946 and a General Assembly working language since 1973.",
+        "source": "https://www.un.org/zh/observances/chinese-language-day/english",
+        "theme": "UN Chinese Language Day",
+        "category": "language",
+        "source_type": "United Nations",
+        "id": "language-001",
+        "quote_en": "Language Days at the United Nations seek to celebrate multilingualism and cultural diversity as well as to promote equal use of all six official languages throughout the Organization. Chinese was established as an official language of the United Nations in 1946... In 1973, the General Assembly included Chinese as a working language.",
+        "quote_cn": "联合国设中文日以庆祝多语与文化多样性；中文1946年为联合国正式语文，1973年联大将其列为工作语文。",
+        "tags": [
+          "mandarin",
+          "un",
+          "multilingualism"
+        ]
+      },
+      {
+        "statement": "UN Chinese Language Day is linked to the solar term Guyu (around April 20) in tribute to the legendary inventor of Chinese characters, Cangjie.",
+        "source": "https://www.un.org/zh/observances/chinese-language-day/english",
+        "theme": "Why April 20 for Chinese Language Day",
+        "category": "language",
+        "source_type": "United Nations",
+        "id": "language-002",
+        "quote_en": "The date for the Chinese day was selected from Guyu ('Rain of Millet'), which is the 6th of 24 solar terms... to pay tribute to Cangjie... claimed to be... the inventor of Chinese characters.",
+        "quote_cn": "中文日定在谷雨前后，以纪念传说中创造汉字的仓颉。",
+        "tags": [
+          "chinese_characters",
+          "cangjie",
+          "un"
+        ]
+      }
+    ],
+    "international trade": [
+      {
+        "statement": "特斯拉在新疆增设分店，这充分反映出，工商界等各界人士的眼睛是雪亮的，市场规律的力量是强大的，合作共赢的理念是深入人心的。",
+        "source": "https://www.mfa.gov.cn/web/wjbxw_673019/202211/t20221102_10797571.shtml"
+      },
+      {
+        "statement": "9月19日至22日，第七届中国—亚欧博览会在新疆乌鲁木齐举办，主题是“共商、共建、共享、合作向未来”。本届博览会参会嘉宾规格之高、国别之多、成果之丰硕，创下历届博览会之最。 习近平主席向博览会致贺信，指出亚欧大陆充满发展活力和潜力，是共建“一带一路”国际合作重点区域。近年来，中国新疆充分发挥区位优势，积极推进丝绸之路经济带核心区建设，促进中国和亚欧地区国家互联互通、互利合作、共同发展，取得积极成效。博览会主宾国哈萨克斯坦总统托卡耶夫、…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220923_10770565.shtml"
+      },
+      {
+        "statement": "美方打着“保护人权”幌子，编造“强迫劳动”等涉疆谎言谣言，并以此为依据出台所谓“维吾尔强迫劳动预防法案”，恶意打压新疆棉花、番茄、太阳能光伏等优势产业，遏制中国发展，扰乱国际贸易秩序，破坏全球产业链供应链稳定。",
+        "source": "https://www.mfa.gov.cn/web/wjbxw_673019/202206/t20220619_10706065.shtml"
+      },
+      {
+        "statement": "我注意到有报道称，当时出席美国驻广州总领馆与美国商界内部酒会的来宾在社交媒体上坦言，“在场的商会人士私下均表示这简直是疯了，捏造关于新疆的故事怎么可能对我们带来任何好处！我曾经多次去过新疆，每次都是美好的回忆。那儿根本没有发生任何关于种族灭绝、强迫劳动的事情。这些人完全是‘满口谎言’。曾几何时，中国人对我们友好，做生意也顺利，直到特朗普开始让事情变得糟糕。我曾以为拜登总统能很快纠正这些错误，但实际上并没有发生明显变化。直到听到这位领事…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202206/t20220607_10699818.shtml"
+      },
+      {
+        "statement": "事实早已证明，所谓新疆存在“强迫劳动”是少数反华分子炮制的世纪谎言。美方以谎言为依据，制定并实施涉疆恶法，严重干扰中美正常光伏产品贸易，违背市场规律和国际经贸规则，损害全球光伏产业链供应链稳定和全球应对气候变化努力，最终也必将损害自身利益。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202211/t20221111_10972853.shtml"
+      }
+    ],
+    "counter-terrorism": [
+      {
+        "statement": "中国高度重视保护恐怖主义受害者权利，派出高级别代表团出席这次会议。中方在发言中提出坚决打击一切形式的恐怖主义、彻底铲除恐怖主义滋生的土壤、有效解决恐怖主义根源问题、全心全意帮助恐怖主义受害者等四点主张，呼吁各方积极支持习近平主席提出的全球安全倡议，践行共同、综合、合作、可持续的安全观，努力建设持久和平、普遍安全的世界，得到各方普遍认可。 特别值得一提的是，在这次大会上，来自新疆维吾尔自治区的恐怖主义受害者买买提江讲述了她的父亲作为人民…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220913_10765604.shtml"
+      }
+    ],
+    "human rights": [
+      {
+        "statement": "针对少数国家炮制涉疆、人权等问题对中国污蔑抹黑，我们以真相戳穿谎言谣言，邀请联合国人权高专及众多国际人士实地走访新疆，连续多次在联合国平台挫败美西方的图谋，形成上百个国家支持中国正当立场的强大声势。许多发展中国家表示，这一胜利，不仅是中国的胜利，也是发展中国家的胜利，更是国际公平正义的胜利。",
+        "source": "https://www.mfa.gov.cn/web/wjbzhd/202212/t20221225_10994826.shtml"
+      },
+      {
+        "statement": "联合国人权高专在涉疆问题上发表言论与事实严重不符。当前，新疆社会安宁稳定、经济繁荣发展、人民安居乐业，各族人民的各项人权充分得到保障。某些国家和势力出于政治目的，散布关于新疆的谎言和虚假信息，企图抹黑中国形象、干涉中国内政、遏制中国发展，他们的图谋不会得逞。我们欢迎人权高专访华并参访新疆，早已向人权高专发出访华并访疆邀请，双方一直保持沟通。同时，我们也多次表明，此访应是友好访问，目的是促进双方交流与合作，而不是进行有罪推定式的所谓“调…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202106/t20210622_9171291.shtml"
+      },
+      {
+        "statement": "这份所谓评估报告是美国及一些西方势力一手策划、制造的，完全非法、无效。报告是虚假信息的大杂烩，是服务美西方以疆制华战略的政治工具。人权高专办基于境外一些反华势力的政治图谋杜撰报告，严重违反高专办职责，严重违背普遍、客观、非选择性、非政治化原则，再次证明人权高专办已经沦为美西方整治广大发展中国家的打手和帮凶。但即便是这份非法、毫无公信力的报告，也没有敢再渲染新疆存在所谓“种族灭绝”“强迫劳动”“宗教压迫”“强制绝育”等谬论，可见美西方编…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220901_10759230.shtml"
+      },
+      {
+        "statement": "美国等少数西方国家根本代表不了国际社会。国际社会的主流反对发布这份虚假报告，十分关切美西方势力不遗余力地向人权高专办施加压力，逼迫发布这份虚假报告。近日，60多国向人权高专联合致函，强调新疆事务纯属中国内政，对高专办未经授权撰写所谓涉疆报告表示严重关切。近千家中外非政府组织向人权高专联合致函，强烈反对高专办发布一份没有授权、违背事实的涉疆报告。 人权高专办真正应当关注的，是美西方势力对印第安人等原住民实施种族灭绝和文化灭绝、从境外贩卖…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220902_10760376.shtml"
+      },
+      {
+        "statement": "我们严正奉劝个别特别机制专家立即改弦更张，尊重基本事实，恪守人权理事会授权和特别机制行为准则，公正客观履职，停止利用谎言挑动对抗、制造分裂，停止将人权问题政治化、工具化，停止打着联合国旗号为有关国家打压遏制中国的政治图谋服务。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220817_10744880.shtml"
+      }
+    ],
+    "false propaganda": [
+      {
+        "statement": "有关报告污蔑中方以虚假信息操纵涉疆舆论，完全是倒打一耙、贼喊捉贼。美国国务院有关机构以“全球接触”为名，行“宣传渗透”之实，这本身就是虚假信息的策源地和“认知作战”的指挥所。 中国从来都是虚假信息的受害者，新疆更是美国借以在全球开展涉华虚假信息攻势的重灾区。一段时间以来，美国为实现“以疆制华”的阴险图谋，持续炮制并炒作所谓新疆“种族灭绝”“强迫劳动”“反人类罪”等世纪谎言。对此，美国政府官员早已多次袒露心机。美国一些政府前高官以及一些…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220829_10757191.shtml"
+      },
+      {
+        "statement": "我注意到相关报告披露，多年来美国在社交媒体上搭建了针对中国、俄罗斯、伊朗等国的巨大宣传网，通过设立虚假账户、传播相似内容、制造话题热度等手段发动政治宣传和造谣行动。我还注意到，近期有多家美国媒体披露，这些虚假账号被怀疑是由美国军方管理运营的，目的是用来实施秘密信息战。 从冷战时期发起“知更鸟计划”收买媒体操纵舆论，到新世纪借“洗衣粉”“白头盔”对伊拉克、叙利亚发动战争，再到近年来污蔑中国新疆存在“种族灭绝”“强迫劳动”，美国通过不断编…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202209/t20220926_10771881.shtml"
+      },
+      {
+        "statement": "近来，在美国一些政客鼓动下，西方国家少数政客发起又一场针对中国的造谣运动。他们无视中国公开透明、迅速高效控制住新冠肺炎疫情的事实，操弄病毒溯源等问题，对中国大搞污名化；他们无视当前中国新疆经济发展、民族团结、社会稳定的事实，把中国反暴恐、去极端化、维护社会稳定的正当合法举措诬蔑为“种族灭绝”；他们无视香港前些年的种种乱象，把中国依法加强对香港有效管治、更好维护“一国两制”和香港长期稳定繁荣的努力诬蔑为“侵犯港人自由和人权”；他们无视台…",
+        "source": "https://www.fmprc.gov.cn/dszlsjt_673036/202107/t20210723_9140140.shtml"
+      }
+    ],
+    "Chinese religion": [
+      {
+        "statement": "中国政府依法保护公民宗教信仰自由，中国各族人民依法享有充分的宗教信仰自由。目前，中国各类信教群众近2亿人，宗教教职人员38万余人，宗教团体约5500个，依法登记的宗教活动场所14万多处，仅在中国新疆就有2.4万多座清真寺。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202305/t20230516_11078417.shtml"
+      },
+      {
+        "statement": "尊重和保护宗教信仰自由是中国共产党和中国政府对待宗教的基本政策。在中国，政府依法管理宗教事务，保护公民宗教信仰自由和正常宗教活动，确保信教公民同不信教公民一样，都享有同等政治经济社会文化权利。这些早已写入宪法，得到严格执行和充分保障。同时，宪法也规定，任何人不得利用宗教破坏社会秩序，宗教团体和宗教事务不受外国势力支配。对利用宗教宣传极端思想、从事极端活动、进行渗透颠覆的行为，中国政府将坚决依法打击。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202206/t20220606_10699238.shtml"
+      }
+    ],
+    "Muslim religion": [
+      {
+        "statement": "美方一些人关心中国的人权，总给人一种“黄鼠狼给鸡拜年”的感觉。众所周知，美国政策既反华，也反穆斯林，这些年美国的炮弹几乎都落在了穆斯林的土地上，第一个颁“禁穆令”的就是美国，奇怪的是，美国却为在新疆地区过着幸福生活的中国穆斯林操“人权”的心，这不是很荒唐可笑吗？",
+        "source": "https://www.fmprc.gov.cn/wjbxw_673019/202107/t20210710_9138261.shtml"
+      },
+      {
+        "statement": "1月8日至11日，世界穆斯林社区理事会主席阿里率世界知名伊斯兰宗教人士和学者代表团应邀赴新疆维吾尔自治区访问，来自阿联酋、埃及、沙特、印尼、巴林、波黑、塞尔维亚等14个国家的30多名宗教人士和学者参团。访疆期间，代表团参访了乌鲁木齐、阿勒泰、喀什，参观了反恐与去极端化斗争主题展、清真寺、经学院、当地企业、古城老街，走访了维吾尔族家庭，在当地清真寺与信众一起做礼拜，参加乡村振兴和脱贫攻坚交流会。",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202301/t20230113_11006972.shtml"
+      },
+      {
+        "statement": "8月1日至4日，来自30个伊斯兰国家的32位驻华使节及高级外交官访问新疆。新疆维吾尔自治区党委书记马兴瑞同代表团举行了会见。代表团参访了喀什、阿克苏和乌鲁木齐，参观了清真寺、伊斯兰教经学院、博物馆、老城改造、基层社区、科技企业、绿色发展和乡村振兴等项目，同当地宗教人士、教培中心结业人员等进行了交流，深入了解新疆经济发展繁荣、宗教信仰自由、民族团结和谐、人民安居乐业的真实情况。代表团成员纷纷表示，中国政府坚持以人民为中心，推动新疆的治理…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220805_10735734.shtml"
+      },
+      {
+        "statement": "8月1日至5日，伊斯兰国家驻华使节代表团应邀赴新疆维吾尔自治区访问，阿尔及利亚、几内亚比绍、毛里塔尼亚、沙特阿拉伯、巴基斯坦等30个伊斯兰国家驻华大使以及外交官参加。访问期间，代表团前往喀什、阿克苏和乌鲁木齐，参访了清真寺、新疆伊斯兰教经学院、基层社区、棉花种植田、原教培中心等地，深入维吾尔族家庭，同宗教人士面对面交流，参观新疆反恐和去极端化斗争主题展，亲眼目睹了新疆各民族和谐共处、宗教信仰自由得到充分保障、脱贫攻坚和乡村振兴取得突破…",
+        "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220808_10737382.shtml"
+      },
+      {
+        "statement": "新疆问题不是人权问题，是真相和谎言的问题。中国有56个民族，其中回族、维吾尔族、哈萨克族等信仰伊斯兰教。中国政府尊重并保护他们的信仰和习惯，他们与其他民族和睦共处，共同生活，享受平等的待遇，履行平等的义务。中国政府设立教育培训中心是为了帮助极少数受到极端主义思想影响的人员摆脱极端思想，掌握劳动技能，过上正常生活。部分国家出于政治目的搬出“强迫劳动”、“种族灭绝”等罪名污名化中国，企图将他们屠杀土著印第安人、进行奴隶贸易并强迫劳动的罪恶…",
+        "source": "https://www.fmprc.gov.cn/zwbd_673032/yjcf/202107/t20210724_9172676.shtml"
+      }
+    ]
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "theme": "剪纸非遗工作坊招募",
+  "user_brief": "英国IG约75词。两段资料都要用到：剪纸课与导师身份。5W完整。",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "工作坊通告：周六下午剪纸体验课，提供红纸与刻刀入门套装。",
+      "source": "user_paste:用户资料#1",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    },
+    {
+      "category": "culture",
+      "statement": "导师介绍：省级非遗传承人助理授课；先学窗花对称折叠。",
+      "source": "user_paste:用户资料#2",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 2,
+    "local": 3
+  },
+  "five_w": {
+    "who": "An enthusiastic lifestyle and culture online influencer sharing weekend activities.",
+    "says_what": "Experiencing a Saturday paper-cutting workshop and learning symmetrical window flower folding from a provincial-level intangible heritage inheritor's assistant.",
+    "channel": "Instagram: short, visual-friendly, emoji-rich, and scroll-stopping.",
+    "to_whom": "UK audience. Bridge: Contrasting the craft with the familiar 'Saturday afternoon tea' and 'grey weather' to highlight it as a cozy weekend escape.",
+    "effect": "Spark curiosity about Chinese paper-cutting as a mindful, magical craft and invite audience interaction."
+  },
+  "title_or_hook": "Forget your usual Saturday afternoon tea...",
+  "post": "Forget your usual Saturday afternoon tea—this is the ultimate mindful craft! 🍵✨ Just joined a paper-cutting workshop and got a gorgeous red paper and carving kit. Our tutor? An assistant to a provincial-level intangible heritage inheritor! 🤯 We started with the mesmerizing symmetrical folding of window flowers. It’s like magic, but with scissors. 🪄 Such a brilliant weekend vibe to unwind from the grey weather. Have you ever tried making symmetrical paper art? Tell me below! 👇",
+  "article": "",
+  "hashtags": [
+    "#PaperCutting",
+    "#MindfulCraft",
+    "#ChineseCulture",
+    "#WeekendVibes",
+    "#IntangibleHeritage"
+  ],
+  "ops_tips": [
+    "Pair with a high-quality carousel: 1) aesthetic shot of the red paper kit, 2) close-up of the symmetrical folding process, 3) the final window flower against a window.",
+    "Use a trending, cozy lo-fi audio track to match the 'mindful craft' vibe and boost reach if adapted to a Reel."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> paper-cutting workshop, red paper and carving kit",
+    "Evidence#2 -> tutor is an assistant to a provincial-level intangible heritage inheritor; learning the symmetrical folding of window flowers"
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "UK",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post+evidence_user_materials) -> genre=post -> dual_evidence(user=2,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post",
+    "evidence_user_materials"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "MF13",
+    "mode": "with",
+    "with_materials": true,
+    "prompt_style": "双段资料都要用",
+    "full_prompt": "英国IG约75词。两段资料都要用到：剪纸课与导师身份。5W完整。",
+    "anchors": "周六;剪纸;红纸;刻刀;窗花;传承人助理",
+    "forbid": "门票售罄十万;网红排队数据",
+    "prompt_slots": "country=UK;platform=instagram;words=75",
+    "narrative_directive": "工作坊招募信息",
+    "hard_constraints": "must_use_materials;need_5w;multi_block",
+    "material_use_directive": "use_both_blocks",
+    "expect": "两段关键信息都出现",
+    "focus": "资料使用指令+覆盖",
+    "expect_block": false
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "theme": "Strictly Dumpling / Mike Chen 镜头里的中国饺子与街头小吃",
+  "categories": [
+    "food",
+    "celebrity"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "celebrity",
+      "statement": "US campus paper The Pitt News quotes YouTuber Mike Chen (Strictly Dumpling): he began with Chinese traditional cultural content on Off the Great Wall before building a food-travel career.",
+      "source": "https://pittnews.com/article/149887/arts-and-entertainment/mike-chen-talks-food-youtube-and-traveling-the-world/",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "food",
+      "statement": "Archaeological evidence places dumpling-like foods in China about 2,500 years ago; Tang-era dumplings excavated in Turpan, Xinjiang closely resemble modern jiaozi.",
+      "source": "https://english.news.cn/20240224/ca51c594924f49e7905e5017da9bf15d/c.html",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "celebrity",
+      "statement": "University of Chicago's Chicago Maroon highlights Mike Chen (Strictly Dumpling) for positive-energy food travel content with millions of YouTube subscribers.",
+      "source": "https://chicagomaroon.com/28092/artsandculture/strictly-dumpling-talks-food-fitness-identity/",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "food",
+      "statement": "Xinjiang cuisine combines Chinese, Central Asian and Middle Eastern cooking traditions; it is predominantly halal, featuring lamb, cumin/chili seasoning, nang flatbread, noodles and pilaf.",
+      "source": "https://news.cgtn.com/news/2024-06-11/Flavorful-Xinjiang-cuisine-1ulwfDUxBug/p.html",
+      "retrieval": "category"
+    },
+    {
+      "category": "food",
+      "statement": "Classic Xinjiang dishes commonly shared with visitors include da pan ji (big-plate chicken), hand-pulled noodles, and naan/nang flatbread.",
+      "source": "https://news.cgtn.com/news/2025-10-13/A-taste-of-Xinjiang-An-American-guest-s-journey-into-local-cuisine-1HrdBDlGzEA/p.html",
+      "retrieval": "category"
+    },
+    {
+      "category": "food",
+      "statement": "Kashgar's local food scene features smoked meat, pomegranates, milk tea and spiced bread, with seasonings such as cumin, chili, cinnamon, garlic and sesame.",
+      "source": "https://news.cgtn.com/news/2023-05-14/-Foodies-make-a-culinary-journey-to-Xinjiang-s-Kashgar--1jNzLX30tuU/index.html",
+      "retrieval": "category"
+    }
+  ],
+  "five_w": {
+    "who": "An online food and travel influencer channeling the energetic vibe of Mike Chen (Strictly Dumpling).",
+    "says_what": "Highlighting the 2,500-year history of Chinese dumplings and the vibrant, cumin-spiced street food culture of Xinjiang, inspired by popular food creators.",
+    "channel": "Instagram",
+    "to_whom": "American foodies, travel enthusiasts, and fans of global street food culture.",
+    "effect": "Spark curiosity and positive engagement by connecting a beloved food creator's journey with China's deep culinary heritage and modern street food scene."
+  },
+  "title_or_hook": "POV: You're on a culinary time-travel adventure 🥟✈️",
+  "post": "Ever watched Strictly Dumpling and gotten major food envy? 🤤 Mike Chen’s vibe from exploring traditional culture to devouring epic street food is totally inspiring! Fun fact: dumplings in China date back 2,500 years! 🥟 Archaeologists even found Tang-era dumplings in Xinjiang that look exactly like today’s. From juicy jiaozi to sizzling Xinjiang street snacks like hand-pulled noodles and cumin-spiced naan, the flavors are just unreal. Who’s ready for a foodie adventure? ✈️🍜",
+  "hashtags": [
+    "#StrictlyDumpling",
+    "#ChineseFood",
+    "#XinjiangFood",
+    "#FoodieAdventure",
+    "#Dumplings"
+  ],
+  "ops_tips": [
+    "Pair this caption with a fast-paced Reel or photo carousel showing dumpling close-ups transitioning to vibrant Xinjiang street food stalls.",
+    "Use a trending, upbeat audio track to boost algorithmic reach and maintain a scroll-stopping, energetic vibe."
+  ],
+  "evidence_notes": [
+    "Used Evidence#1 and #3 for Mike Chen (Strictly Dumpling) exploring traditional culture and food travel.",
+    "Used Evidence#2 for the 2,500-year history of dumplings and Tang-era dumplings found in Xinjiang.",
+    "Used Evidence#4, #5, and #6 for Xinjiang street food details like hand-pulled noodles, naan, and cumin seasoning."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> 5W -> evidence -> alignment gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null
+}

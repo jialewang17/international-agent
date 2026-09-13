@@ -1,0 +1,333 @@
+{
+  "_meta": {
+    "purpose": "讲好中国故事 — 补齐 food / culture(非遗) / CGTN 海外叙事空缺",
+    "inclusion_note": "每条均可公开打开核对；引用句摘自原文；入库时映射到 topics_raw 的 food / culture 等字段",
+    "collected_at": "2026-08-03",
+    "source_priority": [
+      "UNESCO ICH",
+      "CGTN English",
+      "Xinhua English",
+      "BBC Travel (第三方生活化)"
+    ],
+    "github_pack": "01_official_culture_food.json",
+    "pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+    "upload": true
+  },
+  "items": [
+    {
+      "id": "food-001",
+      "theme": "Xinjiang cuisine as cultural melting pot",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "Flavorful Xinjiang cuisine",
+      "url": "https://news.cgtn.com/news/2024-06-11/Flavorful-Xinjiang-cuisine-1ulwfDUxBug/p.html",
+      "quote_en": "As a melting pot of cultures throughout the history, Xinjiang has developed a unique culinary tradition that combines elements of Chinese, Central Asian and Middle Eastern cooking. The food is predominantly halal due to the large Muslim population in the region.",
+      "quote_cn": "（CGTN 原文为英）：新疆历史上是文化交融之地，饮食传统融合中国、中亚与中东元素；因穆斯林人口较多，饮食以清真为主。",
+      "statement_for_kb": "Xinjiang cuisine combines Chinese, Central Asian and Middle Eastern cooking traditions; it is predominantly halal, featuring lamb, cumin/chili seasoning, nang flatbread, noodles and pilaf.",
+      "tags": [
+        "xinjiang",
+        "halal",
+        "lamb",
+        "nang",
+        "cultural_exchange"
+      ]
+    },
+    {
+      "id": "food-002",
+      "theme": "Foreign guest experiences Xinjiang food",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "A taste of Xinjiang: An American guest's journey into local cuisine",
+      "url": "https://news.cgtn.com/news/2025-10-13/A-taste-of-Xinjiang-An-American-guest-s-journey-into-local-cuisine-1HrdBDlGzEA/p.html",
+      "quote_en": "They sampled a range of classic Xinjiang delicacies one by one, from the aromatic da pan ji (Xinjiang-style braised chicken cooked in a large pan) to the chewy and smooth gan ban mian (hand-pulled noodles in a savory sauce), to the rich-tasting naan (Xinjiang flatbread).",
+      "quote_cn": "美籍嘉宾在新疆餐馆品尝大盘鸡、干拌面、馕等经典地方菜，体验日常饮食文化。",
+      "statement_for_kb": "Classic Xinjiang dishes commonly shared with visitors include da pan ji (big-plate chicken), hand-pulled noodles, and naan/nang flatbread.",
+      "tags": [
+        "xinjiang",
+        "foreign_voice",
+        "da_pan_ji",
+        "noodles",
+        "naan"
+      ]
+    },
+    {
+      "id": "food-003",
+      "theme": "Kashgar street food diversity",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "Foodies make a culinary journey to Xinjiang's Kashgar",
+      "url": "https://news.cgtn.com/news/2023-05-14/-Foodies-make-a-culinary-journey-to-Xinjiang-s-Kashgar--1jNzLX30tuU/index.html",
+      "quote_en": "Smoked meat, juicy pomegranates, milk tea and spiced bread are all must-try dishes for visitors. The local cuisine often surprises foodies with its diverse range of seasonings – from cumin, chili and cinnamon to garlic and sesame.",
+      "quote_cn": "喀什烟熏肉、石榴、奶茶与香料面包是常见待客食品；调味涵盖孜然、辣椒、肉桂、蒜与芝麻等。",
+      "statement_for_kb": "Kashgar's local food scene features smoked meat, pomegranates, milk tea and spiced bread, with seasonings such as cumin, chili, cinnamon, garlic and sesame.",
+      "tags": [
+        "kashgar",
+        "street_food",
+        "seasonings"
+      ]
+    },
+    {
+      "id": "food-004",
+      "theme": "Hot pot as social culture",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "The history and origin of Chinese hot pot",
+      "url": "https://news.cgtn.com/news/2023-08-17/The-history-and-origin-of-Chinese-hot-pot-1mlCmLB0jfy/index.html",
+      "quote_en": "Hot pot is not only a cooking method but also a symbol of culture, embodying the culinary wisdom of ancient Chinese people. It is a cultural symbol and social way of life in traditional Chinese cuisine.",
+      "quote_cn": "火锅不仅是烹饪方式，也是文化符号与社交生活方式。",
+      "statement_for_kb": "Chinese hot pot is both a cooking method and a social cultural practice in traditional Chinese cuisine.",
+      "tags": [
+        "hotpot",
+        "sichuan",
+        "social_dining"
+      ]
+    },
+    {
+      "id": "food-005",
+      "theme": "Chongqing hot pot lifestyle",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "Travelogue: Chongqing's most famous food tingles taste buds",
+      "url": "https://news.cgtn.com/news/3d3d774e796b7a4d33457a6333566d54/index.html",
+      "quote_en": "In Chongqing, hot pot is thoroughly intertwined with the culture. It is far more than a dish, but a lifestyle that represents the spirit of the metropolis.",
+      "quote_cn": "在重庆，火锅与城市文化深度交织，不仅是一道菜，更是一种生活方式。",
+      "statement_for_kb": "Chongqing-style hot pot is closely tied to local lifestyle and urban culture, known for the la (spicy) and ma (numbing) flavor pair.",
+      "tags": [
+        "chongqing",
+        "hotpot",
+        "lifestyle"
+      ]
+    },
+    {
+      "id": "food-006",
+      "theme": "Dumplings across Chinese history",
+      "category": "food",
+      "source_type": "Xinhua",
+      "title": "China's history of dumplings, from archaeological finds to modern tables",
+      "url": "https://english.news.cn/20240224/ca51c594924f49e7905e5017da9bf15d/c.html",
+      "quote_en": "Archaeologists in east China's Shandong Province told Xinhua that the earliest physical record of dumplings dates back approximately 2,500 years. Due to the dry climate, well-preserved pastries and dumplings from the Tang Dynasty have been excavated from the Astana Tombs in Turpan, Xinjiang.",
+      "quote_cn": "山东考古显示饺子实物可追溯约2500年；吐鲁番阿斯塔那古墓出土唐代饺子类食品，形状大小与今相近。",
+      "statement_for_kb": "Archaeological evidence places dumpling-like foods in China about 2,500 years ago; Tang-era dumplings excavated in Turpan, Xinjiang closely resemble modern jiaozi.",
+      "tags": [
+        "dumpling",
+        "jiaozi",
+        "archaeology",
+        "xinjiang",
+        "spring_festival"
+      ]
+    },
+    {
+      "id": "food-007",
+      "theme": "Sichuan among China's classic cuisines",
+      "category": "food",
+      "source_type": "CGTN",
+      "title": "My Chinese appetite: Chuan Cuisine",
+      "url": "https://news.cgtn.com/news/3d3d674d7755444f32457a6333566d54/index.html",
+      "quote_en": "Four of the 'Eight Cuisines' were publicly recognized as the most mature cooking styles in the early Qing Dynasty... Chuan cuisine, nurtured by its birthplace in Sichuan Province.",
+      "quote_cn": "清代已公认鲁、粤、川、苏等成熟菜系；川菜以四川为发源地，常给人麻辣印象。",
+      "statement_for_kb": "Sichuan (Chuan) cuisine is one of China's classic regional cooking styles, often associated with spicy and numbing flavors shaped by local climate and ingredients.",
+      "tags": [
+        "sichuan",
+        "eight_cuisines",
+        "regional"
+      ]
+    },
+    {
+      "id": "culture-001",
+      "theme": "Spring Festival UNESCO inscription 2024",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Spring festival, social practices of the Chinese people in celebration of traditional new year",
+      "url": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "quote_en": "In China, the spring festival marks the beginning of the new year... involves a variety of social practices to usher in the new year, pray for good fortune, celebrate family reunions and promote community harmony. The spring festival promotes family values, social cohesion and peace while providing a sense of identity and continuity for the Chinese people.",
+      "quote_cn": "春节是中国传统新年，包含辞旧迎新、祈福、家庭团圆与社区和谐等社会实践；传承家庭价值与社会认同。",
+      "statement_for_kb": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "tags": [
+        "spring_festival",
+        "unesco",
+        "ich",
+        "family"
+      ]
+    },
+    {
+      "id": "culture-002",
+      "theme": "CGTN on Spring Festival UNESCO recognition",
+      "category": "culture",
+      "source_type": "CGTN",
+      "title": "Spring Festival, a celebration shared with the world",
+      "url": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "quote_en": "In 2024, the Spring Festival, marking the social practices of the Chinese people in celebration of the traditional Chinese New Year, was officially inscribed on the UNESCO's Representative List of the Intangible Cultural Heritage of Humanity.",
+      "quote_cn": "2024年，春节相关社会实践被列入联合国教科文组织人类非物质文化遗产代表作名录。",
+      "statement_for_kb": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "tags": [
+        "spring_festival",
+        "cgtn",
+        "unesco"
+      ]
+    },
+    {
+      "id": "culture-003",
+      "theme": "Traditional Chinese tea culture UNESCO 2022",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Traditional tea processing techniques and associated social practices in China",
+      "url": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "quote_en": "Tea is ubiquitous in the Chinese people's daily life and is served steeped or boiled in homes, workplaces, tea houses, restaurants and temples. It is an important part of socialization and of ceremonies such as weddings and sacrifices.",
+      "quote_cn": "茶贯穿中国人日常生活，见于家庭、职场、茶馆、餐馆与寺庙；也是社交与婚嫁、祭祀等仪式的重要媒介。",
+      "statement_for_kb": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "tags": [
+        "tea",
+        "unesco",
+        "social_practice"
+      ]
+    },
+    {
+      "id": "culture-004",
+      "theme": "CGTN on Chinese tea UNESCO listing",
+      "category": "culture",
+      "source_type": "CGTN",
+      "title": "Chinese tea making joins UNESCO list",
+      "url": "https://news.cgtn.com/news/2022-11-30/Chinese-tea-making-joins-UNESCO-list-1fnlKJ9kTsc/index.html",
+      "quote_en": "Traditional tea processing techniques and their associated social practices in China were added to UNESCO's Representative List of the Intangible Cultural Heritage of Humanity... tea producers have developed six categories of tea: green, yellow, dark, white, oolong and black teas.",
+      "quote_cn": "中国传统制茶技艺及其相关社会实践列入非遗名录；六大茶类：绿、黄、黑（暗茶）、白、青（乌龙）、红茶。",
+      "statement_for_kb": "CGTN: China's traditional tea-making and associated social practices joined UNESCO's ICH list; six tea categories plus flower-scented and other reprocessed teas.",
+      "tags": [
+        "tea",
+        "cgtn",
+        "unesco"
+      ]
+    },
+    {
+      "id": "culture-005",
+      "theme": "Chinese paper-cut UNESCO",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Chinese paper-cut",
+      "url": "https://ich.unesco.org/en/RL/chinese-paper-cut-00219",
+      "quote_en": "Present throughout China and in various ethnic groups, paper-cut is a popular art integral to everyday lives... As a key part of Chinese social life in all ethnic groups, paper-cut expresses the moral principles, philosophies and aesthetic ideals of its exponents.",
+      "quote_cn": "剪纸流行于中国各民族日常生活，用于装饰、节庆与祈愿，表达道德观念与审美理想。",
+      "statement_for_kb": "Chinese paper-cutting (inscribed 2009) is a widely practiced folk art across ethnic groups, used in decor, festivals and ritual contexts.",
+      "tags": [
+        "paper_cut",
+        "folk_art",
+        "unesco"
+      ]
+    },
+    {
+      "id": "culture-006",
+      "theme": "Peking opera UNESCO",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Peking opera",
+      "url": "https://ich.unesco.org/en/RL/peking-opera-00418",
+      "quote_en": "Peking opera is a performance art incorporating singing, reciting, acting, martial arts... They tell stories of history, politics, society and daily life and aspire to inform as they entertain.",
+      "quote_cn": "京剧融合唱、念、做、打，以北京、天津、上海等地为表演中心，讲述历史与社会生活故事。",
+      "statement_for_kb": "Peking opera (inscribed 2010) combines singing, reciting, acting and martial arts; it remains a widely recognized element of China's cultural heritage.",
+      "tags": [
+        "peking_opera",
+        "performing_arts",
+        "unesco"
+      ]
+    },
+    {
+      "id": "culture-007",
+      "theme": "Chinese calligraphy UNESCO",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Chinese calligraphy",
+      "url": "https://ich.unesco.org/en/RL/chinese-calligraphy-00216",
+      "quote_en": "Chinese calligraphy has always been more than simply a tool for communication, incorporating as it does the element of artistry... In its distinctive Chinese form, calligraphy offers an important channel for the appreciation of traditional culture and for arts education.",
+      "quote_cn": "书法不仅是书写工具，更是艺术；五种书体（篆、隶、草、行、楷）仍用于教育与文化认同。",
+      "statement_for_kb": "Chinese calligraphy (inscribed 2009) is both communication and artistry, using seal, official, cursive, running and regular scripts; it remains central to cultural education and identity.",
+      "tags": [
+        "calligraphy",
+        "cultural_symbol",
+        "unesco"
+      ]
+    },
+    {
+      "id": "culture-008",
+      "theme": "Uyghur Muqam of Xinjiang UNESCO",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Uyghur Muqam of Xinjiang",
+      "url": "https://ich.unesco.org/en/RL/uyghur-muqam-of-xinjiang-00109",
+      "quote_en": "Throughout its history, the Xinjiang region has been marked by a high degree of cultural exchange between East and West, due in large part to its central location along the Silk Road. Xinjiang Uyghur Muqam includes songs, dances, folk and classical music.",
+      "quote_cn": "新疆地处丝绸之路，历史上东西文化交流频繁；维吾尔木卡姆包含歌曲、舞蹈、民间与古典音乐。",
+      "statement_for_kb": "The Uyghur Muqam of Xinjiang (inscribed 2008) is a suite of songs, dances and music reflecting Silk Road cultural exchange and Uyghur social life.",
+      "tags": [
+        "muqam",
+        "xinjiang",
+        "uyghur",
+        "silk_road",
+        "unesco"
+      ]
+    },
+    {
+      "id": "culture-009",
+      "theme": "Xuan paper craft UNESCO",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Traditional handicrafts of making Xuan paper",
+      "url": "https://ich.unesco.org/en/RL/traditional-handicrafts-of-making-xuan-paper-00201",
+      "quote_en": "Handmade from the tough bark of the Tara Wing-Celtis or Blue Sandalwood tree and rice straw, Xuan paper is known for its strong, smooth surface, its ability to absorb water and moisten ink... It has been widely used in calligraphy, painting and book printing.",
+      "quote_cn": "宣纸以青檀皮与稻草等手工制作，吸墨适中，广泛用于书法、绘画与印刷。",
+      "statement_for_kb": "Traditional Xuan paper making (inscribed 2009) in Jing County, Anhui supports calligraphy and painting; the handcraft process involves more than a hundred steps.",
+      "tags": [
+        "xuan_paper",
+        "craft",
+        "calligraphy",
+        "unesco"
+      ]
+    },
+    {
+      "id": "culture-010",
+      "theme": "China ICH overview list",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "China - UNESCO Intangible Cultural Heritage (state page)",
+      "url": "https://ich.unesco.org/en/state/china-CN",
+      "quote_en": "Official UNESCO country page listing China's inscribed intangible cultural heritage elements (including Spring Festival 2024, tea 2022, Peking opera, calligraphy, paper-cut, Uyghur Muqam, etc.).",
+      "quote_cn": "联合国教科文组织中国非遗名录总览页，可核对各项入选年份与条目。",
+      "statement_for_kb": "UNESCO's China ICH state page is the authoritative index of inscribed Chinese intangible heritage elements used for story-type grounding.",
+      "tags": [
+        "unesco",
+        "index",
+        "ich"
+      ]
+    },
+    {
+      "id": "thirdparty-001",
+      "theme": "Xi'an Silk Road city welcome culture (third-party)",
+      "category": "culture",
+      "source_type": "BBC Travel",
+      "title": "The Eastern promise of Xi'an",
+      "url": "https://www.bbc.com/travel/bespoke/specials/xian-through-the-senses/introduction.html",
+      "quote_en": "Famed for being the eastern terminus of the Silk Road... Xi'an was usually the first port of call for visitors to the East, and has a long tradition of welcoming guests from across the globe.",
+      "quote_cn": "西安作为丝绸之路东端，长期接待来自全球的访客，具有开放迎客传统。",
+      "statement_for_kb": "BBC Travel describes Xi'an as the eastern terminus of the Silk Road with a long tradition of welcoming international visitors; local food (dumplings, hotpot) is part of the city experience.",
+      "tags": [
+        "xian",
+        "silk_road",
+        "third_party",
+        "hospitality"
+      ]
+    },
+    {
+      "id": "cgtn-channel-001",
+      "theme": "CGTN overseas distribution hub",
+      "category": "culture",
+      "source_type": "CGTN",
+      "title": "CGTN official YouTube channel",
+      "url": "https://www.youtube.com/@CGTN",
+      "quote_en": "Official CGTN YouTube presence for English-language video storytelling on China culture, travel and current affairs (use specific video URLs when citing facts).",
+      "quote_cn": "CGTN 官方 YouTube 账号（海外分发入口）；具体事实请再落到单条视频/图文 URL。",
+      "statement_for_kb": "CGTN maintains an official overseas YouTube channel used for English-language culture and travel storytelling; cite concrete video/article URLs for evidence rows.",
+      "tags": [
+        "cgtn",
+        "overseas_account",
+        "distribution"
+      ]
+    }
+  ]
+}

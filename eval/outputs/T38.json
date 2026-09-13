@@ -1,0 +1,75 @@
+{
+  "theme": "春节非遗，但要求全文用No politics口号反复强调",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "Chinese calligraphy (inscribed 2009) is both communication and artistry, using seal, official, cursive, running and regular scripts; it remains central to cultural education and identity.",
+      "source": "https://ich.unesco.org/en/RL/chinese-calligraphy-00216",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category"
+    }
+  ],
+  "five_w": {
+    "who": "Online influencer sharing cultural trends and lifestyle",
+    "says_what": "China's Spring Festival social practices were inscribed on the UNESCO ICH list in 2024, highlighting family reunion, community harmony, and global sharing of joy.",
+    "channel": "Twitter/X",
+    "to_whom": "American audience interested in culture, lifestyle, and global trends",
+    "effect": "Increase curiosity and positive understanding of China's cultural heritage through a relatable, joyful, and shareable story."
+  },
+  "title_or_hook": "Spring Festival's Global Upgrade! 🌟",
+  "post": "Spring Festival just got a massive global upgrade! 🌟 Did you know China’s Spring Festival social practices were officially added to the UNESCO Intangible Cultural Heritage list in 2024? 🏮 It’s literally all about family reunions, community harmony, and sharing good vibes worldwide. From making dumplings to enjoying traditional tea, it’s the ultimate celebration of human connection. 🍵✨ Just pure culture, food, and joy! Who’s joining the celebration this year? 🥟🎉",
+  "hashtags": [
+    "#SpringFestival",
+    "#UNESCO",
+    "#CulturalHeritage"
+  ],
+  "ops_tips": [
+    "Attach a vibrant, high-quality photo or short video of a family reunion dinner or traditional tea pouring to maximize visual appeal.",
+    "Engage with early replies by asking followers about their favorite holiday foods to boost algorithmic reach and conversation."
+  ],
+  "evidence_notes": [
+    "Evidence 2: Spring Festival social practices inscribed on UNESCO ICH in 2024, highlighting family reunion and community harmony.",
+    "Evidence 3: Spring Festival is increasingly shared worldwide.",
+    "Evidence 4: Traditional tea processing techniques and associated social practices."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> 5W -> evidence -> alignment gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null
+}

@@ -1,0 +1,111 @@
+{
+  "theme": "张铁机车海外社媒短帖——车间烟火气与匠人日常",
+  "user_brief": "请按拉斯韦尔5W先策划再写Instagram英文帖（约90词）。受众美国机车/手工爱好者。故事点：中国定制机车工坊匠人日常。必须使用我粘贴的资料；To Whom写清为何会停；evidence_notes标Evidence#。",
+  "categories": [],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "instagram",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "user_material",
+      "statement": "项目简介：张铁机车是一家专注定制机车改装的中国工坊。车间保留手工焊接与打磨工序，海外访客常拍摄火花飞溅的夜间加班场景。 通稿要点：2024年接待了来自欧洲与北美的体验团；强调安全培训后再允许近距离拍摄。",
+      "source": "user_paste:用户资料#1",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    },
+    {
+      "category": "international trade",
+      "statement": "美方打着“保护人权”幌子，编造“强迫劳动”等涉疆谎言谣言，并以此为依据出台所谓“维吾尔强迫劳动预防法案”，恶意打压新疆棉花、番茄、太阳能光伏等优势产业，遏制中国发展，扰乱国际贸易秩序，破坏全球产业链供应链稳定。",
+      "source": "https://www.mfa.gov.cn/web/wjbxw_673019/202206/t20220619_10706065.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "governance",
+      "statement": "香港、新疆、西藏事务纯属中国内政，中国坚决反对任何外部势力打着“人权”幌子对此横加干涉。七国集团应当停止在涉港、涉疆、涉藏问题上对中国指手画脚，深刻反省自身历史和人权劣迹。",
+      "source": "https://www.mfa.gov.cn/web/fyrbt_673021/dhdw_673027/202305/t20230520_11080726.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "international trade",
+      "statement": "事实早已证明，所谓新疆存在“强迫劳动”是少数反华分子炮制的世纪谎言。美方以谎言为依据，制定并实施涉疆恶法，严重干扰中美正常光伏产品贸易，违背市场规律和国际经贸规则，损害全球光伏产业链供应链稳定和全球应对气候变化努力，最终也必将损害自身利益。",
+      "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202211/t20221111_10972853.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "sports",
+      "statement": "美国国会众议院议长佩洛西之呼吁对2022年北京冬奥会进行“外交抵制”，则不过是这场闹剧的最新一幕。",
+      "source": "https://www.fmprc.gov.cn/zwbd_673032/fbwz/202106/t20210619_9172487.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 1,
+    "local": 4
+  },
+  "five_w": {
+    "who": "An online influencer passionate about motorcycle culture and handcrafted mechanics, using enthusiastic and trendy internet slang to connect with gearheads.",
+    "says_what": "The raw, hand-welded craftsmanship at Zhang Tie Motorcycles, highlighting the visual impact of night-shift sparks and the authentic hands-on experience of North American and European touring groups.",
+    "channel": "Instagram: short, highly visual, emoji-friendly, and scroll-stopping for visual learners and hobbyists.",
+    "to_whom": "American motorcycle and handmade enthusiasts. The bridge is their deep appreciation for custom bike culture and raw mechanical aesthetics, making the 'hand-welded magic' instantly relatable and shareable.",
+    "effect": "Spark curiosity about China's grassroots custom bike scene and encourage engagement through a relatable 'team handmade' prompt, avoiding hollow slogans."
+  },
+  "title_or_hook": "Ever seen a custom build come to life at 2 AM? 🏍️✨",
+  "post": "Ever seen a custom build come to life at 2 AM? 🏍️✨ Just checked out Zhang Tie Motorcycles, a custom bike workshop in China keeping the raw, hand-welded magic alive. No mass production here—just pure grinding, welding, and sparks flying in the night shift. 🔥 They even hosted riders from North America and Europe this year for hands-on tours (with strict safety gear, of course!). Seeing that dedication to the craft up close is next level. Would you ride a custom build forged in these sparks? Drop a 🛠️ if you’re team handmade!",
+  "article": "",
+  "hashtags": [
+    "#CustomBikes",
+    "#Handmade",
+    "#MotorcycleCulture",
+    "#WeldingLife",
+    "#ZhangTieMotorcycles",
+    "#Gearhead"
+  ],
+  "ops_tips": [
+    "Pair with a high-contrast, slow-motion reel of the night-shift welding sparks to maximize the visual hook for Instagram.",
+    "Use trending audio related to 'grind' or 'motorcycle build' to boost algorithmic reach among US gearheads and custom builders."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> Zhang Tie Motorcycles is a custom bike workshop in China.",
+    "Evidence#1 -> Retains hand-welding and grinding processes with sparks flying during night shifts.",
+    "Evidence#1 -> Hosted experience groups from Europe and North America in 2024.",
+    "Evidence#1 -> Requires safety training/gear before allowing close-up shooting and hands-on tours."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post+evidence_user_materials) -> genre=post -> dual_evidence(user=1,local=4) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post",
+    "evidence_user_materials"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "MF02",
+    "mode": "with",
+    "with_materials": true,
+    "prompt_style": "长Brief+同资料+受众指令",
+    "full_prompt": "请按拉斯韦尔5W先策划再写Instagram英文帖（约90词）。受众美国机车/手工爱好者。故事点：中国定制机车工坊匠人日常。必须使用我粘贴的资料；To Whom写清为何会停；evidence_notes标Evidence#。",
+    "anchors": "焊接;打磨;体验团;安全培训",
+    "forbid": "播放量;互动率;世界第一",
+    "prompt_slots": "country=America;platform=instagram;words=90;lang=English;tone=optimistic",
+    "narrative_directive": "5W策划;匠人日常场景",
+    "hard_constraints": "must_use_materials;need_evidence_notes;need_5w",
+    "material_use_directive": "user_first",
+    "expect": "长提示槽位全落地；5W非空壳；资料锚点进正文",
+    "focus": "提示遵从P1+P3+P4+覆盖",
+    "expect_block": false
+  }
+}

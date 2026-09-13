@@ -1,0 +1,62 @@
+phrase hits B: [('photovoltaic', 37), ('ecological', 35), ('desertification', 23), ('clean energy', 23), ('rural revitalization', 22), ('herder', 17), ('modernization', 17), ('green development', 15), ('livelihood', 14), ('Belt and Road', 14), ('forage', 7), ('win-win', 7), ('common prosperity', 4), ('microclimate', 2), ('ecology-first', 1)]
+quotes~ 305
+
+## B28 paras=18 chars=5093
+P1: XINING, Oct. 22 (Xinhua) -- For generations, the Talatan Gobi Desert in northwest China's Qinghai Province has endured severe sandstorms, persistent droughts and sparse vegetation, making life for local herders a constan
+P2: Today, Talatan, located in Gonghe County in the Hainan Tibetan Autonomous Prefecture, is undergoing a remarkable transformation. Expansive arrays of deep blue solar panels now stretch across the plateau, harnessing abund
+P3: Yehdor, a local 49-year-old herder, has witnessed this change firsthand. He now tends his flock while riding a motorcycle.
+P4: "Our village depends mainly on animal husbandry, and many families raise sheep. In the past, the grassland wasn't productive enough, so herders had to take their sheep far away to find grazing land," Yehdor recalled.
+P5: Decades of drought and overgrazing had turned Talatan into a near-endless desert. The turnaround began in 2012. Leveraging the region's strong solar resources and vast flat terrain, the local government promoted the cons
+P6: Unexpectedly, the dense solar arrays also act as barriers against wind and sand. Their shade creates a cooler microclimate and reduces evaporation, while periodic cleaning by maintenance crews allows runoff water to seep
+P7: "In some areas, the grass grew over a meter high, even blocking the solar panels and reducing power efficiency," said Cao Jun, a staff member with the project department of the local industrial park.
+P8: Faced with this challenge, the solar companies turned to local herders. An agreement was reached allowing herders to graze their sheep beneath the panels, providing a natural solution that avoided costly manual or chemic
+
+## B08 paras=23 chars=4736
+P1: 'Photovoltaic sheep' a winning model in Qinghai
+P2: Sheep grazing beneath photovoltaic panels is helping solar farms reduce mowing costs, restore vegetation and provide herders with better forage — a model locals call "photovoltaic sheep".
+P3: The term refers to sheep raised under solar panels. In this model, the panels generate clean electricity while providing shade, reducing wind erosion and creating conditions that help grass grow. During the growing seaso
+P4: The model has been developed in Gonghe and Xinghai counties in the Hainan Tibetan autonomous prefecture, Qinghai province.
+P5: Since 2022, Hainan has promoted the coordinated development of photovoltaic desert control and photovoltaic pastures. So far, 32 ecological photovoltaic pastures and 56 grazing sites have been established at solar bases 
+P6: The prefecture has planned 609 square kilometers of photovoltaic parks, of which 420 sq km have been built. According to local forestry and grassland authorities, average grass output in the parks has reached 174 kilogra
+P7: For Yeduo, a 50-year-old Tibetan herder from Tiegai township, the benefits have been immediate.
+P8: Before moving his flock to a photovoltaic park at the end of 2018, Yeduo grazed more than 100 sheep on his own pasture, where grass resources were limited and forage quality was lower. His flock had to move between seaso
+
+## B16 paras=17 chars=4295
+P1: This photo taken on July 24, 2024 shows the Kubuqi Desert Ordos Central-Northern New Energy Base project located in Dalad Banner, north China's Inner Mongolia Autonomous Region. (Xinhua/Wang Jing)
+P2: HOHHOT, Aug. 29 (Xinhua) -- Viewed from above, 196,000 blue solar panels form a dynamic silhouette of a horse, galloping through the Kubuqi Desert.
+P3: Strolling around the solar power station in Chaideng Village, Ordos City, tourists marveled at the green vegetation and tracking solar panels that spun like sunflowers, and hardly believed that this was once a barren lan
+P4: The solar power station of Junma, which literally means horse in Chinese, is part of the "great photovoltaic wall," an ambitious solar energy desert reclamation project, stretching along the northern edge of the Kubuqi D
+P5: Spanning about 400 km in length and averaging 5 km in width, upon completion, this solar marvel is set to have an installed capacity of 100 million kilowatts.
+P6: The benefits of solar-powered desert reclamation are substantial. The panels cut groundwater evaporation by 20 to 30 percent, provide shade, and reduce wind speeds, all of which support plant growth. This helps vegetatio
+P7: The "photovoltaic power generation plus desert reclamation" model -- where solar panels generate clean energy above while plants and livestock thrive below -- is also opening new income opportunities and transforming loc
+P8: Locals are finding various ways to boost their income, such as leasing their desertified land, participating in project construction, and engaging in contract farming. New energy and ecological management companies are e
+
+## A05 paras=11 chars=1319
+P1: 曾经的青海省海南藏族自治州共和县塔拉滩下合乐寺村饱受风沙肆虐之苦，而如今在这里，深蓝色的光伏板铺展大地，羊群在其间游走觅食。黄沙之地重焕生机，人与自然和谐共生的图景在此展开，这正是青海省光伏产业发展的生动缩影。
+P2: 图为华能海南州300兆瓦华忠光伏电站。记者 邓林如摄
+P3: 下合乐寺村位于塔拉滩，全村317户1115人，原本是一个以农耕为主、农牧结合的村庄。然而，土地沙化日益严重，牧民无奈迁徙，草原在干旱中沉寂……
+P4: 塔拉滩的命运转折点出现在2012年，随着我国首个千万千瓦级太阳能发电基地在此开建，一块块光伏板的铺设，不仅为清洁能源开发奠定了基础，更成为生态修复的“加速器”。
+P5: 曾经寸草不生的荒漠，在光伏板下开始萌发绿意。“我们依托当地丰富的农牧资源，创新探索‘光伏+’绿色生态模式。”中国华能集团有限公司青海分公司（以下简称“华能青海分公司”）派驻下合乐寺村的驻村工作队员郭文俊向《经济参考报》记者介绍，“华能青海分公司通过建设光伏发电项目，利用光伏板下空间培育优质牧草，努力打造‘光伏牧场’。”公司将近10万亩的光伏牧场免费向村里养殖户开放，并采取“夏进冬出”的方式，有效解决了草山禁牧后牧民的放牧难题。
+P6: 沙漠戈壁滩铺上光伏板后，水分蒸发量减少30%，风速降低50%，植被覆盖率提高到80%。昔日的“不毛之地”如今绿草丛生，牛羊得以重返家园，“光伏羊”的美名由此传开。光伏板下，牧草在板间缝隙蓬勃生长，羊群穿梭其间，形成了“牧光互补”的独特生态——清洁能源与生态养殖的完美融合，让黄沙之地重焕生机。
+P7: “该光伏电站的年发电量可满足约17.5万户家庭的用电需求。”郭文俊补充道，“为了让羊群能够畅通无阻地吃草，也为了发电设备的安全，经过研究，我们将光伏组件的离地间隙设计为150厘米。同时，定期对光伏板进行维护冲洗，顺带给光伏板下的土地补充了水分，提升了草地涵养水源的能力，使生态环境得到持续改善。”
+P8: 光伏牧场不仅让草场重生，更让牧民的腰包鼓了起来。据统计，通过“光伏+藏羊养殖”模式，村集体羊养殖场每年为养殖户节约养殖成本近120万元，户均增收近10万元。截至2024年底，下合乐寺村人均收入突破2万元。该模式既为电站节省了除草费用，又实现了生态效益与经济效益的双赢。
+
+## A02 paras=35 chars=2490
+P1: “光伏羊”唱出新牧歌
+P2: ➤海南州已在光伏园区建成32个光伏生态牧场和56个集中放牧点，年养殖光伏羊2万只以上，辐射带动18个村集体经济合作社持续增收
+P3: 文 |《瞭望》新闻周刊记者 解统强
+P4: 塔拉滩，位于黄河上游龙羊峡水库西岸，曾经这里是“风吹石头跑，地上不长草”的荒滩，肆虐的风沙严重制约当地畜牧业发展。
+P5: 2012年以来，凭借丰富的光照资源和大面积荒漠化土地资源，青海省在塔拉滩大力推进新能源基地建设，光伏发电园区规模持续扩张。
+P6: 光伏产业为当地带来清洁能源的同时，催生了“牧光互补”产业协同模式，牧民在光伏板下放养“光伏羊”，实现生态保护、经济发展和民生改善。为高原特色农牧业发展开辟了绿色可持续发展之路，为拓展农业生产增量空间提供了“青海样本”。
+P7: 羊群在青海省海南藏族自治州共和县塔拉滩的光伏电站内活动（资料照片）受访者供图
+P8: 光伏板下“光伏羊”
+
+## A19 paras=71 chars=5118
+P1: “十五五”时期，“三北”风电光伏基地将新增装机3.7亿千瓦以上
+P2: “沙戈荒”崛起新能源绿洲（人民眼·可再生能源发展）
+P3: 点击播报本文，约
+P4: 引 子
+P5: 阳光炽烈，站在沙丘远眺，位于宁夏中卫市的腾格里沙漠新能源基地，640万块光伏板首尾相连，蔚为壮观。
+P6: 手指空中一片云彩，基地设备维保中心工程师鲁俊说：“过去，光伏发电‘靠天吃饭’，一片云彩遮挡就能降低发电效率。”如今，跟踪支架随太阳位置变化自动调节角度，如向日葵般追着太阳要电力，年发电量较固定支架光伏板提升约10%，基地每小时多发电最高达30万千瓦时。
+P7: 2021年10月，习近平主席在《生物多样性公约》第十五次缔约方大会领导人峰会上指出，“中国将持续推进产业结构和能源结构调整，大力发展可再生能源，在沙漠、戈壁、荒漠地区加快规划建设大型风电光伏基地项目”。迄今，我国“沙戈荒”新能源基地已有3批项目接茬投运。
+P8: 今年7月印发的《可再生能源发展“十五五”规划》提出，以“沙戈荒”地区为重点深入推进“三北”风电光伏基地建设，科学推进光伏治沙和100%绿电外送基地试点。“十五五”时期，“三北”风电光伏基地将新增装机3.7亿千瓦以上。

@@ -1,0 +1,94 @@
+{
+  "theme": "剪纸非遗工作坊招募",
+  "user_brief": "英国IG约75词。两段资料都要用到：剪纸课与导师身份。5W完整。",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 3
+  },
+  "five_w": {
+    "who": "Online influencer sharing Chinese culture with enthusiastic, trend-aware slang.",
+    "says_what": "Guiding a local session on UNESCO-recognized tea rituals and Spring Festival family reunion customs.",
+    "channel": "Instagram: short, visual-friendly, emoji-rich, and scroll-stopping.",
+    "to_whom": "UK audience: bridged via 'cosy UK Sunday energy' and swapping 'Earl Grey'.",
+    "effect": "Spark curiosity to try a Chinese tea ceremony and share the experience."
+  },
+  "title_or_hook": "",
+  "post": "Obsessed with sharing my culture! 🇨🇳 Just wrapped up a session guiding locals through China’s UNESCO-recognized tea rituals & Spring Festival vibes. 🍵✨ Seeing their faces light up when brewing that perfect oolong or learning about family reunion customs is the best. It’s giving major cosy UK Sunday energy, but with a brilliant twist! 🫖 Who’s down to swap their usual Earl Grey for a traditional Chinese tea ceremony this weekend? Drop a 🍵 below! 👇",
+  "article": "",
+  "hashtags": [
+    "#ChineseTea",
+    "#SpringFestival",
+    "#UKWeekend",
+    "#CultureVibes"
+  ],
+  "ops_tips": [
+    "Note: User requested 'paper-cutting class', but no evidence was provided. Substituted with UNESCO tea & Spring Festival evidence to comply with hard fact-checking rules.",
+    "Use a high-quality carousel: Slide 1 brewing oolong, Slide 2 red Spring Festival decorations, Slide 3 smiling locals."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> Spring Festival family reunion customs",
+    "Evidence#3 -> UNESCO-recognized tea rituals and brewing oolong"
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "UK",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "MF13",
+    "mode": "ablate",
+    "with_materials": false,
+    "prompt_style": "双段资料都要用",
+    "full_prompt": "英国IG约75词。两段资料都要用到：剪纸课与导师身份。5W完整。",
+    "anchors": "周六;剪纸;红纸;刻刀;窗花;传承人助理",
+    "forbid": "门票售罄十万;网红排队数据",
+    "prompt_slots": "country=UK;platform=instagram;words=75",
+    "narrative_directive": "工作坊招募信息",
+    "hard_constraints": "must_use_materials;need_5w;multi_block",
+    "material_use_directive": "use_both_blocks",
+    "expect": "两段关键信息都出现",
+    "focus": "资料使用指令+覆盖",
+    "expect_block": false
+  }
+}

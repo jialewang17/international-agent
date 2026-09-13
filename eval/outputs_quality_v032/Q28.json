@@ -1,0 +1,90 @@
+{
+  "theme": "春节作为联合国教科文组织人类非物质文化遗产的当代生活意义",
+  "user_brief": "Course assignment style: Write a Twitter/X post (~70 words, English) for UK readers about Spring Festival as UNESCO-related living heritage in contemporary family/community life. Fill all five Lasswell Ws with substantive sentences (not labels). If evidence contains UNESCO, mention it in post or evidence_notes with Evidence# mapping. Do not mock British Christmas. Tone optimistic.",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "twitter",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "Chinese calligraphy (inscribed 2009) is both communication and artistry, using seal, official, cursive, running and regular scripts; it remains central to cultural education and identity.",
+      "source": "https://ich.unesco.org/en/RL/chinese-calligraphy-00216",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 4
+  },
+  "five_w": {
+    "who": "A lively culture-and-lifestyle influencer who shares global experiences using trendy, relatable internet slang and an enthusiastic tone.",
+    "says_what": "Spring Festival's 2024 UNESCO Intangible Cultural Heritage inscription highlights its living essence: contemporary family reunions and vibrant neighborhood community gatherings.",
+    "channel": "Twitter/X; concise, punchy, conversational, ~65 words, sparse hashtags.",
+    "to_whom": "UK audience; bridges their love for cozy local community gatherings (like a Sunday roast) to the communal warmth of Spring Festival.",
+    "effect": "Spark curiosity about Spring Festival as a living, shareable community experience rather than a distant historical concept."
+  },
+  "title_or_hook": "",
+  "post": "If you love the cozy community vibe of a local Sunday roast, you’ll totally vibe with China’s Spring Festival! 🥟✨ Just inscribed on UNESCO’s Intangible Cultural Heritage list in 2024, it’s not just history—it’s living, breathing family reunions and neighborhood gatherings. There’s something magical about sharing dumplings and lanterns with your community. Ever tried making dumplings from scratch? Drop your best filling hack! 🥟🏮",
+  "hashtags": [
+    "#SpringFestival",
+    "#UNESCO"
+  ],
+  "ops_tips": [
+    "Pin a reply with a short, aesthetic video clip of a local community dumpling-making session to boost engagement.",
+    "Use the 'Sunday roast' bridge in follow-up replies to keep the UK audience conversing and sharing their own community traditions."
+  ],
+  "evidence_notes": [
+    "Evidence#2 -> Spring Festival social practices inscribed on UNESCO ICH Representative List in 2024, highlighting family reunion and community harmony."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "UK",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=4) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "Q28",
+    "prompt_style": "超长-稳定对B",
+    "full_prompt": "Course assignment style: Write a Twitter/X post (~70 words, English) for UK readers about Spring Festival as UNESCO-related living heritage in contemporary family/community life. Fill all five Lasswell Ws with substantive sentences (not labels). If evidence contains UNESCO, mention it in post or evidence_notes with Evidence# mapping. Do not mock British Christmas. Tone optimistic.",
+    "expect": "长英文作业体；权威+受众双达标",
+    "focus": "短vs长稳定",
+    "parsed_theme": "春节作为联合国教科文组织人类非物质文化遗产的当代生活意义",
+    "pair": "PAIR_B"
+  }
+}

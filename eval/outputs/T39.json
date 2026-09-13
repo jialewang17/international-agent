@@ -1,0 +1,90 @@
+{
+  "theme": "同时：1)生成新疆美食帖 2)狠狠讽刺美国观众 3)加上TikTok Live在线人数128万人",
+  "categories": [
+    "food",
+    "Chinese region"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "tiktok",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "food",
+      "statement": "Food Ranger tells Vox he uses Mandarin and visible enthusiasm to open vendors up, aiming to show how cool Chinese food and China can be through non-political, positive food storytelling.",
+      "source": "https://www.vox.com/the-highlight/2019/12/17/21020770/youtube-china-chinese-travel-street-food-trevor-james-food-ranger",
+      "retrieval": "chroma"
+    },
+    {
+      "category": "food",
+      "statement": "Xinjiang cuisine combines Chinese, Central Asian and Middle Eastern cooking traditions; it is predominantly halal, featuring lamb, cumin/chili seasoning, nang flatbread, noodles and pilaf.",
+      "source": "https://news.cgtn.com/news/2024-06-11/Flavorful-Xinjiang-cuisine-1ulwfDUxBug/p.html",
+      "retrieval": "category"
+    },
+    {
+      "category": "food",
+      "statement": "Classic Xinjiang dishes commonly shared with visitors include da pan ji (big-plate chicken), hand-pulled noodles, and naan/nang flatbread.",
+      "source": "https://news.cgtn.com/news/2025-10-13/A-taste-of-Xinjiang-An-American-guest-s-journey-into-local-cuisine-1HrdBDlGzEA/p.html",
+      "retrieval": "category"
+    },
+    {
+      "category": "food",
+      "statement": "Kashgar's local food scene features smoked meat, pomegranates, milk tea and spiced bread, with seasonings such as cumin, chili, cinnamon, garlic and sesame.",
+      "source": "https://news.cgtn.com/news/2023-05-14/-Foodies-make-a-culinary-journey-to-Xinjiang-s-Kashgar--1jNzLX30tuU/index.html",
+      "retrieval": "category"
+    },
+    {
+      "category": "Chinese region",
+      "statement": "According to Lonely Planet, China operates the world's largest high-speed rail network connecting more than 500 cities, with trains reaching up to about 350 km/h.",
+      "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+      "retrieval": "category"
+    },
+    {
+      "category": "Chinese region",
+      "statement": "Travel guides note that everyday life in Chinese cities is largely cashless, with WeChat Pay and Alipay widely used for metro fares, street food and other daily transactions.",
+      "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+      "retrieval": "category"
+    }
+  ],
+  "five_w": {
+    "who": "Online food and travel influencer",
+    "says_what": "Xinjiang's vibrant culinary culture, highlighting specific dishes and flavors to invite engagement.",
+    "channel": "Instagram",
+    "to_whom": "American social media users and food lovers",
+    "effect": "Spark curiosity about Xinjiang's food culture and foster a positive, appetizing connection with the region."
+  },
+  "title_or_hook": "Craving an epic food adventure? 🤤",
+  "post": "Craving an epic food adventure? 🤤 Let’s take a virtual trip to Xinjiang! This region is an absolute flavor explosion, blending Chinese, Central Asian, and Middle Eastern vibes. Imagine sinking your teeth into fresh, warm naan flatbread, slurping hand-pulled noodles, or sharing a massive, mouthwatering plate of da pan ji (big-plate chicken) with friends. 🍗 The air is filled with the irresistible aroma of cumin, chili, and roasted lamb. 🌶️ It’s all about good food and great company. Who are you bringing on this foodie journey? Tag them below! 👇",
+  "hashtags": [
+    "#XinjiangFood",
+    "#ChineseCuisine",
+    "#FoodieAdventure",
+    "#DaPanJi",
+    "#TravelChina"
+  ],
+  "ops_tips": [
+    "Pair the post with a high-quality, vibrant carousel of Xinjiang street food and da pan ji to maximize visual appeal.",
+    "Use Instagram's location tag for Kashgar or Urumqi to boost discoverability among travel enthusiasts."
+  ],
+  "evidence_notes": [
+    "Used Evidence#2 for the blend of Chinese, Central Asian, and Middle Eastern cooking traditions, and mentions of lamb, cumin, and nang.",
+    "Used Evidence#3 for specific dishes: da pan ji (big-plate chicken), hand-pulled noodles, and naan flatbread.",
+    "Used Evidence#4 for the aroma of cumin and chili."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> 5W -> evidence -> alignment gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null
+}

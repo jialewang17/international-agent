@@ -1,0 +1,84 @@
+{
+  "theme": "高铁连接多城的日常出行体验（现代中国生活）",
+  "user_brief": "高铁日常 美国推特",
+  "categories": [
+    "Chinese region"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "推特",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "Chinese region",
+      "statement": "According to Lonely Planet, China operates the world's largest high-speed rail network connecting more than 500 cities, with trains reaching up to about 350 km/h.",
+      "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "Chinese region",
+      "statement": "Travel guides note that everyday life in Chinese cities is largely cashless, with WeChat Pay and Alipay widely used for metro fares, street food and other daily transactions.",
+      "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "Chinese region",
+      "statement": "Lonely Planet describes Beijing hutong districts around Gulou and the Lama Temple as places where visitors encounter historic alleyway life on a human scale.",
+      "source": "https://www.lonelyplanet.com/articles/best-neighborhoods-in-beijing-china",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 3
+  },
+  "five_w": {
+    "who": "A travel and lifestyle influencer sharing seamless, tech-integrated daily experiences with an enthusiastic and trendy tone.",
+    "says_what": "The mind-blowing convenience of riding a 350 km/h high-speed train in China and using a completely cashless phone payment to grab a quick snack.",
+    "channel": "Twitter/X: concise, punchy, conversational, around 70 words, sparse hashtags.",
+    "to_whom": "Americans: uses the relatable pain point of domestic flights and airport security as a bridge to highlight the contrast in travel convenience.",
+    "effect": "Spark curiosity and positive understanding of China's futuristic, highly convenient daily life through a relatable and shareable travel scenario."
+  },
+  "title_or_hook": "",
+  "post": "Americans, imagine skipping the endless airport security line for a quick cross-state trip. 🤯 Just hopped on a high-speed train in China cruising at a mind-blowing 350 km/h! The wildest part? I didn’t even need my physical wallet. Grabbed a quick snack at the station using just my phone—everything here is totally cashless. Would you trade your next domestic flight for this vibe? ✨🚄",
+  "hashtags": [
+    "#ChinaTravel",
+    "#HighSpeedRail"
+  ],
+  "ops_tips": [
+    "Pin a reply with a short POV video of the train's speedometer or the seamless phone-tap payment to boost engagement.",
+    "Engage with users who reply about their own airport horror stories to keep the conversation going."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> high-speed train in China cruising at 350 km/h",
+    "Evidence#2 -> didn't need physical wallet, grabbed a snack using just phone, totally cashless"
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "Q39",
+    "prompt_style": "极短-稳定对H",
+    "full_prompt": "高铁日常 美国推特",
+    "expect": "现代日常场景；无假统计",
+    "focus": "短vs长稳定",
+    "parsed_theme": "高铁连接多城的日常出行体验（现代中国生活）",
+    "pair": "PAIR_H"
+  }
+}

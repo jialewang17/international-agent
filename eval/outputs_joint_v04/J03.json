@@ -1,0 +1,100 @@
+{
+  "theme": "春节非遗短帖，突出家庭团圆与社区市集",
+  "user_brief": "春节 英国 Twitter 80",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "twitter",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "活动纪要：伦敦华侨社区春节市集提供饺子体验台；志愿者讲解春联含义。",
+      "source": "user_paste:用户资料#1",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    },
+    {
+      "category": "culture",
+      "statement": "补充：市集设有非遗剪纸体验角，儿童可带走一张红色窗花。",
+      "source": "user_paste:用户资料#2",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 2,
+    "local": 3
+  },
+  "five_w": {
+    "who": "A London-based lifestyle influencer who loves exploring local weekend markets and sharing vibrant cultural experiences with a trendy, enthusiastic, and conversational tone.",
+    "says_what": "Experiencing dumpling making, couplet storytelling, and paper-cutting at a London Spring Festival market, highlighting the community reunion vibes recently recognized by UNESCO.",
+    "channel": "Twitter/X: concise, punchy, conversational, around 80 words, sparse hashtags.",
+    "to_whom": "UK audience, specifically those who enjoy weekend markets and local community events. The bridge connects the Chinese Spring Festival market to the familiar British weekend market culture.",
+    "effect": "Spark curiosity about the UNESCO-recognized community aspects of Spring Festival and encourage sharing personal market or dumpling-making experiences."
+  },
+  "title_or_hook": "",
+  "post": "Spotted at a London weekend market! 🥟 Instead of a quick bite, I tried making dumplings and learned the poetry behind Spring Festival couplets. Kids were running off with red paper-cuttings! It’s wild to think these community reunion vibes just got UNESCO heritage status in 2024. Next time you're wandering a UK market, look out for these shared global traditions. Ever tried making a dumpling? 🥢✨",
+  "hashtags": [
+    "#SpringFestival",
+    "#LondonMarket"
+  ],
+  "ops_tips": [
+    "Pin a high-quality photo of the red paper-cuttings or the dumpling station to boost visual engagement.",
+    "Reply to the first few comments with fun, simple facts about what the couplets actually mean."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> London market setting, dumpling making experience, and learning about Spring Festival couplets.",
+    "Evidence#2 -> Kids running off with red paper-cuttings from the non-heritage corner.",
+    "Evidence#3 -> Spring Festival social practices getting UNESCO heritage status in 2024, emphasizing community reunion."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "UK",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post+evidence_user_materials) -> genre=post -> dual_evidence(user=2,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post",
+    "evidence_user_materials"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "J03",
+    "prompt_style": "短令+春节市集资料",
+    "full_prompt": "春节 英国 Twitter 80",
+    "expect": "用户市集事实+本地UNESCO可并存；英国桥梁；不嘲讽圣诞",
+    "focus": "双源权威+受众",
+    "has_materials": true,
+    "expect_block": false
+  }
+}

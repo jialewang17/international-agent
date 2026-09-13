@@ -1,0 +1,5 @@
+迭代轮次,日期,Skill文件,版本号(如v0.1→v0.2),本次只改一处(原则),修改位置(章节/行号),改了什么(原文→新文摘要),优化目标(对应哪条测试/哪一维),改前该题得分(可选),改后该题得分(可选),改前7维均分,改后7维均分,是否保留(是/否/回滚),评审人,备注
+1,,skills/intl-comm.md,v0.1,基线：记录当前skill未改,,建立评测基线,T01-T15全量,,,,,,,
+2,2026-08-22,skills/intl-comm.md,v0.1→v0.2,证据与风控规则（含硬性/演示期分层）,§v0.2 A/B/D,新增证据绑定硬性(可核验事实/专名仅来自evidence)+演示期(宏观场景可modest禁假细节)；主题对齐+子话题缺条换题/补库；语气边界C；自检D四问,T05/T09/T10/T11/T13/T14；D2事实/D6素材,,,,,待定,,
+3,2026-08-22,"tools/kb_local.py, tools/story_post_gen.py",v0.2+gate,后端主题-素材对齐门控,check_theme_evidence_alignment + run_story_post_generation 调用,库外题(曼联/梗图)拒编；子话题缺条(八仙/脸谱/京剧)拒编,T09/T10/T14,,,,,待定,,
+4,2026-09-06,"skills/genres/*; genre_router; story_post_gen; skills.yaml",v0.2+gate→v0.3-genre,帖文5W skill+体裁关键词路由,china-story-post.md + genre_router,贴文Lasswell 5W；新闻/深度/脚本占位待南方周末材料；禁短帖硬套长文,老师0822体裁分流+40题,,,,,,待确认T11草案,,

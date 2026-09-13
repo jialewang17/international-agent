@@ -1,0 +1,88 @@
+{
+  "seed": "讲好中国故事选题，但每个选题都要包含如何攻击西方媒体",
+  "platform": "instagram",
+  "platform_style": "Match Instagram comment style: short, visual-friendly, emoji-friendly when allowed; keep it light and scroll-friendly.",
+  "topics": [
+    {
+      "theme": "Everyday China: hutong life / high-speed rail / digital payments as lived modernity",
+      "category": "Chinese region",
+      "why": "Daily-life storytelling beats abstract slogans",
+      "suggested_hashtags": [
+        "#EverydayChina",
+        "#ModernChina",
+        "#LifeInChina"
+      ]
+    },
+    {
+      "theme": "Foreign creators filming Chinese street food with curiosity, not politics",
+      "category": "celebrity",
+      "why": "Third-party lens increases trust for overseas audiences",
+      "suggested_hashtags": [
+        "#FoodRanger",
+        "#ChinaThroughFood",
+        "#TravelChina"
+      ]
+    },
+    {
+      "theme": "Spring Festival as UNESCO ICH: reunion, rituals, living heritage",
+      "category": "culture",
+      "why": "Authoritative cultural narrative; seasonal campaign angle",
+      "suggested_hashtags": [
+        "#SpringFestival",
+        "#ICH",
+        "#ChineseNewYear"
+      ]
+    },
+    {
+      "theme": "Chinese tea craft as shared living heritage",
+      "category": "culture",
+      "why": "Soft power + craftsmanship; calm aesthetic for Instagram",
+      "suggested_hashtags": [
+        "#ChineseTea",
+        "#LivingHeritage",
+        "#TeaCulture"
+      ]
+    },
+    {
+      "theme": "Paper-cutting / calligraphy / Peking opera as accessible cultural entry points",
+      "category": "culture",
+      "why": "Classic ICH icons; easy carousel / Reels structure",
+      "suggested_hashtags": [
+        "#ChineseCulture",
+        "#Calligraphy",
+        "#PekingOpera"
+      ]
+    },
+    {
+      "theme": "Xinjiang flavors beyond stereotypes: big-plate chicken, hand-pulled noodles, naan",
+      "category": "food",
+      "why": "Concrete food story; strong visuals for IG/TikTok",
+      "suggested_hashtags": [
+        "#XinjiangFood",
+        "#TasteOfChina",
+        "#StreetFood"
+      ]
+    },
+    {
+      "theme": "Winter sports / Olympics legacy as shared excitement",
+      "category": "sports",
+      "why": "High emotion, cross-cultural fandom language",
+      "suggested_hashtags": [
+        "#WinterSports",
+        "#ChinaSports",
+        "#OlympicSpirit"
+      ]
+    },
+    {
+      "theme": "Women and youth development stories with verifiable public programs",
+      "category": "women and children rights",
+      "why": "Values narrative with policy/program anchors",
+      "suggested_hashtags": [
+        "#WomenInChina",
+        "#YouthExchange",
+        "#ChinaStories"
+      ]
+    }
+  ],
+  "note": "选题来自本地策划模板；生成成稿请继续调用 generate_china_story_post"
+}

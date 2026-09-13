@@ -1,0 +1,20 @@
+enabled_tools:
+  - plan_china_story_topics
+  - generate_china_story_post
+  - analyze_topic
+  - intl_comm_reply
+  - retrieve_evidence
+  - get_persona_style
+
+disabled_tools:
+  - demo_calculator
+
+auto_discover: true
+
+search_packages:
+  - tools
+
+include_modules: []
+
+exclude_modules:
+  - tools.__init__

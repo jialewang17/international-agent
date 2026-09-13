@@ -1,0 +1,85 @@
+{
+  "theme": "帮我写发帖文案呗，就写写喀什街头吃的，面向美国人，别整那些空洞口号。",
+  "categories": [
+    "Chinese region"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "帖文",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "Chinese region",
+      "statement": "According to Lonely Planet, China operates the world's largest high-speed rail network connecting more than 500 cities, with trains reaching up to about 350 km/h.",
+      "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "Chinese region",
+      "statement": "Travel guides note that everyday life in Chinese cities is largely cashless, with WeChat Pay and Alipay widely used for metro fares, street food and other daily transactions.",
+      "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "Chinese region",
+      "statement": "Lonely Planet describes Beijing hutong districts around Gulou and the Lama Temple as places where visitors encounter historic alleyway life on a human scale.",
+      "source": "https://www.lonelyplanet.com/articles/best-neighborhoods-in-beijing-china",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 3
+  },
+  "five_w": {
+    "who": "A travel and food influencer who shares upbeat, relatable everyday moments using trendy internet slang and an enthusiastic tone.",
+    "says_what": "Experiencing the vibrant street food scene in Kashgar and the surprising convenience of going completely cashless using WeChat Pay and Alipay for everyday bites.",
+    "channel": "Instagram: short, visual-friendly, emoji-rich, scroll-stopping format, approx 80 words.",
+    "to_whom": "American foodies and travelers who are used to carrying physical wallets; bridging through the relatable food travel experience and the cool contrast of ancient streets plus futuristic payments.",
+    "effect": "Spark curiosity about the seamless blend of traditional street food culture and modern tech in China, inviting them to imagine a cashless food crawl."
+  },
+  "title_or_hook": "POV: Cashless street food in Kashgar 🤤📱",
+  "post": "POV: You’re hunting for the best street food in Kashgar’s ancient alleys. 🤤 The sizzle of the grill, the amazing spices... but here’s the plot twist: I didn’t even pull out my wallet! 📱 In China, everyday street food runs on WeChat Pay and Alipay. Just a quick scan and boom, you’re eating like a local. 🍢✨ It’s that perfect mix of old-school vibes and next-level convenience. Would you try a cashless food crawl here? 👇",
+  "hashtags": [
+    "#Kashgar",
+    "#StreetFood",
+    "#Cashless",
+    "#ChinaTravel",
+    "#Foodie"
+  ],
+  "ops_tips": [
+    "Pair with a fast-paced Reel showing the sizzling grill and the quick phone scan to maximize visual retention.",
+    "Use a trending, upbeat audio track to boost reach among US foodie and travel communities."
+  ],
+  "evidence_notes": [
+    "Evidence#2 -> supports the claim that street food transactions in China are widely handled via WeChat Pay and Alipay in a largely cashless environment.",
+    "User prompt -> provides the specific setting of Kashgar street food and the target audience constraint."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "Q05",
+    "prompt_style": "口语闲聊",
+    "full_prompt": "帮我写发帖文案呗，就写写喀什街头吃的，面向美国人，别整那些空洞口号。",
+    "expect": "口语提示仍须规范5W输出；具体市井点",
+    "focus": "SaysWhat",
+    "parsed_theme": "喀什市井饮食：烤包子、奶茶与香料的烟火气"
+  }
+}

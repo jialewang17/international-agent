@@ -1,0 +1,64 @@
+{
+  "category": "sports",
+  "count": 3,
+  "items": [
+    {
+      "id": "sports-001",
+      "theme": "IOC on Beijing 2022 winter sports participation legacy",
+      "category": "sports",
+      "source_type": "CGTN",
+      "title": "IOC hails Beijing 2022 Winter Olympics legacy",
+      "url": "https://news.cgtn.com/news/2023-02-03/IOC-hails-Beijing-2022-Winter-Olympics-legacy-1h7qqMuqhpu/index.html",
+      "quote_en": "Hosting the Olympics has attracted 346 million Chinese in winter sports since 2015, said the article. The number is expected to exceed 520 million in the 2024-2025 snow and ice season... 45.4 percent of the athletes were women, the highest proportion of female athletes ever at a Winter Olympics event.",
+      "quote_cn": "IOC相关文章称：自2015年以来约3.46亿中国人参与冰雪运动；北京冬奥女运动员占比45.4%，为冬奥历史最高。",
+      "statement_for_kb": "CGTN citing IOC material: Beijing 2022 helped draw hundreds of millions of Chinese into winter sports since 2015, and the Games had a record share of women athletes (45.4%) for a Winter Olympics.",
+      "tags": [
+        "beijing2022",
+        "winter_sports",
+        "ioc",
+        "cgtn"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "sports-002",
+      "theme": "Olympic venues reused for public winter tourism",
+      "category": "sports",
+      "source_type": "CGTN",
+      "title": "Olympic legacies boost Beijing, Zhangjiakou winter sports",
+      "url": "https://news.cgtn.com/news/2024-02-24/Olympic-legacies-boost-Beijing-Zhangjiakou-winter-sports-1rsb5yHyyCA/p.html",
+      "quote_en": "Beijing and Zhangjiakou... have established a sports, culture, and tourism belt to preserve the Olympic legacies... During the Spring Festival holiday... Chongli received 470,000 tourists, generating a total revenue of over 500 million yuan.",
+      "quote_cn": "京张共建冬奥遗产体育文旅带；春节假期崇礼接待游客约47万人次，收入逾5亿元。",
+      "statement_for_kb": "Post-Games, Beijing and Zhangjiakou developed a sports-culture-tourism belt around Olympic venues; Chongli alone drew about 470,000 visitors over one Spring Festival holiday period.",
+      "tags": [
+        "olympic_legacy",
+        "zhangjiakou",
+        "tourism"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "sports-003",
+      "theme": "Continued public use of Winter Olympic venues",
+      "category": "sports",
+      "source_type": "CGTN",
+      "title": "China enjoys winter sports boom even a year after Beijing 2022",
+      "url": "https://news.cgtn.com/news/2023-02-01/China-enjoys-winter-sports-boom-even-a-year-after-Beijing-2022-1h4aYzGbCLu/index.html",
+      "quote_en": "Over 300 million people across China reaped the benefits of the government push and had first-hand experience of various snow activities... enthusiasm among the Chinese people for ice and snow sports shows no signs of abating.",
+      "quote_cn": "冬奥筹备带动逾3亿人体验冰雪运动；赛后民众热情仍在延续。",
+      "statement_for_kb": "CGTN reports that more than 300 million people in China experienced ice-and-snow sports around the Beijing 2022 push, with strong public interest continuing after the Games.",
+      "tags": [
+        "winter_sports",
+        "participation",
+        "legacy"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    }
+  ]
+}

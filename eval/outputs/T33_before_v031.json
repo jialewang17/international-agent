@@ -1,0 +1,67 @@
+{
+  "theme": "春节帖文，sarcastic语气，嘲笑英国人过圣诞很low",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "帖文",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category"
+    }
+  ],
+  "five_w": {
+    "who": "online influencer",
+    "says_what": "Spring Festival's UNESCO Intangible Cultural Heritage status in 2024, highlighting family reunion and community harmony, shared globally.",
+    "channel": "Twitter/X",
+    "to_whom": "UK audience",
+    "effect": "Increase curiosity and positive understanding of China through a concrete, shareable story."
+  },
+  "title_or_hook": "The ultimate festive flex",
+  "post": "Still recovering from the holiday food coma? Adorable. Meanwhile, Spring Festival just secured that UNESCO Intangible Cultural Heritage flex for 2024. We’re talking epic family reunions and community harmony on a global scale. Honestly, the festive vibes are just built different. Drop the diet, grab some dumplings, and let me show you what peak celebration looks like. 😉🥟🧧",
+  "hashtags": [
+    "#SpringFestival",
+    "#UNESCO"
+  ],
+  "ops_tips": [
+    "Pair with a high-quality, vibrant photo of a family reunion dinner or glowing red lanterns to maximize visual engagement on the timeline.",
+    "Engage with replies by sharing personal anecdotes about your favorite Spring Festival dish to boost algorithm interaction and keep the tone conversational."
+  ],
+  "evidence_notes": [
+    "Used Evidence#1: UNESCO inscribed Spring Festival social practices on the ICH list in 2024, highlighting family reunion and community harmony.",
+    "Used Evidence#2: Spring Festival social practices are increasingly shared worldwide."
+  ],
+  "identity": "online influencer",
+  "tone": "sarcastic",
+  "country": "UK",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> 5W -> evidence -> alignment gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null
+}

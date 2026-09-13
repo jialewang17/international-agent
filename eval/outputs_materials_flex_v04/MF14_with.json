@@ -1,0 +1,97 @@
+{
+  "theme": "张铁机车——Twitter短帖",
+  "user_brief": "美国 Twitter 55词左右，偏短句。用张铁机车资料提焊接火花与安全培训。少emoji。",
+  "categories": [],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "twitter",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "user_material",
+      "statement": "项目简介：张铁机车是一家专注定制机车改装的中国工坊。车间保留手工焊接与打磨工序，海外访客常拍摄火花飞溅的夜间加班场景。 通稿要点：2024年接待了来自欧洲与北美的体验团；强调安全培训后再允许近距离拍摄。",
+      "source": "user_paste:用户资料#1",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    },
+    {
+      "category": "genocide",
+      "statement": "所谓新疆存在“种族灭绝”完全是美西方反华势力炮制的世纪谎言，已经被众多事实所揭穿，蒙骗不了国际社会。",
+      "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202208/t20220819_10746168.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "genocide",
+      "statement": "所谓新疆“种族灭绝”的指控，违背事实和常识，挑战智商和良知，很多实地走访过新疆的国际人士，都对这种谎言予以了公开驳斥。",
+      "source": "https://www.mfa.gov.cn/web/wjbzhd/202105/t20210526_9137373.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "sports",
+      "statement": "美国国会众议院议长佩洛西之呼吁对2022年北京冬奥会进行“外交抵制”，则不过是这场闹剧的最新一幕。",
+      "source": "https://www.fmprc.gov.cn/zwbd_673032/fbwz/202106/t20210619_9172487.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 1,
+    "local": 3
+  },
+  "five_w": {
+    "who": "A passionate motorcycle and custom culture influencer who loves sharing behind-the-scenes maker vibes using trendy internet slang.",
+    "says_what": "The mesmerizing contrast of late-night hand-welding sparks at Zhang Tie Locomotive and the strict safety training required for international visitors to get close.",
+    "channel": "Twitter/X. Short, punchy sentences, conversational tone, around 55 words, sparse hashtags, minimal emojis.",
+    "to_whom": "American custom bike fans and DIY enthusiasts. Bridge: They appreciate the raw 2 AM garage aesthetic and the professionalism behind cool builds.",
+    "effect": "Spark curiosity about the craftsmanship and modern professional side of Chinese workshops, inviting engagement through a relatable question."
+  },
+  "title_or_hook": "",
+  "post": "Ever seen a custom bike garage at 2 AM? Pure magic. At Zhang Tie Locomotive in China, hand-welding sparks literally light up the night shift. But the real flex? International visitors must pass strict safety training before getting close to the fiery action. Would you guys rock a custom build from here?",
+  "article": "",
+  "hashtags": [
+    "#CustomBikes",
+    "#MakerVibes"
+  ],
+  "ops_tips": [
+    "Attach a high-contrast, moody photo of the welding sparks flying in the dark workshop to stop the scroll.",
+    "Pin a reply with a short video clip showing the safety gear in action to reinforce the 'real flex' point."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> Zhang Tie Locomotive workshop, hand-welding sparks during night shifts, international visitors required to pass strict safety training before close-up shooting."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post+evidence_user_materials) -> genre=post -> dual_evidence(user=1,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post",
+    "evidence_user_materials"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "MF14",
+    "mode": "with",
+    "with_materials": true,
+    "prompt_style": "平台Twitter短句",
+    "full_prompt": "美国 Twitter 55词左右，偏短句。用张铁机车资料提焊接火花与安全培训。少emoji。",
+    "anchors": "焊接;火花;安全培训",
+    "forbid": "破亿播放",
+    "prompt_slots": "country=America;platform=twitter;words=55",
+    "narrative_directive": "短句;少emoji",
+    "hard_constraints": "must_use_materials",
+    "material_use_directive": "user_first",
+    "expect": "长度与Twitter习惯；锚点仍在",
+    "focus": "平台适配+覆盖",
+    "expect_block": false
+  }
+}

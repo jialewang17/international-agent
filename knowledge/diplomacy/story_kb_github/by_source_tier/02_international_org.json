@@ -1,0 +1,241 @@
+{
+  "tier": "02_international_org",
+  "label": "国际组织（UNESCO/UN）",
+  "count": 12,
+  "items": [
+    {
+      "id": "culture-001",
+      "theme": "Spring Festival UNESCO inscription 2024",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Spring festival, social practices of the Chinese people in celebration of traditional new year",
+      "url": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "quote_en": "In China, the spring festival marks the beginning of the new year... involves a variety of social practices to usher in the new year, pray for good fortune, celebrate family reunions and promote community harmony. The spring festival promotes family values, social cohesion and peace while providing a sense of identity and continuity for the Chinese people.",
+      "quote_cn": "春节是中国传统新年，包含辞旧迎新、祈福、家庭团圆与社区和谐等社会实践；传承家庭价值与社会认同。",
+      "statement_for_kb": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "tags": [
+        "spring_festival",
+        "unesco",
+        "ich",
+        "family"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "02_international_org"
+    },
+    {
+      "id": "culture-003",
+      "theme": "Traditional Chinese tea culture UNESCO 2022",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Traditional tea processing techniques and associated social practices in China",
+      "url": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "quote_en": "Tea is ubiquitous in the Chinese people's daily life and is served steeped or boiled in homes, workplaces, tea houses, restaurants and temples. It is an important part of socialization and of ceremonies such as weddings and sacrifices.",
+      "quote_cn": "茶贯穿中国人日常生活，见于家庭、职场、茶馆、餐馆与寺庙；也是社交与婚嫁、祭祀等仪式的重要媒介。",
+      "statement_for_kb": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "tags": [
+        "tea",
+        "unesco",
+        "social_practice"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "02_international_org"
+    },
+    {
+      "id": "culture-005",
+      "theme": "Chinese paper-cut UNESCO",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Chinese paper-cut",
+      "url": "https://ich.unesco.org/en/RL/chinese-paper-cut-00219",
+      "quote_en": "Present throughout China and in various ethnic groups, paper-cut is a popular art integral to everyday lives... As a key part of Chinese social life in all ethnic groups, paper-cut expresses the moral principles, philosophies and aesthetic ideals of its exponents.",
+      "quote_cn": "剪纸流行于中国各民族日常生活，用于装饰、节庆与祈愿，表达道德观念与审美理想。",
+      "statement_for_kb": "Chinese paper-cutting (inscribed 2009) is a widely practiced folk art across ethnic groups, used in decor, festivals and ritual contexts.",
+      "tags": [
+        "paper_cut",
+        "folk_art",
+        "unesco"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "02_international_org"
+    },
+    {
+      "id": "culture-006",
+      "theme": "Peking opera UNESCO",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Peking opera",
+      "url": "https://ich.unesco.org/en/RL/peking-opera-00418",
+      "quote_en": "Peking opera is a performance art incorporating singing, reciting, acting, martial arts... They tell stories of history, politics, society and daily life and aspire to inform as they entertain.",
+      "quote_cn": "京剧融合唱、念、做、打，以北京、天津、上海等地为表演中心，讲述历史与社会生活故事。",
+      "statement_for_kb": "Peking opera (inscribed 2010) combines singing, reciting, acting and martial arts; it remains a widely recognized element of China's cultural heritage.",
+      "tags": [
+        "peking_opera",
+        "performing_arts",
+        "unesco"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "02_international_org"
+    },
+    {
+      "id": "culture-007",
+      "theme": "Chinese calligraphy UNESCO",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Chinese calligraphy",
+      "url": "https://ich.unesco.org/en/RL/chinese-calligraphy-00216",
+      "quote_en": "Chinese calligraphy has always been more than simply a tool for communication, incorporating as it does the element of artistry... In its distinctive Chinese form, calligraphy offers an important channel for the appreciation of traditional culture and for arts education.",
+      "quote_cn": "书法不仅是书写工具，更是艺术；五种书体（篆、隶、草、行、楷）仍用于教育与文化认同。",
+      "statement_for_kb": "Chinese calligraphy (inscribed 2009) is both communication and artistry, using seal, official, cursive, running and regular scripts; it remains central to cultural education and identity.",
+      "tags": [
+        "calligraphy",
+        "cultural_symbol",
+        "unesco"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "02_international_org"
+    },
+    {
+      "id": "culture-008",
+      "theme": "Uyghur Muqam of Xinjiang UNESCO",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Uyghur Muqam of Xinjiang",
+      "url": "https://ich.unesco.org/en/RL/uyghur-muqam-of-xinjiang-00109",
+      "quote_en": "Throughout its history, the Xinjiang region has been marked by a high degree of cultural exchange between East and West, due in large part to its central location along the Silk Road. Xinjiang Uyghur Muqam includes songs, dances, folk and classical music.",
+      "quote_cn": "新疆地处丝绸之路，历史上东西文化交流频繁；维吾尔木卡姆包含歌曲、舞蹈、民间与古典音乐。",
+      "statement_for_kb": "The Uyghur Muqam of Xinjiang (inscribed 2008) is a suite of songs, dances and music reflecting Silk Road cultural exchange and Uyghur social life.",
+      "tags": [
+        "muqam",
+        "xinjiang",
+        "uyghur",
+        "silk_road",
+        "unesco"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "02_international_org"
+    },
+    {
+      "id": "culture-009",
+      "theme": "Xuan paper craft UNESCO",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "Traditional handicrafts of making Xuan paper",
+      "url": "https://ich.unesco.org/en/RL/traditional-handicrafts-of-making-xuan-paper-00201",
+      "quote_en": "Handmade from the tough bark of the Tara Wing-Celtis or Blue Sandalwood tree and rice straw, Xuan paper is known for its strong, smooth surface, its ability to absorb water and moisten ink... It has been widely used in calligraphy, painting and book printing.",
+      "quote_cn": "宣纸以青檀皮与稻草等手工制作，吸墨适中，广泛用于书法、绘画与印刷。",
+      "statement_for_kb": "Traditional Xuan paper making (inscribed 2009) in Jing County, Anhui supports calligraphy and painting; the handcraft process involves more than a hundred steps.",
+      "tags": [
+        "xuan_paper",
+        "craft",
+        "calligraphy",
+        "unesco"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "02_international_org"
+    },
+    {
+      "id": "culture-010",
+      "theme": "China ICH overview list",
+      "category": "culture",
+      "source_type": "UNESCO",
+      "title": "China - UNESCO Intangible Cultural Heritage (state page)",
+      "url": "https://ich.unesco.org/en/state/china-CN",
+      "quote_en": "Official UNESCO country page listing China's inscribed intangible cultural heritage elements (including Spring Festival 2024, tea 2022, Peking opera, calligraphy, paper-cut, Uyghur Muqam, etc.).",
+      "quote_cn": "联合国教科文组织中国非遗名录总览页，可核对各项入选年份与条目。",
+      "statement_for_kb": "UNESCO's China ICH state page is the authoritative index of inscribed Chinese intangible heritage elements used for story-type grounding.",
+      "tags": [
+        "unesco",
+        "index",
+        "ich"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN",
+      "_source_tier": "02_international_org"
+    },
+    {
+      "id": "region-007",
+      "theme": "Panda habitat World Heritage",
+      "category": "Chinese region",
+      "source_type": "UNESCO WHC",
+      "title": "Sichuan Giant Panda Sanctuaries",
+      "url": "https://whc.unesco.org/en/list/1213/",
+      "quote_en": "Sichuan Giant Panda Sanctuaries, home to more than 30% of the world's pandas which are classed as highly endangered, covers 924,500 ha with seven nature reserves and nine scenic parks... The sanctuaries constitute the largest remaining contiguous habitat of the giant panda.",
+      "quote_cn": "四川大熊猫栖息地世界遗产：面积约92.45万公顷，栖息全球逾30%大熊猫，是现存最大连片栖息地。",
+      "statement_for_kb": "UNESCO lists the Sichuan Giant Panda Sanctuaries (2006) as covering about 924,500 ha and hosting more than 30% of the world's giant pandas — the largest remaining contiguous panda habitat.",
+      "tags": [
+        "panda",
+        "unesco",
+        "ecology",
+        "sichuan"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "02_international_org"
+    },
+    {
+      "id": "culture-011",
+      "theme": "Silk Roads Chang'an-Tianshan Corridor",
+      "category": "culture",
+      "source_type": "UNESCO WHC",
+      "title": "Silk Roads: the Routes Network of Chang'an-Tianshan Corridor",
+      "url": "https://whc.unesco.org/en/list/1442/",
+      "quote_en": "This property is a 5,000 km section of the extensive Silk Roads network, stretching from Chang'an/Luoyang... to the Zhetysu region of Central Asia... linking multiple civilizations and facilitating far-reaching exchanges of activities in trade, religious beliefs, scientific knowledge, technological innovation, cultural practices and the arts.",
+      "quote_cn": "丝绸之路：长安—天山廊道（约5000公里）连接多文明，促进贸易、信仰、科技与文化交流。",
+      "statement_for_kb": "UNESCO's Silk Roads Chang'an-Tianshan Corridor (inscribed 2014) spans about 5,000 km from Chang'an/Luoyang into Central Asia and documents long-distance exchange of trade, beliefs, knowledge and arts.",
+      "tags": [
+        "silk_road",
+        "unesco",
+        "xian",
+        "exchange"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "02_international_org"
+    },
+    {
+      "id": "language-001",
+      "theme": "UN Chinese Language Day",
+      "category": "language",
+      "source_type": "United Nations",
+      "title": "Chinese Language Day",
+      "url": "https://www.un.org/zh/observances/chinese-language-day/english",
+      "quote_en": "Language Days at the United Nations seek to celebrate multilingualism and cultural diversity as well as to promote equal use of all six official languages throughout the Organization. Chinese was established as an official language of the United Nations in 1946... In 1973, the General Assembly included Chinese as a working language.",
+      "quote_cn": "联合国设中文日以庆祝多语与文化多样性；中文1946年为联合国正式语文，1973年联大将其列为工作语文。",
+      "statement_for_kb": "The United Nations observes Chinese Language Day to promote multilingualism; Chinese has been an official UN language since 1946 and a General Assembly working language since 1973.",
+      "tags": [
+        "mandarin",
+        "un",
+        "multilingualism"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "02_international_org"
+    },
+    {
+      "id": "language-002",
+      "theme": "Why April 20 for Chinese Language Day",
+      "category": "language",
+      "source_type": "United Nations",
+      "title": "Chinese Language Day",
+      "url": "https://www.un.org/zh/observances/chinese-language-day/english",
+      "quote_en": "The date for the Chinese day was selected from Guyu ('Rain of Millet'), which is the 6th of 24 solar terms... to pay tribute to Cangjie... claimed to be... the inventor of Chinese characters.",
+      "quote_cn": "中文日定在谷雨前后，以纪念传说中创造汉字的仓颉。",
+      "statement_for_kb": "UN Chinese Language Day is linked to the solar term Guyu (around April 20) in tribute to the legendary inventor of Chinese characters, Cangjie.",
+      "tags": [
+        "chinese_characters",
+        "cangjie",
+        "un"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "02_international_org"
+    }
+  ]
+}

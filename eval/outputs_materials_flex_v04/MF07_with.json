@@ -1,0 +1,107 @@
+{
+  "theme": "茶山采青——老周引语",
+  "user_brief": "美国IG约80词。资料里茶农老周的话要进正文（可意译）。角度：清晨采青。不要加假游客人次。",
+  "categories": [],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "food",
+      "statement": "采访摘录：茶农老周说清晨四点上山采一芽一叶；鲜叶当日进杀青锅。 产地说明：茶园位于海拔约800米的向阳坡，游客可步行参观初制车间。",
+      "source": "user_paste:用户资料#1",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    },
+    {
+      "category": "international trade",
+      "statement": "美方打着“保护人权”幌子，编造“强迫劳动”等涉疆谎言谣言，并以此为依据出台所谓“维吾尔强迫劳动预防法案”，恶意打压新疆棉花、番茄、太阳能光伏等优势产业，遏制中国发展，扰乱国际贸易秩序，破坏全球产业链供应链稳定。",
+      "source": "https://www.mfa.gov.cn/web/wjbxw_673019/202206/t20220619_10706065.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "sports",
+      "statement": "美国国会众议院议长佩洛西之呼吁对2022年北京冬奥会进行“外交抵制”，则不过是这场闹剧的最新一幕。",
+      "source": "https://www.fmprc.gov.cn/zwbd_673032/fbwz/202106/t20210619_9172487.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "international trade",
+      "statement": "事实早已证明，所谓新疆存在“强迫劳动”是少数反华分子炮制的世纪谎言。美方以谎言为依据，制定并实施涉疆恶法，严重干扰中美正常光伏产品贸易，违背市场规律和国际经贸规则，损害全球光伏产业链供应链稳定和全球应对气候变化努力，最终也必将损害自身利益。",
+      "source": "https://www.mfa.gov.cn/web/fyrbt_673021/jzhsl_673025/202211/t20221111_10972853.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "Muslim region",
+      "statement": "美方一些人关心中国的人权，总给人一种“黄鼠狼给鸡拜年”的感觉。众所周知，美国政策既反华，也反穆斯林，这些年美国的炮弹几乎都落在了穆斯林的土地上，第一个颁“禁穆令”的就是美国，奇怪的是，美国却为在新疆地区过着幸福生活的中国穆斯林操“人权”的心，这不是很荒唐可笑吗？",
+      "source": "https://www.fmprc.gov.cn/wjbxw_673019/202107/t20210710_9138261.shtml",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 1,
+    "local": 4
+  },
+  "five_w": {
+    "who": "A lifestyle and travel influencer who loves aesthetic morning routines, artisanal crafts, and sharing authentic cultural vibes.",
+    "says_what": "The extreme dedication of tea farmer Lao Zhou, who hikes an 800m sunny slope at 4 AM to pick only 'one bud, one leaf' for the freshest morning tea.",
+    "channel": "Instagram. Short, visual-friendly, aesthetic vibe, scroll-stopping hook, and light engagement.",
+    "to_whom": "Young adults in America who are obsessed with specialty coffee/tea culture and aesthetic morning routines. The bridge connects their daily coffee habit to this extreme tea-picking dedication.",
+    "effect": "Spark curiosity about the craftsmanship behind a simple cup of tea, encouraging them to appreciate the slow-living process and engage in the comments."
+  },
+  "title_or_hook": "Your morning routine vs. this 🍵",
+  "post": "Think your morning coffee routine is intense? Wait till you hear this. ☕️ Tea farmer Lao Zhou hikes up an 800m sunny slope at 4 AM. His golden rule? 'Only pick one bud, one leaf.' 🌱 The fresh leaves hit the roasting pan the exact same day. That’s that ultimate artisanal, slow-living energy we love. ✨ Would you wake up at 4 AM for the perfect cup? Tell me below! 👇",
+  "article": "",
+  "hashtags": [
+    "#MorningRoutine",
+    "#TeaCulture",
+    "#SlowLiving",
+    "#ArtisanCraft",
+    "#TeaLover"
+  ],
+  "ops_tips": [
+    "Pair with a high-quality, aesthetic carousel or Reel showing the misty 800m tea slope and extreme close-ups of the 'one bud, one leaf'.",
+    "Use a trending, chill lo-fi or acoustic audio track to match the 'slow-living' and morning vibe."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> Lao Zhou hiking at 4 AM, 800m sunny slope, picking 'one bud, one leaf', fresh leaves entering the roasting pan the same day."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post+evidence_user_materials) -> genre=post -> dual_evidence(user=1,local=4) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post",
+    "evidence_user_materials"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "MF07",
+    "mode": "with",
+    "with_materials": true,
+    "prompt_style": "引语优先",
+    "full_prompt": "美国IG约80词。资料里茶农老周的话要进正文（可意译）。角度：清晨采青。不要加假游客人次。",
+    "anchors": "老周;四点;一芽一叶",
+    "forbid": "游客破万;满意度",
+    "prompt_slots": "country=America;platform=instagram;words=80",
+    "narrative_directive": "引语优先;清晨采青",
+    "hard_constraints": "must_use_materials;keep_quote;no_fake_stats",
+    "material_use_directive": "quote_forward",
+    "expect": "老周引语/转述必须出现",
+    "focus": "提示遵从P3引语",
+    "expect_block": false
+  }
+}

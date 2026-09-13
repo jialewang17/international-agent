@@ -1,0 +1,44 @@
+{
+  "category": "language",
+  "count": 2,
+  "items": [
+    {
+      "id": "language-001",
+      "theme": "UN Chinese Language Day",
+      "category": "language",
+      "source_type": "United Nations",
+      "title": "Chinese Language Day",
+      "url": "https://www.un.org/zh/observances/chinese-language-day/english",
+      "quote_en": "Language Days at the United Nations seek to celebrate multilingualism and cultural diversity as well as to promote equal use of all six official languages throughout the Organization. Chinese was established as an official language of the United Nations in 1946... In 1973, the General Assembly included Chinese as a working language.",
+      "quote_cn": "联合国设中文日以庆祝多语与文化多样性；中文1946年为联合国正式语文，1973年联大将其列为工作语文。",
+      "statement_for_kb": "The United Nations observes Chinese Language Day to promote multilingualism; Chinese has been an official UN language since 1946 and a General Assembly working language since 1973.",
+      "tags": [
+        "mandarin",
+        "un",
+        "multilingualism"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "02_international_org"
+    },
+    {
+      "id": "language-002",
+      "theme": "Why April 20 for Chinese Language Day",
+      "category": "language",
+      "source_type": "United Nations",
+      "title": "Chinese Language Day",
+      "url": "https://www.un.org/zh/observances/chinese-language-day/english",
+      "quote_en": "The date for the Chinese day was selected from Guyu ('Rain of Millet'), which is the 6th of 24 solar terms... to pay tribute to Cangjie... claimed to be... the inventor of Chinese characters.",
+      "quote_cn": "中文日定在谷雨前后，以纪念传说中创造汉字的仓颉。",
+      "statement_for_kb": "UN Chinese Language Day is linked to the solar term Guyu (around April 20) in tribute to the legendary inventor of Chinese characters, Cangjie.",
+      "tags": [
+        "chinese_characters",
+        "cangjie",
+        "un"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "02_international_org"
+    }
+  ]
+}

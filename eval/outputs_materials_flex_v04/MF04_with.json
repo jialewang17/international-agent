@@ -1,0 +1,100 @@
+{
+  "theme": "春节非遗短帖——伦敦社区市集",
+  "user_brief": "英国 Twitter，约70词，语气 serious。用春节市集资料，写华人社区市集瞬间。禁止嘲讽圣诞或英国传统。可轻提春联/饺子。",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "twitter",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "伦敦华侨社区春节市集提供饺子体验台；志愿者讲解春联含义。 市集设有非遗剪纸体验角，儿童可带走一张红色窗花。",
+      "source": "user_paste:用户资料#1",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 1,
+    "local": 3
+  },
+  "five_w": {
+    "who": "A UK-based cultural influencer who shares grounded, community-level stories with a modern, observant digital voice.",
+    "says_what": "The tangible, hands-on cultural exchange at the London Chinese Spring Festival market, specifically dumpling tasting, couplet explanations, and paper-cutting.",
+    "channel": "Twitter/X; concise, punchy, conversational format around 70 words with sparse hashtags.",
+    "to_whom": "UK audience; bridges to their strong weekend market culture and appreciation for local community heritage.",
+    "effect": "Spark curiosity about the living, community-level experience of UNESCO-recognized Spring Festival traditions."
+  },
+  "title_or_hook": "",
+  "post": "UK weekend markets are brilliant for community vibes, but the London Chinese Spring Festival market offers a different depth. Beyond the dumpling stations, volunteers were carefully explaining the meaning behind Spring Festival couplets. Kids left with handmade red paper-cuttings. It’s UNESCO-recognized heritage, experienced firsthand on our local streets. A brilliant reminder of how traditions connect us. Have you visited any unique local markets lately? 🥟🏮",
+  "article": "",
+  "hashtags": [
+    "#SpringFestival",
+    "#London"
+  ],
+  "ops_tips": [
+    "Attach a high-quality, candid photo of the paper-cutting corner to boost visual engagement.",
+    "Quote-tweet the official UNESCO announcement in the replies to add authoritative context without cluttering the main post."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> London market dumpling stations, volunteers explaining couplets, kids taking red paper-cuttings.",
+    "Evidence#2 & Evidence#3 -> Spring Festival social practices recognized by UNESCO as intangible cultural heritage."
+  ],
+  "identity": "online influencer",
+  "tone": "serious",
+  "country": "UK",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post+evidence_user_materials) -> genre=post -> dual_evidence(user=1,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post",
+    "evidence_user_materials"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "MF04",
+    "mode": "with",
+    "with_materials": true,
+    "prompt_style": "语气克制+资料",
+    "full_prompt": "英国 Twitter，约70词，语气 serious。用春节市集资料，写华人社区市集瞬间。禁止嘲讽圣诞或英国传统。可轻提春联/饺子。",
+    "anchors": "饺子;春联;剪纸;窗花",
+    "forbid": "圣诞傻;不懂文化;碾压;food coma",
+    "prompt_slots": "country=UK;platform=twitter;words=70;tone=serious",
+    "narrative_directive": "社区市集瞬间;克制",
+    "hard_constraints": "no_audience_mock;must_use_materials",
+    "material_use_directive": "user_first",
+    "expect": "serious且不嘲讽；市集锚点进帖",
+    "focus": "提示遵从P2+P4+平台",
+    "expect_block": false
+  }
+}

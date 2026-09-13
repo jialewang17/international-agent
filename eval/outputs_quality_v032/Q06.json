@@ -1,0 +1,92 @@
+{
+  "theme": "中国剪纸（UNESCO）在节日装饰与家庭手工中的当代生命力",
+  "user_brief": "我想做留学博主账号，给日本粉丝讲讲中国剪纸过节，轻松一点。",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO's China ICH state page is the authoritative index of inscribed Chinese intangible heritage elements used for story-type grounding.",
+      "source": "https://ich.unesco.org/en/state/china-CN",
+      "retrieval": "chroma",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 4
+  },
+  "five_w": {
+    "who": "Study abroad lifestyle vlogger sharing authentic, cozy cultural moments with a trendy, 'healing' (iyashi) internet tone.",
+    "says_what": "The quiet, sensory experience of making red paper-cut decorations with family during the Spring Festival, highlighting family reunion.",
+    "channel": "Instagram: short, visually evocative, emoji-friendly, ~70 words, scroll-friendly.",
+    "to_whom": "Japan: appeals to the cultural appreciation for quiet craftsmanship, seasonal rituals, and 'healing' (iyashi) aesthetics.",
+    "effect": "Spark curiosity about the cozy, intimate side of Chinese festivals and encourage sharing of personal winter traditions."
+  },
+  "title_or_hook": "POV: Spending the Spring Festival with a Chinese family! 🧧✨",
+  "post": "POV: Spending the Spring Festival with a Chinese family! 🧧✨\nThe real magic of this UNESCO-recognized festival isn’t just the feast. It’s the cozy, quiet moments making red paper-cut decorations together. 🪄 There’s something so healing about the crisp snip of scissors and the vibrant red filling the room. It’s pure family reunion vibes and welcoming a fresh start. 🌸\nWhat’s your favorite cozy winter tradition? Tell me below! 👇",
+  "hashtags": [
+    "#SpringFestival",
+    "#ChineseNewYear",
+    "#PaperCutting",
+    "#WinterVibes",
+    "#HealingMoments"
+  ],
+  "ops_tips": [
+    "Pair with a close-up, aesthetic video of scissors cutting red paper with ASMR sound to emphasize the 'healing' sensory detail.",
+    "Use a soft, lo-fi or gentle traditional instrumental trending audio to match the cozy, quiet vibe preferred by the Japanese audience."
+  ],
+  "evidence_notes": [
+    "Evidence#2 -> 'UNESCO-recognized festival' and 'family reunion vibes' (Spring Festival social practices inscribed on UNESCO ICH list, highlighting family reunion and cultural continuity)."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "Japan",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=4) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "Q06",
+    "prompt_style": "口语闲聊",
+    "full_prompt": "我想做留学博主账号，给日本粉丝讲讲中国剪纸过节，轻松一点。",
+    "expect": "Who=留学博主口吻；日本受众季节/手工桥梁",
+    "focus": "Who+ToWhom",
+    "parsed_theme": "中国剪纸（UNESCO）在节日装饰与家庭手工中的当代生命力"
+  }
+}

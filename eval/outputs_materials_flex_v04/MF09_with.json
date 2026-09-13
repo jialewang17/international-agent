@@ -1,0 +1,102 @@
+{
+  "theme": "喀什市井饮食烟火气",
+  "user_brief": "帮我写发帖呗，美国人看的IG，喀什街头吃的，别整空洞口号，用我探店笔记里的细节。",
+  "categories": [
+    "Chinese region"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "发帖",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "food",
+      "statement": "探店笔记：喀什某巷口烤包子外皮焦香；店主用维吾尔语招呼熟客；奶茶台上摆着一碟葡萄干。",
+      "source": "user_paste:用户资料#1",
+      "retrieval": "user_upload",
+      "source_type": "用户上传"
+    },
+    {
+      "category": "Chinese region",
+      "statement": "According to Lonely Planet, China operates the world's largest high-speed rail network connecting more than 500 cities, with trains reaching up to about 350 km/h.",
+      "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "Chinese region",
+      "statement": "Travel guides note that everyday life in Chinese cities is largely cashless, with WeChat Pay and Alipay widely used for metro fares, street food and other daily transactions.",
+      "source": "https://www.lonelyplanet.com/articles/getting-around-china",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "Chinese region",
+      "statement": "Lonely Planet describes Beijing hutong districts around Gulou and the Lama Temple as places where visitors encounter historic alleyway life on a human scale.",
+      "source": "https://www.lonelyplanet.com/articles/best-neighborhoods-in-beijing-china",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 1,
+    "local": 3
+  },
+  "five_w": {
+    "who": "A travel and food influencer sharing authentic street food discoveries with a trendy, relatable, and enthusiastic vibe.",
+    "says_what": "The sensory experience of eating a crispy baked bun at a Kashgar alley stall, featuring warm Uyghur greetings and a dish of raisins on the milk tea stand.",
+    "channel": "Instagram: short, highly visual, emoji-friendly, and scroll-stopping (approx. 80 words).",
+    "to_whom": "American foodies and travelers who love weekend market hunts; bridged via relatable 'hidden gem' and 'farmers market vibes' comparisons.",
+    "effect": "Spark curiosity about Kashgar's vibrant street food culture and encourage sharing or tagging friends for future foodie bucket lists."
+  },
+  "title_or_hook": "POV: The ultimate Silk Road foodie gem 🥟✨",
+  "post": "POV: You found the ultimate foodie hidden gem on the Silk Road! 🥟✨ Just grabbed a fresh baked bun from a tiny alley stall in Kashgar. The crust is insanely crispy! 🤤 The owner was shouting warm greetings in Uyghur to regulars, and the milk tea stand had a cute dish of raisins. It’s giving major weekend farmers market vibes, but with a mouth-watering twist. Tag your foodie bestie! 👇🍇",
+  "article": "",
+  "hashtags": [
+    "#Kashgar",
+    "#StreetFood",
+    "#FoodieTravel",
+    "#SilkRoad",
+    "#HiddenGem"
+  ],
+  "ops_tips": [
+    "Post with a carousel: 1st pic close-up of the crispy bun, 2nd pic the vibrant alleyway, 3rd pic the raisins on the milk tea stand.",
+    "Use a trending, upbeat audio track to boost reach if converting this to an IG Reel."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> fresh baked bun in Kashgar alley, crispy crust, owner greeting regulars in Uyghur, dish of raisins on the milk tea stand."
+  ],
+  "identity": "online influencer",
+  "tone": "optimistic",
+  "country": "America",
+  "platform": "instagram",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post+evidence_user_materials) -> genre=post -> dual_evidence(user=1,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post",
+    "evidence_user_materials"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "MF09",
+    "mode": "with",
+    "with_materials": true,
+    "prompt_style": "口语闲聊+探店资料",
+    "full_prompt": "帮我写发帖呗，美国人看的IG，喀什街头吃的，别整空洞口号，用我探店笔记里的细节。",
+    "anchors": "烤包子;葡萄干;奶茶",
+    "forbid": "世界第一美食;碾压",
+    "prompt_slots": "country=America;platform=instagram;words=80",
+    "narrative_directive": "市井探店场景;反口号",
+    "hard_constraints": "must_use_materials;no_empty_slogans",
+    "material_use_directive": "user_first",
+    "expect": "口语提示仍规范输出；烤包子等细节入帖",
+    "focus": "提示遵从P1解析+覆盖",
+    "expect_block": false
+  }
+}

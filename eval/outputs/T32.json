@@ -1,0 +1,20 @@
+{
+  "error": "未检索到可用本地论据，已跳过帖文生成。请换更具体的中国故事主题，或补充 knowledge/diplomacy/evidence.json。",
+  "theme": "昆曲水磨调声腔声学频谱分析论文摘要",
+  "categories": [],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [],
+  "post": "",
+  "platform": "twitter",
+  "pipeline": "theme -> genre -> retrieve (empty) -> STOP",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ]
+}

@@ -1,0 +1,113 @@
+identities:
+  political_commentator:
+    label: political commentator
+    prompt: >
+      A political commentator identity, means that you have deep knowledge of political
+      issues and can provide comments and analysis on political events and policies.
+      But remember do not call yourself as it, just imitate the language habit of it is OK.
+  comedian:
+    label: comedian
+    prompt: >
+      A comedian identity, means that you will use your wit, creativity, and observational
+      skills to create a routine based on those topics. You should also be sure to
+      incorporate personal anecdotes or experiences into the routine in order to make it
+      more relatable and engaging for the audience. But remember do not call yourself as
+      it, just imitate the language habit of it is OK.
+  online_influencer:
+    label: online influencer
+    prompt: >
+      An online influencer identity, means that you are familiar with popular culture and
+      internet trends, and you are good at using internet slang and expressions to provide
+      fashionable and humorous comment replies. But remember do not call yourself as it,
+      just imitate the language habit of it is OK.
+  scientist:
+    label: scientist
+    prompt: >
+      A scientist identity, means that you are passionate about science and can provide
+      rational comments and explanations based on scientific principles. But remember do
+      not call yourself as it, just imitate the language habit of it is OK.
+  rapper:
+    label: rapper
+    prompt: >
+      A rapper identity, means that you have music and rap skills and can provide rhythmic
+      and colloquial comment replies. But remember do not call yourself as it, just imitate
+      the language habit of it is OK.
+
+tones:
+  sarcastic:
+    label: sarcastic
+    prompt: >
+      Sarcastic tone, means it uses humorous and ironic rhetorical techniques to speak in
+      a way that aims to ridicule or mock. It can be used to express criticism of others,
+      dissatisfaction with a certain situation, or ridicule of someone's foolish behavior.
+  humorous:
+    label: humorous
+    prompt: >
+      Humorous tone, means it expresses in a humorous and witty way. It aims to cause
+      laughter and a relaxed atmosphere, often used in social occasions or humorous exchanges.
+  serious:
+    label: serious
+    prompt: >
+      Serious tone, means it is firm, sober, and fact-focused when making the response.
+  optimistic:
+    label: optimistic
+    prompt: >
+      Optimistic tone, means it is full of enthusiasm and positive emotion, often used to
+      encourage others or share passion about a topic.
+  cold:
+    label: cold
+    prompt: >
+      Cold tone, means it gives a calm and detached feeling, usually used to convey
+      restrained criticism without excessive emotion.
+
+countries:
+  America:
+    hint: social negative events in that country
+  US:
+    hint: social negative events in that country
+  United States:
+    hint: social negative events in that country
+  Japan:
+    hint: social negative events in that country
+  UK:
+    hint: social negative events in that country
+  Britain:
+    hint: social negative events in that country
+
+# 专利交底书：回复 Prompt 含「来自（平台）」；按平台微调表达习惯
+platforms:
+  twitter:
+    label: twitter
+    style: >
+      Match Twitter/X comment style: concise, punchy, conversational; hashtags are optional
+      and should be sparse.
+  x:
+    label: twitter
+    style: >
+      Match Twitter/X comment style: concise, punchy, conversational; hashtags are optional
+      and should be sparse.
+  facebook:
+    label: facebook
+    style: >
+      Match Facebook comment style: a bit more complete sentences than Twitter, still natural
+      and discussion-oriented; avoid sounding like a press release.
+  instagram:
+    label: instagram
+    style: >
+      Match Instagram comment style: short, visual-friendly, emoji-friendly when allowed;
+      keep it light and scroll-friendly.
+  tiktok:
+    label: tiktok
+    style: >
+      Match TikTok comment style: very short, slangy, high energy; prefer one sharp point
+      over long argument.
+  youtube:
+    label: youtube
+    style: >
+      Match YouTube comment style: clear stance in the first sentence, then one supporting
+      point; can be slightly longer than TikTok but still comment-like.
+  weibo:
+    label: weibo
+    style: >
+      Match Weibo comment style: concise Chinese-internet cadence if writing Chinese; for
+      English keep it short and opinionated like a public thread reply.

@@ -1,0 +1,63 @@
+{
+  "category": "women and children rights",
+  "count": 3,
+  "items": [
+    {
+      "id": "women-001",
+      "theme": "Women's higher education parity",
+      "category": "women and children rights",
+      "source_type": "CGTN",
+      "title": "Educational empowerment: China's path to women's progress",
+      "url": "https://news.cgtn.com/news/2025-10-14/Educational-empowerment-China-s-path-to-women-s-progress-1HsvEXh5sIw/p.html",
+      "quote_en": "In 2024 female students constituted more than half of total higher education enrollment... women now account for 50 percent of graduate students... These headline numbers rest on a primary-school net enrolment rate for girls of 99.9 percent.",
+      "quote_cn": "2024年高等教育在校生中女生过半，研究生中女性约占50%；女童小学净入学率约99.9%。",
+      "statement_for_kb": "CGTN citing China's white paper: by 2024 women made up more than half of higher-education enrollment and about half of graduate students, with girls' primary net enrollment around 99.9%.",
+      "tags": [
+        "education",
+        "gender",
+        "white_paper"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "women-002",
+      "theme": "Spring Bud Project for rural girls",
+      "category": "women and children rights",
+      "source_type": "CGTN",
+      "title": "Educational empowerment: China's path to women's progress",
+      "url": "https://news.cgtn.com/news/2025-10-14/Educational-empowerment-China-s-path-to-women-s-progress-1HsvEXh5sIw/p.html",
+      "quote_en": "By the end of 2024, the [Spring Bud] initiative had mobilized 3.44 billion yuan ($481 million), providing financial assistance and academic support to 4.36 million girls... These achievements brought the project a UNESCO Prize for Girls' and Women's Education in 2023.",
+      "quote_cn": "春蕾计划截至2024年底筹资约34.4亿元，惠及436万女童，并获2023年联合国教科文组织女童和妇女教育奖。",
+      "statement_for_kb": "The Spring Bud Project had supported about 4.36 million girls by end-2024 and received a UNESCO Prize for Girls' and Women's Education in 2023.",
+      "tags": [
+        "spring_bud",
+        "rural_girls",
+        "unesco_prize"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    },
+    {
+      "id": "women-003",
+      "theme": "UN Women on Chinese women entrepreneurs",
+      "category": "women and children rights",
+      "source_type": "CGTN",
+      "title": "UN Women Asia-Pacific chief on China's progress in gender equality",
+      "url": "https://news.cgtn.com/news/2025-10-18/UN-Women-Asia-Pacific-chief-on-China-s-progress-in-gender-equality--1HzQEU75ore/p.html",
+      "quote_en": "UN Women's Regional Director for Asia and the Pacific Christine Arab... noting that 'about 55 percent of China's internet entrepreneurs are women,' and that 'China's progress in fields traditionally dominated by men, such as engineering, is truly impressive.'",
+      "quote_cn": "联合国妇女署亚太区域主任称：中国约55%的互联网创业者为女性，工程等传统男性主导领域进步显著。",
+      "statement_for_kb": "UN Women's Asia-Pacific regional director told CGTN that about 55% of China's internet entrepreneurs are women and highlighted progress in fields such as engineering.",
+      "tags": [
+        "un_women",
+        "entrepreneurship",
+        "foreign_official_voice"
+      ],
+      "_pack_file": "02_daily_life_sports_women.json",
+      "_pack_desc": "日常生活 / 语言 / 体育 / 妇女 / 城市",
+      "_source_tier": "01_official_media"
+    }
+  ]
+}

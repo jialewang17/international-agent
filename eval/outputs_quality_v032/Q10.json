@@ -1,0 +1,82 @@
+{
+  "theme": "中国书法（UNESCO非遗）作为日常表达与美育入口",
+  "user_brief": "你是科普取向的科学传播账号（scientist人设），面向英国读者，在Twitter发一条约70词的帖，严肃偏温和。主题：中国书法作为UNESCO非遗如何成为日常美育入口。要求：5W完整；可核验专名必须来自论据；evidence_notes写明Evidence编号对应关系；不要编造朝代年表。",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "twitter",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 3
+  },
+  "five_w": {
+    "who": "A science communicator analyzing the biochemistry and botany of daily cultural habits.",
+    "says_what": "China's traditional tea processing (UNESCO ICH 2022) uses controlled oxidation to create six main tea categories, turning a daily brew into an aesthetic and scientific practice.",
+    "channel": "Twitter/X; concise, punchy, ~70 words, serious and fact-focused tone.",
+    "to_whom": "UK audience; bridges via their cultural affinity for a 'daily cuppa', connecting it to the complex science of Chinese tea processing.",
+    "effect": "Increase curiosity about the scientific and cultural depth behind their daily tea ritual, fostering positive understanding of China's intangible heritage."
+  },
+  "title_or_hook": "",
+  "post": "You enjoy a daily cuppa, but consider the precise biochemistry behind it. China’s traditional tea processing, inscribed on the UNESCO ICH list in 2022, applies controlled oxidation to create six main tea categories and over 2,000 products. It transforms a simple leaf into a daily aesthetic practice. Next time you brew, observe the subtle chemical shifts in your cup. Which category do you prefer?",
+  "hashtags": [
+    "#TeaScience",
+    "#UNESCO"
+  ],
+  "ops_tips": [
+    "Ensure the attached image shows a clear, high-contrast macro shot of tea leaves or a brewing setup to match the scientific tone.",
+    "Pin a reply with a link to the UNESCO page for further reading."
+  ],
+  "evidence_notes": [
+    "Evidence#3 -> 'UNESCO ICH list in 2022', 'six main tea categories', 'over 2,000 products'"
+  ],
+  "identity": "scientist",
+  "tone": "serious",
+  "country": "UK",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "Q10",
+    "prompt_style": "角色设定长提示",
+    "full_prompt": "你是科普取向的科学传播账号（scientist人设），面向英国读者，在Twitter发一条约70词的帖，严肃偏温和。主题：中国书法作为UNESCO非遗如何成为日常美育入口。要求：5W完整；可核验专名必须来自论据；evidence_notes写明Evidence编号对应关系；不要编造朝代年表。",
+    "expect": "人设scientist；权威UNESCO；notes映射",
+    "focus": "Who+权威",
+    "parsed_theme": "中国书法（UNESCO非遗）作为日常表达与美育入口"
+  }
+}

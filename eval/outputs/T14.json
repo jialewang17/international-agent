@@ -1,0 +1,46 @@
+{
+  "error": "主题涉及「脸谱、京剧」等专名细节，但当前 evidence_used 中无对应素材，已跳过帖文生成。请换题（如春节/剪纸等库内角度）或补充 knowledge 素材。",
+  "gate_reason": "subtopic_unsupported",
+  "missing_anchors": [
+    "脸谱",
+    "京剧"
+  ],
+  "theme": "京剧脸谱的百科式介绍，列出各脸谱颜色含义和历史渊源",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文(默认)",
+    "matched_keyword": "",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category"
+    }
+  ],
+  "post": "",
+  "platform": "instagram",
+  "pipeline": "theme -> genre -> retrieve -> alignment gate -> STOP",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ]
+}

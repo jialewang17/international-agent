@@ -1,0 +1,81 @@
+{
+  "theme": "用一点幽默写春节帖给英国读者（Twitter，70词），可以轻松，但绝对不要嘲笑英式圣诞或说对方low。",
+  "categories": [
+    "culture"
+  ],
+  "genre": "post",
+  "genre_meta": {
+    "genre": "post",
+    "label": "社交帖文",
+    "matched_keyword": "twitter",
+    "status": "active"
+  },
+  "evidence_used": [
+    {
+      "category": "culture",
+      "statement": "UNESCO inscribed China's Spring Festival social practices on the Representative List of the Intangible Cultural Heritage of Humanity in 2024, highlighting family reunion, community harmony and cultural continuity.",
+      "source": "https://ich.unesco.org/en/RL/spring-festival-social-practices-of-the-chinese-people-in-celebration-of-traditional-new-year-02126",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "CGTN reports that Spring Festival social practices were inscribed on UNESCO's ICH Representative List in 2024 and are increasingly shared worldwide.",
+      "source": "https://news.cgtn.com/news/2026-02-04/Spring-Festival-a-celebration-shared-with-the-world-1Kuj5iXPvxK/p.html",
+      "retrieval": "category",
+      "source_type": "本地库"
+    },
+    {
+      "category": "culture",
+      "statement": "UNESCO recognizes China's traditional tea processing techniques and social practices (2022); tea producers developed six main tea categories plus reprocessed teas, with over 2,000 products.",
+      "source": "https://ich.unesco.org/en/RL/traditional-tea-processing-techniques-and-associated-social-practices-in-china-01884",
+      "retrieval": "category",
+      "source_type": "本地库"
+    }
+  ],
+  "evidence_stats": {
+    "user": 0,
+    "local": 3
+  },
+  "five_w": {
+    "who": "A witty, pop-culture-savvy lifestyle influencer who uses relatable humor and internet-friendly pacing.",
+    "says_what": "The Chinese custom of giving Red Envelopes (Hongbao) as the ultimate icebreaker for family harmony, tied to the 2024 UNESCO Intangible Heritage inscription of Spring Festival social practices.",
+    "channel": "Twitter/X: concise, punchy, conversational, ~70 words, sparse emojis.",
+    "to_whom": "UK audience. Bridge: relatable British tropes like awkward family dinner silences, weather small talk, and pub quizzes, making the Chinese custom feel instantly accessible and fun.",
+    "effect": "Spark curiosity and positive understanding of the Hongbao tradition and Spring Festival's global cultural value, ending with a shareable, lighthearted question."
+  },
+  "title_or_hook": "",
+  "post": "Brits, we all know the awkward silence at family dinners. 🫣 But China’s Spring Festival social practices just got UNESCO Intangible Heritage status (2024!), and the ultimate icebreaker isn't small talk about the weather—it’s the Red Envelope (Hongbao). 💸 No need to guess if your auntie likes your jumper; just send a digital red packet. Who needs a pub quiz when you’ve got this? 🧧✨",
+  "hashtags": [
+    "#SpringFestival",
+    "#Hongbao"
+  ],
+  "ops_tips": [
+    "Pin a reply with a quick GIF of someone happily receiving a digital red envelope to boost engagement.",
+    "Use the poll feature in the next tweet: 'What's your ultimate family dinner icebreaker? A) Weather talk B) Hongbao' to drive comments."
+  ],
+  "evidence_notes": [
+    "Evidence#1 -> Spring Festival social practices inscribed on UNESCO Intangible Heritage in 2024, highlighting family reunion and community harmony."
+  ],
+  "identity": "online influencer",
+  "tone": "humorous",
+  "country": "UK",
+  "platform": "twitter",
+  "language": "English",
+  "pipeline": "skill(intl_comm+china_story_post) -> genre=post -> dual_evidence(user=0,local=3) -> gate -> active post",
+  "skills_applied": [
+    "intl_comm",
+    "china_story_post"
+  ],
+  "prompt_file": "prompt/story_post_prompt.txt",
+  "raw_model": null,
+  "parse_warning": null,
+  "_meta": {
+    "id": "Q16",
+    "prompt_style": "对比易跑偏",
+    "full_prompt": "用一点幽默写春节帖给英国读者（Twitter，70词），可以轻松，但绝对不要嘲笑英式圣诞或说对方low。",
+    "expect": "幽默≠嘲讽",
+    "focus": "D7+ToWhom",
+    "parsed_theme": "春节非遗当代生活（幽默但不嘲讽）"
+  }
+}
