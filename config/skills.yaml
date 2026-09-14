@@ -17,41 +17,42 @@ manual_activation:
 skills:
   intl_comm:
     file: skills/intl-comm.md
-    title: 讲好中国故事（团队框架）
+    title: 讲好中国故事（总队框架）
     enabled: true
     priority: 100
     keywords:
       - 讲好中国故事
       - 中国故事
       - 国际传播
-      - 发帖
-      - 帖文
+      - 外宣
       - 选题
       - 策划
       - 回复
       - 评论
       - instagram
       - twitter
-      - 推特
       - 新疆
-      - 非遗
-      - 春节
+      - 文化
       - 美食
       - ABSA
 
   china_story_post:
     file: skills/genres/china-story-post.md
-    title: 社交帖文体裁（5W）
+    title: 社交帖文体裁（5W·已完善）
     enabled: true
     priority: 96
     keywords:
       - 帖文
+      - 贴文
       - 发帖
-      - 主动
       - hashtag
       - instagram
       - twitter
       - 5w
+      - thread
+      - 长帖
+      - 图文
+      - social_post
 
   evidence_user_materials:
     file: skills/evidence-user-materials.md
@@ -68,7 +69,7 @@ skills:
 
   china_story_news:
     file: skills/genres/china-story-news.md
-    title: 新闻通稿体裁（官媒语料）
+    title: 新闻通稿体裁（官媒语料·已完善）
     enabled: true
     priority: 94
     keywords:
@@ -81,36 +82,46 @@ skills:
       - press release
       - news wire
       - across china
+      - press kit
+      - news_article
 
   china_story_feature:
     file: skills/genres/china-story-feature.md
-    title: 深度报道体裁（占位·待南方周末材料）
+    title: 深度报道体裁（南周特稿·可用）
     enabled: true
     priority: 93
     keywords:
       - 深度报道
       - 专题
       - longform
+      - 特稿
+      - 非虚构
+      - in-depth
+      - 南方周末
 
   china_story_script:
     file: skills/genres/china-story-script.md
-    title: 短视频脚本体裁（占位）
+    title: 短视频脚本体裁（待完善）
     enabled: true
     priority: 92
     keywords:
       - 短视频脚本
       - 口播
       - 分镜
+      - short_video
+      - video script
 
   china_story_active:
     file: skills/china-story-active.md
-    title: 主动传播路由（兼容旧名）
+    title: 主动内容路由（按体裁分册）
     enabled: true
     priority: 90
     keywords:
       - 选题
       - 运营
       - 策划
+      - 文本类型
+      - 体裁
 
   planning:
     file: skills/planning.md

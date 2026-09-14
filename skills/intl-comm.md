@@ -57,11 +57,12 @@
 ## 主动传播（立项主线）
 
 用户要发帖、策划、选题、标签、账号运营时：
-1. 主题不清 → `plan_china_story_topics`
-2. 成稿 → `generate_china_story_post`（5W + 论据 RAG + 帖文/标签/运营建议）
-3. 展示 five_w / 论据要点 / post / hashtags / ops_tips
+1. 先按提示词识别文本类型 → `genre_router.detect_genre`（见 `skills/genres/README.md`）
+2. 主题不清 → `plan_china_story_topics`
+3. 成稿 → `generate_china_story_post`（注入对应体裁 skill：帖文 5W / 通稿骨架 / 深度·脚本临时骨架 + 论据 RAG）
+4. 展示随体裁变化的字段 + `genre`（待完善体裁须带 `genre_status: incomplete`）
 
-默认：platform=instagram, identity=online_influencer, tone=optimistic, language=English
+默认：platform=instagram, identity=online_influencer, tone=optimistic, language=English, genre=post
 
 ## 互动回应（辅轮）
 
@@ -79,6 +80,8 @@
 - v0.3.2：贴文质量转向——5W 可执行、受众桥梁、权威进正文；评测用多样长短提示词（2026-09-06）
 - v0.3.3 / evidence v0.4.1：事实边界系统硬性——销量/出口国等无证据不得写；不依赖用户「不要编造」口令（2026-09-07）
 - v0.4.0-news：新闻通稿 skill 据官媒长文语料库启用；独立于帖文 5W（2026-09-10）
+- v0.5.0-genres：合并 zip 体裁字段与路由对照；帖文/通稿已完善，深度/脚本为临时骨架待完善（2026-09-14）
+- v0.6.0-feature：据《南方周末写作课》蒸馏特稿方法，深度报道升为可用；帖文/通稿禁用南周长模板（2026-09-14）
 
 ## 平台
 twitter / facebook / instagram / tiktok / youtube / weibo
