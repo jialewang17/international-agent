@@ -69,7 +69,21 @@ eval/skill_eval_v0.*.csv
 eval/skill_eval_v0.*.xlsx
 eval/skill_eval_cases_v0.*.csv
 eval/skill_rounds_master_summary.xlsx
+# Discussion / process drafts (local only; never publish chat-derived notes)
+eval/DRAFT_*.md
+eval/LARGE_EVAL_PLAN.md
+eval/SCORECARD_MIGRATION_*.md
+eval/news_skill_changelog.md
+eval/_sample_prompts_show.json
+eval/_*.py
+eval/append_*.py
+eval/build_*.py
+eval/fix_*.py
+eval/run_*.py
+eval/score_*.py
+eval/smoke_*.py
 # Keep blank templates: skill_eval_template.csv, skill_changelog_template.csv, skill_eval_summary_template.csv
+# Keep finals: CONTENT_QUALITY_RUBRIC_v1.md, LIT_DIMENSION_BANK.md, UNIFIED_SCORECARD_v1.md, MATERIALS_FLEX_*.md
 
 # IDE
 .vscode/
