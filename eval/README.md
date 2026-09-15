@@ -1,6 +1,8 @@
 # Skill 评测文件说明
 
-## 评价体系文档（文献 / 定稿表，与跑分表分开）
+**公开原则**：仓库只放评价体系定稿与空白模板；本机训练过程（跑分输出、分轮 xlsx/csv）不推送。
+
+## 评价体系文档（定稿，可公开）
 
 | 文件 | 用途 |
 |------|------|
@@ -8,23 +10,30 @@
 | `DRAFT_USER_RUBRIC_v0.md` | 权重推演说明 + **材料运用轨**维度池（后续扩展） |
 | `LIT_DIMENSION_BANK.md` | 文献维度库与会议五维映射 |
 | `UNIFIED_SCORECARD_v1.md` | 现行工程打分卡（Shared + 体裁插件） |
+| `MATERIALS_FLEX_PROMPT_COMPLIANCE_RUBRIC.md` | 提示遵从 / 用料细则附录 |
+| `SCORECARD_MIGRATION_v1.md` | 旧表 → 统一计分卡迁移说明 |
+| `LARGE_EVAL_PLAN.md` | 大规模评测计划 |
 
-后续：其他体裁评价体系、材料关联性细表，继续加在本目录并以独立 md 命名，勿与下方 CSV 跑分模板混用。
+后续：其他体裁评价体系、材料关联性细表，继续以独立 md 放本目录。
 
----
-
-## 跑分 / Changelog 模板
+## 空白模板（可公开）
 
 | 文件 | 用途 |
 |------|------|
-| `skill_eval_template.csv` | 15 条固定测试题 + 7 维打分（用 Excel 打开） |
-| `skill_changelog_template.csv` | 每轮 skill 改动记录（一次只改一处） |
-| `skill_eval_summary_template.csv` | 每轮汇总均分与通过率 |
+| `skill_eval_template.csv` | 固定测试题空白表 |
+| `skill_changelog_template.csv` | skill 改动记录空白表 |
+| `skill_eval_summary_template.csv` | 汇总均分空白表 |
 
-## 使用步骤
+## 仅本机保留（已加入 .gitignore，勿再 commit）
 
-1. 复制 `skill_eval_template.csv` 为 `skill_eval_v0.1_YYYYMMDD.csv`
-2. 按 T01–T15 在 CLI 跑测，把 Agent 输出粘贴到最后一列
-3. 用评测 Judge Prompt（见项目文档或对话记录）打分
-4. 只改 skill 一处 → 记入 `skill_changelog_template.csv`
-5. 重跑全量或受影响用例 → 填 `skill_eval_summary_template.csv`
+- `outputs/`、`outputs_*/`：各轮生成 JSON  
+- `skill_eval_v0.*.csv` / `.xlsx`、`skill_eval_cases_v0.*.csv`：分轮填表与用例包  
+- `skill_rounds_master_summary.xlsx`：轮次总表  
+
+Agent / API / 前端文档在仓库根目录与 `docs/`、`api/`、`frontend/`，**保留公开**。
+
+## 本地使用步骤
+
+1. 复制 `skill_eval_template.csv` 为 `skill_eval_v0.x_YYYYMMDD.csv`（仅本机）
+2. 跑测后把输出放进 `eval/outputs*/`（仅本机）
+3. 只改 skill 一处 → 记入 changelog 模板副本

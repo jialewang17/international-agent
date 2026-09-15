@@ -62,6 +62,15 @@ docs/_meeting_*
 docs/_analyze_meeting*
 eval/_meeting_*
 
+# Eval training rounds / run artifacts (keep on local disk; do not publish)
+eval/outputs/
+eval/outputs_*/
+eval/skill_eval_v0.*.csv
+eval/skill_eval_v0.*.xlsx
+eval/skill_eval_cases_v0.*.csv
+eval/skill_rounds_master_summary.xlsx
+# Keep blank templates: skill_eval_template.csv, skill_changelog_template.csv, skill_eval_summary_template.csv
+
 # IDE
 .vscode/
 .idea/
