@@ -69,14 +69,25 @@ META = {
     "languages": ["English", "Chinese"],
     "preset_chips": PRESET_CHIPS,
     "pipeline_steps": [
-        {"id": "theme", "label": "主题解析"},
-        {"id": "user_materials", "label": "用户资料"},
-        {"id": "retrieve", "label": "本地论据"},
-        {"id": "gate", "label": "对齐门控"},
-        {"id": "generate", "label": "成稿生成"},
+        {"id": "G1", "label": "主题体裁", "hard": True},
+        {"id": "G2", "label": "Skill", "hard": False},
+        {"id": "G3", "label": "证据门", "hard": True},
+        {"id": "G4", "label": "口径", "hard": False},
+        {"id": "G5", "label": "成稿", "hard": False},
+        {"id": "G6", "label": "改稿", "hard": False},
+        {"id": "G7", "label": "定稿", "hard": True},
     ],
-    "version": "0.4.0-frontend",
-    "skills_note": "china-story-post v0.3.3 + china-story-news v0.4.0 + evidence-user-materials v0.4",
+    "genres": [
+        {"id": "", "label": "自动识别"},
+        {"id": "post", "label": "社交帖文"},
+        {"id": "news", "label": "新闻通稿"},
+        {"id": "feature", "label": "特稿/深度"},
+        {"id": "script", "label": "短视频脚本"},
+    ],
+    "version": "0.5.0-pipeline-gates",
+    "skills_note": "china-story-post/news/feature/script + evidence-user-materials",
+    "outline_doc": "docs/PIPELINE_OUTLINE_v1.md",
+    "lit_map_doc": "docs/PIPELINE_LIT_MAP.md",
 }
 
 app = FastAPI(

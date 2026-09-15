@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/static/css/styles.css?v=20260911" />
+  <link rel="stylesheet" href="/static/css/styles.css?v=20260915" />
 </head>
 <body>
   <header class="app-header">
@@ -67,6 +67,15 @@
                 <button type="button" class="text-btn" id="btnToggleMore">更多</button>
               </div>
               <div class="pill-grid">
+                <label class="pill-field">体裁
+                  <select name="genre" id="genreSelect">
+                    <option value="">自动识别</option>
+                    <option value="post">社交帖文</option>
+                    <option value="news">新闻通稿</option>
+                    <option value="feature">特稿/深度</option>
+                    <option value="script">短视频脚本</option>
+                  </select>
+                </label>
                 <label class="pill-field">受众
                   <select name="country"></select>
                 </label>
@@ -80,6 +89,7 @@
                   <input name="max_words" type="number" min="20" max="1200" value="80" />
                 </label>
               </div>
+              <p class="micro">体裁/受众/平台一次选齐 = 总纲 G1（少在流程中再问）</p>
               <div class="more-params hidden" id="moreParams">
                 <div class="pill-grid">
                   <label class="pill-field">身份<select name="identity"></select></label>
@@ -166,6 +176,11 @@
             <button type="button" class="btn-secondary" id="btnFeedbackPolish">改稿</button>
           </div>
 
+          <div class="finalize-bar" id="finalizeBar">
+            <span class="finalize-status" id="finalizeStatus">未定稿 · G7 待放行</span>
+            <button type="button" class="btn-secondary" id="btnFinalize" disabled>定稿放行</button>
+          </div>
+
           <details class="fold" id="metaFold">
             <summary>策划与元信息</summary>
             <div id="metaBlocks" class="meta-blocks"></div>
@@ -218,6 +233,6 @@
   </aside>
 
   <div class="toast hidden" id="toast"></div>
-  <script src="/static/js/app.js?v=20260911"></script>
+  <script src="/static/js/app.js?v=20260915"></script>
 </body>
 </html>

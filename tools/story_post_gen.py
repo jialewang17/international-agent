@@ -19,7 +19,7 @@ from tools.kb_local import (
     retrieve_statements,
 )
 from utils.path import get_prompt_dir
-from tools.genre_router import detect_genre, skill_ids_for_genre
+from tools.genre_router import GENRE_STATUS, detect_genre, skill_ids_for_genre
 from tools.user_materials import merge_evidence, normalize_user_materials
 from utils.skill_registry import format_skills_by_ids
 
@@ -48,6 +48,73 @@ def _llm_text(prompt: str) -> str:
         raw = "".join((x.get("text", "") if isinstance(x, dict) else str(x)) for x in raw)
     return str(raw).strip()
 
+
+def _pipeline_gates(
+    *,
+    genre: str,
+    skill_ids: List[str],
+    n_user: int,
+    n_local: int,
+    evidence_ok: bool,
+    aligned: bool,
+    has_draft: bool,
+    stop_at: Optional[str] = None,
+) -> List[Dict[str, str]]:
+    """总纲 G1–G7 状态（供前端步骤条）。"""
+
+    def st(gate_id: str, ok: bool, pending: bool = False) -> str:
+        if stop_at and gate_id == stop_at:
+            return "stop"
+        if stop_at and gate_id > stop_at:
+            return "idle"
+        if pending:
+            return "warn"
+        return "ok" if ok else "warn"
+
+    return [
+        {
+            "id": "G1",
+            "label": "主题体裁",
+            "status": st("G1", True),
+            "detail": genre,
+        },
+        {
+            "id": "G2",
+            "label": "Skill",
+            "status": st("G2", bool(skill_ids)),
+            "detail": "+".join(skill_ids[:3]),
+        },
+        {
+            "id": "G3",
+            "label": "证据门",
+            "status": st("G3", evidence_ok and aligned, pending=not evidence_ok),
+            "detail": f"用户{n_user}/本地{n_local}",
+        },
+        {
+            "id": "G4",
+            "label": "口径",
+            "status": st("G4", evidence_ok and aligned),
+            "detail": "表单已填",
+        },
+        {
+            "id": "G5",
+            "label": "成稿",
+            "status": st("G5", has_draft, pending=evidence_ok and aligned and not has_draft),
+            "detail": "",
+        },
+        {
+            "id": "G6",
+            "label": "改稿",
+            "status": "idle" if not has_draft else "warn",
+            "detail": "可反馈",
+        },
+        {
+            "id": "G7",
+            "label": "定稿",
+            "status": "idle" if not has_draft else "warn",
+            "detail": "待放行",
+        },
+    ]
 
 def _extract_json(raw: str) -> Dict[str, Any]:
     text = (raw or "").strip()
@@ -233,10 +300,23 @@ def run_story_post_generation(
     desired_effect: str = "Increase curiosity and positive understanding of China through a concrete, shareable story.",
     user_materials: Optional[Any] = None,
     user_brief: Optional[str] = None,
+    genre: Optional[str] = None,
 ) -> Dict[str, Any]:
     cats = _theme_to_categories(theme)
-    genre_info = detect_genre((user_brief or "") + " " + theme)
-    genre = genre_info.get("genre") or "post"
+    allowed = {"post", "news", "feature", "script"}
+    override = (genre or "").strip().lower()
+    if override in allowed:
+        genre_info = {
+            "genre": override,
+            "label": override,
+            "matched_keyword": "frontend_select",
+            "source": "user_override",
+            "status": GENRE_STATUS.get(override, "unknown"),
+        }
+        genre = override
+    else:
+        genre_info = detect_genre((user_brief or "") + " " + theme)
+        genre = genre_info.get("genre") or "post"
     skill_ids = list(skill_ids_for_genre(genre))
 
     # 通稿默认：更长篇幅、无 emoji、偏严肃/乐观外宣口径（不改用户明确指定）
@@ -287,8 +367,18 @@ def run_story_post_generation(
             "post": "",
             "article": "",
             "platform": plat.get("platform_label", platform),
-            "pipeline": "theme -> genre -> user_materials+retrieve (empty) -> STOP",
+            "pipeline": "G1 -> G2 -> G3 STOP (empty evidence)",
             "skills_applied": skill_ids,
+            "gates": _pipeline_gates(
+                genre=genre,
+                skill_ids=skill_ids,
+                n_user=0,
+                n_local=0,
+                evidence_ok=False,
+                aligned=False,
+                has_draft=False,
+                stop_at="G3",
+            ),
         }
 
     alignment = check_theme_evidence_alignment(retrieve_q, evidence)
@@ -307,8 +397,18 @@ def run_story_post_generation(
             "post": "",
             "article": "",
             "platform": plat.get("platform_label", platform),
-            "pipeline": "theme -> genre -> dual evidence -> alignment gate -> STOP",
+            "pipeline": "G1 -> G2 -> G3 STOP (alignment)",
             "skills_applied": skill_ids,
+            "gates": _pipeline_gates(
+                genre=genre,
+                skill_ids=skill_ids,
+                n_user=n_user,
+                n_local=n_local,
+                evidence_ok=True,
+                aligned=False,
+                has_draft=False,
+                stop_at="G3",
+            ),
         }
 
     if genre == "news":
@@ -379,13 +479,22 @@ def run_story_post_generation(
             "language": language,
             "max_words": max_words,
             "pipeline": (
-                f"skill({'+'.join(skill_ids)}) -> genre=news -> "
-                f"dual_evidence(user={n_user},local={n_local}) -> gate -> news wire"
+                f"G1-G4 -> skill({'+'.join(skill_ids)}) -> genre=news -> "
+                f"dual_evidence(user={n_user},local={n_local}) -> G5 draft"
             ),
             "skills_applied": skill_ids,
             "prompt_file": prompt_file,
             "raw_model": raw if parsed.get("parse_warning") else None,
             "parse_warning": parsed.get("parse_warning"),
+            "gates": _pipeline_gates(
+                genre=genre,
+                skill_ids=skill_ids,
+                n_user=n_user,
+                n_local=n_local,
+                evidence_ok=True,
+                aligned=True,
+                has_draft=bool(body_out),
+            ),
         }
 
     return {
@@ -409,13 +518,22 @@ def run_story_post_generation(
         "platform": plat.get("platform_label", platform),
         "language": language,
         "pipeline": (
-            f"skill({'+'.join(skill_ids)}) -> genre={genre} -> "
-            f"dual_evidence(user={n_user},local={n_local}) -> gate -> active post"
+            f"G1-G4 -> skill({'+'.join(skill_ids)}) -> genre={genre} -> "
+            f"dual_evidence(user={n_user},local={n_local}) -> G5 draft"
         ),
         "skills_applied": skill_ids,
         "prompt_file": prompt_file,
         "raw_model": raw if parsed.get("parse_warning") else None,
         "parse_warning": parsed.get("parse_warning"),
+        "gates": _pipeline_gates(
+            genre=genre,
+            skill_ids=skill_ids,
+            n_user=n_user,
+            n_local=n_local,
+            evidence_ok=True,
+            aligned=True,
+            has_draft=bool((parsed.get("post") or "").strip()),
+        ),
     }
 
 

@@ -21,6 +21,10 @@ class PostGenerateRequest(BaseModel):
         default="",
         description="用户粘贴资料；空行分段。与本地库合并为 evidence_used，source_type=用户上传",
     )
+    genre: Optional[str] = Field(
+        default="",
+        description="体裁覆盖：post|news|feature|script；空则自动识别",
+    )
 
 
 class TopicsRequest(BaseModel):

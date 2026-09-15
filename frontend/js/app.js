@@ -15,6 +15,7 @@ let lastResult = null;
 let currentScene = "post";
 let evView = "cards";
 let evFilter = "all";
+let draftFinalized = false;
 
 async function api(path, options = {}) {
   const res = await fetch(`${API}${path}`, {
@@ -109,7 +110,6 @@ function formToObject(form) {
   }
   if (obj.max_words) obj.max_words = Number(obj.max_words);
   if (obj.n) obj.n = Number(obj.n);
-  delete obj.genre;
   return obj;
 }
 
@@ -141,53 +141,70 @@ async function handleFilesSelected(e) {
 }
 
 function inferPipeline(data) {
+  if (Array.isArray(data.gates) && data.gates.length) {
+    return data.gates.map((g) => ({
+      id: g.id || "",
+      label: g.label || g.id || "",
+      status: g.status || "idle",
+      detail: g.detail || "",
+      icon:
+        g.status === "ok"
+          ? "✓"
+          : g.status === "stop"
+            ? "!"
+            : g.status === "run"
+              ? "…"
+              : g.status === "warn"
+                ? "○"
+                : "·",
+    }));
+  }
+
   const hasError = Boolean(data.error);
   const evidence = data.evidence_used || [];
   const hasPost = Boolean((data.post || data.reply || "").trim());
   const gateReason = data.gate_reason;
-  const pipeline = data.pipeline || "";
   const stats = data.evidence_stats || {};
   const nUser = stats.user ?? evidence.filter((e) => e.source_type === "用户上传").length;
   const nLocal = stats.local ?? evidence.filter((e) => e.source_type !== "用户上传").length;
+  const skills = (data.skills_applied || []).slice(0, 2).join("+");
 
-  const steps = [
-    { label: "主题", status: "ok", icon: "✓", detail: "" },
+  return [
+    { id: "G1", label: "主题体裁", status: "ok", icon: "✓", detail: data.genre || "" },
+    { id: "G2", label: "Skill", status: skills ? "ok" : "warn", icon: skills ? "✓" : "—", detail: skills },
     {
-      label: "资料",
-      status: nUser ? "ok" : "warn",
-      icon: nUser ? "✓" : "—",
-      detail: nUser ? `${nUser}` : "",
+      id: "G3",
+      label: "证据门",
+      status: gateReason || (hasError && !hasPost) ? "stop" : evidence.length ? "ok" : "stop",
+      icon: gateReason || !evidence.length ? "!" : "✓",
+      detail: `U${nUser}/L${nLocal}`,
     },
+    { id: "G4", label: "口径", status: evidence.length && !gateReason ? "ok" : "idle", icon: "✓", detail: "" },
     {
-      label: "本地",
-      status: nLocal ? "ok" : evidence.length ? "warn" : "stop",
-      icon: nLocal ? "✓" : "—",
-      detail: `${nLocal}`,
-    },
-    {
-      label: "门控",
-      status: gateReason || (hasError && !hasPost) ? "stop" : evidence.length ? "ok" : "warn",
-      icon: gateReason || (hasError && !hasPost) ? "!" : "✓",
-      detail: "",
-    },
-    {
+      id: "G5",
       label: "成稿",
-      status: hasPost ? "ok" : hasError ? "stop" : "warn",
+      status: hasPost ? "ok" : hasError ? "stop" : "idle",
       icon: hasPost ? "✓" : "—",
       detail: "",
     },
+    {
+      id: "G6",
+      label: "改稿",
+      status: hasPost ? "warn" : "idle",
+      icon: hasPost ? "○" : "·",
+      detail: hasPost ? "可反馈" : "",
+    },
+    {
+      id: "G7",
+      label: "定稿",
+      status: draftFinalized ? "ok" : hasPost ? "warn" : "idle",
+      icon: draftFinalized ? "✓" : "·",
+      detail: draftFinalized ? "已放行" : "待放行",
+    },
   ];
-
-  if (pipeline.includes("retrieve (empty)") || pipeline.includes("user_materials+retrieve (empty)")) {
-    steps[1].status = nUser ? "ok" : "stop";
-    steps[2].status = "stop";
-    steps[3].status = "stop";
-    steps[4].status = "stop";
-  }
-  return steps;
 }
 
-function renderPipeline(data) {
+function renderPipeline(data, { running = false } = {}) {
   const el = $("#pipelineViz");
   if (!el) return;
   if (data.pipeline?.includes("topics -> template")) {
@@ -195,14 +212,43 @@ function renderPipeline(data) {
     return;
   }
   el.classList.remove("hidden");
-  el.innerHTML = inferPipeline(data)
+  let steps = inferPipeline(data);
+  if (running) {
+    steps = steps.map((s, i) =>
+      i < 4 ? { ...s, status: "run", icon: "…" } : { ...s, status: "idle", icon: "·" }
+    );
+  }
+  if (draftFinalized) {
+    steps = steps.map((s) => (s.id === "G7" ? { ...s, status: "ok", icon: "✓", detail: "已放行" } : s));
+  }
+  el.innerHTML = steps
     .map(
       (s) =>
-        `<div class="pipe-step ${s.status}"><span class="icon">${s.icon}</span>${s.label}${
-          s.detail ? `<br><small>${s.detail}</small>` : ""
-        }</div>`
+        `<div class="pipe-step ${s.status}" title="${s.detail || s.label}">` +
+        `<span class="gid">${s.id || ""}</span>` +
+        `<span class="icon">${s.icon}</span>${s.label}` +
+        `${s.detail ? `<br><small>${s.detail}</small>` : ""}` +
+        `</div>`
     )
     .join("");
+}
+
+function setFinalizeUi(enabled) {
+  const bar = $("#finalizeBar");
+  const btn = $("#btnFinalize");
+  const status = $("#finalizeStatus");
+  if (!bar || !btn || !status) return;
+  btn.disabled = !enabled;
+  if (draftFinalized) {
+    bar.classList.add("is-done");
+    status.textContent = "已定稿放行 · G7";
+    btn.textContent = "已放行";
+    btn.disabled = true;
+  } else {
+    bar.classList.remove("is-done");
+    status.textContent = enabled ? "未定稿 · 可改稿后放行（G7）" : "生成成功后可定稿放行";
+    btn.textContent = "定稿放行";
+  }
 }
 
 function renderGateAlert(data) {
@@ -395,6 +441,7 @@ function closeEvidence() {
 
 function showResult(data, blocked = false) {
   lastResult = data;
+  draftFinalized = false;
   renderPipeline(data);
   renderGateAlert(data);
   renderGenreNote(data);
@@ -404,10 +451,8 @@ function showResult(data, blocked = false) {
   updatePreviews(text, data.hashtags);
   renderMetaBlocks(data);
   $("#rawJson").textContent = JSON.stringify(data, null, 2);
+  setFinalizeUi(Boolean(text) && !blocked);
   if (data.error && !text) openEvidence();
-  else if ((data.evidence_used || []).length) {
-    /* keep sheet closed; one click away */
-  }
 }
 
 async function runPrimaryAction() {
@@ -422,6 +467,8 @@ async function runPrimaryAction() {
         $("#themeInput").focus();
         return;
       }
+      if (!body.genre) delete body.genre;
+      renderPipeline({ genre: body.genre || "auto", skills_applied: [] }, { running: true });
       const res = await api("/api/posts/generate", { method: "POST", body: JSON.stringify(body) });
       showResult(res.data, !res.ok);
       toast(res.ok ? "已生成" : "已拦截");
@@ -462,7 +509,22 @@ async function polishPost(instruction) {
     });
     $("#editorPost").value = res.data.post;
     updatePreviews(res.data.post, lastResult?.hashtags);
-    toast("已改稿");
+    draftFinalized = false;
+    if (lastResult) {
+      lastResult.post = res.data.post;
+      if (Array.isArray(lastResult.gates)) {
+        lastResult.gates = lastResult.gates.map((g) =>
+          g.id === "G6"
+            ? { ...g, status: "ok", detail: "已改稿" }
+            : g.id === "G7"
+              ? { ...g, status: "warn", detail: "待放行" }
+              : g
+        );
+      }
+      renderPipeline(lastResult);
+    }
+    setFinalizeUi(true);
+    toast("已改稿（G6）");
   } catch (err) {
     toast(err.message);
   }
@@ -534,6 +596,24 @@ function bindEvents() {
     }
   });
 
+  $("#btnFinalize")?.addEventListener("click", () => {
+    const text = ($("#editorPost")?.value || "").trim();
+    if (!text) {
+      toast("没有可定稿的正文");
+      return;
+    }
+    draftFinalized = true;
+    if (lastResult && Array.isArray(lastResult.gates)) {
+      lastResult.gates = lastResult.gates.map((g) =>
+        g.id === "G7" ? { ...g, status: "ok", detail: "已放行" } : g.id === "G6" ? { ...g, status: "ok" } : g
+      );
+      lastResult.finalized = true;
+      renderPipeline(lastResult);
+    }
+    setFinalizeUi(true);
+    toast("G7 定稿已放行");
+  });
+
   $("#btnCopy")?.addEventListener("click", async () => {
     const text = $("#editorPost").value;
     if (!text) return;
@@ -546,6 +626,11 @@ function bindEvents() {
 
   $("#editorPost")?.addEventListener("input", (e) => {
     updatePreviews(e.target.value, lastResult?.hashtags);
+    if (draftFinalized) {
+      draftFinalized = false;
+      setFinalizeUi(Boolean(e.target.value.trim()));
+      if (lastResult) renderPipeline(lastResult);
+    }
   });
 
   document.addEventListener("keydown", (e) => {
@@ -561,6 +646,7 @@ async function init() {
   bindEvents();
   switchScene("post");
   updateMaterialsHint();
+  setFinalizeUi(false);
   try {
     await api("/api/health");
     meta = await api("/api/meta");

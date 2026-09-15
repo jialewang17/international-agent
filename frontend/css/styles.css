@@ -280,18 +280,33 @@ textarea { resize: vertical; min-height: 96px; line-height: 1.55; }
 .w-row b { color: var(--brand); font-size: 0.74rem; }
 
 .status-rail {
-  display: grid; grid-template-columns: repeat(5, 1fr); gap: 5px;
+  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px;
   padding: 10px 14px; border-bottom: 1px solid var(--line);
   background: rgba(243, 238, 229, 0.45);
 }
 .pipe-step {
-  text-align: center; font-size: 0.64rem; padding: 7px 2px; border-radius: 10px;
+  text-align: center; font-size: 0.6rem; padding: 7px 2px; border-radius: 10px;
   background: var(--surface); color: var(--muted); border: 1px solid var(--line);
+  line-height: 1.25;
 }
 .pipe-step.ok { background: rgba(47, 125, 74, 0.1); color: #1b5c32; border-color: transparent; }
 .pipe-step.warn { background: rgba(196, 125, 26, 0.12); color: #8a5a10; border-color: transparent; }
 .pipe-step.stop { background: rgba(192, 57, 43, 0.1); color: #922b21; border-color: transparent; }
-.pipe-step .icon { display: block; font-size: 0.78rem; }
+.pipe-step.idle { opacity: 0.55; }
+.pipe-step.run { background: rgba(31, 92, 74, 0.14); color: #1a473a; border-color: transparent; }
+.pipe-step .icon { display: block; font-size: 0.72rem; }
+.pipe-step .gid { display: block; font-size: 0.55rem; opacity: 0.75; letter-spacing: 0.02em; }
+
+.finalize-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  margin-top: 10px; padding: 10px 12px; border-radius: 12px;
+  background: rgba(31, 92, 74, 0.06); border: 1px solid rgba(31, 92, 74, 0.12);
+}
+.finalize-bar.is-done {
+  background: rgba(47, 125, 74, 0.1); border-color: rgba(47, 125, 74, 0.2);
+}
+.finalize-status { font-size: 0.8rem; color: var(--muted); }
+.finalize-bar.is-done .finalize-status { color: #1b5c32; font-weight: 600; }
 
 .gate-banner, .soft-banner {
   margin: 10px 14px 0; padding: 11px 13px; border-radius: 12px; font-size: 0.82rem;
@@ -385,5 +400,5 @@ textarea { resize: vertical; min-height: 96px; line-height: 1.55; }
   .kbd-hint { display: none; }
   .app-header { grid-template-columns: auto 1fr auto; gap: 8px; padding: 0 12px; }
   .brand-sub { display: none; }
-  .status-rail { grid-template-columns: repeat(3, 1fr); }
+  .status-rail { grid-template-columns: repeat(4, 1fr); }
 }
