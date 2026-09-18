@@ -1,53 +1,27 @@
-# 讲好中国故事 · 短视频脚本体裁 Skill（script）· 待完善
+# 短视频脚本 Skill（script）
 
-**状态**：`genre_status: incomplete` —— **尚未**完成「短视频/讲好中国故事」专项研究报告入库。  
-**适用识别**：用户要「短视频脚本 / 口播 / 分镜 / tiktok script / short_video」时路由到本 skill。  
-**禁止**：用南方周末长文或 Instagram 种草文案冒充分镜脚本。
+**何时用**：`short_video` / `reel_hook` / 口播分镜。  
+**不用**：特稿、通稿、IG 长 caption 冒充分镜、FAQ 清单。  
+**细则**：`china-story-script-reference.md` + `docs/corpus/script/`。  
+**状态**：`methods_in`（标在输出里）。铁律：`intl-comm.md` + evidence。
 
-## 权威依据
+## 步骤
 
-1. **老师 2026-08-22**：产出可含短视频脚本；须有**单独研究框架**，可从讲好中国故事相关研究中提炼；**未完成研究前不要冒充完整规范**。  
-2. **共通**：`intl-comm.md` + `evidence-user-materials.md`。  
-3. **zip 临时字段壳**：`content_formats.md` · `short_video` / `reel_hook`（见 `knowledge/format_examples.md` 分镜示例）——**仅作分镜字段与防编造时点规则**，不作「爆款方法论」权威。
+1. 确认 format：完整脚本 or 只要前 3 秒钩子；平台；时长
+2. `reel_hook` → 只出 ≥3 个 0–3s 方案，停
+3. 先写 ≥3 钩子再选 1；禁「大家好/Today I'm going to…」
+4. 填分镜：Hook(0–3) → Body(一视频一点，每句 VO 有 shot) → Payoff+**一个**软 CTA
+5. 目标约 28–45s（材料厚可 45–60）；约 21s 前有第一「奖赏」画面
+6. 无声也能看懂（字幕关键词）；事实 ∈ evidence；无假精确钟点
 
----
+## 分镜行字段
 
-## 临时行为（研究报告到位前）
+`t` | `shot`（景别+主体，禁「好看点」）| `vo` | `on_screen` | `broll` | `sfx?`
 
-1. 输出须含：`genre: script`；`genre_status: incomplete`。  
-2. 开场可一句说明：「短视频脚本体裁仍在完善；本稿按分镜字段起草，非正式研究报告定稿规范。」  
-3. **默认时长**：45–60 秒（用户另有指定则尊重）。前 3 秒钩子要具体。  
-4. **分镜字段（合并 zip）**：
+整稿：`title` · `duration_sec` · `shots[]` · `caption` · `hashtags?` · `genre: script` · `genre_status: methods_in`
 
-| 字段 | 含义 |
-|------|------|
-| `t` | 时间段（如 0-3） |
-| `shot` | 镜头（景别/主体） |
-| `vo` | 口播 / VO |
-| `on_screen` | 屏幕字 |
-| `broll` | 空镜建议 |
-| `sfx` | 音效（可选） |
+## 红线
 
-整稿字段：`title`；`duration_sec`；`shots[]`；`caption`（成片文案）；`hashtags`（可选）；`evidence_used`。
-
-5. **防编造时点（强制）**：用户未提供精确钟点/秒数时，**禁止**写「7:42」「Thirty seconds」等假精确；改用 morning rush / a short exchange / peak hours 等模糊时段。  
-6. 口播中的事实/数字/专名必须能在 `evidence_used` 找到；找不到则删该句，改写为可核验角度或标注缺材料。  
-7. 用户只要「前三秒钩子 / reel_hook」时：输出 3 条前 3 秒方案备选，不硬写完整成片。
-
-## 明确不做
-
-- 不把脚本写成 5W 帖文或通稿电头长文。  
-- 不虚构未提供的拍摄地点精确地址、未证实的同期声对话。  
-- 不宣称已完成短视频传播学完整 skill。
-
-## 后续完善清单（给团队）
-
-- [ ] 入库短视频/口播研究报告并蒸馏结构  
-- [ ] 单独 `story_script_prompt.txt` + 分镜评测集  
-- [ ] 区分 TikTok / Reels / YouTube Shorts 平台差  
-- [ ] 本文件升为 active，更新 README 状态列
-
-## 版本
-
-- v0.3-script-placeholder · 2026-09-06  
-- **v0.5-script-interim · 2026-09-14 · 合并 zip short_video 分镜字段与防假精确时点；明确 incomplete**
+- 一视频一个主点；CTA 不抬杠他国  
+- 不写成帖文 5W 或通稿电头  
+- 无 evidence 不写数字/姓名/假地址对话  

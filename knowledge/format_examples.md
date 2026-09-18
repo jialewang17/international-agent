@@ -146,3 +146,43 @@ The first thing visitors notice is not the bottles. It is the sound of gravel un
 
 **omitted_reason example:** quote_card omitted — no verbatim quote in source materials.  
 （省略原因示例：引语卡省略——源材料无逐字引语。）
+
+---
+
+## faq_mythbust（误解澄清 FAQ）
+
+**说明：** Tier-2。主动 Myth→Fact 清单。结构蒸馏自已爬取澄清帖；数字只能来自当次 evidence，勿抄外网统计。细则见 `skills/genres/china-story-faq-mythbust.md`。
+
+**title:** China food myths travelers still repeat  
+（标题：旅行者仍在重复的中国饮食误解）
+
+**audience:** First-time visitors reading English travel threads  
+（受众：读英文旅行帖的首次到访者）
+
+**intro:** A few food claims travel faster than menus. Here is what the materials actually support.  
+（开篇：一些饮食说法比菜单传得更快。下面只写材料撑得住的纠正。）
+
+**items:**
+```json
+[
+  {
+    "myth": "All Chinese food is spicy.",
+    "fact": "Heat is strong in some regional styles; many everyday meals are mild, fresh, or broth-led — variety is the point.",
+    "verdict": "overstated",
+    "bridge": "Ask for local recommendations instead of assuming one chili level.",
+    "not_claiming": "This does not deny that Sichuan or Hunan meals can be very hot.",
+    "evidence_refs": ["user_materials#regional-cuisine"]
+  },
+  {
+    "myth": "Fortune cookies are a Chinese staple.",
+    "fact": "They are rare at meals inside China and are better read as a Chinese-American restaurant custom.",
+    "verdict": "false",
+    "evidence_refs": ["user_materials#fortune-cookie"]
+  }
+]
+```
+
+**closing:** The shareable point is regional variety on the table — not a debate win.  
+（收束：可分享点是桌上的地域多样，不是辩论取胜。）
+
+**genre_status:** methods_in

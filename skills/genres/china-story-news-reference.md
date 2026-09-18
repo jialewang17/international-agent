@@ -34,3 +34,33 @@ photovoltaic / ecological / desertification / clean energy / rural revitalizatio
 
 Imagine riding a motorcycle… solar-punk paradise… Would you visit this eco-savanna?  
 → 属 Gen Z 社媒包装，事实可同源，**体裁不进 news**。
+
+---
+
+## 操作细则（自主 skill 下沉 · 2026-09-18 lite）
+
+主工序卡：`china-story-news.md`。
+
+### 八步骨架
+
+1 开篇地点+反差 → 2 场景 → 3 具名人物 → 4 时间转折 → 5 机制 → 6 权威句 → 7 数据 → 8 模式点到收束  
+
+### 语气与禁用
+
+- 第三人称、冷静；像通讯不是种草  
+- 禁用：solar-punk / vibes / emoji / Imagine… / Would you visit / 抬杠对比  
+- 用户要求 GenZ → 仍出通稿  
+
+### 篇幅
+
+- 消息约 400–700 词；通讯约 450–900 英词或 800–1500 字；材料薄则更短  
+
+### 自检要点
+
+无帖文钩子/emoji；数据可映射 Evidence；收束非口号墙；无离题库条目；不凑字编造  
+
+---
+
+## 版本补记
+
+- v0.2 · 2026-09-18 · 主 skill 工序卡化；操作细则迁入本附录  

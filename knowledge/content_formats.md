@@ -5,7 +5,6 @@
 **生成前必须先走 China Storytelling 主流程**，且 **必须先调用工具 `load_story_knowledge(format=...)`**，依据返回的 framework / methodology / format_spec 再写作。  
 禁止跳过读库与结构适配、直接套形态模板填空。
 
-- `reply`：走 `intl_comm` + `intl_comm_reply`，不走本文件长文流程。  
 - **默认英文海外向**（发外国社交媒体）；用户明确要求中文则中文。只出人工审核草稿。  
 - 平台差异用同一 format + `platform` 参数处理。  
 - 下文 `social_post` 等为形态 ID（供工具调用）；字段名保留机读键，括号内为中文含义，便于人工阅读。
@@ -210,9 +209,17 @@ partial_plan: 若可部分生成，说明将采用的临时结构（并标明非
 ## C. 互动 / 口径向
 
 ### C1. faq_mythbust 误解澄清 FAQ
-**Tier-2**
+**Tier-2** · 体裁 skill：`skills/genres/china-story-faq-mythbust.md`
 
-5–8 组问答；可选 `retrieve_evidence`。
+5–8 组「误解→澄清」（材料不足宁少）；可选 `retrieve_evidence`。
+
+| 字段 | 说明 |
+|------|------|
+| `title` / `intro` / `audience` | 标题、短开篇、受众 |
+| `items[]` | 每条：`myth`+`fact`（或 `q`+`a`）；可选 `verdict` / `bridge` / `not_claiming` / `evidence_refs` |
+| `closing` | 收束到可分享中国故事点；禁止抬杠他国受众 |
+
+主动 FAQ / 辟谣清单用本 format（Myth→Fact）。
 
 ### C2. talking_points 发言 / 采访要点
 **Tier-2**
@@ -227,15 +234,7 @@ partial_plan: 若可部分生成，说明将采用的临时结构（并标明非
 
 ---
 
-## D. 回帖（独立路径）
-
-### reply
-
-路由至 `intl_comm` → `intl_comm_reply`。（回帖语种规则见回帖 skill，不在此文件改写。）
-
----
-
-## E. 形式路由表
+## D. 形式路由表
 
 | 用户说法 | format | Tier |
 |----------|--------|------|
@@ -257,5 +256,4 @@ partial_plan: 若可部分生成，说明将采用的临时结构（并标明非
 | FAQ/辟谣/常见问题 | faq_mythbust | 2 |
 | 发言提纲/采访口径 | talking_points | 2 |
 | 中英对照/双语 | bilingual_pair | 2 |
-| 回帖/评论回复 | reply → intl_comm | — |
 | 未指定 | **仅在 Tier-1 中**询问或猜测 | 1 |

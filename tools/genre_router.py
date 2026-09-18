@@ -1,147 +1,102 @@
-"""体裁识别：根据用户主题/提示词选择 genre skill。
-
-权威依据：
-- 老师 2026-08-22：贴文用 5W；南方周末长模板不适合作短帖；不同体裁不同框架。
-- skills/genres/README.md（含 zip content_formats 对照）
-"""
+"""体裁路由：按用户提示词关键词映射到 post/news/feature/script/faq。"""
 
 from __future__ import annotations
 
-from typing import Dict, List, Tuple
+import json
+import re
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
 
-# (genre_id, display_name, keyword_patterns)
-# 更具体的体裁放前面，避免「长文」误伤「新闻」。
-_GENRE_RULES: List[Tuple[str, str, List[str]]] = [
+from langchain_core.tools import tool
+
+from utils.path import get_project_root
+
+# 匹配顺序：feature → news → script → faq → post（与 skills/genres/README.md 一致）
+_GENRE_PATTERNS: List[Tuple[str, List[str]]] = [
     (
         "feature",
-        "深度报道/专题",
         [
-            "深度报道",
-            "深度稿",
-            "专题稿",
-            "专题报道",
-            "长篇深度",
-            "特稿",
-            "非虚构",
-            "调查报道",
-            "南方周末",
-            "南周",
-            "feature article",
-            "longform",
-            "in-depth",
-            "in depth",
+            r"深度报道",
+            r"专题稿",
+            r"特稿",
+            r"长篇深度",
+            r"\bfeature\b",
+            r"\blongform\b",
+            r"\bin[- ]?depth\b",
         ],
     ),
     (
         "news",
-        "新闻通稿",
         [
-            "新闻稿",
-            "新闻通稿",
-            "通稿",
-            "消息稿",
-            "通讯稿",
-            "通讯",
-            "新闻报道",
-            "新华体",
-            "新华社",
-            "Across China",
-            "across china",
-            "press release",
-            "press kit",
-            "news article",
-            "news story",
-            "news wire",
-            "newsletter",
-            "news_article",
-            "press_kit",
-            "newsletter_brief",
+            r"新闻稿",
+            r"新闻通稿",
+            r"通稿",
+            r"消息稿",
+            r"通讯",
+            r"新华体",
+            r"press\s*release",
+            r"news\s*wire",
+            r"across\s*china",
+            r"\bnews_article\b",
+            r"press_kit",
+            r"newsletter",
         ],
     ),
     (
         "script",
-        "短视频脚本",
         [
-            "短视频脚本",
-            "视频脚本",
-            "口播稿",
-            "口播脚本",
-            "分镜",
-            "分镜脚本",
-            "reels script",
-            "tiktok script",
-            "video script",
-            "short video",
-            "short_video",
-            "reel_hook",
-            "youtube script",
-            "youtube_script",
+            r"短视频脚本",
+            r"视频脚本",
+            r"口播",
+            r"分镜",
+            r"reels?\s*script",
+            r"tiktok\s*script",
+            r"video\s*script",
+            r"\bshort_video\b",
+            r"\breel_hook\b",
+            r"youtube\s*script",
         ],
     ),
     (
-        "reply",
-        "评论回复",
+        "faq",
         [
-            "回复评论",
-            "回复这条",
-            "帮我回",
-            "回一下",
-            "reply to",
-            "respond to this comment",
-            "comment reply",
+            r"误解澄清",
+            r"澄清误解",
+            r"辟谣",
+            r"常见误解",
+            r"常见误区",
+            r"\bFAQ\b",
+            r"faq_mythbust",
+            r"myth\s*bust",
+            r"mythbust",
+            r"debunk(ing)?\s+(china\s+)?myths?",
+            r"myth\s+vs\s+fact",
+            r"misconceptions?",
+            r"\bmyths?\s+about\b",
         ],
     ),
     (
         "post",
-        "社交帖文",
         [
-            "帖文",
-            "贴文",
-            "发帖",
-            "社交媒体",
-            "海外社交",
-            "instagram",
-            "twitter",
-            "微博",
-            "tiktok",
-            "hashtag",
-            "标签",
-            "social post",
-            "social media post",
-            "social_post",
-            "thread",
-            "长帖",
-            "推文串",
-            "图文",
-            "画册",
-            "visual_story",
-            "caption_only",
-            "caption",
+            r"帖文",
+            r"贴文",
+            r"发帖",
+            r"社交媒体",
+            r"instagram",
+            r"twitter",
+            r"微博",
+            r"hashtag",
+            r"social\s*post",
+            r"\bthread\b",
+            r"长帖",
+            r"图文",
+            r"\bvisual_story\b",
+            r"caption_only",
         ],
     ),
 ]
 
-# 主动内容生成默认体裁（老师：先把贴文做好）
-DEFAULT_ACTIVE_GENRE = "post"
-
-GENRE_SKILL_IDS: Dict[str, Tuple[str, ...]] = {
-    "post": ("intl_comm", "china_story_post"),
-    "news": ("intl_comm", "china_story_news"),
-    "feature": ("intl_comm", "china_story_feature"),
-    "script": ("intl_comm", "china_story_script"),
-    "reply": ("intl_comm",),
-}
-
-GENRE_STATUS: Dict[str, str] = {
-    "post": "active",
-    "news": "active",
-    "feature": "active",
-    "script": "placeholder",
-    "reply": "active_via_intl_comm_reply",
-}
-
-# zip content_formats ID → 本仓库 genre
-FORMAT_ALIAS_TO_GENRE: Dict[str, str] = {
+_FORMAT_TO_GENRE: Dict[str, str] = {
     "social_post": "post",
     "thread": "post",
     "caption_only": "post",
@@ -153,65 +108,98 @@ FORMAT_ALIAS_TO_GENRE: Dict[str, str] = {
     "short_video": "script",
     "reel_hook": "script",
     "youtube_script": "script",
-    "podcast_script": "script",
-    "reply": "reply",
+    "faq_mythbust": "faq",
+    "faq": "faq",
+}
+
+_GENRE_STATUS: Dict[str, str] = {
+    "post": "complete",
+    "news": "complete",
+    "feature": "methods_in",
+    "script": "methods_in",
+    "faq": "methods_in",
+}
+
+_GENRE_SKILL_REL: Dict[str, str] = {
+    "post": "skills/genres/china-story-post.md",
+    "news": "skills/genres/china-story-news.md",
+    "feature": "skills/genres/china-story-feature.md",
+    "script": "skills/genres/china-story-script.md",
+    "faq": "skills/genres/china-story-faq-mythbust.md",
+}
+
+_DEFAULT_FORMAT: Dict[str, str] = {
+    "post": "social_post",
+    "news": "news_article",
+    "feature": "longform",
+    "script": "short_video",
+    "faq": "faq_mythbust",
 }
 
 
-def detect_genre(text: str, *, default: str = DEFAULT_ACTIVE_GENRE) -> Dict[str, str]:
-    """从用户提示/主题中识别体裁。返回 genre / label / matched_keyword / status。"""
-    raw = (text or "").strip()
-    lower = raw.lower()
+def resolve_format_alias(format_id: Optional[str]) -> Optional[str]:
+    """将 zip content_formats ID 映射到仓库体裁 ID。"""
+    if not format_id:
+        return None
+    key = str(format_id).strip().lower().replace("-", "_")
+    return _FORMAT_TO_GENRE.get(key)
 
-    # 显式 format= / 体裁= 优先
-    for alias, genre_id in FORMAT_ALIAS_TO_GENRE.items():
-        markers = (
-            f"format={alias}",
-            f"format: {alias}",
-            f"体裁={alias}",
-            f"体裁：{alias}",
-            f"文本类型={alias}",
-            f"文本类型：{alias}",
-        )
-        if any(m in lower for m in markers) or any(
-            m in raw for m in markers if not m.isascii()
-        ):
-            label = next(
-                (lb for gid, lb, _ in _GENRE_RULES if gid == genre_id), genre_id
-            )
-            return {
-                "genre": genre_id,
-                "label": label,
-                "matched_keyword": f"format={alias}",
-                "status": GENRE_STATUS.get(genre_id, "unknown"),
-            }
 
-    for genre_id, label, patterns in _GENRE_RULES:
-        for p in patterns:
-            if not p:
-                continue
-            needle = p.lower() if p.isascii() else p
-            hay = lower if p.isascii() else raw
-            if needle in hay:
-                return {
-                    "genre": genre_id,
-                    "label": label,
-                    "matched_keyword": p,
-                    "status": GENRE_STATUS.get(genre_id, "unknown"),
-                }
+def detect_genre(text: str, format_hint: Optional[str] = None) -> Dict[str, str]:
+    """根据提示词与可选 format 提示识别体裁。"""
+    hint_genre = resolve_format_alias(format_hint)
+    if hint_genre:
+        return _pack(hint_genre, matched_by=f"format:{format_hint}")
+
+    blob = text or ""
+    m = re.search(r"format\s*=\s*([a-zA-Z0-9_\-]+)", blob, re.I)
+    if m:
+        mapped = resolve_format_alias(m.group(1))
+        if mapped:
+            return _pack(mapped, matched_by=f"format_eq:{m.group(1)}")
+
+    for genre, patterns in _GENRE_PATTERNS:
+        for pat in patterns:
+            if re.search(pat, blob, re.I):
+                return _pack(genre, matched_by=pat)
+
+    return _pack("post", matched_by="default")
+
+
+def _pack(genre: str, matched_by: str) -> Dict[str, str]:
     return {
-        "genre": default,
-        "label": "社交帖文(默认)",
-        "matched_keyword": "",
-        "status": GENRE_STATUS.get(default, "unknown"),
+        "genre": genre,
+        "status": _GENRE_STATUS.get(genre, "unknown"),
+        "skill_file": _GENRE_SKILL_REL.get(genre, ""),
+        "default_format": _DEFAULT_FORMAT.get(genre, "social_post"),
+        "matched_by": matched_by,
     }
 
 
-def skill_ids_for_genre(genre: str) -> Tuple[str, ...]:
-    return GENRE_SKILL_IDS.get(genre, GENRE_SKILL_IDS[DEFAULT_ACTIVE_GENRE])
+def load_genre_skill_text(genre: str, max_chars: int = 8000) -> str:
+    """读取体裁 skill 正文（供注入或调试）。"""
+    rel = _GENRE_SKILL_REL.get(genre)
+    if not rel:
+        return ""
+    path = get_project_root() / rel
+    if not path.exists():
+        return ""
+    text = path.read_text(encoding="utf-8", errors="replace").strip()
+    if max_chars > 0 and len(text) > max_chars:
+        return text[:max_chars].rstrip() + "\n\n[...genre skill truncated...]"
+    return text
 
 
-def resolve_format_alias(format_id: str) -> str:
-    """将 zip/content_formats 的 format ID 解析为本仓库 genre。"""
-    key = (format_id or "").strip().lower()
-    return FORMAT_ALIAS_TO_GENRE.get(key, DEFAULT_ACTIVE_GENRE)
+@tool
+def detect_content_genre(user_prompt: str, format_hint: str = "") -> str:
+    """根据用户提示词识别讲好中国故事的体裁（post/news/feature/script/faq）。
+
+    Args:
+        user_prompt: 用户原始需求文本。
+        format_hint: 可选，显式 format id（如 social_post、news_article、faq_mythbust）。
+
+    Returns:
+        JSON：genre、status、skill_file、default_format、matched_by。
+    """
+    result = detect_genre(user_prompt, format_hint=format_hint or None)
+    return json.dumps(result, ensure_ascii=False)
