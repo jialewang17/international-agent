@@ -1,486 +1,206 @@
-<div align="center">
+# ChinaStory Agent
 
-![AnyClaw Logo](docs/logo图/logo图.png)
+ChinaStory Agent 是一个以证据为基础的国际传播智能体，面向中国文化与中国故事的跨文化内容生产。项目最初基于 AnyClaw Agent 框架改造，当前已发展为面向 ChinaStory 场景的垂类 Agent。
 
-# AnyClaw Agent框架
+## 1. 项目简介
 
-**基于 LangChain 的 CLI Agent 框架，vibecoding 快速搭建属于自己的 Cli Agent**
+系统围绕“证据组织—跨文化表达—人机审核”设计，输出人工审核草稿，不自动发布内容。当前主线是主动国际传播内容生产，评论理解与回复属于辅助能力。
 
-[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![LangChain](https://img.shields.io/badge/LangChain-1.0+-green.svg)](https://www.langchain.com/)
-[![Rich](https://img.shields.io/badge/Rich-13.7.0+-orange.svg)](https://github.com/Textualize/rich)
-[![Typer](https://img.shields.io/badge/Typer-0.9.0+-blue.svg)](https://typer.tiangolo.com/)
-[![Version](https://img.shields.io/badge/version-0.1.0-blue)](https://github.com/yourusername/anyclaw)
+## 2. 核心目标
 
-</div>
+- **Evidence-grounded generation**：让生成内容尽量建立在用户材料与本地证据之上。
+- **International / cross-cultural communication**：根据受众、平台和体裁重构中国故事的表达入口。
+- **Controllable revision**：为改稿、事实复核和后续 Fact Lock 建立可扩展基础。
+- **Human-in-the-loop approval**：通过人工 Gate C 批准最终版本。
+- **Evaluation-driven improvement**：逐步接入事实、翻译和 ChinaStory 内容质量评价。
 
----
+## 3. 六阶段工作流
 
-## 📖 项目介绍
-
-**AnyClaw** 是一个功能强大的 CLI Agent 框架，基于 LangChain 构建，采用 ReAct（Reasoning + Acting）模式，让你能够快速搭建属于自己的 CLI Agent。
-
-### 1. 核心特性
-
-- **流式响应**：支持 token 级别的实时流式输出，提供流畅的交互体验
-- **ReAct Agent**：基于 ReAct 模式的智能推理与执行框架
-- **多模型支持**：支持 OpenAI、Gemini、Qwen、DeepSeek、Kimi 等多种 LLM 提供商
-- **工具系统**：灵活的工具扩展机制，轻松添加自定义工具
-- **会话管理**：完整的会话持久化与恢复功能，支持多会话切换
-- **Token 追踪**：实时追踪每次调用的 token 消耗，支持按步骤统计
-- **消息压缩**：自动压缩历史消息，节省 token 成本
-- **任务隔离**：每个会话拥有独立的 sandbox 目录，文件互不干扰
-- **美观 CLI**：基于 Rich 的美化命令行界面，支持 Markdown 渲染
-- **命令系统**：丰富的命令支持（`/new`, `/memory`, `/models`, `/tools`, `/clear`, `/exit`）
-
-### 2. 核心定位
-
-核心设计理念是：**只需 vibe coding专属的工具，即可改造搭建为自己的通用/垂类Agent**。
-
-- 修改图标与欢迎语 → 个性化你的 Agent
-- 修改 system prompt → 定制 Agent 的行为
-- 增加tools工具 → 扩展 Agent 能力
-
-所有配置都通过简单的 YAML 文件和代码修改即可完成，无需深入框架底层。
-
----
-
-## 🎬 功能演示
-
-### 1. 主页界面
-*-- 美观的主界面，展示项目 Logo 和所有可用命令，支持快速开始新会话或恢复历史会话*
-![主页](docs/效果图/主页图.png)
-
-### 2. 新建会话
-*-- 使用 `/new` 命令创建新会话，每个会话拥有独立的 task_id 和沙箱目录，实现任务隔离*
-![新建会话](docs/效果图/新建会话.png)
-
-### 3. 工具调用
-*-- Agent 智能调用工具执行任务，实时显示工具调用过程和结果，支持流式输出和 Token 追踪*
-![工具调用](docs/效果图/工具调用.png)
-
-### 4. 会话恢复
-*-- 使用 `/memory` 命令查看并恢复历史会话，支持多会话管理和无缝切换，保留完整的对话历史*
-![恢复记忆](docs/效果图/恢复记忆.png)
-
-### 5. 工具列表
-*-- 使用 `/tools` 命令查看所有已注册的工具，了解每个工具的功能描述和使用方式*
-![工具列表](docs/效果图/工具列表.png)
-
-### 6. 模型列表
-*-- 使用 `/models` 命令查看所有配置的模型信息，包括不同场景下的模型配置（main、text_generation 等）*
-![模型列表](docs/效果图/模型列表.png)
-
-### 7. 清除记忆
-*-- 使用 `/clear` 命令清除所有会话记忆和沙箱文件，需要确认操作，确保数据安全*
-![清楚记忆](docs/效果图/清楚记忆.png)
-
----
-
-## 🚀 快速部署
-
-### 1. 环境要求
-
-- Python 3.10+
-- pip 或 conda
-
-### 2. 安装步骤
-
-（1） **克隆项目**
-```bash
-git clone https://github.com/wz289494/anyclaw.git
-cd anyclaw
+```text
+Define
+  → Ground
+  → Plan
+  → Create
+  → Revise & Audit
+  → Approve
 ```
 
-（2） **创建虚拟环境（推荐）**
-```bash
-python -m venv venv
+- **Gate A — Task Confirmation**：确认任务对象、目标、体裁、平台和受众。
+- **Gate B — Evidence Exception**：在关键证据缺失、不匹配或存在风险时阻断。
+- **Gate C — Final Approval**：由人批准最终版本；系统不代表用户发布。
 
-# Windows
-venv\Scripts\activate
+当前代码已提供六阶段与三 Gate 的运行态表示，以及基础 evidence 阻断和 Gate C API。完整持久化状态机仍在开发中。
 
-# Linux/Mac
-source venv/bin/activate
+## 4. 系统架构
+
+```text
+User Task
+   ↓
+Define / Gate A
+   ↓
+Ground
+   ├─ User Materials
+   ├─ Vector Retrieval
+   ├─ Knowledge Graph / Graph Retrieval（规划中）
+   └─ Evidence
+   ↓
+Gate B
+   ↓
+Plan
+   ↓
+Create
+   ↓
+Revise & Audit
+   ↓
+Approve / Gate C
+
+Evaluation（持续建设中的独立子系统）
 ```
 
-（3） **安装依赖**
-```bash
-pip install -r requirements.txt
+Knowledge Graph、Graph Retrieval、Claim Diff、Fact Drift、Fact Lock 等不应从当前架构图解读为已经完成的功能。
+
+## 5. Evidence / Knowledge Layer
+
+- **Evidence**：用户材料和本地知识库中的可核查论据，当前通过 `evidence_used` 进入生成流程。
+- **Claim–Evidence–Source**：目标是将文章中的可核查 Claim 绑定到 EvidenceSpan 和 Source；统一绑定模型尚未完成。
+- **Vector Retrieval**：当前已有本地 JSON / Chroma 适配和类别、语义检索基础。
+- **Knowledge Graph / Graph Retrieval**：属于后续建设方向，不等同于当前 JSON 或 Vector RAG。
+
+当前 Ground 能在没有可用 evidence 或主题明显不匹配时触发基础 Gate B 阻断，但尚未实现完整的 Evidence Pack、冲突检测和逐 Claim 可追溯链路。
+
+## 6. Evaluation Framework
+
+v2.1 采用三个评价部分与人工审核：
+
+1. **Part 1 — Fact / Evidence Evaluation**：关注 Claim–Evidence Coverage、Evidence Entailment、Source Traceability、Evidence Conflict、Fact Drift 和 New Claim。当前仅有基础 evidence 门控，完整实现仍在开发。
+2. **Part 2 — External Evaluators**：计划接入 XCOMET / xCOMET-lite 及 glossary / rule-based checks，用于检查错译、漏译、语义损失和错误新增。当前属于 P1 计划。
+3. **Part 3 — ChinaStory Evaluation Skill**：关注跨文化可理解性、文化表达质量、受众适配、叙事吸引力、体裁/平台适配和自然度。规范文件已存在，程序化接入与校准仍在进行。
+
+Evaluation → Revision → Re-evaluation 的完整 Revision Loop 尚未实现。
+
+## 7. Dataset / Demo Strategy
+
+当前四层案例承担不同验证任务，不是四个平行的大型文化知识库：
+
+- **苏绣｜Engineering Baseline**：最小工程测试与 Claim–Evidence baseline，优先跑通 Source → EvidenceSpan → Claim → Retrieval → Generation → Traceability。
+- **泉州｜Deep Knowledge / Graph Case**：Deep KG、Graph Retrieval、多源 Evidence 和历史事实追溯，在苏绣 baseline 跑通后进入。
+- **茶文化｜International Communication Case**：Transcreation、Genre Adaptation 和 Cultural Distance。
+- **Conflict Case｜Safety & Revision Case**：Gate B、Revision、New Claim Detection、Fact Drift 和 Fact Lock 的可控失败案例。
+
+执行顺序：
+
+```text
+苏绣 baseline
+→ 泉州 Deep KG
+→ 茶文化 Transcreation
+→ Conflict / Fact Lock stress test
 ```
 
-（4） **配置环境变量**
+详见 [Dataset / Demo Strategy](docs/CHINASTORY_DATASET_DEMO_STRATEGY_v1.md)。
 
-创建 `.env` 文件，配置你的 API Key：
+## 8. 当前开发状态
 
-```env
-# OpenAI
-OPENAI_APIKEY=your_openai_api_key
+### Already available / validated
 
-# DeepSeek
-DEEPSEEK_APIKEY=your_deepseek_api_key
+- v2.1 六阶段 metadata / workflow baseline；
+- Gate A / B / C 的基础流程定义；
+- FastAPI 服务启动；
+- Tool Registry 与 8 个 enabled tools；
+- 基础 evidence consumption；
+- Gate C 人工批准 API；
+- v2.1 contract / static validation；
+- `load_story_knowledge`、`detect_content_genre`、`intl_comm_reply` 等工具。
 
-# Qwen / DashScope
-QWEN_APIKEY=your_qwen_api_key
+### Still under development
 
-# Gemini
-GEMINI_APIKEY=your_gemini_api_key
+- 统一 backend core schema / state；
+- 可执行且持久化的 Gate state machine；
+- 完整 Claim–Evidence–Source binding；
+- ContentVersion；
+- Claim Diff；
+- New Claim Detection；
+- Evidence Recheck；
+- Fact Drift；
+- Fact Lock；
+- Evaluation Integration；
+- Revision Loop；
+- 完整 Human Review / Audit state；
+- 更深的 Knowledge Graph integration；
+- 尚未验证的 full model E2E。
 
-# Kimi
-KIMI_APIKEY=your_kimi_api_key
+因此，项目当前不能表述为“SPEC v2.1 已完整实现”。
+
+## 9. 项目结构
+
+```text
+api/          FastAPI 入口、请求 schema、REST routes
+agent/        ReAct Agent 与工具调用封装
+tools/        内容生成、知识加载、体裁识别、回复和 evidence 工具
+utils/        Tool/Skill registry、路径、会话与配置辅助
+config/       tools、skills、model 等配置
+model/        模型工厂
+prompt/       生成与回复 prompt 模板
+skills/       ChinaStory 主 Skill 与体裁分册
+knowledge/    写作知识、样例、本地 evidence 与知识材料
+eval/         Evaluation Pipeline、Rubric 与 Skill 规范
+frontend/     当前 Web 工作台
+docs/         项目规范、运行验收、数据集策略和研究文档
+tests/        v2.1 契约测试
+scripts/      Chroma 构建和其他运行脚本
+archive/      历史规范与归档材料
 ```
 
-（5） **配置模型**
+## 10. 快速开始
 
-编辑 `config/model.yaml`，设置你使用的模型。配置文件支持多个场景，每个场景可以配置不同的模型：
+### 创建环境并安装依赖
 
-```yaml
-# 主流程模型：作为 ReAct Agent 的底座
-main:
-  provider: deepseek  # 或 openai, gemini, qwen, kimi
-  model: deepseek-chat
-  api_key_env: DEEPSEEK_APIKEY
-
-# 文本生成模型：用于文本生成任务
-text_generation:
-  provider: qwen
-  model: qwen-plus
-  api_key_env: QWEN_APIKEY
-
-# 元素提取模型：用于从文本中提取结构化信息
-element_extraction:
-  provider: qwen
-  model: qwen-plus
-  api_key_env: QWEN_APIKEY
-
-# 代码生成模型：用于代码生成任务
-code_generation:
-  provider: deepseek
-  model: deepseek-chat
-  api_key_env: DEEPSEEK_APIKEY
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
 ```
 
-**配置场景说明：**
+### 配置模型
 
-- **main**：主流程模型，作为 ReAct Agent 的核心底座，负责推理和工具调用决策
-- **text_generation**：文本生成模型，专门用于文本生成任务，如文章写作、内容创作等
-- **element_extraction**：元素提取模型，用于从文本中提取结构化信息，如实体识别、信息抽取等
-- **code_generation**：代码生成模型，专门用于代码生成任务，如代码补全、代码生成等
+模型配置位于 [config/model.yaml](config/model.yaml)。按该文件指定的环境变量名称，在本地创建 `.env` 并填入合法模型配置。不要把真实 API Key、token 或 secret 写入 README、代码或 Git。
 
-**支持的模型提供商：**
+当前没有模型配置时，仍可启动健康检查、元数据和部分不依赖模型的接口；生成、回复和润色的完整 E2E 需要合法模型配置。
 
-- **OpenAI**：OpenAI 官方 API，支持 GPT-4、GPT-3.5 等模型，稳定可靠，适合生产环境
-- **Gemini**：Google 的 Gemini 系列模型，支持 gemini-pro、gemini-flash 等，性能强劲，多模态能力强
-- **Qwen**：阿里云通义千问模型，支持 qwen-max、qwen-plus、qwen-turbo、qwen-coder 等，国内访问速度快，中文理解能力强
-- **Kimi**：Moonshot AI 的 Kimi 模型，支持长上下文（200K tokens），适合处理长文本任务和复杂文档分析
+### 启动 API
 
-（6） **安装项目**
-
-安装项目到虚拟环境中（以开发模式安装，便于修改代码）：
-
-```bash
-pip install -e .
+```powershell
+python -m uvicorn api.main:app --host 127.0.0.1 --port 8000
 ```
 
-（7） **运行项目**
-```bash
-# 方式1：使用命令行入口（需要先执行 pip install -e .）
-anyclaw
+检查：
 
-# 方式2：直接运行（无需安装）
-python -m cli.main
+```powershell
+Invoke-WebRequest http://127.0.0.1:8000/api/health
+Invoke-WebRequest http://127.0.0.1:8000/api/meta
 ```
 
----
+本地 evidence / Chroma 构建说明见 [knowledge/diplomacy/CHROMA.md](knowledge/diplomacy/CHROMA.md)。
 
-## 💡 使用技巧
+## 11. 关键文档
 
-### 1. 基本命令
+- [项目总 SPEC v2.1](SPEC-国际传播智能体_v2.1_现阶段统一规范.md)
+- [AGENT.md](AGENT.md)
+- [Dataset / Demo Strategy](docs/CHINASTORY_DATASET_DEMO_STRATEGY_v1.md)
+- [Code Alignment v2.1](CODE_ALIGNMENT_v2.1.md)
+- [Code Review v2.1](CODE_REVIEW_v2.1.md)
+- [Runtime Validation v2.1](RUNTIME_VALIDATION_v2.1.md)
+- [Evaluation Pipeline Spec](eval/CHINASTORY_EVALUATION_PIPELINE_SPEC_v1.2_CN.md)
+- [Content Quality Rubric](eval/CHINASTORY_CONTENT_QUALITY_RUBRIC_v2.1.md)
+- [Evaluation Skill Spec](eval/CHINASTORY_EVALUATION_SKILL_SPEC_v1.1.md)
 
-- `/new` - 开启新的会话
-- `/memory` - 查看并恢复之前的会话（最多显示5个）
-- `/models` - 查看所有模型配置
-- `/tools` - 查看所有可用工具
-- `/tools reload` - 重新扫描工具并刷新工具列表
-- `/profile` - 查看 profile layer（IDENTITY/USER/SOUL/AGENT/MEMORY/TOOLS）加载状态
-- `/profile reload` - 重新加载 profile 文件
-- `/skills` - 查看 skills layer 状态
-- `/skills reload` - 重新加载 skills 配置
-- `/skills match <query>` - 预览 query 的技能自动激活结果
-- `/clear` - 清除 memory 和 sandbox（需确认）
-- `/exit` - 退出程序
+## 12. Roadmap
 
-### 2. 会话管理
+- **Done**：六阶段与 Gate A/B/C 基础运行态、FastAPI 启动、Tool Registry、基础 evidence 消费、Gate C API、v2.1 契约验证。
+- **In Progress**：苏绣 Evidence baseline、统一后端状态契约、Evidence Pack、Claim–Evidence–Source 绑定、完整 Gate 行为、真实模型 E2E。
+- **Planned**：泉州 Deep KG、Graph Retrieval、茶文化 Transcreation 与 Genre Adaptation、Conflict / Fact Lock stress test、Evaluation Integration、Revision Loop 和更完整 Audit Trail。
 
-- 每个会话都有唯一的 `task_id`，用于隔离数据和文件
-- 会话数据保存在 `memory/STM/` 目录
-- 任务文件保存在 `sandbox/{task_id}/` 目录
-- 使用 `/memory` 命令可以快速恢复之前的会话
+## 13. 项目来源与致谢
 
-### 3. Token 追踪
+ChinaStory Agent 是在 AnyClaw Agent 框架基础上进行领域化改造和扩展的项目。AnyClaw 提供了 Agent、工具注册、模型接入和 CLI 等基础框架能力；ChinaStory 的 evidence-grounded workflow、国际传播 Skill、内容门控与评价方向属于本项目的领域化建设。
 
-- 系统会自动追踪每次调用的 token 消耗
-- 支持按步骤统计（agent_processing, tool_xxx 等）
-- Token 使用情况会实时显示在界面上
-- 历史记录保存在会话数据中
-
-### 4. 消息压缩
-
-- 当上下文 token 数超过限制（默认 20000）时，会自动压缩历史消息
-- 压缩后的消息会生成摘要，保留关键信息
-- 压缩信息会在界面上提示
-
----
-
-## 🔧 Vibe coding 继续开发
-
-想要定制自己的 Agent？很简单，跟着下面的步骤来就行。
-
-### 1. 先让 AI 熟悉项目
-
-开始之前，先告诉你的 coding 工具（比如 Cursor、GitHub Copilot 等）：
-```
--先熟悉当前项目，了解项目结构和核心模块
-```
-
-### 2. 更换 Logo 和欢迎语
-
-**换 Logo**：
-```
--将 logo 图片放到 docs/logo图/logo图.png，替换掉原来的就行
-```
-
-**改欢迎语**：
-```
--我现在需要更换项目名称为：
--修改 cli/display.py 中的 print_welcome() 函数，更换欢迎语
--修改 cli/display.py 中的 print_icon() 函数，更换 CLI 图标和 ASCII 艺术字
--修改项目中其他所有涉及 anyclaw 或 AnyClaw 的位置，更改为项目名称
-```
-
-**需要更换的文件和位置**：
-
-1. **`pyproject.toml`**：
-   - `name = "anyclaw"` → `name = "YOUR_PROJECT_NAME"`
-   - `description = "anyclaw：agent框架"` → `description = "YOUR_PROJECT_NAME：agent框架"`
-   - `anyclaw = "cli.main:main"` → `YOUR_COMMAND_NAME = "cli.main:main"`
-
-2. **`cli/display.py`**：
-   - `print_icon()` 函数中的 ASCII 艺术字和注释（替换 "ANYCLAW" 为 "YOUR_PROJECT_NAME"）
-   - `print_welcome()` 函数中的欢迎语：`"欢迎使用 AnyClaw - Agent智能助手"` → `"欢迎使用 YOUR_PROJECT_NAME - Agent智能助手"`
-
-3. **`cli/main.py`**：
-   - 所有 `"AnyClaw"` 的显示文本 → `"YOUR_PROJECT_NAME"`
-
-4. **`cli/interactive.py`**：
-   - 所有 `"AnyClaw"` 的显示文本 → `"YOUR_PROJECT_NAME"`
-
-5. **`utils/path.py`**：
-   - 注释中的 `"anyclaw 项目所在目录"` → `"YOUR_PROJECT_NAME 项目所在目录"`
-
-6. **`README.md`**：
-   - 项目标题、描述、所有提到 AnyClaw 的地方 → `YOUR_PROJECT_NAME`
-   - GitHub 链接中的用户名和仓库名 → `YOUR_GITHUB_USERNAME/YOUR_REPO_NAME`
-
-### 3. 定制 System prompt
-
-想让你的 Agent 更专业？更幽默？更严谨？直接改 system prompt 就行
-```
--为我修改prompt system：
--设定角色：（如舆情分析助手）
--设定认知：具备React理解 + 专属理解（如舆情分析的方法）
--设定名称或性格：（如平和、热情）
-```
-### 4. 给 Agent 添加新能力（工具）
-
-想让 Agent 能做更多事情？给它加工具就行
-
-**第一步：创建工具文件**
-
-首先，需要在 `tools/` 目录下创建一个新的 Python 文件
-
-```
--在 tools/ 目录下新建一个文件，命名为 （my_tool.py）
-工具用途说明：
-工具时机说明：
-工具逻辑：
-工具输入参数：
-工具输出参数：
--工具函数需要用 @tool 装饰器，返回值必须是 JSON 字符串格式
--输出参数字段需要包含至少其一（如 result、data、output 等）
--如果需要保存文件，必须使用任务ID作为路径，参考demo工具的文件保存处理
--工具内部需要调用 LLM 来分析数据或生成内容，可以根据场景选择合适的模型使用：如使用项目中的（text_generation、element_extraction、code_generation）
-```
-
-**第二步：配置启停（可选）**
-
-AnyClaw 现在支持自动发现工具，不需要再改 `agent/reactagent.py` 或 `tools/__init__.py`。
-
-你只需要在 `config/tools.yaml` 控制启用状态：
-
-```yaml
-auto_discover: true
-search_packages:
-  - tools
-enabled_tools: []
-disabled_tools:
-  - my_tool
-```
-
-说明：
-
-- `enabled_tools` 为空：默认启用全部已发现工具
-- `enabled_tools` 非空：仅启用清单中的工具
-- `disabled_tools`：显式禁用工具（优先级更高）
-
-**第三步：测试工具**
-
-工具添加完成后，写一个测试文件，直接运行查看效果
-
-```
-在scripts中新增一个工具测试文件，用于测试新的工具（如my_tool）
-格式按照run_demo示例一致
-```
-
-你也可以在 CLI 中直接运行：
-
-```bash
-/tools reload
-```
-
-查看新工具是否被发现并启用。
-
----
-
-## 📁 项目架构
-
-### 1. 技术栈
-
-- **LangChain 1.0** - Agent 框架、工具系统、流式输出
-- **Rich** - CLI 美化与 Markdown 渲染
-- **Typer** - CLI 框架
-- **PyYAML** - 配置管理
-- **Python 3.10+** - 核心语言
-
-### 2. 目录树
-
-```
-anyclaw/
-├── agent/              # Agent 核心逻辑
-│   ├── __init__.py
-│   └── reactagent.py  # ReAct Agent 实现
-├── cli/                # 命令行界面
-│   ├── __init__.py
-│   ├── main.py        # 主入口
-│   ├── interactive.py # 交互式运行
-│   ├── display.py     # 显示工具（Rich UI）
-│   ├── session_ui.py  # 会话管理 UI
-│   ├── tools_ui.py    # 工具列表 UI
-│   ├── profile_ui.py  # Profile Layer 状态 UI
-│   ├── skills_ui.py   # Skills Layer 状态 UI
-│   ├── models_ui.py   # 模型列表 UI
-│   └── clear_utils.py # 清除工具
-├── config/             # 配置文件
-│   ├── __init__.py
-│   ├── model.yaml     # 模型配置
-│   ├── prompt.yaml    # Prompt 配置
-│   ├── tools.yaml     # 工具自动发现与启停配置
-│   ├── profile.yaml   # Profile Layer 配置
-│   └── skills.yaml    # Skills Layer 配置
-├── docs/               # 文档和图片
-│   ├── logo图/        # Logo 图片
-│   └── 效果图/        # 功能演示图
-├── memory/             # 会话存储
-│   └── STM/           # 短期记忆（会话数据）
-├── model/              # 模型工厂
-│   ├── __init__.py
-│   └── factory.py     # 模型实例化
-├── prompt/             # Prompt 模板
-│   └── system_prompt.txt
-├── sandbox/            # 任务运行目录
-├── skills/             # 技能文件（Markdown）
-│   ├── planning.md
-│   ├── coding.md
-│   ├── research.md
-│   └── data-analysis.md
-├── tools/              # 工具定义
-│   ├── __init__.py
-│   └── demo_calculator.py  # 示例计算工具
-├── utils/              # 工具函数
-│   ├── __init__.py
-│   ├── session_manager.py  # 会话管理
-│   ├── token_tracker.py    # Token 追踪
-│   ├── env_loader.py        # 环境变量加载
-│   ├── message_utils.py     # 消息工具（压缩、转换等）
-│   ├── path.py              # 路径工具
-│   ├── prompt_loader.py     # Prompt 加载
-│   ├── task_context.py      # 任务上下文管理
-│   ├── tool_registry.py     # 动态工具注册中心
-│   ├── profile_loader.py    # Profile Layer 加载器
-│   ├── long_term_memory.py  # 轻量长期记忆（LTM）
-│   └── skill_registry.py    # 技能注册与自动激活
-├── scripts/            # 脚本文件
-│   └── run_demo_calculator.py  # 工具测试脚本
-├── pyproject.toml      # 项目配置
-├── requirements.txt    # 依赖列表
-├── LICENSE.txt         # 许可证
-├── IDENTITY.md         # Agent 身份设定
-├── USER.md             # 用户偏好与画像
-├── SOUL.md             # 系统目标与约束
-├── AGENT.md            # 决策策略
-├── MEMORY.md           # 记忆策略（STM/LTM）
-├── TOOLS.md            # 工具策略与占位符
-└── README.md           # 项目说明
-```
-
----
-
-## 📝 许可证
-
-本项目采用 **NON-COMMERCIAL LEARNING LICENSE 1.1**（非商业学习许可证）。
-
-### 许可证说明
-
-Copyright (c) 2024 relakkes@gmail.com
-
-本软件及其相关文档文件（以下简称"软件"）在以下条件下授权使用：
-
-#### 授权范围
-
-版权所有者授予任何接受本许可证的自然人或法人实体（以下简称"用户"）免费、非独占、不可转让的权利，以非商业学习为目的使用、复制、修改和合并本软件。
-
-#### 使用条件
-
-1. 用户必须在软件及其副本的所有合理显著位置包含上述版权声明和本许可证声明
-2. 软件仅限于学习和研究目的，不得用于大规模爬取或干扰平台运营的活动
-3. 未经版权所有者书面同意，软件不得用于任何商业目的或对第三方造成不当影响
-
-#### 免责声明
-
-1. 软件按"现状"提供，不提供任何明示或暗示的保证，包括但不限于适销性、特定用途适用性和非侵权性的保证
-2. 在任何情况下，版权所有者均不对因使用或无法使用本软件而产生的任何直接、间接、偶然、特殊、示范性或后果性损害承担责任
-
-#### 完整许可证
-
-完整的许可证文本请查看 [LICENSE.txt](LICENSE.txt) 文件。
-
-**注意**：如需商业使用，请联系版权所有者获取商业许可。
-
----
-
-## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
----
-
-## ⭐ Star History
-
-如果这个项目对你有帮助，请给个 Star ⭐
-
----
-
-<div align="center">
-
-**Made with ❤️ by AnyClaw Team**
-
-</div>
+许可证与署名要求以 [LICENSE.txt](LICENSE.txt) 为准。本次 README 重写未修改许可证文件。
