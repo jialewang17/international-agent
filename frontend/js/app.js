@@ -141,67 +141,41 @@ async function handleFilesSelected(e) {
 }
 
 function inferPipeline(data) {
-  if (Array.isArray(data.gates) && data.gates.length) {
-    return data.gates.map((g) => ({
-      id: g.id || "",
-      label: g.label || g.id || "",
-      status: g.status || "idle",
-      detail: g.detail || "",
-      icon:
-        g.status === "ok"
-          ? "✓"
-          : g.status === "stop"
-            ? "!"
-            : g.status === "run"
-              ? "…"
-              : g.status === "warn"
-                ? "○"
-                : "·",
-    }));
-  }
-
-  const hasError = Boolean(data.error);
   const evidence = data.evidence_used || [];
   const hasPost = Boolean((data.post || data.reply || "").trim());
+  const hasError = Boolean(data.error);
   const gateReason = data.gate_reason;
   const stats = data.evidence_stats || {};
   const nUser = stats.user ?? evidence.filter((e) => e.source_type === "用户上传").length;
   const nLocal = stats.local ?? evidence.filter((e) => e.source_type !== "用户上传").length;
-  const skills = (data.skills_applied || []).slice(0, 2).join("+");
 
-  return [
-    { id: "G1", label: "主题体裁", status: "ok", icon: "✓", detail: data.genre || "" },
-    { id: "G2", label: "Skill", status: skills ? "ok" : "warn", icon: skills ? "✓" : "—", detail: skills },
-    {
-      id: "G3",
-      label: "证据门",
-      status: gateReason || (hasError && !hasPost) ? "stop" : evidence.length ? "ok" : "stop",
-      icon: gateReason || !evidence.length ? "!" : "✓",
-      detail: `U${nUser}/L${nLocal}`,
-    },
-    { id: "G4", label: "口径", status: evidence.length && !gateReason ? "ok" : "idle", icon: "✓", detail: "" },
-    {
-      id: "G5",
-      label: "成稿",
-      status: hasPost ? "ok" : hasError ? "stop" : "idle",
-      icon: hasPost ? "✓" : "—",
-      detail: "",
-    },
-    {
-      id: "G6",
-      label: "改稿",
-      status: hasPost ? "warn" : "idle",
-      icon: hasPost ? "○" : "·",
-      detail: hasPost ? "可反馈" : "",
-    },
-    {
-      id: "G7",
-      label: "定稿",
-      status: draftFinalized ? "ok" : hasPost ? "warn" : "idle",
-      icon: draftFinalized ? "✓" : "·",
-      detail: draftFinalized ? "已放行" : "待放行",
-    },
-  ];
+  const stages = Array.isArray(data.pipeline_steps) && data.pipeline_steps.length
+    ? data.pipeline_steps
+    : [
+        { id: "DEFINE", label: "Define", status: "ok", detail: data.genre || "" },
+        { id: "GROUND", label: "Ground", status: gateReason || (hasError && !hasPost) ? "stop" : evidence.length ? "ok" : "warn", detail: `U${nUser}/L${nLocal}` },
+        { id: "PLAN", label: "Plan", status: evidence.length && !gateReason ? "ok" : "idle", detail: (data.skills_applied || []).slice(0, 2).join("+") },
+        { id: "CREATE", label: "Create", status: hasPost ? "ok" : hasError ? "stop" : "idle", detail: "" },
+        { id: "REVISE_AUDIT", label: "Revise & Audit", status: hasPost ? "warn" : "idle", detail: hasPost ? "可反馈" : "" },
+        { id: "APPROVE", label: "Approve", status: draftFinalized ? "ok" : hasPost ? "warn" : "idle", detail: draftFinalized ? "已批准" : "待批准" },
+      ];
+
+  const gates = Array.isArray(data.gates) && data.gates.length
+    ? data.gates
+    : [
+        { id: "A", label: "Task Confirmation", status: "ok", detail: "任务已确认" },
+        { id: "B", label: "Evidence Exception", status: gateReason || (hasError && !hasPost) ? "stop" : "ok", detail: gateReason || "clear" },
+        { id: "C", label: "Final Approval", status: draftFinalized ? "ok" : hasPost ? "warn" : "idle", detail: draftFinalized ? "已批准" : "待人工批准" },
+      ];
+
+  const normalize = (x, kind) => ({
+    ...x,
+    kind,
+    icon: x.status === "ok" ? "✓" : x.status === "stop" ? "!" : x.status === "run" ? "…" : x.status === "warn" ? "○" : "·",
+  });
+  const sm = Object.fromEntries(stages.map((x) => [x.id, normalize(x, "stage")]));
+  const gm = Object.fromEntries(gates.map((x) => [x.id, normalize(x, "gate")]));
+  return [sm.DEFINE, gm.A, sm.GROUND, gm.B, sm.PLAN, sm.CREATE, sm.REVISE_AUDIT, sm.APPROVE, gm.C].filter(Boolean);
 }
 
 function renderPipeline(data, { running = false } = {}) {
@@ -214,17 +188,24 @@ function renderPipeline(data, { running = false } = {}) {
   el.classList.remove("hidden");
   let steps = inferPipeline(data);
   if (running) {
-    steps = steps.map((s, i) =>
-      i < 4 ? { ...s, status: "run", icon: "…" } : { ...s, status: "idle", icon: "·" }
-    );
+    let seenStages = 0;
+    steps = steps.map((step) => {
+      if (step.kind === "gate") return step;
+      seenStages += 1;
+      return seenStages <= 4 ? { ...step, status: "run", icon: "…" } : { ...step, status: "idle", icon: "·" };
+    });
   }
   if (draftFinalized) {
-    steps = steps.map((s) => (s.id === "G7" ? { ...s, status: "ok", icon: "✓", detail: "已放行" } : s));
+    steps = steps.map((step) =>
+      step.id === "APPROVE" || (step.kind === "gate" && step.id === "C")
+        ? { ...step, status: "ok", icon: "✓", detail: "已人工批准" }
+        : step
+    );
   }
   el.innerHTML = steps
     .map(
       (s) =>
-        `<div class="pipe-step ${s.status}" title="${s.detail || s.label}">` +
+        `<div class="pipe-step ${s.status} ${s.kind || "stage"}" title="${s.detail || s.label}">` +
         `<span class="gid">${s.id || ""}</span>` +
         `<span class="icon">${s.icon}</span>${s.label}` +
         `${s.detail ? `<br><small>${s.detail}</small>` : ""}` +
@@ -241,12 +222,12 @@ function setFinalizeUi(enabled) {
   btn.disabled = !enabled;
   if (draftFinalized) {
     bar.classList.add("is-done");
-    status.textContent = "已定稿放行 · G7";
+    status.textContent = "已人工批准 · Gate C";
     btn.textContent = "已放行";
     btn.disabled = true;
   } else {
     bar.classList.remove("is-done");
-    status.textContent = enabled ? "未定稿 · 可改稿后放行（G7）" : "生成成功后可定稿放行";
+    status.textContent = enabled ? "待人工批准 · Gate C" : "生成成功后可进入最终批准";
     btn.textContent = "定稿放行";
   }
 }
@@ -512,19 +493,20 @@ async function polishPost(instruction) {
     draftFinalized = false;
     if (lastResult) {
       lastResult.post = res.data.post;
+      if (Array.isArray(lastResult.pipeline_steps)) {
+        lastResult.pipeline_steps = lastResult.pipeline_steps.map((step) =>
+          step.id === "REVISE_AUDIT" ? { ...step, status: "ok", detail: "已改稿，需事实复核" } : step
+        );
+      }
       if (Array.isArray(lastResult.gates)) {
         lastResult.gates = lastResult.gates.map((g) =>
-          g.id === "G6"
-            ? { ...g, status: "ok", detail: "已改稿" }
-            : g.id === "G7"
-              ? { ...g, status: "warn", detail: "待放行" }
-              : g
+          g.id === "C" ? { ...g, status: "warn", detail: "待人工批准" } : g
         );
       }
       renderPipeline(lastResult);
     }
     setFinalizeUi(true);
-    toast("已改稿（G6）");
+    toast("已改稿 · Revise & Audit");
   } catch (err) {
     toast(err.message);
   }
@@ -596,22 +578,39 @@ function bindEvents() {
     }
   });
 
-  $("#btnFinalize")?.addEventListener("click", () => {
+  $("#btnFinalize")?.addEventListener("click", async () => {
     const text = ($("#editorPost")?.value || "").trim();
     if (!text) {
       toast("没有可定稿的正文");
       return;
     }
-    draftFinalized = true;
-    if (lastResult && Array.isArray(lastResult.gates)) {
-      lastResult.gates = lastResult.gates.map((g) =>
-        g.id === "G7" ? { ...g, status: "ok", detail: "已放行" } : g.id === "G6" ? { ...g, status: "ok" } : g
-      );
-      lastResult.finalized = true;
-      renderPipeline(lastResult);
+    try {
+      const res = await api("/api/posts/approve", {
+        method: "POST",
+        body: JSON.stringify({ post: text, approved: true, approver: "human" }),
+      });
+      draftFinalized = Boolean(res?.data?.approved);
+      if (!draftFinalized) throw new Error("Gate C 未完成");
+      if (lastResult && Array.isArray(lastResult.gates)) {
+        lastResult.gates = lastResult.gates.map((g) =>
+          g.id === "C" ? { ...g, status: "ok", detail: "已人工批准" } : g
+        );
+        if (Array.isArray(lastResult.pipeline_steps)) {
+          lastResult.pipeline_steps = lastResult.pipeline_steps.map((step) =>
+            step.id === "APPROVE" ? { ...step, status: "ok", detail: "已人工批准" } : step
+          );
+        }
+        lastResult.finalized = true;
+        lastResult.approval = res.data;
+        renderPipeline(lastResult);
+      }
+      setFinalizeUi(true);
+      toast("Gate C · 已人工批准");
+    } catch (err) {
+      draftFinalized = false;
+      setFinalizeUi(true);
+      toast(err.message || "Gate C 批准失败");
     }
-    setFinalizeUi(true);
-    toast("G7 定稿已放行");
   });
 
   $("#btnCopy")?.addEventListener("click", async () => {

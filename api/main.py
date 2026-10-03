@@ -10,29 +10,19 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from langchain_core.messages import HumanMessage
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from api.schemas import (  # noqa: E402
+    ApprovalRequest,
     EvidenceRequest,
     PolishRequest,
     PostGenerateRequest,
     ReplyGenerateRequest,
     TopicsRequest,
 )
-from model.factory import get_text_generation_model  # noqa: E402
-from tools.intl_comm_reply import intl_comm_reply  # noqa: E402
-from tools.kb_local import retrieve_evidence  # noqa: E402
-from tools.story_post_gen import (  # noqa: E402
-    plan_china_story_topics,
-    run_story_post_generation,
-)
-from utils.env_loader import get_env_config  # noqa: E402
-
-get_env_config()
 
 FRONTEND_DIR = ROOT / "frontend"
 
@@ -69,13 +59,17 @@ META = {
     "languages": ["English", "Chinese"],
     "preset_chips": PRESET_CHIPS,
     "pipeline_steps": [
-        {"id": "G1", "label": "主题体裁", "hard": True},
-        {"id": "G2", "label": "Skill", "hard": False},
-        {"id": "G3", "label": "证据门", "hard": True},
-        {"id": "G4", "label": "口径", "hard": False},
-        {"id": "G5", "label": "成稿", "hard": False},
-        {"id": "G6", "label": "改稿", "hard": False},
-        {"id": "G7", "label": "定稿", "hard": True},
+        {"id": "DEFINE", "label": "Define", "hard": False},
+        {"id": "GROUND", "label": "Ground", "hard": False},
+        {"id": "PLAN", "label": "Plan", "hard": False},
+        {"id": "CREATE", "label": "Create", "hard": False},
+        {"id": "REVISE_AUDIT", "label": "Revise & Audit", "hard": False},
+        {"id": "APPROVE", "label": "Approve", "hard": False},
+    ],
+    "gates": [
+        {"id": "A", "label": "Task Confirmation", "after": "DEFINE", "hard": True},
+        {"id": "B", "label": "Evidence Exception", "after": "GROUND", "hard": True, "exception_only": True},
+        {"id": "C", "label": "Final Approval", "after": "APPROVE", "hard": True},
     ],
     "genres": [
         {"id": "", "label": "自动识别"},
@@ -84,16 +78,16 @@ META = {
         {"id": "feature", "label": "特稿/深度"},
         {"id": "script", "label": "短视频脚本"},
     ],
-    "version": "0.5.0-pipeline-gates",
+    "version": "0.6.0-v2.1-six-stage",
     "skills_note": "china-story-post/news/feature/script + evidence-user-materials",
-    "outline_doc": "docs/PIPELINE_OUTLINE_v1.md",
+    "spec_doc": "SPEC-国际传播智能体_v2.1_现阶段统一规范.md",
     "lit_map_doc": "docs/PIPELINE_LIT_MAP.md",
 }
 
 app = FastAPI(
     title="AnyClaw · 讲好中国故事工作台",
     description="国际传播智能体 API：主动发帖 / 选题 / 回复 + 论据透明 + 门控可视化",
-    version="0.1.0",
+    version="0.6.0-v2.1-six-stage",
 )
 
 app.add_middleware(
@@ -121,8 +115,14 @@ def generate_post(body: PostGenerateRequest):
     if not theme:
         raise HTTPException(status_code=400, detail="theme 不能为空")
     try:
+        from tools.story_post_gen import run_story_post_generation
         result = run_story_post_generation(**body.model_dump())
         return {"ok": not bool(result.get("error")), "data": result}
+    except ModuleNotFoundError as e:
+        raise HTTPException(
+            status_code=503,
+            detail=f"运行依赖未安装: {e.name}. 请先执行 pip install -r requirements.txt",
+        ) from e
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
 
@@ -130,9 +130,15 @@ def generate_post(body: PostGenerateRequest):
 @app.post("/api/posts/topics")
 def generate_topics(body: TopicsRequest):
     try:
+        from tools.story_post_gen import plan_china_story_topics
         raw = plan_china_story_topics.invoke(body.model_dump())
         data = json.loads(raw)
         return {"ok": True, "data": data}
+    except ModuleNotFoundError as e:
+        raise HTTPException(
+            status_code=503,
+            detail=f"运行依赖未安装: {e.name}. 请先执行 pip install -r requirements.txt",
+        ) from e
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
 
@@ -143,10 +149,16 @@ def generate_reply(body: ReplyGenerateRequest):
     if not comment:
         raise HTTPException(status_code=400, detail="comment 不能为空")
     try:
+        from tools.intl_comm_reply import intl_comm_reply
         raw = intl_comm_reply.invoke(body.model_dump())
         data = json.loads(raw)
         blocked = bool(data.get("error")) or not (data.get("reply") or "").strip()
         return {"ok": not blocked, "data": data}
+    except ModuleNotFoundError as e:
+        raise HTTPException(
+            status_code=503,
+            detail=f"运行依赖未安装: {e.name}. 请先执行 pip install -r requirements.txt",
+        ) from e
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
 
@@ -154,6 +166,7 @@ def generate_reply(body: ReplyGenerateRequest):
 @app.post("/api/evidence")
 def query_evidence(body: EvidenceRequest):
     try:
+        from tools.kb_local import retrieve_evidence
         raw = retrieve_evidence.invoke(
             {
                 "categories": body.categories,
@@ -163,6 +176,11 @@ def query_evidence(body: EvidenceRequest):
         )
         data = json.loads(raw)
         return {"ok": True, "data": data}
+    except ModuleNotFoundError as e:
+        raise HTTPException(
+            status_code=503,
+            detail=f"运行依赖未安装: {e.name}. 请先执行 pip install -r requirements.txt",
+        ) from e
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
 
@@ -183,14 +201,51 @@ def polish_post(body: PolishRequest):
         f"Original post:\n{post}"
     )
     try:
+        from langchain_core.messages import HumanMessage
+        from model.factory import get_text_generation_model
         model = get_text_generation_model()
         result = model.invoke([HumanMessage(content=prompt)])
         text = getattr(result, "content", "") or str(result)
         if isinstance(text, list):
             text = "".join((x.get("text", "") if isinstance(x, dict) else str(x)) for x in text)
         return {"ok": True, "data": {"post": str(text).strip(), "instruction": instruction}}
+    except ModuleNotFoundError as e:
+        raise HTTPException(
+            status_code=503,
+            detail=f"运行依赖未安装: {e.name}. 请先执行 pip install -r requirements.txt",
+        ) from e
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
+
+
+
+@app.post("/api/posts/approve")
+def approve_post(body: ApprovalRequest):
+    """Gate C: explicit human approval. This records approval metadata; it does not publish content."""
+    from datetime import datetime, timezone
+    import hashlib
+
+    post = (body.post or "").strip()
+    if not post:
+        raise HTTPException(status_code=400, detail="post 不能为空")
+    if not body.approved:
+        raise HTTPException(status_code=400, detail="Gate C 需要显式人工批准")
+    approved_at = datetime.now(timezone.utc).isoformat()
+    content_hash = hashlib.sha256(post.encode("utf-8")).hexdigest()
+    return {
+        "ok": True,
+        "data": {
+            "approved": True,
+            "gate": "C",
+            "gate_label": "Final Approval",
+            "approver": (body.approver or "human").strip() or "human",
+            "approved_at": approved_at,
+            "content_sha256": content_hash,
+            "note": (body.note or "").strip(),
+            "status": "APPROVED",
+            "published": False,
+        },
+    }
 
 
 @app.get("/")

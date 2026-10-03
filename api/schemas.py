@@ -54,3 +54,10 @@ class PolishRequest(BaseModel):
     instruction: str
     language: str = "English"
     max_words: int = Field(default=100, ge=20, le=300)
+
+
+class ApprovalRequest(BaseModel):
+    post: str
+    approved: bool = True
+    approver: str = "human"
+    note: str = ""

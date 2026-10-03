@@ -49,7 +49,7 @@ def _llm_text(prompt: str) -> str:
     return str(raw).strip()
 
 
-def _pipeline_gates(
+def _pipeline_state(
     *,
     genre: str,
     skill_ids: List[str],
@@ -58,63 +58,53 @@ def _pipeline_gates(
     evidence_ok: bool,
     aligned: bool,
     has_draft: bool,
-    stop_at: Optional[str] = None,
-) -> List[Dict[str, str]]:
-    """总纲 G1–G7 状态（供前端步骤条）。"""
+) -> Dict[str, List[Dict[str, str]]]:
+    """v2.1 六阶段 + Gate A/B/C 运行态；Stage 与 Gate 分离。"""
+    ground_ok = bool(evidence_ok and aligned)
+    blocked = not ground_ok
 
-    def st(gate_id: str, ok: bool, pending: bool = False) -> str:
-        if stop_at and gate_id == stop_at:
-            return "stop"
-        if stop_at and gate_id > stop_at:
-            return "idle"
-        if pending:
-            return "warn"
-        return "ok" if ok else "warn"
-
-    return [
+    stages = [
+        {"id": "DEFINE", "label": "Define", "status": "ok", "detail": genre or "post"},
         {
-            "id": "G1",
-            "label": "主题体裁",
-            "status": st("G1", True),
-            "detail": genre,
-        },
-        {
-            "id": "G2",
-            "label": "Skill",
-            "status": st("G2", bool(skill_ids)),
-            "detail": "+".join(skill_ids[:3]),
-        },
-        {
-            "id": "G3",
-            "label": "证据门",
-            "status": st("G3", evidence_ok and aligned, pending=not evidence_ok),
+            "id": "GROUND", "label": "Ground",
+            "status": "ok" if ground_ok else "stop",
             "detail": f"用户{n_user}/本地{n_local}",
         },
         {
-            "id": "G4",
-            "label": "口径",
-            "status": st("G4", evidence_ok and aligned),
-            "detail": "表单已填",
+            "id": "PLAN", "label": "Plan",
+            "status": "idle" if blocked else "ok",
+            "detail": "+".join(skill_ids[:3]),
         },
         {
-            "id": "G5",
-            "label": "成稿",
-            "status": st("G5", has_draft, pending=evidence_ok and aligned and not has_draft),
-            "detail": "",
+            "id": "CREATE", "label": "Create",
+            "status": "idle" if blocked else ("ok" if has_draft else "warn"),
+            "detail": "draft" if has_draft else "",
         },
         {
-            "id": "G6",
-            "label": "改稿",
+            "id": "REVISE_AUDIT", "label": "Revise & Audit",
             "status": "idle" if not has_draft else "warn",
-            "detail": "可反馈",
+            "detail": "可修改并复核" if has_draft else "",
         },
         {
-            "id": "G7",
-            "label": "定稿",
+            "id": "APPROVE", "label": "Approve",
             "status": "idle" if not has_draft else "warn",
-            "detail": "待放行",
+            "detail": "待人工批准" if has_draft else "",
         },
     ]
+    gates = [
+        {"id": "A", "label": "Task Confirmation", "status": "ok", "detail": "任务参数已确认"},
+        {
+            "id": "B", "label": "Evidence Exception",
+            "status": "stop" if blocked else "ok",
+            "detail": "证据异常，已阻断" if blocked else "无阻断异常",
+        },
+        {
+            "id": "C", "label": "Final Approval",
+            "status": "idle" if not has_draft else "warn",
+            "detail": "待人工批准" if has_draft else "",
+        },
+    ]
+    return {"pipeline_steps": stages, "gates": gates}
 
 def _extract_json(raw: str) -> Dict[str, Any]:
     text = (raw or "").strip()
@@ -367,9 +357,9 @@ def run_story_post_generation(
             "post": "",
             "article": "",
             "platform": plat.get("platform_label", platform),
-            "pipeline": "G1 -> G2 -> G3 STOP (empty evidence)",
+            "pipeline": "Define -> Ground STOP (Gate B: empty evidence)",
             "skills_applied": skill_ids,
-            "gates": _pipeline_gates(
+            **_pipeline_state(
                 genre=genre,
                 skill_ids=skill_ids,
                 n_user=0,
@@ -377,7 +367,6 @@ def run_story_post_generation(
                 evidence_ok=False,
                 aligned=False,
                 has_draft=False,
-                stop_at="G3",
             ),
         }
 
@@ -397,18 +386,9 @@ def run_story_post_generation(
             "post": "",
             "article": "",
             "platform": plat.get("platform_label", platform),
-            "pipeline": "G1 -> G2 -> G3 STOP (alignment)",
+            "pipeline": "Define -> Ground STOP (Gate B: alignment)",
             "skills_applied": skill_ids,
-            "gates": _pipeline_gates(
-                genre=genre,
-                skill_ids=skill_ids,
-                n_user=n_user,
-                n_local=n_local,
-                evidence_ok=True,
-                aligned=False,
-                has_draft=False,
-                stop_at="G3",
-            ),
+            **_pipeline_state(genre=genre, skill_ids=skill_ids, n_user=n_user, n_local=n_local, evidence_ok=True, aligned=False, has_draft=False),
         }
 
     if genre == "news":
@@ -479,22 +459,14 @@ def run_story_post_generation(
             "language": language,
             "max_words": max_words,
             "pipeline": (
-                f"G1-G4 -> skill({'+'.join(skill_ids)}) -> genre=news -> "
-                f"dual_evidence(user={n_user},local={n_local}) -> G5 draft"
+                f"Define -> Ground -> Plan(skill={'+'.join(skill_ids)}) -> Create(news) -> "
+                f"Revise & Audit -> Approve; evidence(user={n_user},local={n_local})"
             ),
             "skills_applied": skill_ids,
             "prompt_file": prompt_file,
             "raw_model": raw if parsed.get("parse_warning") else None,
             "parse_warning": parsed.get("parse_warning"),
-            "gates": _pipeline_gates(
-                genre=genre,
-                skill_ids=skill_ids,
-                n_user=n_user,
-                n_local=n_local,
-                evidence_ok=True,
-                aligned=True,
-                has_draft=bool(body_out),
-            ),
+            **_pipeline_state(genre=genre, skill_ids=skill_ids, n_user=n_user, n_local=n_local, evidence_ok=True, aligned=True, has_draft=bool(body_out)),
         }
 
     return {
@@ -518,22 +490,14 @@ def run_story_post_generation(
         "platform": plat.get("platform_label", platform),
         "language": language,
         "pipeline": (
-            f"G1-G4 -> skill({'+'.join(skill_ids)}) -> genre={genre} -> "
-            f"dual_evidence(user={n_user},local={n_local}) -> G5 draft"
+            f"Define -> Ground -> Plan(skill={'+'.join(skill_ids)}) -> Create({genre}) -> "
+            f"Revise & Audit -> Approve; evidence(user={n_user},local={n_local})"
         ),
         "skills_applied": skill_ids,
         "prompt_file": prompt_file,
         "raw_model": raw if parsed.get("parse_warning") else None,
         "parse_warning": parsed.get("parse_warning"),
-        "gates": _pipeline_gates(
-            genre=genre,
-            skill_ids=skill_ids,
-            n_user=n_user,
-            n_local=n_local,
-            evidence_ok=True,
-            aligned=True,
-            has_draft=bool((parsed.get("post") or "").strip()),
-        ),
+        **_pipeline_state(genre=genre, skill_ids=skill_ids, n_user=n_user, n_local=n_local, evidence_ok=True, aligned=True, has_draft=bool((parsed.get("post") or "").strip())),
     }
 
 

@@ -120,6 +120,15 @@ _GENRE_STATUS: Dict[str, str] = {
     "faq": "methods_in",
 }
 
+# Public aliases used by the story generation tool.
+GENRE_STATUS = _GENRE_STATUS
+
+
+def skill_ids_for_genre(genre: str) -> List[str]:
+    """Return the configured skill id for a recognized genre."""
+    key = str(genre or "post").strip().lower()
+    return [f"china_story_{key}"] if key in _GENRE_SKILL_REL else ["china_story_post"]
+
 _GENRE_SKILL_REL: Dict[str, str] = {
     "post": "skills/genres/china-story-post.md",
     "news": "skills/genres/china-story-news.md",
