@@ -54,6 +54,11 @@ class Claim(BaseModel):
     text: str
     evidence_ids: List[str] = Field(default_factory=list)
 
+    @property
+    def evidence_refs(self) -> List[str]:
+        """Canonical binding name; evidence_ids remains the compatibility field."""
+        return self.evidence_ids
+
 
 class ContentVersion(BaseModel):
     content_version_id: str
