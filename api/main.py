@@ -22,7 +22,9 @@ from api.schemas import (  # noqa: E402
     PostGenerateRequest,
     ReplyGenerateRequest,
     TopicsRequest,
+    GateDecision,
 )
+from api.workflow import workflow_state_machine, WorkflowError  # noqa: E402
 
 FRONTEND_DIR = ROOT / "frontend"
 
@@ -107,6 +109,31 @@ def health():
 @app.get("/api/meta")
 def meta():
     return META
+
+
+@app.post("/api/workflow/{task_id}/start")
+def start_workflow(task_id: str):
+    return {"ok": True, "data": workflow_state_machine.start(task_id).__dict__}
+
+
+@app.post("/api/workflow/{task_id}/gate")
+def decide_workflow_gate(task_id: str, decision: GateDecision):
+    try:
+        state = workflow_state_machine.decide_gate(task_id, decision)
+        return {"ok": True, "data": state.__dict__}
+    except (KeyError, WorkflowError) as exc:
+        detail = {"gate": getattr(exc, "gate", "task"), "status": "blocked", "reason": str(exc)}
+        raise HTTPException(status_code=409, detail=detail) from exc
+
+
+@app.post("/api/workflow/{task_id}/advance/{target}")
+def advance_workflow(task_id: str, target: str):
+    try:
+        state = workflow_state_machine.advance(task_id, target.upper())
+        return {"ok": True, "data": state.__dict__}
+    except (KeyError, WorkflowError) as exc:
+        detail = {"gate": getattr(exc, "gate", "stage"), "status": "blocked", "reason": str(exc)}
+        raise HTTPException(status_code=409, detail=detail) from exc
 
 
 @app.post("/api/posts/generate")

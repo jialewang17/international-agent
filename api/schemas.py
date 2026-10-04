@@ -1,8 +1,95 @@
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, Field
+
+
+class TaskContext(BaseModel):
+    """统一任务上下文；兼容现有生成请求字段。"""
+
+    task_id: str
+    topic: str = ""
+    goal: str = ""
+    genre: str = "post"
+    platform: str = ""
+    audience: str = ""
+    language: str = "English"
+    user_materials: Optional[str] = ""
+
+
+class Source(BaseModel):
+    source_id: str
+    uri: str = ""
+    title: str = ""
+    source_type: str = ""
+
+
+class EvidenceSpan(BaseModel):
+    span_id: str
+    source_id: str
+    text: str
+    start: Optional[int] = Field(default=None, ge=0)
+    end: Optional[int] = Field(default=None, ge=0)
+
+
+class EvidenceItem(BaseModel):
+    evidence_id: str
+    source_id: str
+    statement: str
+    spans: List[EvidenceSpan] = Field(default_factory=list)
+    category: str = ""
+
+
+class EvidencePack(BaseModel):
+    evidence_pack_id: str
+    items: List[EvidenceItem] = Field(default_factory=list)
+    sources: List[Source] = Field(default_factory=list)
+    status: str = "ready"
+
+
+class Claim(BaseModel):
+    claim_id: str
+    text: str
+    evidence_ids: List[str] = Field(default_factory=list)
+
+
+class ContentVersion(BaseModel):
+    content_version_id: str
+    content: str
+    task_id: str = ""
+    parent_version_id: Optional[str] = None
+    evidence_pack_id: Optional[str] = None
+    claim_ids: List[str] = Field(default_factory=list)
+    status: str = "Draft"
+    created_at: Optional[datetime] = None
+
+
+class GateDecision(BaseModel):
+    gate: str
+    decision: str
+    reason: str = ""
+    decided_by: str = "system"
+    decided_at: Optional[datetime] = None
+
+
+class EvaluationResult(BaseModel):
+    evaluation_id: str
+    content_version_id: str
+    part: str
+    status: str
+    issues: List[str] = Field(default_factory=list)
+    scores: Dict[str, float] = Field(default_factory=dict)
+
+
+class Approval(BaseModel):
+    approval_id: str
+    content_version_id: str
+    approved: bool
+    approver: str
+    approved_at: Optional[datetime] = None
+    note: str = ""
 
 
 class PostGenerateRequest(BaseModel):
