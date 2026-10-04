@@ -79,13 +79,100 @@ class GateDecision(BaseModel):
     decided_at: Optional[datetime] = None
 
 
+class EvaluationIssue(BaseModel):
+    """A diagnosable problem found by an evaluation part.
+
+    ``issue_id`` is part-local and deterministic. ``evidence_spans`` reuses the
+    existing :class:`EvidenceSpan` shape so span anchors stay one canonical type
+    across evidence binding and content evaluation.
+    """
+
+    issue_id: str
+    dimension_id: str = ""
+    severity: str = ""
+    problem: str
+    reason: str = ""
+    evidence_spans: List[EvidenceSpan] = Field(default_factory=list)
+
+
+class DimensionResult(BaseModel):
+    """Single-dimension output of the Part 3 ChinaStory Evaluation Skill."""
+
+    dimension_id: str
+    score: int
+    confidence: float
+    rationale: str = ""
+    evidence_spans: List[EvidenceSpan] = Field(default_factory=list)
+    problems: List[str] = Field(default_factory=list)
+    revision_suggestion: str = ""
+
+
+class RevisionSuggestion(BaseModel):
+    """An advisory suggestion attached to an :class:`EvaluationResult`.
+
+    This is an *evaluation finding only*. It is not the executable
+    ``RevisionInstruction`` of the revision loop, which belongs to P0.7.
+    """
+
+    target_dimension: str = ""
+    problem: str = ""
+    instruction: str = ""
+    preserve: List[str] = Field(default_factory=list)
+
+
+class EvaluationAuditMetadata(BaseModel):
+    """Deterministic, serializable provenance for one evaluation run."""
+
+    evaluator: str = ""
+    evaluator_type: str = ""
+    rubric_version: str = ""
+    calibration_set_version: str = ""
+    prompt_version: str = ""
+    task_context_version: str = ""
+    part1_status: str = ""
+    created_at: Optional[datetime] = None
+
+
+class EvaluationClaimTrace(BaseModel):
+    """Part 1 per-claim fact/evidence verdict.
+
+    Kept separate from ``EvaluationResult.scores`` so the legacy
+    ``Dict[str, float]`` contract stays numeric and backward compatible.
+    """
+
+    claim_id: str
+    status: str
+    detail: str = ""
+
+
 class EvaluationResult(BaseModel):
+    """Canonical evaluation output for the whole backend.
+
+    Backward-compatible core fields (``evaluation_id``, ``content_version_id``,
+    ``part``, ``status``, ``issues``, ``scores``) are preserved; everything else
+    is additive. There is deliberately no second top-level evaluation model.
+    """
+
     evaluation_id: str
     content_version_id: str
     part: str
     status: str
     issues: List[str] = Field(default_factory=list)
     scores: Dict[str, float] = Field(default_factory=dict)
+
+    # --- P0.6 additive extension -------------------------------------------
+    task_id: str = ""
+    rubric_version: str = ""
+    claim_traces: List[EvaluationClaimTrace] = Field(default_factory=list)
+    dimensions: List[DimensionResult] = Field(default_factory=list)
+    priority_issues: List[EvaluationIssue] = Field(default_factory=list)
+    revision_suggestions: List[RevisionSuggestion] = Field(default_factory=list)
+    # TBD per rubric §5.2: no default aggregation is defined, so this stays null.
+    overall_score: Optional[float] = None
+    return_to_part1: bool = False
+    real_audience_evaluation: str = "NOT_EVALUATED"
+    human_review: str = "PENDING"
+    audit: Optional[EvaluationAuditMetadata] = None
 
 
 class Approval(BaseModel):
