@@ -24,9 +24,20 @@ from api.schemas import (  # noqa: E402
     TopicsRequest,
     GateDecision,
 )
+from api.gate_c import verify_gate_c  # noqa: E402
+from api.human_review import HumanReviewStore  # noqa: E402
+from api.versioning import ContentVersionStore  # noqa: E402
 from api.workflow import workflow_state_machine, WorkflowError  # noqa: E402
 
 FRONTEND_DIR = ROOT / "frontend"
+
+# --- Application-level shared stores (P0.8-B) ------------------------------
+# These are the *single* shared instances for the Human Review -> Gate C
+# integration path. Human Review persists decisions into ``human_review_store``;
+# Gate C (the /approve endpoint) verifies from the *same* instance. Gate C never
+# instantiates its own review store, and never trusts ReviewOutcome fields.
+content_version_store = ContentVersionStore()
+human_review_store = HumanReviewStore()
 
 PRESET_CHIPS = [
     {"label": "光伏羊通稿", "theme": "新闻通稿：青海塔拉滩光伏羊——牧光互补与治沙增收", "scene": "post"},
@@ -248,29 +259,78 @@ def polish_post(body: PolishRequest):
 
 @app.post("/api/posts/approve")
 def approve_post(body: ApprovalRequest):
-    """Gate C: explicit human approval. This records approval metadata; it does not publish content."""
-    from datetime import datetime, timezone
-    import hashlib
+    """Gate C: verify a persisted, exact-binding human ACCEPT and record approval metadata.
 
-    post = (body.post or "").strip()
-    if not post:
-        raise HTTPException(status_code=400, detail="post 不能为空")
+    Authorization no longer comes from ``approved=True``. Gate C verifies the
+    latest persisted ``HumanReviewDecision`` for the exact
+    ``(task, content_version, evaluation)`` binding from the application-level
+    shared ``HumanReviewStore``. ``content_sha256`` is computed from the
+    canonical ``ContentVersion.content`` — never from the request body.
+
+    Fail-closed: missing binding fields, unknown versions, no persisted review,
+    a superseded review, a non-ACCEPT latest decision, or a task conflict all
+    return an error and never APPROVED. This endpoint does not publish content.
+    """
     if not body.approved:
         raise HTTPException(status_code=400, detail="Gate C 需要显式人工批准")
-    approved_at = datetime.now(timezone.utc).isoformat()
-    content_hash = hashlib.sha256(post.encode("utf-8")).hexdigest()
+
+    # Legacy `approved=True` alone is not authorization: binding is required.
+    if not (body.content_version_id or "").strip():
+        raise HTTPException(
+            status_code=400,
+            detail="Gate C 需要 content_version_id 绑定（legacy approved=True 不再构成批准）",
+        )
+    if not (body.evaluation_id or "").strip():
+        raise HTTPException(
+            status_code=400,
+            detail="Gate C 需要 evaluation_id 绑定（legacy approved=True 不再构成批准）",
+        )
+
+    result = verify_gate_c(
+        body.content_version_id.strip(),
+        body.evaluation_id.strip(),
+        version_store=content_version_store,
+        review_store=human_review_store,
+        task_id=(body.task_id or "").strip(),
+        review_id=(body.review_id or "").strip(),
+    )
+
+    if not result.passed:
+        # Fail closed: no persisted exact-binding ACCEPT -> no APPROVED.
+        raise HTTPException(
+            status_code=403,
+            detail={
+                "gate": "C",
+                "gate_label": "Final Approval",
+                "status": result.status,
+                "approved": False,
+                "published": False,
+                "reason": result.reason,
+            },
+        )
+
     return {
         "ok": True,
         "data": {
             "approved": True,
             "gate": "C",
             "gate_label": "Final Approval",
-            "approver": (body.approver or "human").strip() or "human",
-            "approved_at": approved_at,
-            "content_sha256": content_hash,
+            # The authoritative reviewer comes from the persisted record, not
+            # from the client request.
+            "approver": result.reviewer or "human",
+            "approved_at": (
+                result.reviewed_at.isoformat()
+                if result.reviewed_at is not None else None
+            ),
+            "content_sha256": result.content_sha256,
             "note": (body.note or "").strip(),
             "status": "APPROVED",
             "published": False,
+            # P0.8-B additive audit fields.
+            "review_id": result.review_id,
+            "task_id": result.task_id,
+            "content_version_id": result.content_version_id,
+            "evaluation_id": result.evaluation_id,
         },
     }
 

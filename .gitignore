@@ -140,3 +140,7 @@ story_materials/_archive/
 
 # Chroma persistent DB (rebuild locally via scripts/build_chroma_kb.py)
 knowledge/diplomacy/chroma_db/
+
+# AI handoff material (external-review bundles; never part of the implementation)
+_ai_handoff/
+chinastory_ai_handoff.zip

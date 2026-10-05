@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class TaskContext(BaseModel):
@@ -111,9 +111,35 @@ class RevisionSuggestion(BaseModel):
     """An advisory suggestion attached to an :class:`EvaluationResult`.
 
     This is an *evaluation finding only*. It is not the executable
-    ``RevisionInstruction`` of the revision loop, which belongs to P0.7.
+    ``RevisionInstruction`` of the revision loop, which is defined below in
+    P0.7. Keeping them separate stops an evaluation finding from silently
+    becoming a mutation command.
     """
 
+    target_dimension: str = ""
+    problem: str = ""
+    instruction: str = ""
+    preserve: List[str] = Field(default_factory=list)
+
+
+class RevisionInstruction(BaseModel):
+    """An executable revision command for one content version (P0.7).
+
+    ``RevisionSuggestion`` is an evaluation *finding* about a version;
+    ``RevisionInstruction`` is a *command* bound to that version. The extra
+    fields are exactly what makes it executable and auditable:
+
+    * ``base_version_id`` - the only legal ``create_revision`` parent, so an
+      instruction can never be applied to a version it was not written for.
+    * ``source_evaluation_id`` - closes the audit chain back to the evaluation
+      that produced the finding.
+    * ``instruction_id`` / ``task_id`` - addressable and task-scoped.
+    """
+
+    instruction_id: str
+    task_id: str
+    base_version_id: str
+    source_evaluation_id: str
     target_dimension: str = ""
     problem: str = ""
     instruction: str = ""
@@ -184,6 +210,49 @@ class Approval(BaseModel):
     note: str = ""
 
 
+#: The only human review decisions P0.8 recognises. ``APPROVED`` is deliberately
+#: absent: it is an *outcome* derived from ACCEPT, never a decision value.
+HUMAN_REVIEW_DECISIONS = frozenset({"ACCEPT", "EDIT", "REJECT"})
+
+
+class HumanReviewDecision(BaseModel):
+    """Immutable, append-only audit record of one human review (P0.8-A).
+
+    This is an *audit record*, not an approval object. It binds a review to
+    exactly one evaluation of exactly one content version so an evaluation can
+    never be used to approve a different version. ``published`` is always
+    ``False``: P0.8-A has no publishing capability at all.
+
+    Immutability is enforced, not merely documented:
+
+    * ``model_config = ConfigDict(frozen=True)`` blocks attribute assignment, so
+      a record handed out by the store cannot have ``decision`` / ``reviewer`` /
+      ``published`` etc. silently rewritten.
+    * ``unresolved_warnings`` is a ``tuple`` rather than a ``list`` because
+      ``frozen=True`` does not protect nested mutable containers: a leaked
+      ``list`` could still be mutated in place through ``get()`` /
+      ``history_for()`` / ``all_records()``. A tuple has no mutating methods.
+
+    An ACCEPT-derived outcome is *not* Gate C approval. Future P0.8-B must
+    re-verify a persisted record from the shared store, bound to the exact
+    task_id / content_version_id / evaluation_id.
+    """
+
+    model_config = ConfigDict(frozen=True)
+
+    review_id: str
+    task_id: str
+    content_version_id: str
+    evaluation_id: str
+    decision: str
+    reviewer: str
+    reason: str = ""
+    reviewed_at: Optional[datetime] = None
+    unresolved_warnings: Tuple[str, ...] = ()
+    evidence_pack_id: Optional[str] = None
+    published: bool = False
+
+
 class PostGenerateRequest(BaseModel):
     theme: str
     country: str = "America"
@@ -236,7 +305,31 @@ class PolishRequest(BaseModel):
 
 
 class ApprovalRequest(BaseModel):
+    """Legacy-compatible approval request (P0.8-B additively extended).
+
+    ``approved=True`` is **no longer authorization**. Since P0.8-B, Gate C
+    derives its result exclusively from a persisted ``HumanReviewDecision``
+    in the application-level shared ``HumanReviewStore``. The additive binding
+    fields locate that review; absence of them is fail-closed, never implicit
+    approval.
+
+    Trust rules for the additive fields:
+
+    * ``content_version_id`` / ``evaluation_id`` — required to identify the
+      exact approval target; verified against canonical stores.
+    * ``task_id`` — at most a claim; a conflict with the canonical version task
+      fails closed. Never used instead of canonical data.
+    * ``review_id`` — at most a locator; still subject to exact-binding and
+      supersession verification.
+    * ``post`` — compatibility only; never hashed, never authorized on.
+    """
+
     post: str
     approved: bool = True
     approver: str = "human"
     note: str = ""
+    # --- P0.8-B additive binding fields -------------------------------------
+    task_id: str = ""
+    content_version_id: str = ""
+    evaluation_id: str = ""
+    review_id: str = ""
