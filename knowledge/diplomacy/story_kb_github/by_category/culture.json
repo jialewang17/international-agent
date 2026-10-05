@@ -1,6 +1,6 @@
 {
   "category": "culture",
-  "count": 16,
+  "count": 21,
   "items": [
     {
       "id": "culture-001",
@@ -317,6 +317,107 @@
       "_pack_file": "03_overseas_influencer.json",
       "_pack_desc": "海外网站洋网红 / 外籍创作者图文",
       "_source_tier": "05_creator_personal_site"
+    },
+    {
+      "id": "suzhou-001",
+      "theme": "苏绣与苏州的地域渊源",
+      "category": "culture",
+      "source_type": "中国非物质文化遗产网",
+      "title": "苏绣 — 中国非物质文化遗产网·中国非物质文化遗产数字博物馆",
+      "url": "https://www.ihchina.cn/project_details/13978/",
+      "quote_en": "Suxiu (Suzhou embroidery) is named after its place of origin and was historically practiced widely across the towns and countryside of Suzhou.",
+      "quote_cn": "苏绣为苏州刺绣之简称，它以产生之地命名，历史上曾广泛存在于苏州城乡。",
+      "statement_for_kb": "苏绣为苏州刺绣之简称，以产生之地命名，历史上曾广泛存在于苏州城乡，是苏州地区最具代表性的工艺美术。",
+      "tags": [
+        "suzhou",
+        "embroidery",
+        "suxiu",
+        "intangible_heritage",
+        "craft"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN"
+    },
+    {
+      "id": "suzhou-002",
+      "theme": "苏绣与中国四大名绣",
+      "category": "culture",
+      "source_type": "苏州市地方志编纂委员会办公室",
+      "title": "苏州刺绣 — 苏州市地方志编纂委员会办公室",
+      "url": "https://dfzb.suzhou.gov.cn/dfzb/szdq/201506/33cc064585a649d78d76af7e2ac86766.shtml",
+      "quote_en": "Suzhou embroidery (Suxiu) holds an important place in the history of Chinese arts and crafts, and is grouped with Yue, Xiang and Shu embroidery as China's Four Famous Embroideries.",
+      "quote_cn": "苏州刺绣，简称“苏绣”……在我国工艺美术发展史上占有重要地位，与粤绣、湘绣、蜀绣合称为中国“四大名绣”。",
+      "statement_for_kb": "苏州刺绣简称苏绣，在我国工艺美术发展史上占有重要地位，与粤绣、湘绣、蜀绣合称为中国“四大名绣”。",
+      "tags": [
+        "suzhou",
+        "embroidery",
+        "four_famous_embroideries",
+        "suxiu",
+        "craft"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN"
+    },
+    {
+      "id": "suzhou-003",
+      "theme": "苏绣国家级非遗项目信息",
+      "category": "culture",
+      "source_type": "中国非物质文化遗产网",
+      "title": "苏绣 — 国家级非物质文化遗产代表性项目（项目编号 Ⅶ-18）",
+      "url": "https://www.ihchina.cn/project_details/13978/",
+      "quote_en": "Suxiu is inscribed as a national-level intangible cultural heritage item under project code VII-18, category traditional fine arts, declared by Suzhou City, Jiangsu Province, in the first batch (2006).",
+      "quote_cn": "项目序号：317 项目编号：Ⅶ-18 公布时间：2006(第一批) 类别：传统美术 申报地区或单位：江苏省苏州市 保护单位：苏州刺绣研究所有限公司",
+      "statement_for_kb": "苏绣已列入国家级非物质文化遗产代表性项目名录，项目编号Ⅶ-18，类别传统美术，申报地区江苏省苏州市，公布时间2006年第一批。",
+      "tags": [
+        "suzhou",
+        "embroidery",
+        "national_ich",
+        "VII-18",
+        "traditional_fine_arts",
+        "suzhou_jiangsu"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN"
+    },
+    {
+      "id": "suzhou-004",
+      "theme": "沈寿与仿真绣",
+      "category": "culture",
+      "source_type": "中国非物质文化遗产网 / 苏州市地方志编纂委员会办公室",
+      "title": "苏绣代表性创新技法：沈寿「仿真绣」",
+      "url": "https://www.ihchina.cn/project_details/13978/",
+      "quote_en": "In the late Qing and early Republican era, Suzhou embroidery master Shen Shou created 'simulation embroidery' (fangzhen xiu) and later dictated the Xuehuan Xiupu on embroidery techniques.",
+      "quote_cn": "清末民初，苏绣名家沈寿创“仿真绣”，晚年口述《雪宧绣谱》，总结刺绣经验。",
+      "statement_for_kb": "清末民初苏绣名家沈寿创“仿真绣”，并口述《雪宧绣谱》总结刺绣经验，形成苏绣一大谱系。",
+      "tags": [
+        "suzhou",
+        "embroidery",
+        "shen_shou",
+        "fangzhen_xiu",
+        "simulation_embroidery"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN"
+    },
+    {
+      "id": "suzhou-005",
+      "theme": "杨守玉与乱针绣",
+      "category": "culture",
+      "source_type": "中国非物质文化遗产网",
+      "title": "苏绣代表性创新技法：杨守玉「乱针绣」",
+      "url": "https://www.ihchina.cn/project_details/13978/",
+      "quote_en": "In the 1930s, Suzhou embroidery master Yang Shouyu created 'random-stitch embroidery' (luanzhen xiu), enriching the themes and expressive range of Suzhou embroidery.",
+      "quote_cn": "20世纪30年代，苏绣名家杨守玉创“乱针绣”，丰富和扩展了苏绣的题材与内涵。",
+      "statement_for_kb": "20世纪30年代苏绣名家杨守玉创“乱针绣”，丰富和扩展了苏绣的题材与内涵，形成苏绣一大谱系。",
+      "tags": [
+        "suzhou",
+        "embroidery",
+        "yang_shouyu",
+        "luanzhen_xiu",
+        "random_stitch"
+      ],
+      "_pack_file": "01_official_culture_food.json",
+      "_pack_desc": "官方与国际组织：美食 / 非遗 / CGTN"
     }
   ]
 }

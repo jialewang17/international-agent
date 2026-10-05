@@ -69,6 +69,11 @@ def normalize_category(cat: str) -> str:
         "chinese new year": "culture",
         "new year": "culture",
         "heritage": "culture",
+        "embroidery": "culture",
+        "suzhou embroidery": "culture",
+        "suxiu": "culture",
+        "苏绣": "culture",
+        "苏州刺绣": "culture",
         "youtuber": "celebrity",
         "influencer": "celebrity",
         "vlogger": "celebrity",
@@ -121,6 +126,12 @@ def guess_categories(text: str, top_k: int = 3) -> List[str]:
                 "春节",
                 "书法",
                 "京剧",
+                # Suzhou embroidery (苏绣) — I0-B1 Suzhou Engineering Baseline.
+                # Only keywords are added; no existing rule is changed or reordered.
+                "苏绣",
+                "苏州刺绣",
+                "刺绣",
+                "embroidery",
             ],
         ),
         (
@@ -427,6 +438,35 @@ def check_theme_evidence_alignment(theme: str, evidence: List[Dict[str, str]]) -
     return {"ok": True, "reason": "aligned"}
 
 
+def _query_tokens(query: str) -> set:
+    """Cheap, deterministic likely-subject tokens: CJK bigrams + ASCII words.
+
+    Used only to rank already category-filtered rows; it never selects a
+    category by itself (``guess_categories`` still owns that decision).
+    """
+    t = (query or "").lower()
+    cjk = re.findall(r"[\u4e00-\u9fff]+", t)
+    grams = set()
+    for run in cjk:
+        if len(run) == 1:
+            grams.add(run)
+            continue
+        for i in range(len(run) - 1):
+            grams.add(run[i : i + 2])
+    words = {w for w in re.findall(r"[a-z0-9]{3,}", t)}
+    return grams | words
+
+
+def _row_overlap_score(item: Dict[str, Any], tokens: set) -> int:
+    """Count query tokens present in a row's statement/theme/tags/id (casefold)."""
+    if not tokens:
+        return 0
+    blob = " ".join(
+        str(item.get(k, "")) for k in ("statement", "theme", "tags", "id", "title")
+    ).lower()
+    return sum(1 for tok in tokens if tok in blob)
+
+
 def retrieve_statements(
     categories: List[str],
     limit_per_cat: int = 2,
@@ -491,8 +531,15 @@ def retrieve_statements(
         pad_cats = asked
 
     data = _load_evidence().get("by_category", {})
+    # Without Chroma (clean checkout), category padding is otherwise stored-order.
+    # Rank candidates by cheap token overlap with the query so the most relevant
+    # rows for e.g. "苏绣" surface first. Deterministic: ties keep stored order
+    # (Python's sort is stable); when there is no query the order is unchanged.
+    qtokens = _query_tokens(q)
     for cat in pad_cats:
         items = data.get(cat) or []
+        if qtokens:
+            items = sorted(items, key=lambda it: -_row_overlap_score(it, qtokens))
         taken = 0
         for it in items:
             if taken >= limit_per_cat:
