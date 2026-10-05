@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import sys
+from uuid import uuid4
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -23,9 +24,11 @@ from api.schemas import (  # noqa: E402
     ReplyGenerateRequest,
     TopicsRequest,
     GateDecision,
+    EvidencePack,
 )
 from api.gate_c import verify_gate_c  # noqa: E402
 from api.human_review import HumanReviewStore  # noqa: E402
+from api.evidence_store import EvidencePackStore  # noqa: E402
 from api.versioning import ContentVersionStore  # noqa: E402
 from api.workflow import workflow_state_machine, WorkflowError  # noqa: E402
 
@@ -38,6 +41,7 @@ FRONTEND_DIR = ROOT / "frontend"
 # instantiates its own review store, and never trusts ReviewOutcome fields.
 content_version_store = ContentVersionStore()
 human_review_store = HumanReviewStore()
+evidence_pack_store = EvidencePackStore()
 
 PRESET_CHIPS = [
     {"label": "光伏羊通稿", "theme": "新闻通稿：青海塔拉滩光伏羊——牧光互补与治沙增收", "scene": "post"},
@@ -154,8 +158,41 @@ def generate_post(body: PostGenerateRequest):
         raise HTTPException(status_code=400, detail="theme 不能为空")
     try:
         from tools.story_post_gen import run_story_post_generation
-        result = run_story_post_generation(**body.model_dump())
-        return {"ok": not bool(result.get("error")), "data": result}
+
+        payload = body.model_dump()
+        requested_task_id = str(payload.pop("task_id", "") or "").strip()
+        result = run_story_post_generation(**payload)
+
+        # Blocked/error paths never persist evidence and never create a version.
+        if result.get("error"):
+            result.pop("_evidence_pack", None)
+            return {"ok": False, "data": result}
+
+        canonical_content = str(result.get("post") or "").strip()
+        pack_payload = result.pop("_evidence_pack", None)
+        if not canonical_content:
+            result["error"] = "生成结果为空，未创建 ContentVersion。"
+            return {"ok": False, "data": result}
+        if pack_payload is None:
+            raise RuntimeError("successful generation missing canonical EvidencePack")
+
+        pack = EvidencePack.model_validate(pack_payload)
+        evidence_pack_store.put(pack)
+
+        task_id = requested_task_id or str(uuid4())
+        version = content_version_store.create_initial_version(
+            task_id,
+            canonical_content,
+            evidence_pack_id=pack.evidence_pack_id,
+            # I1 does not invent Claims. Claim extraction/binding remains a later step.
+            claim_ids=[],
+        )
+
+        # Additive response fields; legacy generation fields stay intact.
+        result["task_id"] = task_id
+        result["evidence_pack_id"] = pack.evidence_pack_id
+        result["content_version_id"] = version.content_version_id
+        return {"ok": True, "data": result}
     except ModuleNotFoundError as e:
         raise HTTPException(
             status_code=503,

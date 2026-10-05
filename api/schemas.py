@@ -254,6 +254,9 @@ class HumanReviewDecision(BaseModel):
 
 
 class PostGenerateRequest(BaseModel):
+    # I1 additive binding: callers may join generation to an existing task;
+    # blank keeps legacy clients working and the API assigns a fresh task id.
+    task_id: str = ""
     theme: str
     country: str = "America"
     identity: str = "online_influencer"

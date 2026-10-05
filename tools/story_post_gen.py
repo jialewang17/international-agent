@@ -21,6 +21,7 @@ from tools.kb_local import (
 from utils.path import get_prompt_dir
 from tools.genre_router import GENRE_STATUS, detect_genre, skill_ids_for_genre
 from tools.user_materials import merge_evidence, normalize_user_materials
+from api.evidence_adapter import EvidenceAdapterError, build_evidence_pack
 from utils.skill_registry import format_skills_by_ids
 
 
@@ -277,6 +278,39 @@ def build_story_news_prompt(
     )
 
 
+
+def _legacy_evidence_projection(pack, original_rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Compatibility projection derived from the canonical EvidencePack.
+
+    Canonical membership/order/provenance comes from ``pack``. Legacy-only
+    ``retrieval`` metadata is copied from the matching upstream row when present;
+    it has no authority over evidence identity or provenance.
+    """
+    source_by_id = {src.source_id: src for src in pack.sources}
+    retrieval_by_key: Dict[tuple, str] = {}
+    for row in original_rows:
+        if not isinstance(row, dict):
+            continue
+        key = (str(row.get("source") or "").strip(), str(row.get("statement") or "").strip())
+        if key not in retrieval_by_key:
+            retrieval_by_key[key] = str(row.get("retrieval") or "")
+
+    projected: List[Dict[str, Any]] = []
+    for item in pack.items:
+        src = source_by_id[item.source_id]
+        row: Dict[str, Any] = {
+            "category": item.category,
+            "statement": item.statement,
+            "source": src.uri,
+        }
+        if src.source_type:
+            row["source_type"] = src.source_type
+        retrieval = retrieval_by_key.get((src.uri, item.statement), "")
+        if retrieval:
+            row["retrieval"] = retrieval
+        projected.append(row)
+    return projected
+
 def run_story_post_generation(
     *,
     theme: str,
@@ -334,14 +368,12 @@ def run_story_post_generation(
     if not local_ev and cats and not user_ev:
         local_ev = retrieve_statements(cats, limit_per_cat=2, query=" ".join(cats))
 
-    evidence = merge_evidence(user_ev, local_ev, prefer_user_first=True)
+    merged_evidence = merge_evidence(user_ev, local_ev, prefer_user_first=True)
     persona = build_persona(identity=identity, tone=tone, country=country)
     plat = resolve_platform(platform)
-    n_user = sum(1 for e in evidence if e.get("source_type") == "用户上传")
-    n_local = sum(1 for e in evidence if e.get("source_type") != "用户上传")
     brief_for_prompt = (user_brief or theme or "").strip()
 
-    if not evidence:
+    if not merged_evidence:
         return {
             "error": (
                 "未检索到可用论据（本地库为空且未提供用户资料），已跳过成稿生成。"
@@ -370,6 +402,37 @@ def run_story_post_generation(
             ),
         }
 
+    # I1 canonical seam: after legacy merge, build exactly one EvidencePack.
+    # Everything downstream consumes a compatibility projection derived from
+    # that pack, so ``merged_evidence`` cannot become a second truth source.
+    try:
+        evidence_pack = build_evidence_pack(merged_evidence)
+    except EvidenceAdapterError as exc:
+        return {
+            "error": f"证据无法形成 canonical EvidencePack，已在 Gate B 阻断: {exc}",
+            "gate_reason": "canonical_evidence_invalid",
+            "theme": theme,
+            "user_brief": user_brief or "",
+            "categories": cats,
+            "genre": genre,
+            "genre_meta": genre_info,
+            "evidence_used": [],
+            "evidence_stats": {"user": 0, "local": 0},
+            "post": "",
+            "article": "",
+            "platform": plat.get("platform_label", platform),
+            "pipeline": "Define -> Ground STOP (Gate B: canonical evidence)",
+            "skills_applied": skill_ids,
+            **_pipeline_state(
+                genre=genre, skill_ids=skill_ids, n_user=0, n_local=0,
+                evidence_ok=False, aligned=False, has_draft=False,
+            ),
+        }
+
+    evidence = _legacy_evidence_projection(evidence_pack, merged_evidence)
+    n_user = sum(1 for e in evidence if e.get("source_type") == "用户上传")
+    n_local = sum(1 for e in evidence if e.get("source_type") != "用户上传")
+
     alignment = check_theme_evidence_alignment(retrieve_q, evidence)
     if not alignment.get("ok"):
         return {
@@ -383,6 +446,7 @@ def run_story_post_generation(
             "genre_meta": genre_info,
             "evidence_used": evidence,
             "evidence_stats": {"user": n_user, "local": n_local},
+            "_evidence_pack": evidence_pack.model_dump(mode="json"),
             "post": "",
             "article": "",
             "platform": plat.get("platform_label", platform),
@@ -477,6 +541,7 @@ def run_story_post_generation(
         "genre_meta": genre_info,
         "evidence_used": evidence,
         "evidence_stats": {"user": n_user, "local": n_local},
+        "_evidence_pack": evidence_pack.model_dump(mode="json"),
         "five_w": parsed.get("5w") or parsed.get("five_w") or {},
         "title_or_hook": parsed.get("title_or_hook", ""),
         "post": parsed.get("post", ""),
@@ -547,6 +612,9 @@ def generate_china_story_post(
             desired_effect=desired_effect,
             user_materials=user_materials or None,
         )
+        # ``_evidence_pack`` is an internal API handoff; the tool keeps its
+        # legacy JSON surface while /api/posts/generate persists the pack.
+        result.pop("_evidence_pack", None)
         return json.dumps(result, ensure_ascii=False)
     except Exception as e:
         return json.dumps({"error": f"帖文生成失败: {e}", "post": ""}, ensure_ascii=False)
