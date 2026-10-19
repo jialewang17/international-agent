@@ -65,6 +65,17 @@ def evaluate_part1(
             claim_scores={},
         )
 
+    # I2-B-004A: zero claims must not produce a vacuous Part 1 PASS.
+    # Extraction coverage is not verified here; fail closed.
+    if not version.claim_ids:
+        return _blocked(
+            version.content_version_id,
+            evaluation_id,
+            task_id or version.task_id,
+            reason="no claims extracted for content version",
+            claim_scores={},
+        )
+
     if version.parent_version_id is None:
         traces, reasons = _evaluate_initial_version(version, claims, evidence_pack)
     else:

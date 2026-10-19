@@ -6,6 +6,8 @@ tracked Suzhou path so this test crosses the I0/I1 boundary without faking evide
 from fastapi.testclient import TestClient
 
 from api import main as api_main
+from api.claim_extraction import DeterministicClaimExtractor
+from api.claim_store import ClaimStore
 from api.evidence_store import EvidencePackStore
 from api.versioning import ContentVersionStore
 from tools import story_post_gen
@@ -14,8 +16,29 @@ from tools import story_post_gen
 def _reset_shared_stores(monkeypatch):
     versions = ContentVersionStore()
     packs = EvidencePackStore()
-    monkeypatch.setattr(api_main, "content_version_store", versions)
-    monkeypatch.setattr(api_main, "evidence_pack_store", packs)
+    claims = ClaimStore()
+
+    monkeypatch.setattr(
+        api_main,
+        "content_version_store",
+        versions,
+    )
+    monkeypatch.setattr(
+        api_main,
+        "evidence_pack_store",
+        packs,
+    )
+    monkeypatch.setattr(
+        api_main,
+        "claim_store",
+        claims,
+    )
+    monkeypatch.setattr(
+        api_main,
+        "claim_extractor",
+        DeterministicClaimExtractor(),
+    )
+
     return versions, packs
 
 
@@ -53,7 +76,29 @@ def test_generate_suzhou_creates_v1_bound_to_recoverable_pack(monkeypatch):
     assert v1.parent_version_id is None
     assert v1.content == data["post"]
     assert v1.evidence_pack_id == data["evidence_pack_id"]
-    assert v1.claim_ids == []
+    expected_claims = DeterministicClaimExtractor().extract(
+        data["post"]
+    )
+
+    assert expected_claims
+    assert v1.claim_ids == [
+        claim.claim_id
+        for claim in expected_claims
+    ]
+
+    assert data["claim_ids"] == v1.claim_ids
+
+    stored_claims = api_main.claim_store.get_many(
+        v1.evidence_pack_id,
+        v1.claim_ids,
+    )
+
+    assert stored_claims == expected_claims
+
+    assert all(
+        claim.evidence_ids == []
+        for claim in stored_claims
+    )
 
     pack = packs.get(v1.evidence_pack_id)
     assert pack.evidence_pack_id == v1.evidence_pack_id
@@ -101,6 +146,7 @@ def test_empty_model_output_creates_no_content_version(monkeypatch):
     assert versions.get_history("task-empty-i1") == []
     # Canonical pack is intentionally not persisted on a failed generation.
     assert len(packs) == 0
+    assert len(api_main.claim_store) == 0
 
 
 def test_gate_b_failure_creates_no_content_version(monkeypatch):
@@ -121,6 +167,7 @@ def test_gate_b_failure_creates_no_content_version(monkeypatch):
     assert resp.json()["ok"] is False
     assert versions.get_history("task-no-evidence-i1") == []
     assert len(packs) == 0
+    assert len(api_main.claim_store) == 0
 
 
 def test_blank_task_id_gets_server_assigned_task(monkeypatch):

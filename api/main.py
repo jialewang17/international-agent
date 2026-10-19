@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import sys
+from dataclasses import asdict
 from uuid import uuid4
 from pathlib import Path
 
@@ -11,6 +12,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel, ConfigDict
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -28,8 +30,16 @@ from api.schemas import (  # noqa: E402
 )
 from api.gate_c import verify_gate_c  # noqa: E402
 from api.human_review import HumanReviewStore  # noqa: E402
-from api.evidence_store import EvidencePackStore  # noqa: E402
-from api.versioning import ContentVersionStore  # noqa: E402
+from api.evidence_store import EvidencePackStore, EvidenceStoreError  # noqa: E402
+from api.claim_extraction import DeterministicClaimExtractor
+from api.claim_store import ClaimStore, ClaimStoreError
+from api.evaluation import evaluate_content_version
+from api.evaluation_store import EvaluationResultStore
+from api.coverage_service import (
+    CoverageIntegrityError,
+    inspect_canonical_coverage,
+)
+from api.versioning import ContentVersionStore, VersioningError  # noqa: E402
 from api.workflow import workflow_state_machine, WorkflowError  # noqa: E402
 
 FRONTEND_DIR = ROOT / "frontend"
@@ -42,6 +52,9 @@ FRONTEND_DIR = ROOT / "frontend"
 content_version_store = ContentVersionStore()
 human_review_store = HumanReviewStore()
 evidence_pack_store = EvidencePackStore()
+claim_store = ClaimStore()
+claim_extractor = DeterministicClaimExtractor()
+evaluation_result_store = EvaluationResultStore()
 
 PRESET_CHIPS = [
     {"label": "光伏羊通稿", "theme": "新闻通稿：青海塔拉滩光伏羊——牧光互补与治沙增收", "scene": "post"},
@@ -176,22 +189,70 @@ def generate_post(body: PostGenerateRequest):
         if pack_payload is None:
             raise RuntimeError("successful generation missing canonical EvidencePack")
 
+        # I2-B-003: a canonical pack is required before Claim snapshots.
         pack = EvidencePack.model_validate(pack_payload)
+
+        if not pack.evidence_pack_id.strip():
+            raise RuntimeError(
+                "canonical EvidencePack has empty evidence_pack_id"
+            )
+
+        # Extract candidates only from the actual generated content.
+        # This is sentence-level extraction, NOT fact verification.
+        claim_candidates = claim_extractor.extract(canonical_content)
+        claim_ids = [
+            claim.claim_id
+            for claim in claim_candidates
+        ]
+
+        # I2-B-003 does NOT infer semantic evidence support.
+        # Extracted candidates retain evidence_ids=[].
+        for candidate in claim_candidates:
+            if candidate.evidence_ids:
+                raise RuntimeError(
+                    "candidate extraction must not auto-bind evidence_ids"
+                )
+
+        # Reject known immutable Claim collisions before the first write.
+        # This reduces common partial-write failures, but is not a transaction.
+        for candidate in claim_candidates:
+            existing_claim = claim_store.get(
+                pack.evidence_pack_id,
+                candidate.claim_id,
+            )
+
+            if (
+                existing_claim is not None
+                and existing_claim != candidate
+            ):
+                raise ClaimStoreError(
+                    "claim collision: "
+                    f"evidence_pack_id={pack.evidence_pack_id}, "
+                    f"claim_id={candidate.claim_id}"
+                )
+
+        # IMPORTANT: stores are currently independent in-memory stores.
+        # Write snapshots before creating a visible ContentVersion.
         evidence_pack_store.put(pack)
+        claim_store.put_many(
+            pack.evidence_pack_id,
+            claim_candidates,
+        )
 
         task_id = requested_task_id or str(uuid4())
+
         version = content_version_store.create_initial_version(
             task_id,
             canonical_content,
             evidence_pack_id=pack.evidence_pack_id,
-            # I1 does not invent Claims. Claim extraction/binding remains a later step.
-            claim_ids=[],
+            claim_ids=claim_ids,
         )
 
-        # Additive response fields; legacy generation fields stay intact.
+        # Additive response fields; preserve all existing response fields.
         result["task_id"] = task_id
         result["evidence_pack_id"] = pack.evidence_pack_id
         result["content_version_id"] = version.content_version_id
+        result["claim_ids"] = list(version.claim_ids)
         return {"ok": True, "data": result}
     except ModuleNotFoundError as e:
         raise HTTPException(
@@ -200,6 +261,192 @@ def generate_post(body: PostGenerateRequest):
         ) from e
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e)) from e
+
+
+class EvaluationRunRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    content_version_id: str
+    task_id: str = ""
+
+
+@app.post("/api/evaluations/run")
+def run_evaluation(body: EvaluationRunRequest):
+    """Explicit evaluation using canonical in-memory store snapshots."""
+
+    version_id = body.content_version_id.strip()
+    if not version_id:
+        raise HTTPException(
+            status_code=400,
+            detail="content_version_id is required",
+        )
+
+    try:
+        version = content_version_store.get_version(version_id)
+    except VersioningError as exc:
+        raise HTTPException(
+            status_code=404,
+            detail=str(exc),
+        ) from exc
+
+    if not version.task_id.strip():
+        raise HTTPException(
+            status_code=409,
+            detail="content version has no canonical task_id",
+        )
+
+    requested_task_id = body.task_id.strip()
+
+    if (
+        requested_task_id
+        and requested_task_id != version.task_id
+    ):
+        raise HTTPException(
+            status_code=409,
+            detail="task_id does not match canonical content version",
+        )
+
+    pack_id = (version.evidence_pack_id or "").strip()
+
+    if not pack_id:
+        raise HTTPException(
+            status_code=409,
+            detail="content version missing evidence_pack_id",
+        )
+
+    # The caller cannot supply Claims. Resolve exact snapshots from Store.
+    # Missing Claim snapshots fail closed before EvaluationResult creation.
+    if version.claim_ids:
+        try:
+            stored_claims = claim_store.get_many(
+                pack_id,
+                version.claim_ids,
+            )
+        except ClaimStoreError as exc:
+            raise HTTPException(
+                status_code=409,
+                detail=f"claim snapshots unavailable: {exc}",
+            ) from exc
+    else:
+        stored_claims = []
+
+    claims_by_id = {
+        claim.claim_id: claim
+        for claim in stored_claims
+    }
+
+    # Missing EvidencePack is not a PASS and not a fabricated pack.
+    # Existing Part 1 handles None as a blocking condition.
+    try:
+        pack = evidence_pack_store.get(pack_id)
+    except EvidenceStoreError:
+        pack = None
+
+    # No judge has been implemented or configured in this milestone.
+    # Never provide fabricated dimension scores.
+    result = evaluate_content_version(
+        version.content_version_id,
+        content_version_store,
+        claims_by_id,
+        pack,
+        judge=None,
+    )
+
+    evaluation_result_store.put(result)
+
+    # ok=True means the evaluation operation produced a result.
+    # It does not imply PASS, SUPPORTED, ACCEPT or APPROVED.
+    return {
+        "ok": True,
+        "data": result.model_dump(mode="json"),
+    }
+
+
+@app.get("/api/evaluations/{evaluation_id}")
+def get_evaluation(
+    evaluation_id: str,
+    task_id: str = "",
+):
+    """Read a stored evaluation result without reevaluating content."""
+
+    result = evaluation_result_store.get(evaluation_id)
+
+    if result is None:
+        raise HTTPException(
+            status_code=404,
+            detail="evaluation not found",
+        )
+
+    if task_id.strip() and task_id.strip() != result.task_id:
+        raise HTTPException(
+            status_code=409,
+            detail="task_id does not match evaluation",
+        )
+
+    return {
+        "ok": True,
+        "data": result.model_dump(mode="json"),
+    }
+
+
+class CoverageInspectRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    content_version_id: str
+    task_id: str = ""
+    expected_content_sha256: str = ""
+
+
+@app.post("/api/coverage/inspect")
+def inspect_content_coverage(body: CoverageInspectRequest):
+    """Compute a read-only Coverage view from canonical stores."""
+
+    version_id = body.content_version_id.strip()
+
+    if not version_id:
+        raise HTTPException(
+            status_code=400,
+            detail="content_version_id is required",
+        )
+
+    try:
+        index = inspect_canonical_coverage(
+            content_version_id=version_id,
+            version_store=content_version_store,
+            claim_store=claim_store,
+            evidence_pack_store=evidence_pack_store,
+            task_id=body.task_id,
+            expected_content_sha256=body.expected_content_sha256,
+        )
+
+    except VersioningError as exc:
+        raise HTTPException(
+            status_code=404,
+            detail=str(exc),
+        ) from exc
+
+    except (
+        CoverageIntegrityError,
+        ClaimStoreError,
+        EvidenceStoreError,
+        ValueError,
+        TypeError,
+        RuntimeError,
+    ) as exc:
+        raise HTTPException(
+            status_code=409,
+            detail=str(exc),
+        ) from exc
+
+    # ok=True means the inspection completed, NOT audit PASS.
+    return {
+        "ok": True,
+        "data": {
+            "coverage_review_status": "NOT_EVALUATED",
+            "review_required": True,
+            "index": asdict(index),
+        },
+    }
 
 
 @app.post("/api/posts/topics")
