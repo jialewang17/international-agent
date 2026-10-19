@@ -505,6 +505,7 @@ def run_story_post_generation(
             "genre_meta": genre_info,
             "evidence_used": evidence,
             "evidence_stats": {"user": n_user, "local": n_local},
+            "_evidence_pack": evidence_pack.model_dump(mode="json"),
             "wire_plan": parsed.get("wire_plan") or {},
             "headline": headline,
             "dateline": dateline,

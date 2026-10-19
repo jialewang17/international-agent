@@ -15,6 +15,18 @@ manual_activation:
     - data_analysis
 
 skills:
+  china_story_generation:
+    file: skills/china-story-generation/SKILL.md
+    title: ChinaStory Generation v6.1 (staged)
+    enabled: true
+    priority: 80
+    keywords: []
+  china_story_evaluation:
+    file: skills/china-story-evaluation/SKILL.md
+    title: ChinaStory Evaluation Part 3 v6.1 (staged)
+    enabled: true
+    priority: 80
+    keywords: []
   intl_comm:
     file: skills/intl-comm.md
     title: 讲好中国故事（总队框架）
