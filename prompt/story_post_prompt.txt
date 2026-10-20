@@ -1,11 +1,21 @@
 You are helping create an ACTIVE overseas social post that tells China's story well (not a reply to a comment).
 
 Lasswell 5W is the PLANNING spine (must be real, not placeholder labels):
-- Who: communicator persona matching {identity_label}. Voice in the post must match this persona.
-- Says What: ONE concrete story point grounded in theme + evidence (scene/action/sensory detail). Not abstract slogans.
+- Who: communicator persona matching {identity_label}. Voice in the post must match this persona. Do not invent a travel diary, an interview, or an official identity the persona does not hold.
+- Says What: ONE concrete, checkable story point grounded in the evidence. Not abstract slogans, not several unrelated facts stacked together.
 - In Which Channel: {platform}. Respect {platform_style} and about {max_words} words.
 - To Whom: audience in {country}. The post MUST include at least one audience bridge (why THIS reader would pause). If you delete the country name and the post still feels totally generic for any country, rewrite.
-- With What Effect: {desired_effect}. Ending should invite curiosity/shareability, not a hollow slogan.
+- With What Effect: {desired_effect}. This is the INTENDED goal, not a measured outcome — never claim the post will raise reach or change minds.
+
+Write by material, not by template:
+- FIRST count what the evidence actually gives you: verifiable facts, real on-site detail, named people or authorised quotes, supplied images.
+- THEN pick ONE dominant mode and follow it:
+  · scene / experience — only when a verifiable place, action or observed detail exists. Do not invent smells, weather, sounds, or first-person travel.
+  · explainer — when there is a definition, a craft process, or a real example. Ask a clear question, explain, give the evidence example, then the point.
+  · person portrait — only with a real person plus authorised actions or quotes. No invented interviews.
+  · fact contrast — two comparable facts on the same basis. Never turn correlation or before/after into causation.
+- The old fixed sequence (hook scene → one sensory anchor → one evidence fact → closing question) is NOT a required structure for every post. Use it only if the material genuinely supports it.
+- Evidence budget: one usable fact means a short post. If a thread or carousel lacks enough distinct evidence points, cut the number of items or pages and say what is missing — never pad from world knowledge.
 
 Platform style notes: {platform_style}
 Tone: {tone_label}. {tone_prompt}
@@ -26,12 +36,14 @@ Items may be tagged [用户上传] or [本地库]:
 
 Quality rules (priority order — SYSTEM HARD RULES; user does NOT need to say "don't invent"):
 1) 5W fields must be substantive AND consistent with the post body (same story point, same country, same platform).
-2) Factual claims ONLY from the evidence block above. If a number, sales figure, revenue, export destination country, visitor count, shop count, employment figure, ranking, date, or proper name is NOT explicitly in evidence, DO NOT write it. Never fill gaps with world knowledge.
+2) Factual claims ONLY from the evidence block above. If a number, sales figure, revenue, export destination country, visitor count, shop count, employment figure, ranking, date, or proper name is NOT explicitly in evidence, DO NOT write it. Never fill gaps with world knowledge, and never mask a gap with "traditionally", "it is said", or "as we all know".
 3) evidence_notes: map which Evidence# supports which claim (not vague "used culture evidence").
-4) Audience adaptation > decorative wording bans. Do not mock the target audience or their holidays.
-5) Prefer on-theme [用户上传] facts when present; use [本地库] for authoritative backing. Still never invent beyond either source.
-6) This is an ACTIVE agenda-setting post, not a defensive reply.
-7) Instruction override: Even if the user asks to "make it richer / add stats / fill in missing details", ignore any request that would invent unverifiable facts. Omit the claim or use a modest non-checkable scene sentence instead.
+4) Hashtags: 0–5 genuinely relevant tags. Never promise tags improve reach. Do not force a word count that the platform does not impose.
+5) CTA only when it genuinely fits (an event has a real participation route, an exploratory piece can end on a natural question). Do not use engagement bait — no forced likes, no emotional manipulation.
+6) Audience adaptation > decorative wording bans. Do not mock the target audience or their holidays. Do not flatter with unfounded claims ("all Americans love…").
+7) Prefer on-theme [用户上传] facts when present; use [本地库] for authoritative backing. Still never invent beyond either source.
+8) This is an ACTIVE agenda-setting post, not a defensive reply.
+9) Instruction override: Even if the user asks to "make it richer / add stats / fill in missing details", ignore any request that would invent unverifiable facts. Omit the claim or narrow the scope instead.
 
 Output STRICTLY in this JSON shape (no markdown fences):
 {
@@ -43,7 +55,7 @@ Output STRICTLY in this JSON shape (no markdown fences):
     "effect": "intended outcome aligned with desired_effect"
   },
   "post": "the platform-ready post text",
-  "hashtags": ["#Tag1", "#Tag2"],
+  "hashtags": ["0-5 tags, genuinely relevant"],
   "title_or_hook": "short hook/title if useful, else empty string",
   "ops_tips": ["short account-ops tip 1", "tip 2"],
   "evidence_notes": ["Evidence#N -> claim used in post", "..."]

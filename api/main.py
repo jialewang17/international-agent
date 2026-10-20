@@ -105,11 +105,13 @@ META = {
         {"id": "", "label": "自动识别"},
         {"id": "post", "label": "社交帖文"},
         {"id": "news", "label": "新闻通稿"},
-        {"id": "feature", "label": "特稿/深度"},
+        {"id": "feature", "label": "新闻特稿"},
+        {"id": "indepth", "label": "深度报道"},
         {"id": "script", "label": "短视频脚本"},
+        {"id": "faq", "label": "误解澄清"},
     ],
-    "version": "0.6.0-v2.1-six-stage",
-    "skills_note": "china-story-post/news/feature/script + evidence-user-materials",
+    "version": "0.7.0-v6.1-six-genre",
+    "skills_note": "china-story-generation(v6.1 六体裁) + china-story-evaluation(v6.1) + intl-comm + evidence-user-materials",
     "spec_doc": "SPEC-国际传播智能体_v2.1_现阶段统一规范.md",
     "lit_map_doc": "docs/PIPELINE_LIT_MAP.md",
 }
@@ -117,7 +119,7 @@ META = {
 app = FastAPI(
     title="AnyClaw · 讲好中国故事工作台",
     description="国际传播智能体 API：主动发帖 / 选题 / 回复 + 论据透明 + 门控可视化",
-    version="0.6.0-v2.1-six-stage",
+    version="0.7.0-v6.1-six-genre",
 )
 
 app.add_middleware(

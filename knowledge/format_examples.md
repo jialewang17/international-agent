@@ -151,7 +151,7 @@ The first thing visitors notice is not the bottles. It is the sound of gravel un
 
 ## faq_mythbust（误解澄清 FAQ）
 
-**说明：** Tier-2。主动 Myth→Fact 清单。结构蒸馏自已爬取澄清帖；数字只能来自当次 evidence，勿抄外网统计。细则见 `skills/genres/china-story-faq-mythbust.md`。
+**说明：** Tier-2。主动 Myth→Fact 清单。结构蒸馏自已爬取澄清帖；数字只能来自当次 evidence，勿抄外网统计。细则见 `skills/china-story-generation/references/genres/faq.md`。
 
 **title:** China food myths travelers still repeat  
 （标题：旅行者仍在重复的中国饮食误解）

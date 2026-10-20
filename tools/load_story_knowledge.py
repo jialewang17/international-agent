@@ -15,6 +15,12 @@ FORMAT_ALIASES = {
     "news": "news_article",
     "news_article": "news_article",
     "feature": "longform",
+    "longform": "longform",
+    # v6.1：深度报道独立成类，不同于特稿
+    "indepth": "in_depth_report",
+    "in_depth_report": "in_depth_report",
+    "in-depth": "in_depth_report",
+    "deep_dive_report": "in_depth_report",
     "script": "short_video",
     "short_video": "short_video",
     "faq": "faq_mythbust",
