@@ -65,21 +65,15 @@ evidence_pack:     # 来自 Ground 阶段，经 Gate B
 
 ## 2. 执行流程（不可跳过）
 
-### 2.0 门禁前置（G-08）
+### 2.0 门禁前置（G-08 / G-10）
 
-成稿前调用一次 `load_story_knowledge(format, topic_hint)`。
+**v6.1 起，旧工具 `load_story_knowledge` 不再作为生成前置步骤**：当前生成流程（`tools/story_post_gen.py`）经 `config/skills.yaml` 注册表加载方法卡，不调用该工具；它仅在旧 Agent 工具环（`config/tools.yaml`）中保留，供旧链路兼容。v6.1 的前置门禁由以下两项承担，**不可跳过**：
 
-- 仅当 `gate=ready_to_generate` 才继续；
-- `gate=blocked` → **只输出阻塞原因与补救动作，不输出任何貌似完整的成稿**；
-- 不要在同一轮重复调用。
+1. **[G-08] 证据门禁（事实硬门禁）**：成稿前必须拿到后端适配出的 canonical EvidencePack 与 Gate B 决策；门禁未通过 → **只输出阻塞原因与补救动作，不输出任何貌似完整的成稿**；不在同一轮重复请求门禁状态。"缺知识不成稿"的原则不变，但其载体已从旧工具 gate 迁移为证据门禁 + 注册表完整性校验。
+2. **方法加载（skill registry）**：体裁方法与写作约束由 `utils/skill_registry.py` 按 `genre` 从 `config/skills.yaml` 注入；知识文件缺失属于注册表完整性错误，由后端启动校验发现，不由生成模型静默跳过。
+3. **[G-10] 证据共享规则始终激活**：`intl_comm` 与 `evidence_user_materials` 在注册表中为 `always_on`，**不参与 `max_active_skills` 与字符预算竞争**——任何实现不得把证据规则挤出上下文。
 
-> **[G-08] 知识库门禁失败不成稿**
-> 来源：`implementation-checklist.md` P0 第 1 条。
-> 依据：缺任一知识文件时 `load_story_knowledge` 返回 `gate=blocked`，「不得静默生成」。审查报告 §四 确认该修复在当前 GitHub 代码中**已经生效**，本卡只需固化调用纪律。
-
-> **[G-10] 证据共享规则始终激活**
-> 来源：`implementation-checklist.md` P0 第 7 条。
-> 依据：「不要让 `max_active_skills` 或字符预算把 `evidence-user-materials` 挤掉」——写作约束与证据规则是硬约束，不参与上下文预算竞争。
+> **[G-08] 修订说明（2026-10-22）**：原表述"成稿前调用一次 `load_story_knowledge(format, topic_hint)`，仅当 `gate=ready_to_generate` 才继续"对应 v2.1 工具链。审查报告确认旧门禁修复已生效后，v6.1 已将该职责迁移：知识完整性由注册表启动校验承担，成稿硬门禁由 EvidencePack/Gate B 承担。本卡固化的是**调用纪律**（门禁失败不成稿、不重复请求），不是旧工具本身。
 
 ### 2.1 体裁路由（内部六选一）
 
@@ -132,7 +126,7 @@ evidence_pack:     # 来自 Ground 阶段，经 Gate B
 ### 2.5 输出前自检（六问）
 
 1. 是否读取了正确且唯一的一张体裁卡？
-2. 是否调用了 `load_story_knowledge` 且 `gate=ready_to_generate`？
+2. 证据门禁已通过（后端 Gate B 决策），体裁方法与证据约束（`always_on`）已注入？
 3. 每条事实能否回指 `evidence_pack` 中的具体片段？
 4. 有无自造引语、链接、数据或专家判断？
 5. 母稿与目标稿的事实是否一致？已核验事实有无改动？
@@ -209,7 +203,7 @@ human_review: PENDING
 
 ## v6.1 仓库合并注意事项（不修改六体裁方法）
 
-1. **知识方法加载与事实门禁分开**：`load_story_knowledge` 用于提供叙事/体裁方法；它的 `gate` 不能替代 canonical `EvidencePack` 的 Gate B。以仓库后端的真实 EvidencePack 与任务状态为准，两项检查不可相互冒充。
+1. **知识方法加载与事实门禁分开**：v6.1 生成流程经 `config/skills.yaml` 注册表加载方法卡；旧工具 `load_story_knowledge` 仅在旧工具环（`config/tools.yaml`）中保留供兼容，**不再作为生成前置门禁**，其旧 `gate` 字段也不能替代 canonical `EvidencePack` 的 Gate B 决策。以仓库后端的真实 EvidencePack 与任务状态为准，两项检查不可相互冒充。
 2. **持久化由后端负责**：本 Skill 输出中文母稿及 `master_ref` 候选，不能声称自己把母稿写进 ContentVersionStore。现有 `api/main.py` 只保存 canonical `post` 字段；未扩展 ContentVersion 之前不得声称实现了完整母稿追踪。
 3. **只启用已真正接线的体裁**：当前 `run_story_post_generation` 的显式支持集是 `post/news/feature/script`，且后两者仍复用 Post Prompt；`indepth/faq` 目前属于规则已定义、执行未完整接通。后端没有对应 Schema/分支前不要对外宣称六体裁全部已可执行。
 4. **保留兼容键**：旧 Post 工具的 `post/five_w/hashtags` 和 News 的 `headline/article/post` 是现有前端兼容接口；新的 `target_version/master_ref/evidence_map` 先作为 v6.1 目标契约，须完成后端适配才默认返回。
