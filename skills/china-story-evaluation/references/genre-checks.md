@@ -2,7 +2,7 @@
 
 > 本文只评价**内容表达与形式**。事实、来源、门禁由 Ground/Part 1/后端负责。平台字数和输出字段有效性是后端确定性检查，不能用 D5 高分掩盖接口不合格。[E01/E02][S01–S03]
 
-## 1. Post v3.1 专项 [E01]
+## 1. Post v3.2 专项 [E01]
 
 按 `format` 评价文字结构；如有真实媒体，读取后端提供的 `media_manifest`，没有则标记无法判断视觉表现。[S10]
 
@@ -13,9 +13,16 @@
 | `visual_story` | `slides[]` 的封面标题、逐页信息分配、逻辑推进是否清楚；画面计划与正文是否匹配 | 没有上传真实图片时不打“实际 Alt Text 准确性”分；`alt_text=""` 不是无障碍失败的自动证据 |
 | `caption_only` | 已有图片时配文与图像/目标受众是否相关；不强制提问式 CTA | 无图情况下只评价可见文字与配文策略，不编造“图片里有……” |
 
-**注意**：Post v3.1 引入多种可选模式（场景体验、知识解释、人物、反差发现），评测时检查该模式是否适配**已提供证据与目标**，不要求每篇都有场景/感官或统一 CTA。[S10][S01]
+**注意**：Post v3.2 将四种叙事模式（场景体验、知识解释、人物、事实对照）与简洁非叙事组织方式一起列为**可选编辑策略**，评测时检查所选方式是否适配**已提供证据与目标**，不要求每篇都有场景/感官或统一 CTA，也不强求四选一。[S10][S01]
 
-**平台与无障碍**：参照 Generation 的 Post v3.1 方法（在完整项目中由独立的 `china-story-generation/references/genres/post.md` 提供）时，区分官方硬限制与编辑建议；**独立安装 Evaluation Skill 不依赖另一 Skill 的相对路径**。实际图片 Alt Text 根据 W3C 的信息性/装饰性用途判断，不能要求所有实际图都必须写很长。[S10][S11][V51-10]
+**Post v3.2 新增检查点**（归入 D5，辅助 D1/D4/D6）：
+
+- **format 专属字段完整性**：`thread` 应有逐条 `posts[]`、`visual_story` 应有逐页 `slides[]`、`caption_only` 应有 `caption`；若产出只是单一 `post` 字符串冒充其他格式完成，属于生成/接口问题，不以 D5 高分掩盖。后端 format 参数接线完成前，按"方法已定义、运行暂不支持"处理，不强行评分。
+- **caption_only 素材三态**：区分"有真实媒体""只有可靠的素材描述""完全无素材"——无图时不得出现"图片里有……"式断言，待核配文应可识别。
+- **visual_story 逐图描述**：有真实多图时，检查是否为承担独立信息的图片分别提供 Alt Text，而不是整组一个笼统描述；无实图时只评画面规划文字，`visual_brief` 不得冒充实际图片描述。
+- **format × platform 组合适配**：如 X 上的 `thread` 是原生连续帖，Instagram Feed 上的 Thread 非原生等价格式——评测可提示重规划，平台字符/媒体硬校验仍归后端。
+
+**平台与无障碍**：参照 Generation 的 Post v3.2 方法（在完整项目中由独立的 `china-story-generation/references/genres/post.md` 提供）时，区分官方硬限制与编辑建议；**独立安装 Evaluation Skill 不依赖另一 Skill 的相对路径**。实际图片 Alt Text 根据 W3C 的信息性/装饰性用途判断，不能要求所有实际图都必须写很长。[S10][S11][V51-10]
 
 ## 2. News v3.1 专项 [E01]
 
@@ -54,6 +61,6 @@
 ## 5. 依据
 
 - [S01] [ChinaStory Rubric v2.1](https://github.com/jialewang17/international-agent/blob/main/eval/CHINASTORY_CONTENT_QUALITY_RUBRIC_v2.1.md) D4/D5/D6。
-- [S10] 本次包 `china-story-generation/references/genres/post.md`（Post v3.1）；[W3C Images](https://www.w3.org/WAI/tutorials/images/)。
+- [S10] 本次包 `china-story-generation/references/genres/post.md`（Post v3.2，2026-10-22 审查修订）；[W3C Images](https://www.w3.org/WAI/tutorials/images/)。
 - [S11] [W3C Image Alternatives](https://www.w3.org/WAI/tutorials/images/informative/)。
 - [S12] 本次包 `china-story-generation/references/genres/news.md`（News v3.1）；[AP Telling the Story](https://www.ap.org/about/news-values-and-principles/telling-the-story/)。

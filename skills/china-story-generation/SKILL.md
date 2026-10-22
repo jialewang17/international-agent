@@ -89,12 +89,14 @@ evidence_pack:     # 来自 Ground 阶段，经 Gate B
 
 | genre | 主卡（references/genres/） | 默认 format | 核心问题 |
 |---|---|---|---|
-| `post` | `post.md` | `social_post` | 如何用一个事实点与场景让人愿意读/分享？ |
-| `news` | `news.md` | `news_article` | 发生了什么、谁做了什么、依据是什么？ |
+| `post` | `post.md`（**v3.2**） | `social_post` | 如何用一个事实点与场景让人愿意读/分享？ |
+| `news` | `news.md`（v3.1） | `news_article` | 发生了什么、谁做了什么、依据是什么？ |
 | `feature` | `feature.md` | `longform` | 这件事是什么样？ |
 | `indepth` | `indepth.md` | `in_depth_report` | 为什么发生、怎么运转、边界是什么？ |
 | `script` | `script.md` | `short_video` | 画面如何在有限时长内讲清一个点？ |
 | `faq` | `faq.md` | `faq_mythbust` | 哪个前提不完整，证据支持什么？ |
+
+> **Post v3.2（2026-10-22 审查修订）要点**：`post.md` 已修订至 v3.2——新增 format 路由契约（`thread`→`posts[]`、`visual_story`→`slides[]`、`caption_only`→`caption`，禁止单一 `post` 字段兜底）、format × platform 组合适配表与逐图 Alt 结构；`media_status`/`alt_status`/`media_basis`/`publishability_status` 等新字段均为**提案**，须后端 Schema 同步后才可启用。其余五张体裁卡版本不变。
 
 **体裁隔离（不可串味）**：
 - `feature` 不套新闻八步或 FAQ 条目；`indepth` 不用人物场景替代机制解释；
@@ -211,3 +213,4 @@ human_review: PENDING
 2. **持久化由后端负责**：本 Skill 输出中文母稿及 `master_ref` 候选，不能声称自己把母稿写进 ContentVersionStore。现有 `api/main.py` 只保存 canonical `post` 字段；未扩展 ContentVersion 之前不得声称实现了完整母稿追踪。
 3. **只启用已真正接线的体裁**：当前 `run_story_post_generation` 的显式支持集是 `post/news/feature/script`，且后两者仍复用 Post Prompt；`indepth/faq` 目前属于规则已定义、执行未完整接通。后端没有对应 Schema/分支前不要对外宣称六体裁全部已可执行。
 4. **保留兼容键**：旧 Post 工具的 `post/five_w/hashtags` 和 News 的 `headline/article/post` 是现有前端兼容接口；新的 `target_version/master_ref/evidence_map` 先作为 v6.1 目标契约，须完成后端适配才默认返回。
+5. **Post 方法卡已修订至 v3.2（提交 015e2e6）**：v3.2 新增的 `format` 参数路由、格式专属验证器与提案字段（`media_status`/`alt_status`/`media_basis`/`publishability_status`/`media_provenance`/`rights_status`）属**工程项**，与上面第 2、3 点同属待办——文档更新不等于接线完成，接入前对 `thread`/`visual_story`/`caption_only` 的产出标注"方法已定义，运行暂不支持"。
