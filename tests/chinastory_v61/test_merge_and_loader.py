@@ -73,8 +73,10 @@ class SkillLoaderTests(unittest.TestCase):
             self.assertIn('dummy rubric',load_evaluation_skill(root).text)
 
     def test_six_genre_documents_match_v51_hashes(self):
+        # post hash updated 2026-10-22 for the Post v3.2 review revision
+        # (per ChinaStory_Post_v6.2_专项审查报告, G1-G11); other five unchanged.
         expected = {
-            "post": "3aaf5117746395720ccaff91c79f7bbfdfffe1f4800a3a22ff712a74bd759018",
+            "post": "d6341c8cbfc94129588234ed08ea77a79ad671c926195a14bb74ae663a5cc48f",
             "news": "8733f7e83e8c23ddb18369af95182f23ba6ce04fcad4ea6107628a019af960f5",
             "feature": "5b9a37b05f89778a6453ba81498db7a2782fe501407ccd113f8fe29dede5631a",
             "indepth": "695463358c7af212ab9a9e28e0a8883700f72403913f9a21ef14e54b8d72b264",
