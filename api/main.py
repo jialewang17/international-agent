@@ -664,6 +664,23 @@ def approve_post(body: ApprovalRequest):
 
 @app.get("/")
 def index():
+    """Primary entry: the six-stage workbench (Define -> ... -> Approve).
+
+    The legacy single-page tools (post / topics / replies) stay reachable at
+    /tools; nothing about their behaviour changes.
+    """
+    workbench_path = FRONTEND_DIR / "workbench.html"
+    if workbench_path.exists():
+        return FileResponse(workbench_path)
+    index_path = FRONTEND_DIR / "index.html"
+    if index_path.exists():
+        return FileResponse(index_path)
+    return {"message": "frontend not found; build frontend/index.html"}
+
+
+@app.get("/tools")
+def legacy_tools():
+    """Legacy tool page (single-shot post / topic / reply helpers)."""
     index_path = FRONTEND_DIR / "index.html"
     if index_path.exists():
         return FileResponse(index_path)

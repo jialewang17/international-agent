@@ -7,9 +7,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/static/css/styles.css?v=20261022" />
+  <link rel="stylesheet" href="/static/css/styles.css?v=20261030" />
 </head>
 <body>
+  <div class="legacy-ribbon" role="note">
+    <span>旧版工具流程 · 单次生成工具，不含六阶段工作流与 Gate 门禁</span>
+    <a href="/">返回六阶段工作台</a>
+  </div>
   <header class="app-header">
     <div class="brand-lockup">
       <div class="brand-mark" aria-hidden="true">故</div>
@@ -26,7 +30,7 @@
     </div>
 
     <div class="header-meta">
-      <a class="text-btn" href="/static/workbench.html" title="六阶段工作台（Define → Ground → Plan → Create → Revise &amp; Audit → Approve）">六阶段工作台</a>
+      <a class="text-btn" href="/" title="六阶段工作台（Define → Ground → Plan → Create → Revise &amp; Audit → Approve）">六阶段工作台</a>
       <span class="dot" id="apiDot" title="API"></span>
       <kbd class="kbd-hint">Ctrl + Enter</kbd>
     </div>
@@ -100,7 +104,7 @@
                   <input name="max_words" type="number" min="20" max="1200" value="80" />
                 </label>
               </div>
-              <p class="micro">体裁/受众/平台一次选齐 = Define + Gate A（少在流程中重复追问）</p>
+              <p class="micro">旧版工具流程：体裁/受众/平台一次选齐（旧版 Define + Gate A，不经过六阶段工作流门禁）</p>
               <div class="more-params hidden" id="moreParams">
                 <div class="pill-grid">
                   <label class="pill-field">身份<select name="identity"></select></label>
@@ -244,6 +248,6 @@
   </aside>
 
   <div class="toast hidden" id="toast"></div>
-  <script src="/static/js/app.js?v=20261022"></script>
+  <script src="/static/js/app.js?v=20261030"></script>
 </body>
 </html>
