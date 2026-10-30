@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChinaStory Agent · 六阶段工作台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/workbench.css?v=20261030" />
+</head>
+<body data-mode="live">
+  <a class="skip-link" href="#wbMain">跳到主工作区</a>
+
+  <header class="wb-topbar">
+    <div class="wb-brand">
+      <div class="wb-brand-mark" aria-hidden="true">故</div>
+      <div class="wb-brand-text">
+        <strong>ChinaStory Agent</strong>
+        <span>国际传播六阶段工作台</span>
+      </div>
+    </div>
+
+    <div class="wb-taskline">
+      <span class="wb-task-name" id="taskName">未开始任务</span>
+      <span class="wb-stage-chip" id="stageChip">Define</span>
+      <span class="wb-demo-badge" id="demoBadge" hidden>DEMO · 演示数据</span>
+    </div>
+
+    <div class="wb-topbar-actions">
+      <div class="wb-modeswitch" role="group" aria-label="运行模式">
+        <button type="button" class="wb-mode-btn is-active" data-mode="live" aria-pressed="true">LIVE 真实</button>
+        <button type="button" class="wb-mode-btn" data-mode="demo" aria-pressed="false">体验演示</button>
+      </div>
+      <a class="wb-ghost-btn" href="/" title="打开仓库已有工具（发帖 / 选题 / 回复）">已有工具</a>
+      <button type="button" class="wb-ghost-btn" id="btnContextToggle" aria-expanded="true" aria-controls="wbContext">上下文</button>
+    </div>
+  </header>
+
+  <div class="wb-shell">
+    <nav class="wb-stages" id="wbStages" aria-label="阶段导航">
+      <p class="wb-nav-title">六阶段</p>
+      <ol class="wb-stage-list" role="tablist" aria-orientation="vertical">
+        <li>
+          <button type="button" class="wb-stage-item is-active" role="tab" data-stage="DEFINE" aria-selected="true">
+            <span class="wb-stage-dot" aria-hidden="true"></span>
+            <span class="wb-stage-label">Define<em>定义</em></span>
+            <span class="wb-stage-state" data-state-label>进行中</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="wb-stage-item" role="tab" data-stage="GROUND" aria-selected="false">
+            <span class="wb-stage-dot" aria-hidden="true"></span>
+            <span class="wb-stage-label">Ground<em>知识准备</em></span>
+            <span class="wb-stage-state" data-state-label>待开始</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="wb-stage-item" role="tab" data-stage="PLAN" aria-selected="false">
+            <span class="wb-stage-dot" aria-hidden="true"></span>
+            <span class="wb-stage-label">Plan<em>故事方案</em></span>
+            <span class="wb-stage-state" data-state-label>待开始</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="wb-stage-item" role="tab" data-stage="CREATE" aria-selected="false">
+            <span class="wb-stage-dot" aria-hidden="true"></span>
+            <span class="wb-stage-label">Create<em>内容生成</em></span>
+            <span class="wb-stage-state" data-state-label>待开始</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="wb-stage-item" role="tab" data-stage="REVISE_AUDIT" aria-selected="false">
+            <span class="wb-stage-dot" aria-hidden="true"></span>
+            <span class="wb-stage-label">Revise &amp; Audit<em>修改与评估</em></span>
+            <span class="wb-stage-state" data-state-label>待开始</span>
+          </button>
+        </li>
+        <li>
+          <button type="button" class="wb-stage-item" role="tab" data-stage="APPROVE" aria-selected="false">
+            <span class="wb-stage-dot" aria-hidden="true"></span>
+            <span class="wb-stage-label">Approve<em>最终审核</em></span>
+            <span class="wb-stage-state" data-state-label>待开始</span>
+          </button>
+        </li>
+      </ol>
+
+      <div class="wb-gates">
+        <p class="wb-nav-title">门禁</p>
+        <ul class="wb-gate-list">
+          <li class="wb-gate" data-gate="A"><span class="wb-gate-id">A</span><span>联合确认</span><b data-gate-state>未通过</b></li>
+          <li class="wb-gate" data-gate="B"><span class="wb-gate-id">B</span><span>证据检查</span><b data-gate-state>未评估</b></li>
+          <li class="wb-gate" data-gate="C"><span class="wb-gate-id">C</span><span>人工批准</span><b data-gate-state>未批准</b></li>
+        </ul>
+        <p class="wb-nav-note">Gate 是阶段内的门禁节点，不是额外阶段。</p>
+      </div>
+
+      <div class="wb-adaptive" id="wbAdaptive" hidden></div>
+    </nav>
+
+    <main class="wb-main" id="wbMain">
+      <div class="wb-toast" id="wbToast" role="status" aria-live="polite" hidden></div>
+
+      <!-- ============ DEFINE ============ -->
+      <section class="wb-view is-active" id="viewDefine" data-view="DEFINE" aria-labelledby="titleDefine">
+        <header class="wb-view-head">
+          <p class="wb-eyebrow">阶段 1 · Define</p>
+          <h1 id="titleDefine">中国故事，从这里开始</h1>
+          <p class="wb-lede">选择一个主题，让智能体先了解相关知识，再一起探索讲述方式。</p>
+        </header>
+
+        <div class="wb-card">
+          <h2 class="wb-card-title">选择一个主题类别</h2>
+          <div class="wb-topic-grid" id="topicGrid" role="group" aria-label="主题类别">
+            <button type="button" class="wb-topic" data-topic-hint="苏绣"><strong>传统文化与非遗</strong><span>工艺、民俗、节庆</span></button>
+            <button type="button" class="wb-topic" data-topic-hint="敦煌壁画"><strong>历史与艺术</strong><span>考古、文博、艺术史</span></button>
+            <button type="button" class="wb-topic" data-topic-hint="光伏治沙"><strong>科技创新</strong><span>能源、制造、航天</span></button>
+            <button type="button" class="wb-topic" data-topic-hint="城市夜经济"><strong>当代中国</strong><span>城市、消费、社会变化</span></button>
+            <button type="button" class="wb-topic" data-topic-hint="乡村教师"><strong>人物故事</strong><span>个体经历与选择</span></button>
+            <button type="button" class="wb-topic" data-topic-hint="三江源生态"><strong>自然生态</strong><span>地理、保护、共生</span></button>
+          </div>
+          <p class="wb-help">快捷卡片只是帮你填写主题，不构成最终任务确认。</p>
+        </div>
+
+        <div class="wb-card">
+          <label class="wb-field-label" for="topicInput">具体主题 <span class="wb-req">必填</span></label>
+          <input class="wb-input wb-input-lg" id="topicInput" type="text" placeholder="例如：苏绣" autocomplete="off" />
+          <label class="wb-field-label" for="materialsInput">补充已有材料或特殊要求 <span class="wb-soft">可选</span></label>
+          <textarea class="wb-textarea" id="materialsInput" rows="4" placeholder="粘贴通稿、采访笔记、链接摘要；空行分段。"></textarea>
+          <p class="wb-help" id="materialsHint">未添加材料。Ground 阶段只使用真实检索结果与这里的材料。</p>
+
+          <div class="wb-formfoot">
+            <div class="wb-inline-note">本阶段不需要填写受众、语言、体裁或平台——这些在 Plan 阶段一次性确认。</div>
+            <button type="button" class="wb-primary" id="btnStartExplore">开始探索</button>
+          </div>
+          <p class="wb-error" id="defineError" role="alert" hidden></p>
+        </div>
+      </section>
+
+      <!-- ============ GROUND ============ -->
+      <section class="wb-view" id="viewGround" data-view="GROUND" aria-labelledby="titleGround" hidden>
+        <header class="wb-view-head">
+          <p class="wb-eyebrow">阶段 2 · Ground</p>
+          <h1 id="titleGround">正在为这个故事寻找依据</h1>
+          <p class="wb-lede">检索知识库、证据与知识图谱支持的资料，整理成可追溯的来源清单。</p>
+        </header>
+
+        <div class="wb-banner" id="groundLiveGap" hidden>
+          <strong>资料服务尚未接通</strong>
+          <p id="groundLiveGapText">后端 Story Task 还没有回填 EvidencePack。当前阶段状态与证据状态都来自真实接口，缺口如实显示。</p>
+        </div>
+
+        <div class="wb-grid-2">
+          <div class="wb-card">
+            <h2 class="wb-card-title">知识摘要</h2>
+            <div id="groundSummary" class="wb-prose"><p class="wb-muted">等待 Ground 结果。</p></div>
+            <div class="wb-legend" aria-label="证据状态图例">
+              <span class="wb-tag is-ok">已获得资料</span>
+              <span class="wb-tag is-warn">需要补充资料</span>
+              <span class="wb-tag is-idle">资料来源待确认</span>
+              <span class="wb-tag is-bad">检索失败</span>
+            </div>
+          </div>
+          <div class="wb-card">
+            <h2 class="wb-card-title">证据缺口</h2>
+            <ul class="wb-gap-list" id="groundGaps"><li class="wb-muted">暂无缺口信息。</li></ul>
+            <p class="wb-help" id="groundNote"></p>
+          </div>
+        </div>
+
+        <div class="wb-card">
+          <div class="wb-card-head">
+            <h2 class="wb-card-title">资料来源</h2>
+            <span class="wb-count" id="groundSourceCount">0 条</span>
+          </div>
+          <div class="wb-source-list" id="groundSources"><p class="wb-muted">暂无来源。</p></div>
+        </div>
+
+        <div class="wb-actions-row">
+          <button type="button" class="wb-ghost-btn" id="btnRefreshGround">刷新状态</button>
+          <button type="button" class="wb-primary" id="btnGroundNext">前往 Plan</button>
+          <span class="wb-disabled-reason" id="groundNextReason" hidden></span>
+        </div>
+      </section>
+
+      <!-- ============ PLAN ============ -->
+      <section class="wb-view" id="viewPlan" data-view="PLAN" aria-labelledby="titlePlan" hidden>
+        <header class="wb-view-head">
+          <p class="wb-eyebrow">阶段 3 · Plan</p>
+          <h1 id="titlePlan">我们可以怎样讲这个故事？</h1>
+          <p class="wb-lede">基于已经准备的知识，探索不同叙事方向，再决定最终方案。</p>
+        </header>
+
+        <div class="wb-banner is-warn" id="planLiveGap" hidden>
+          <strong>真实故事规划服务待接入</strong>
+          <p>当前后端没有 Plan 生成器：<code>/plan</code> 只接收已生成的 NarrativePlan，<code>/feedback</code> 只记录反馈并使旧方案失效。这里不会假装已经生成方案。</p>
+        </div>
+
+        <div class="wb-plan-layout">
+          <div class="wb-plan-col">
+            <div class="wb-card">
+              <div class="wb-card-head">
+                <h2 class="wb-card-title">故事方向</h2>
+                <span class="wb-count" id="planDirectionCount">0 个</span>
+              </div>
+              <div class="wb-direction-list" id="planDirections"><p class="wb-muted">暂无方向。</p></div>
+            </div>
+          </div>
+
+          <div class="wb-plan-col">
+            <div class="wb-card">
+              <div class="wb-card-head">
+                <h2 class="wb-card-title">Narrative Plan 预览</h2>
+                <span class="wb-version" id="planVersionBadge">v0</span>
+              </div>
+              <div id="planPreview" class="wb-prose"><p class="wb-muted">选择一个故事方向后显示方案。</p></div>
+              <div class="wb-plan-meta" id="planMeta"></div>
+            </div>
+
+            <div class="wb-card" id="defineCheckCard">
+              <button type="button" class="wb-fold-head" id="btnDefineCheck" aria-expanded="false" aria-controls="defineCheckBody">
+                <span>确认传播任务设置</span>
+                <em>Define 决策 · Gate A 的一部分</em>
+              </button>
+              <div class="wb-fold-body" id="defineCheckBody" hidden>
+                <div class="wb-form-grid">
+                  <label class="wb-field"><span>目标受众</span>
+                    <input class="wb-input" id="confAudience" type="text" placeholder="例如：对文化话题感兴趣的美国青年" /></label>
+                  <label class="wb-field"><span>目标地区</span>
+                    <select class="wb-select" id="confRegion">
+                      <option value="">请选择</option>
+                      <option>美国</option><option>英国</option><option>欧洲其他</option>
+                      <option>东南亚</option><option>中东</option><option>非洲</option><option>拉美</option><option>全球</option>
+                    </select></label>
+                  <label class="wb-field"><span>受众对主题的了解程度</span>
+                    <select class="wb-select" id="confKnowledge">
+                      <option value="unknown">不确定</option>
+                      <option value="none">完全不了解</option>
+                      <option value="limited">听说过但不了解细节</option>
+                      <option value="some">有一定了解</option>
+                      <option value="expert">比较了解或专业</option>
+                    </select></label>
+                  <label class="wb-field"><span>内容形式 <b class="wb-req">需主动选择</b></span>
+                    <select class="wb-select" id="confGenre">
+                      <option value="">请选择</option>
+                      <option value="post">社交帖文</option>
+                      <option value="news">新闻通稿</option>
+                      <option value="feature">新闻特稿</option>
+                      <option value="indepth">深度报道</option>
+                      <option value="script">短视频脚本</option>
+                      <option value="faq">误解澄清</option>
+                    </select></label>
+                  <label class="wb-field"><span>目标语言</span>
+                    <select class="wb-select" id="confLanguage">
+                      <option value="">请选择</option>
+                      <option value="English">英语</option>
+                      <option value="Chinese">中文</option>
+                      <option value="other" disabled>其他（后端暂未支持）</option>
+                    </select></label>
+                  <label class="wb-field"><span>传播平台</span>
+                    <select class="wb-select" id="confPlatform">
+                      <option value="">请选择</option>
+                      <option value="instagram">Instagram</option>
+                      <option value="x">X</option>
+                      <option value="tiktok">TikTok</option>
+                      <option value="youtube">YouTube</option>
+                      <option value="facebook">Facebook</option>
+                      <option value="other">其他</option>
+                      <option value="undecided">暂不确定</option>
+                    </select></label>
+                </div>
+                <label class="wb-field"><span>用户补充要求 <span class="wb-soft">可选</span></span>
+                  <textarea class="wb-textarea" id="confRequirements" rows="2" placeholder="例如：避免说教口吻，多用具体细节。"></textarea></label>
+                <p class="wb-help">内容形式不会自动识别；受众了解程度不由国籍或年龄推断。</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="wb-plan-col">
+            <div class="wb-card wb-chat">
+              <div class="wb-card-head">
+                <h2 class="wb-card-title">用自然语言修改</h2>
+                <span class="wb-version" id="planPendingFlag" hidden>待重规划</span>
+              </div>
+              <div class="wb-chat-log" id="planChat" aria-live="polite"><p class="wb-muted">还没有反馈。用一句话说明你希望怎么改。</p></div>
+              <label class="wb-field"><span>你的修改意见</span>
+                <textarea class="wb-textarea" id="feedbackInput" rows="3" placeholder="例如：我更想突出年轻传承人，希望开头更有故事感。"></textarea></label>
+              <button type="button" class="wb-secondary wb-block" id="btnSendFeedback">提交反馈</button>
+              <p class="wb-help" id="feedbackHint">LIVE 下反馈只被记录，旧方案随即失效，需要真实规划服务产出新方案。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wb-confirm-bar">
+          <div class="wb-confirm-copy">
+            <strong>Gate A · 联合确认</strong>
+            <span id="confirmHint">确认后将锁定本次 Define 决策与 Plan 版本。</span>
+          </div>
+          <button type="button" class="wb-primary" id="btnOpenConfirm" disabled>确认任务与故事方案</button>
+        </div>
+      </section>
+
+      <!-- ============ CREATE ============ -->
+      <section class="wb-view" id="viewCreate" data-view="CREATE" aria-labelledby="titleCreate" hidden>
+        <header class="wb-view-head">
+          <p class="wb-eyebrow">阶段 4 · Create</p>
+          <h1 id="titleCreate">将故事方案变成传播内容</h1>
+          <p class="wb-lede">依据已确认的任务与方案生成内容；生成能力通过统一适配接口调用。</p>
+        </header>
+
+        <div class="wb-banner is-warn" id="createGateB" hidden>
+          <strong>等待可信证据评估</strong>
+          <p id="createGateBText">Gate B 未满足，真实流程不允许进入 Create。前端不会写入或伪造 Gate B 状态。</p>
+          <button type="button" class="wb-link-btn" id="btnShowBlockReason">查看阻断原因</button>
+        </div>
+
+        <div class="wb-create-layout">
+          <div class="wb-card">
+            <div class="wb-card-head">
+              <h2 class="wb-card-title">内容工作区</h2>
+              <span class="wb-version" id="contentVersionBadge" hidden>v1</span>
+            </div>
+            <div class="wb-genbar">
+              <button type="button" class="wb-primary" id="btnGenerate">生成内容</button>
+              <span class="wb-gen-status" id="genStatus">尚未生成</span>
+            </div>
+            <p class="wb-help" id="genAdapterNote">Generation Adapter：LIVE 未接通时返回 NOT_CONNECTED，不伪造内容。</p>
+            <textarea class="wb-editor" id="contentEditor" rows="14" placeholder="生成结果将出现在这里，可直接编辑。"></textarea>
+            <div class="wb-editor-foot">
+              <span class="wb-muted" id="editorMeta">未保存</span>
+              <div class="wb-inline-actions">
+                <button type="button" class="wb-secondary" id="btnCopyContent">复制</button>
+                <button type="button" class="wb-secondary" id="btnSaveContent">保存编辑</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="wb-create-side">
+            <div class="wb-card">
+              <h2 class="wb-card-title">已确认方案</h2>
+              <div id="createPlanEcho" class="wb-prose"><p class="wb-muted">暂无已确认方案。</p></div>
+            </div>
+            <div class="wb-card">
+              <div class="wb-card-head">
+                <h2 class="wb-card-title">平台预览</h2>
+                <div class="wb-seg" role="group" aria-label="预览平台">
+                  <button type="button" class="wb-seg-btn is-active" data-preview="instagram">IG</button>
+                  <button type="button" class="wb-seg-btn" data-preview="x">X</button>
+                </div>
+              </div>
+              <div class="wb-mock" id="mockPreview"><p class="wb-muted">生成后显示预览。</p></div>
+              <p class="wb-warn-text" id="platformWarn" hidden></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wb-actions-row">
+          <button type="button" class="wb-primary" id="btnGoAudit">进入修改与评估</button>
+          <span class="wb-disabled-reason" id="auditNextReason" hidden></span>
+        </div>
+      </section>
+
+      <!-- ============ AUDIT ============ -->
+      <section class="wb-view" id="viewAudit" data-view="REVISE_AUDIT" aria-labelledby="titleAudit" hidden>
+        <header class="wb-view-head">
+          <p class="wb-eyebrow">阶段 5 · Revise &amp; Audit</p>
+          <h1 id="titleAudit">检查故事内容是否可靠、是否适合受众</h1>
+          <p class="wb-lede">区分「已提取」「已定位」「已关联证据」「已核验」——它们不是同一件事。</p>
+        </header>
+
+        <div class="wb-audit-layout">
+          <div class="wb-card">
+            <h2 class="wb-card-title">内容与 Claim</h2>
+            <div class="wb-audit-text" id="auditContent"><p class="wb-muted">还没有内容版本。</p></div>
+            <ul class="wb-claim-list" id="claimList"></ul>
+          </div>
+
+          <div class="wb-card">
+            <h2 class="wb-card-title">事实核查</h2>
+            <ul class="wb-audit-status" id="factStatus"><li class="wb-muted">无核查数据。</li></ul>
+            <p class="wb-help">Claim 提取 ≠ 事实正确；有证据链接 ≠ 证据支持。</p>
+          </div>
+        </div>
+
+        <div class="wb-card">
+          <div class="wb-card-head">
+            <h2 class="wb-card-title">内容评价</h2>
+            <div class="wb-inline-actions">
+              <span class="wb-version" id="evalSource">Evaluation Skill</span>
+              <button type="button" class="wb-secondary" id="btnRunEval">运行评价</button>
+            </div>
+          </div>
+          <div class="wb-banner is-warn" id="evalNotConnected" hidden>
+            <strong>Evaluation Skill 待接入</strong>
+            <p>真实评价 Skill 尚未接线，这里不生成任何真实评分。DEMO 模式展示的是标注为「示例评价」的交互示意。</p>
+          </div>
+          <div class="wb-eval-grid" id="evalGrid"></div>
+          <div class="wb-issues" id="evalIssues"></div>
+        </div>
+
+        <div class="wb-card">
+          <h2 class="wb-card-title">修改与版本</h2>
+          <label class="wb-field"><span>修改说明</span>
+            <textarea class="wb-textarea" id="reviseInstruction" rows="2" placeholder="例如：把第二段的技术细节换成人物细节。"></textarea></label>
+          <div class="wb-actions-row">
+            <button type="button" class="wb-secondary" id="btnRevise">应用修改并生成新版本</button>
+            <button type="button" class="wb-primary" id="btnGoApprove">前往最终审核</button>
+          </div>
+          <p class="wb-help" id="revisionHint">新版本不会继承旧版本已通过的核查状态。</p>
+        </div>
+      </section>
+
+      <!-- ============ APPROVE ============ -->
+      <section class="wb-view" id="viewApprove" data-view="APPROVE" aria-labelledby="titleApprove" hidden>
+        <header class="wb-view-head">
+          <p class="wb-eyebrow">阶段 6 · Approve</p>
+          <h1 id="titleApprove">确认最终传播内容</h1>
+          <p class="wb-lede">最终人工审核对应 Gate C；工作流中的 C 标记不等于发布许可。</p>
+        </header>
+
+        <div class="wb-grid-2">
+          <div class="wb-card">
+            <h2 class="wb-card-title">最终版本正文</h2>
+            <div class="wb-audit-text" id="approveContent"><p class="wb-muted">还没有内容。</p></div>
+          </div>
+          <div class="wb-card">
+            <h2 class="wb-card-title">审核信息</h2>
+            <dl class="wb-dl" id="approveSummary"></dl>
+            <div class="wb-banner is-warn" id="approveLiveGap" hidden>
+              <strong>Gate C 需要真实绑定</strong>
+              <p>真实批准要求 persisted 人工 ACCEPT 与 (task, content_version, evaluation) 绑定；当前任务没有满足条件的内容版本，因此批准不可用。</p>
+            </div>
+            <div class="wb-actions-row">
+              <button type="button" class="wb-primary" id="btnApprove" disabled>批准</button>
+              <button type="button" class="wb-secondary" id="btnBackRevise">返回修改</button>
+              <button type="button" class="wb-danger-btn" id="btnReject">拒绝</button>
+            </div>
+            <p class="wb-disabled-reason" id="approveReason"></p>
+            <p class="wb-success" id="approveDone" hidden></p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="wb-context" id="wbContext" aria-label="上下文面板">
+      <div class="wb-context-head">
+        <h2>上下文</h2>
+        <span class="wb-mode-tag" id="ctxMode">LIVE</span>
+      </div>
+      <section class="wb-ctx-block">
+        <h3>任务摘要</h3>
+        <dl class="wb-dl" id="ctxTask"><dt>状态</dt><dd>尚未开始任务</dd></dl>
+      </section>
+      <section class="wb-ctx-block">
+        <h3>资料概况</h3>
+        <dl class="wb-dl" id="ctxSources"><dt>来源</dt><dd>0</dd></dl>
+      </section>
+      <section class="wb-ctx-block">
+        <h3>阶段与门禁</h3>
+        <dl class="wb-dl" id="ctxWorkflow"></dl>
+      </section>
+      <section class="wb-ctx-block">
+        <h3>版本记录</h3>
+        <ul class="wb-version-list" id="ctxVersions"><li class="wb-muted">暂无版本。</li></ul>
+      </section>
+      <details class="wb-ctx-block wb-raw">
+        <summary>原始状态 JSON</summary>
+        <pre id="ctxRaw">{}</pre>
+      </details>
+    </aside>
+  </div>
+
+  <div class="wb-drawer-scrim" id="drawerScrim" hidden></div>
+
+  <!-- Gate A confirmation dialog -->
+  <div class="wb-modal" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" hidden>
+    <div class="wb-modal-panel">
+      <div class="wb-modal-head">
+        <h2 id="confirmTitle">确认任务与故事方案</h2>
+        <button type="button" class="wb-icon-btn" id="btnCloseConfirm" aria-label="关闭">×</button>
+      </div>
+      <div class="wb-modal-body">
+        <section>
+          <h3>A · Define 决策摘要</h3>
+          <dl class="wb-dl" id="confirmDefineSummary"></dl>
+        </section>
+        <section>
+          <h3>B · Narrative Plan 最终版本</h3>
+          <div id="confirmPlanSummary" class="wb-prose"></div>
+        </section>
+        <p class="wb-error" id="confirmError" role="alert" hidden></p>
+      </div>
+      <div class="wb-modal-foot">
+        <button type="button" class="wb-secondary" id="btnCancelConfirm">返回修改</button>
+        <button type="button" class="wb-primary" id="btnSubmitConfirm">确认并进入 Create</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/workbench/utils.js?v=20261030"></script>
+  <script src="/static/js/workbench/story-api.js?v=20261030"></script>
+  <script src="/static/js/workbench/demo-adapter.js?v=20261030"></script>
+  <script src="/static/js/workbench/generation-adapter.js?v=20261030"></script>
+  <script src="/static/js/workbench/evaluation-adapter.js?v=20261030"></script>
+  <script src="/static/js/workbench/workbench.js?v=20261030"></script>
+</body>
+</html>
