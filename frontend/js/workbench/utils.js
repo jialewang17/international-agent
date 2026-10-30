@@ -80,6 +80,51 @@
     return { code: status || "ERROR", status: status, gate: gate, message: message };
   }
 
+  /* Platform vocabulary. The workbench UI says "X"; the backend skills and
+     knowledge base only know "twitter". Mapping lives here so neither the pages
+     nor the adapters have to carry both vocabularies. */
+  const PLATFORM_BACKEND = {
+    x: "twitter", "twitter/x": "twitter", twitterx: "twitter", "x.com": "twitter",
+  };
+  const PLATFORM_LABEL = {
+    x: "X", twitter: "X", instagram: "Instagram", tiktok: "TikTok",
+    youtube: "YouTube", facebook: "Facebook", weibo: "微博",
+    other: "其他", undecided: "暂不确定",
+  };
+
+  /* "X" -> "twitter"; unknown values pass through lowercased; empty -> null. */
+  function platformToBackend(value) {
+    const raw = String(value == null ? "" : value).trim().toLowerCase();
+    if (!raw) return null;
+    return PLATFORM_BACKEND[raw] || raw;
+  }
+
+  /* Backend value -> the value used by the <select>, so re-rendering a saved
+     task never blanks the platform field. */
+  function platformToUi(value) {
+    const backend = platformToBackend(value);
+    if (!backend) return "";
+    return backend === "twitter" ? "x" : backend;
+  }
+
+  function platformLabel(value) {
+    const backend = platformToBackend(value);
+    return backend ? PLATFORM_LABEL[backend] || backend : "";
+  }
+
+  /* Copy of a capability request whose platform fields use backend ids. The
+     caller's object is never mutated. Used by the generation/evaluation seams. */
+  function normalizePlatformRequest(request) {
+    const out = Object.assign({}, request || {});
+    if ("platform" in out) out.platform = platformToBackend(out.platform);
+    if (out.task_context && typeof out.task_context === "object") {
+      out.task_context = Object.assign({}, out.task_context, {
+        platform: platformToBackend(out.task_context.platform),
+      });
+    }
+    return out;
+  }
+
   function fmtTime(iso) {
     if (!iso) return "—";
     const d = new Date(iso);
@@ -107,5 +152,10 @@
   }
 
   global.WB = global.WB || {};
-  global.WB.util = { $: $, $$: $$, esc: esc, el: el, sleep: sleep, getJSON: getJSON, parseError: parseError, fmtTime: fmtTime, toast: toast, setLoading: setLoading };
+  global.WB.util = {
+    $: $, $$: $$, esc: esc, el: el, sleep: sleep, getJSON: getJSON, parseError: parseError,
+    fmtTime: fmtTime, toast: toast, setLoading: setLoading,
+    platformToBackend: platformToBackend, platformToUi: platformToUi,
+    platformLabel: platformLabel, normalizePlatformRequest: normalizePlatformRequest,
+  };
 })(window);

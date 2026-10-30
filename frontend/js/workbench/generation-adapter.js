@@ -27,8 +27,11 @@
     isConnected: function () { return Boolean(this.endpoint); },
 
     /* request: {task_id, task_context, plan, plan_version, evidence_refs,
-                 genre, language, platform, requirements} */
+                 genre, language, platform, requirements}
+       Platform ids are normalized to the backend vocabulary ("x" -> "twitter")
+       before the request leaves this seam. */
     generateContent: async function (request, mode) {
+      const payload = U.normalizePlatformRequest(request);
       if (mode !== "demo") {
         if (!this.endpoint) {
           return {
@@ -40,16 +43,16 @@
             skill_version: this.skillVersion,
             warnings: ["真实 Generation Skill 尚未接入；LIVE 不生成内容。"],
             error: "NOT_CONNECTED",
-            request_echo: summarize(request),
+            request_echo: summarize(payload),
           };
         }
-        const res = await U.getJSON(this.endpoint, { method: "POST", body: request, timeout: 120000 });
+        const res = await U.getJSON(this.endpoint, { method: "POST", body: payload, timeout: 120000 });
         if (!res.ok) {
           const err = U.parseError(res);
           return {
             status: STATUS.FAILED, content: "", content_version_id: null, provider: "live",
             skill_id: this.skillId, skill_version: this.skillVersion,
-            warnings: [], error: err.message, request_echo: summarize(request),
+            warnings: [], error: err.message, request_echo: summarize(payload),
           };
         }
         const data = res.data && res.data.data ? res.data.data : res.data;
@@ -62,7 +65,7 @@
           skill_version: data.skill_version || this.skillVersion,
           warnings: data.warnings || [],
           error: null,
-          request_echo: summarize(request),
+          request_echo: summarize(payload),
         };
       }
 
@@ -77,7 +80,7 @@
         skill_version: "1.0-demo",
         warnings: ["DEMO 示例内容：不是真实模型输出，不可用于发布。"],
         error: null,
-        request_echo: summarize(request),
+        request_echo: summarize(payload),
       };
     },
   };

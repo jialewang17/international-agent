@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/static/css/workbench.css?v=20261030" />
+  <link rel="stylesheet" href="/static/css/workbench.css?v=20261031" />
 </head>
 <body data-mode="live">
   <a class="skip-link" href="#wbMain">跳到主工作区</a>
@@ -488,20 +488,21 @@
           <h3>B · Narrative Plan 最终版本</h3>
           <div id="confirmPlanSummary" class="wb-prose"></div>
         </section>
+        <p class="wb-help" id="confirmGateBNote">本次确认只通过 Gate A（联合确认），即锁定上面的 Define 决策与 Plan 版本。真实进入 Create 还需要 Gate B · 方案证据检查通过，且只能由可信评估器写入；本页面不会代替它判定。</p>
         <p class="wb-error" id="confirmError" role="alert" hidden></p>
       </div>
       <div class="wb-modal-foot">
         <button type="button" class="wb-secondary" id="btnCancelConfirm">返回修改</button>
-        <button type="button" class="wb-primary" id="btnSubmitConfirm">确认并进入 Create</button>
+        <button type="button" class="wb-primary" id="btnSubmitConfirm">确认联合任务与方案（Gate A）</button>
       </div>
     </div>
   </div>
 
-  <script src="/static/js/workbench/utils.js?v=20261030"></script>
-  <script src="/static/js/workbench/story-api.js?v=20261030"></script>
-  <script src="/static/js/workbench/demo-adapter.js?v=20261030"></script>
-  <script src="/static/js/workbench/generation-adapter.js?v=20261030"></script>
-  <script src="/static/js/workbench/evaluation-adapter.js?v=20261030"></script>
-  <script src="/static/js/workbench/workbench.js?v=20261030"></script>
+  <script src="/static/js/workbench/utils.js?v=20261031"></script>
+  <script src="/static/js/workbench/story-api.js?v=20261031"></script>
+  <script src="/static/js/workbench/demo-adapter.js?v=20261031"></script>
+  <script src="/static/js/workbench/generation-adapter.js?v=20261031"></script>
+  <script src="/static/js/workbench/evaluation-adapter.js?v=20261031"></script>
+  <script src="/static/js/workbench/workbench.js?v=20261031"></script>
 </body>
 </html>

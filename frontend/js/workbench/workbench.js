@@ -151,7 +151,7 @@
       "<dt>任务 ID</dt><dd><code>" + U.esc(t.task_id || "—") + "</code></dd>",
       "<dt>内容形式</dt><dd>" + U.esc(t.genre || "未确认") + "</dd>",
       "<dt>语言</dt><dd>" + U.esc(t.language || "未确认") + "</dd>",
-      "<dt>平台</dt><dd>" + U.esc(t.platform || "未确认") + "</dd>",
+      "<dt>平台</dt><dd>" + U.esc(U.platformLabel(t.platform) || "未确认") + "</dd>",
       "<dt>受众</dt><dd>" + U.esc(t.audience || "未确认") + "</dd>",
     ].join("");
 
@@ -474,7 +474,7 @@
     set("#confAudience", t.audience);
     set("#confGenre", t.genre);
     set("#confLanguage", t.language);
-    set("#confPlatform", t.platform);
+    set("#confPlatform", U.platformToUi(t.platform));
   }
 
   function bindPlan() {
@@ -548,7 +548,7 @@
         "<dt>受众</dt><dd>" + U.esc(conf.audience || t.audience || "未填写") + "</dd>",
         "<dt>内容形式</dt><dd>" + U.esc(conf.genre || t.genre || "未选择") + "</dd>",
         "<dt>语言</dt><dd>" + U.esc(conf.language || t.language || "未选择") + "</dd>",
-        "<dt>平台</dt><dd>" + U.esc(conf.platform || t.platform || "未选择") + "</dd>",
+        "<dt>平台</dt><dd>" + U.esc(U.platformLabel(conf.platform || t.platform) || "未选择") + "</dd>",
       ].join("");
       const plan = snap.plan;
       $("#confirmPlanSummary").innerHTML = plan

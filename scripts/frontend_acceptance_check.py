@@ -186,7 +186,7 @@ def run_checks(base: str) -> int:
         " document.querySelector('#confAudience').value = '18-30 岁对中国文化好奇的美国青年';"
         " document.querySelector('#confGenre').value = 'post';"
         " document.querySelector('#confLanguage').value = 'English';"
-        " document.querySelector('#confPlatform').value = 'instagram';"
+        " document.querySelector('#confPlatform').value = 'x';"
         " document.querySelector('#confKnowledge').value = 'limited';"
         " return true; })()"
     )
@@ -199,6 +199,21 @@ def run_checks(base: str) -> int:
         "确认弹窗同时给出 Define 摘要与 Plan 摘要",
         "18-30 岁" in modal_text and str(after.get("title"))[:8] in modal_text,
         "",
+    )
+    check(
+        "X 平台在界面显示为 X，交给后端的是 twitter",
+        page.js("WB.util.platformToBackend('x')") == "twitter"
+        and page.js("WB.util.platformToUi('twitter')") == "x"
+        and page.js("document.querySelector('#confirmDefineSummary').innerHTML.indexOf('平台</dt><dd>X</dd>') >= 0"),
+        page.js("document.querySelector('#confirmDefineSummary').textContent.slice(-24)"),
+    )
+    check(
+        "Gate A 弹窗不承诺进入 Create，并写明仍需 Gate B",
+        "确认并进入 Create" not in modal_text
+        and "Gate A" in str(page.js("document.querySelector('#btnSubmitConfirm').textContent"))
+        and "Gate B" in str(page.js("document.querySelector('#confirmGateBNote').textContent"))
+        and "Create" in str(page.js("document.querySelector('#confirmGateBNote').textContent")),
+        page.js("document.querySelector('#btnSubmitConfirm').textContent.trim()"),
     )
     page.js("document.querySelector('#btnCancelConfirm').click()")
     check(
@@ -313,6 +328,26 @@ def run_checks(base: str) -> int:
         " return JSON.stringify(r).slice(0, 240); })()"
     )
     check("Gate B 未通过时后端拒绝进入 Create", ('"code":409' in str(enter)) or ('"status":409' in str(enter)), enter)
+
+    # ---------- mobile: a collapsed desktop shell must not break the grid ----------
+    set_viewport(page, 375, 812)
+    page.js("(async () => { await new Promise(r => setTimeout(r, 300)); return true; })()")
+    page.js("document.querySelector('.wb-shell').classList.add('is-ctx-collapsed')")
+    page.js("(async () => { await new Promise(r => setTimeout(r, 200)); return true; })()")
+    cols = page.js("getComputedStyle(document.querySelector('.wb-shell')).gridTemplateColumns")
+    mov = json.loads(page.js(
+        "JSON.stringify({nav: document.querySelector('.wb-stages').getBoundingClientRect().width,"
+        " main: document.querySelector('.wb-main').getBoundingClientRect().width,"
+        " vw: window.innerWidth})"
+    ))
+    check(
+        "移动端折叠上下文后仍是单列布局",
+        len(str(cols).split()) == 1
+        and abs(float(mov["nav"]) - float(mov["vw"])) <= 2
+        and abs(float(mov["main"]) - float(mov["vw"])) <= 2,
+        f"cols={cols}, nav={mov['nav']}, main={mov['main']}, vw={mov['vw']}",
+    )
+    page.js("document.querySelector('.wb-shell').classList.remove('is-ctx-collapsed')")
 
     page.ws.close()
     return 0

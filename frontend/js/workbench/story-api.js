@@ -50,14 +50,15 @@
       return call("POST", "/" + encodeURIComponent(taskId) + "/feedback", { instruction: instruction });
     },
 
-    /* POST /confirm — Gate A joint confirmation (server validates the plan). */
+    /* POST /confirm — Gate A joint confirmation (server validates the plan).
+       The UI says "X"; the backend stores the canonical "twitter" id. */
     confirm: function (taskId, confirmation) {
       const payload = {
         audience: String(confirmation.audience || ""),
         genre: String(confirmation.genre || ""),
         language: String(confirmation.language || ""),
         audience_knowledge: confirmation.audience_knowledge || "unknown",
-        platform: confirmation.platform || null,
+        platform: U.platformToBackend(confirmation.platform),
         user_requirements: String(confirmation.user_requirements || ""),
       };
       return call("POST", "/" + encodeURIComponent(taskId) + "/confirm", payload);

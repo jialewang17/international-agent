@@ -34,8 +34,11 @@
 
     isConnected: function () { return Boolean(this.endpoint); },
 
-    /* request: {task_id, content_version_id, content, task_context, plan, evidence} */
+    /* request: {task_id, content_version_id, content, task_context, plan, evidence}
+       Platform ids are normalized ("x" -> "twitter") so D6 平台适配 is scored
+       against the same identifier the backend skills use. */
     evaluateContent: async function (request, mode) {
+      const payload = U.normalizePlatformRequest(request);
       if (mode !== "demo") {
         if (!this.endpoint) {
           return {
@@ -45,13 +48,13 @@
             evaluator: { name: this.evaluatorName, version: this.evaluatorVersion },
             error: "NOT_CONNECTED",
             note: "真实 Evaluation Skill 尚未接入，本轮不产生任何真实评分。",
-            request_echo: summarize(request),
+            request_echo: summarize(payload),
           };
         }
-        const res = await U.getJSON(this.endpoint, { method: "POST", body: request, timeout: 180000 });
+        const res = await U.getJSON(this.endpoint, { method: "POST", body: payload, timeout: 180000 });
         if (!res.ok) {
           const err = U.parseError(res);
-          return { status: STATUS.FAILED, dimensions: [], issues: [], evaluator: { name: this.evaluatorName, version: this.evaluatorVersion }, error: err.message, request_echo: summarize(request) };
+          return { status: STATUS.FAILED, dimensions: [], issues: [], evaluator: { name: this.evaluatorName, version: this.evaluatorVersion }, error: err.message, request_echo: summarize(payload) };
         }
         const data = res.data && res.data.data ? res.data.data : res.data;
         return {
@@ -60,7 +63,7 @@
           issues: data.issues || [],
           evaluator: data.evaluator || { name: this.evaluatorName, version: this.evaluatorVersion },
           error: null,
-          request_echo: summarize(request),
+          request_echo: summarize(payload),
         };
       }
 
@@ -73,7 +76,7 @@
         sample: true,
         note: "示例评价：仅用于展示交互，不代表真实 Evaluation Skill 结论。",
         error: null,
-        request_echo: summarize(request),
+        request_echo: summarize(payload),
       };
     },
   };
