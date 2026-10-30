@@ -118,7 +118,7 @@ def run_viewport(port: int, base: str, out: Path, width: int, height: int, full:
     tag = f"{width}x{height}"
     page = open_page(port)
     set_viewport(page, width, height)
-    goto(page, f"{base}/static/workbench.html?mode=demo")
+    goto(page, f"{base}/static/workbench.html?mode=demo&fresh=1")
     trace = {"viewport": tag, "steps": []}
 
     page.shot(out / tag / "01-define-demo.png")
@@ -226,7 +226,7 @@ def run_viewport(port: int, base: str, out: Path, width: int, height: int, full:
 def run_live(port: int, base: str, out: Path) -> dict:
     page = open_page(port)
     set_viewport(page, 1920, 1080)
-    goto(page, f"{base}/static/workbench.html")
+    goto(page, f"{base}/?mode=live")
     page.shot(out / "1920x1080" / "live-01-define.png")
 
     page.js("""(() => {

@@ -91,7 +91,28 @@ def test_legacy_tool_ui_is_preserved():
     assert 'id="formPost"' in html
     assert 'id="formTopics"' in html
     assert 'id="formReply"' in html
-    assert "/static/workbench.html" in html  # new entry point added, old flow kept
+    # The legacy page keeps a link to the workbench (now served at "/", the
+    # primary entry) and carries the explicit legacy-flow banner.
+    assert 'href="/"' in html
+    assert "legacy-ribbon" in html
+    assert "旧版工具流程" in html
+
+
+def test_root_serves_workbench_and_tools_serves_legacy(monkeypatch):
+    client = TestClient(api_main.app)
+    root = client.get("/")
+    assert root.status_code == 200
+    assert "wb-shell" in root.text
+    assert "legacy-ribbon" not in root.text
+
+    tools = client.get("/tools")
+    assert tools.status_code == 200
+    assert "legacy-ribbon" in tools.text
+    assert 'id="formPost"' in tools.text
+
+    # The static direct links keep working for bookmarks.
+    assert client.get("/static/workbench.html").status_code == 200
+    assert client.get("/static/index.html").status_code == 200
 
 
 def _fresh_client(monkeypatch):
