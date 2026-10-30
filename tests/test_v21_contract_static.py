@@ -10,7 +10,7 @@ def test_api_meta_six_stages_and_three_gates():
     s = read("api/main.py")
     for token in ["DEFINE", "GROUND", "PLAN", "CREATE", "REVISE_AUDIT", "APPROVE"]:
         assert token in s
-    for token in ["Task Confirmation", "Evidence Exception", "Final Approval"]:
+    for token in ["Joint Task + Plan Confirmation", "Plan Evidence Check", "Final Approval"]:
         assert token in s
     assert '@app.post("/api/posts/approve")' in s
 
