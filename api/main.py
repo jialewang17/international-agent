@@ -41,6 +41,8 @@ from api.coverage_service import (
 )
 from api.versioning import ContentVersionStore, VersioningError  # noqa: E402
 from api.workflow import workflow_state_machine, WorkflowError  # noqa: E402
+from api.story_router import router as story_router  # noqa: E402
+from api.story_session import story_session_store  # noqa: E402
 
 FRONTEND_DIR = ROOT / "frontend"
 
@@ -97,8 +99,8 @@ META = {
         {"id": "APPROVE", "label": "Approve", "hard": False},
     ],
     "gates": [
-        {"id": "A", "label": "Task Confirmation", "after": "DEFINE", "hard": True},
-        {"id": "B", "label": "Evidence Exception", "after": "GROUND", "hard": True, "exception_only": True},
+        {"id": "A", "label": "Joint Task + Plan Confirmation", "after": "PLAN", "hard": True},
+        {"id": "B", "label": "Plan Evidence Check", "after": "PLAN", "hard": True, "exception_only": True},
         {"id": "C", "label": "Final Approval", "after": "APPROVE", "hard": True},
     ],
     "genres": [
@@ -119,6 +121,8 @@ app = FastAPI(
     description="国际传播智能体 API：主动发帖 / 选题 / 回复 + 论据透明 + 门控可视化",
     version="0.6.0-v2.1-six-stage",
 )
+
+app.include_router(story_router)
 
 app.add_middleware(
     CORSMiddleware,
@@ -147,6 +151,8 @@ def start_workflow(task_id: str):
 @app.post("/api/workflow/{task_id}/gate")
 def decide_workflow_gate(task_id: str, decision: GateDecision):
     try:
+        if story_session_store.exists(task_id) and decision.gate.upper() in {"A", "B", "C"}:
+            raise WorkflowError(decision.gate, "Use story task joint confirmation / trusted evaluation / canonical approval")
         state = workflow_state_machine.decide_gate(task_id, decision)
         return {"ok": True, "data": state.__dict__}
     except (KeyError, WorkflowError) as exc:
@@ -190,6 +196,25 @@ def generate_post(body: PostGenerateRequest):
         if audience:
             brief_parts.append(f"目标受众：{audience}")
         payload["user_brief"] = "\n".join(brief_parts) if (goal or audience) else None
+        if requested_task_id and story_session_store.exists(requested_task_id):
+            workflow_state_machine.assert_create_ready(requested_task_id)
+            confirmed = story_session_store.get(requested_task_id).task
+            if str(payload.get("genre") or "") != confirmed.genre:
+                raise WorkflowError("A", "genre conflicts with the confirmed task")
+            if str(payload.get("language") or "") != confirmed.language:
+                raise WorkflowError("A", "language conflicts with the confirmed task")
+            if str(payload.get("theme") or "").strip() != confirmed.topic.strip():
+                raise WorkflowError("A", "theme conflicts with the confirmed task")
+            if confirmed.platform and str(payload.get("platform") or "") != confirmed.platform:
+                raise WorkflowError("A", "platform conflicts with the confirmed task")
+            existing_materials = str(payload.get("user_materials") or "")
+            if existing_materials and existing_materials != confirmed.user_materials:
+                raise WorkflowError("A", "user materials differ from the submitted materials")
+            payload["user_materials"] = confirmed.user_materials
+            payload["desired_effect"] = (
+                "Present confirmed information clearly and accurately without presuming "
+                "a specific audience attitude or outcome."
+            )
         result = run_story_post_generation(**payload)
 
         # Blocked/error paths never persist evidence and never create a version.
@@ -270,6 +295,8 @@ def generate_post(body: PostGenerateRequest):
         result["content_version_id"] = version.content_version_id
         result["claim_ids"] = list(version.claim_ids)
         return {"ok": True, "data": result}
+    except WorkflowError as e:
+        raise HTTPException(status_code=409, detail={"gate": e.gate, "reason": e.reason}) from e
     except ModuleNotFoundError as e:
         raise HTTPException(
             status_code=503,
