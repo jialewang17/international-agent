@@ -540,12 +540,15 @@
     if (open) {
       const snap = currentSnapshot();
       const t = snap.task || {};
+      // Show what the user just filled in, not the older snapshot values
+      // (the confirmation is only persisted after the modal is submitted).
+      const conf = collectConfirmation();
       $("#confirmDefineSummary").innerHTML = [
         "<dt>主题</dt><dd>" + U.esc(t.topic || "—") + "</dd>",
-        "<dt>受众</dt><dd>" + U.esc(t.audience || "未填写") + "</dd>",
-        "<dt>内容形式</dt><dd>" + U.esc(t.genre || "未选择") + "</dd>",
-        "<dt>语言</dt><dd>" + U.esc(t.language || "未选择") + "</dd>",
-        "<dt>平台</dt><dd>" + U.esc(t.platform || "未选择") + "</dd>",
+        "<dt>受众</dt><dd>" + U.esc(conf.audience || t.audience || "未填写") + "</dd>",
+        "<dt>内容形式</dt><dd>" + U.esc(conf.genre || t.genre || "未选择") + "</dd>",
+        "<dt>语言</dt><dd>" + U.esc(conf.language || t.language || "未选择") + "</dd>",
+        "<dt>平台</dt><dd>" + U.esc(conf.platform || t.platform || "未选择") + "</dd>",
       ].join("");
       const plan = snap.plan;
       $("#confirmPlanSummary").innerHTML = plan
@@ -1008,24 +1011,30 @@
   }
 
   /* ---------------- mode switching ---------------- */
-  function setMode(mode) {
-    if (mode === APP.mode) return;
-    if (mode === "demo") {
-      const ok = window.confirm("切换到 DEMO 演示模式？\n\n演示数据与真实任务完全隔离：不会写入后端，也不会修改任何门禁状态。");
-      if (!ok) return;
-      APP.mode = "demo";
-      global.WB.demo.reset();
-      APP.ui.stage = "DEFINE";
-    } else {
-      APP.mode = "live";
-      APP.ui.stage = APP.live.snapshot ? APP.live.snapshot.workflow.stage : "DEFINE";
-      if (!APP.live.snapshot && APP.live.taskId) restoreLive();
-    }
+  function syncModeButtons(mode) {
     $$(".wb-mode-btn").forEach(function (b) {
       const on = b.getAttribute("data-mode") === mode;
       b.classList.toggle("is-active", on);
       b.setAttribute("aria-pressed", on ? "true" : "false");
     });
+  }
+
+  function setMode(mode) {
+    if (mode === APP.mode) return;
+    if (mode === "demo") {
+      const ok = window.confirm("切换到 DEMO 演示模式？\n\n演示数据与真实任务完全隔离：不会写入后端，也不会修改任何门禁状态。已进行的演示进度会保留。");
+      if (!ok) return;
+      APP.mode = "demo";
+      if (!global.WB.demo.state) global.WB.demo.restore();
+      const s = global.WB.demo.getState();
+      APP.ui.stage = s.stage || "DEFINE";
+    } else {
+      APP.mode = "live";
+      APP.ui.stage = APP.live.snapshot ? APP.live.snapshot.workflow.stage : "DEFINE";
+      if (!APP.live.snapshot && APP.live.taskId) restoreLive();
+    }
+    try { localStorage.setItem("wb.mode", mode); } catch (e) { /* ignore */ }
+    syncModeButtons(mode);
     renderShell();
     setView(APP.ui.stage);
     U.toast(mode === "demo" ? "已切换到 DEMO：演示数据，不会写入后端" : "已切换到 LIVE：读取真实接口");
@@ -1098,14 +1107,37 @@
     bindApprove();
 
     const params = new URLSearchParams(location.search);
-    if (params.get("mode") === "demo") {
+    const modeParam = params.get("mode");
+    const wantDemo = modeParam === "demo";
+    const wantLive = modeParam === "live";
+    const fresh = params.get("fresh") === "1";
+    let lastMode = "live";
+    try { lastMode = localStorage.getItem("wb.mode") || "live"; } catch (e) { /* ignore */ }
+
+    if (wantDemo) {
+      // Explicit demo link. ?fresh=1 restarts the walkthrough; otherwise a
+      // previous demo session is restored (mode is still clearly DEMO).
       APP.mode = "demo";
-      global.WB.demo.reset();
-      $$(".wb-mode-btn").forEach(function (b) {
-        const on = b.getAttribute("data-mode") === "demo";
-        b.classList.toggle("is-active", on);
-        b.setAttribute("aria-pressed", on ? "true" : "false");
-      });
+      if (fresh || !global.WB.demo.restore()) global.WB.demo.reset();
+      APP.ui.stage = global.WB.demo.getState().stage || "DEFINE";
+      syncModeButtons("demo");
+      if (fresh) {
+        // One-shot flag: drop it from the URL so a later reload resumes the
+        // walkthrough instead of silently wiping it.
+        try {
+          const clean = new URL(location.href);
+          clean.searchParams.delete("fresh");
+          history.replaceState(null, "", clean);
+        } catch (e) { /* ignore */ }
+      }
+    } else if (!wantLive && lastMode === "demo") {
+      // The user was in the demo when they reloaded: come back to the same
+      // demo stage instead of silently dropping their progress. This is a
+      // remembered user choice, never a fallback from a failed LIVE call.
+      APP.mode = "demo";
+      if (!global.WB.demo.restore()) global.WB.demo.reset();
+      APP.ui.stage = global.WB.demo.getState().stage || "DEFINE";
+      syncModeButtons("demo");
     } else {
       await restoreLive();
     }

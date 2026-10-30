@@ -132,8 +132,15 @@
 
   function clone(x) { return JSON.parse(JSON.stringify(x)); }
 
+  /* Demo state survives a page reload, but lives under its own key and carries
+     mode:"demo" + schema so it can never be mistaken for, or merged into, a
+     real task. A demo task id is never sent to the backend. */
+  const STORAGE_KEY = "wb.demo.state";
+  const SCHEMA = 1;
+
   const Demo = {
     state: null,
+    _persistTimer: null,
 
     reset: function () {
       this.state = {
@@ -161,6 +168,50 @@
         approved: false,
       };
       return this.state;
+    },
+
+    /* Write-through on every render (debounced), so a refresh keeps the exact
+       stage the user was looking at. */
+    persistSoon: function () {
+      const self = this;
+      clearTimeout(this._persistTimer);
+      this._persistTimer = setTimeout(function () { self.persistNow(); }, 120);
+    },
+
+    persistNow: function () {
+      if (!this.state) return;
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+          schema: SCHEMA, mode: "demo", savedAt: new Date().toISOString(), state: this.state,
+        }));
+      } catch (e) {
+        /* private mode / quota: the demo keeps working, just without reload persistence */
+      }
+    },
+
+    /* Returns true only when a well-formed demo snapshot was restored. */
+    restore: function () {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return false;
+        const parsed = JSON.parse(raw);
+        if (!parsed || parsed.schema !== SCHEMA || parsed.mode !== "demo" || !parsed.state) return false;
+        const st = parsed.state;
+        if (!st.taskId || String(st.taskId).indexOf("demo-") !== 0) return false; // never adopt a live id
+        this.state = st;
+        if (!Array.isArray(this.state.directions) || !this.state.directions.length) {
+          this.state.directions = clone(DIRECTIONS);
+        }
+        return true;
+      } catch (e) {
+        return false;
+      }
+    },
+
+    clear: function () {
+      clearTimeout(this._persistTimer);
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) { /* ignore */ }
+      this.state = null;
     },
 
     getState: function () {
@@ -350,6 +401,7 @@
 
     toSnapshot: function () {
       const s = this.getState();
+      this.persistSoon();
       return {
         demo: true,
         task: { task_id: s.taskId, topic: s.topic, user_materials: s.materials, genre: (s.confirmation || {}).genre || null, language: (s.confirmation || {}).language || null, platform: (s.confirmation || {}).platform || null, audience: (s.confirmation || {}).audience || null },
