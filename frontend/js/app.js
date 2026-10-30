@@ -1,7 +1,7 @@
 const API = "";
 
 const SCENE_TIPS = {
-  post: "写好主题，有资料可一并粘贴后生成",
+  post: "写好选题 Topic，补充 Goal 与受众画像后生成",
   topics: "输入种子词，生成选题后可一键带回发帖",
   reply: "粘贴待回复评论后生成",
 };
@@ -444,7 +444,7 @@ async function runPrimaryAction() {
       const form = $("#formPost");
       const body = formToObject(form);
       if (!String(body.theme || "").trim()) {
-        toast("先写主题");
+        toast("先写选题 Topic");
         $("#themeInput").focus();
         return;
       }

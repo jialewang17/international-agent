@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/static/css/styles.css?v=20260915" />
+  <link rel="stylesheet" href="/static/css/styles.css?v=20261022" />
 </head>
 <body>
   <header class="app-header">
@@ -39,11 +39,21 @@
           <form id="formPost" class="scene-form active" data-scene="post">
             <div class="block">
               <div class="block-label-row">
-                <label for="themeInput">你想讲什么</label>
+                <label for="themeInput">选题 Topic</label>
                 <button type="button" class="text-btn" id="btnTogglePresets">快捷主题</button>
               </div>
-              <textarea id="themeInput" name="theme" rows="4" placeholder="一句话主题，或完整 Brief…"></textarea>
+              <textarea id="themeInput" name="theme" rows="3" placeholder="SPEC §5.1 Topic：你想讲什么（一句话主题，或完整 Brief）"></textarea>
               <div class="preset-strip hidden" id="presetChips"></div>
+            </div>
+
+            <div class="block">
+              <label for="goalInput">传播目标 Goal <span class="soft">可选</span></label>
+              <input id="goalInput" name="goal" type="text" placeholder="SPEC §5.1 Goal：例如让海外青年了解中国非遗的当代生活价值" />
+            </div>
+
+            <div class="block">
+              <label for="audienceInput">受众画像 Audience <span class="soft">可选</span></label>
+              <textarea id="audienceInput" name="audience" rows="2" placeholder="SPEC §5.1 Audience Profile：例如 18-30 岁欧美社交平台用户，对中国文化有好奇心但了解有限"></textarea>
             </div>
 
             <div class="block materials">
@@ -76,7 +86,7 @@
                     <option value="script">短视频脚本</option>
                   </select>
                 </label>
-                <label class="pill-field">受众
+                <label class="pill-field">受众国家
                   <select name="country"></select>
                 </label>
                 <label class="pill-field">平台
@@ -136,7 +146,7 @@
       </div>
 
       <div class="dock">
-        <p class="dock-tip" id="aiTips">写好主题后生成</p>
+        <p class="dock-tip" id="aiTips">写好选题后生成</p>
         <button type="button" class="btn-generate" id="btnPrimaryAction">生成草稿</button>
       </div>
     </section>
@@ -233,6 +243,6 @@
   </aside>
 
   <div class="toast hidden" id="toast"></div>
-  <script src="/static/js/app.js?v=20260915"></script>
+  <script src="/static/js/app.js?v=20261022"></script>
 </body>
 </html>

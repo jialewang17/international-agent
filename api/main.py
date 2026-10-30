@@ -166,14 +166,30 @@ def advance_workflow(task_id: str, target: str):
 
 @app.post("/api/posts/generate")
 def generate_post(body: PostGenerateRequest):
+    # SPEC §5.1 Define: topic(=theme)/goal/audience. Additive composition keeps
+    # legacy theme-only clients unchanged; goal/audience flow into user_brief.
+    topic = (body.topic or "").strip()
     theme = (body.theme or "").strip()
-    if not theme:
-        raise HTTPException(status_code=400, detail="theme 不能为空")
+    goal = (body.goal or "").strip()
+    audience = (body.audience or "").strip()
+    effective_theme = topic or theme
+    if not effective_theme:
+        raise HTTPException(status_code=400, detail="topic 不能为空（theme 亦可）")
     try:
         from tools.story_post_gen import run_story_post_generation
 
         payload = body.model_dump()
         requested_task_id = str(payload.pop("task_id", "") or "").strip()
+        payload.pop("topic", None)
+        payload.pop("goal", None)
+        payload.pop("audience", None)
+        payload["theme"] = effective_theme
+        brief_parts = [effective_theme]
+        if goal:
+            brief_parts.append(f"传播目标：{goal}")
+        if audience:
+            brief_parts.append(f"目标受众：{audience}")
+        payload["user_brief"] = "\n".join(brief_parts) if (goal or audience) else None
         result = run_story_post_generation(**payload)
 
         # Blocked/error paths never persist evidence and never create a version.

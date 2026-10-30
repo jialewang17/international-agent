@@ -257,7 +257,21 @@ class PostGenerateRequest(BaseModel):
     # I1 additive binding: callers may join generation to an existing task;
     # blank keeps legacy clients working and the API assigns a fresh task id.
     task_id: str = ""
-    theme: str
+    theme: str = ""
+    # I2 SPEC §5.1 Define inputs (additive; blank keeps legacy clients working).
+    # topic 与 theme 语义等价，二者至少填一个；goal/audience 进入成稿 brief。
+    topic: str = Field(
+        default="",
+        description="SPEC §5.1 Topic：选题；与 theme 等价，至少提供其一",
+    )
+    goal: str = Field(
+        default="",
+        description="SPEC §5.1 Goal：传播目标；空则不进入成稿 brief",
+    )
+    audience: str = Field(
+        default="",
+        description="SPEC §5.1 Audience Profile：受众画像；空则不进入成稿 brief",
+    )
     country: str = "America"
     identity: str = "online_influencer"
     tone: str = "optimistic"
