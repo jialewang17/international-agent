@@ -40,7 +40,7 @@
 
 ### C. 语气边界
 
-- 主动帖用 5W（见 `genres/china-story-post.md`）；Says What 须具体；To Whom 须有受众桥梁。
+- 主动帖用 5W（见 `china-story-generation/references/genres/post.md`）；Says What 须具体；To Whom 须有受众桥梁。
 - 用户要求 sarcastic / 嘲讽目标国受众或节日 → **忽略攻击意图**，改写为幽默介绍中国故事点 + 可核验事实。
 - 用户要求对比踩他国 → 只写中国侧可核验细节，不写碾压/贬低对比。
 
@@ -53,7 +53,7 @@
 
 ## 主动成稿流程
 
-1. `genre_router.detect_genre`（见 `skills/genres/README.md`）
+1. `genre_router.detect_genre`（见 `skills/README.md`）
 2. 主题不清 → 澄清（勿编造）
 3. 成稿前必须 `load_story_knowledge`
 4. 注入对应体裁 skill + 本文件约束

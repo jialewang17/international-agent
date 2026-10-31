@@ -168,6 +168,6 @@
 | `eval/LIT_DIMENSION_BANK.md`（本文件） | 文献维度库与映射 |
 | `eval/CONTENT_QUALITY_RUBRIC_v1.md` | **成稿符合度定稿表**（ROC 权重已锁定） |
 | `eval/DRAFT_USER_RUBRIC_v0.md` | 权重推演过程 + 材料运用双轨维度库 |
-| `skills/genres/*` | 体裁生成规则；评价时按体裁选 P 或 N 插件 |
+| `skills/china-story-generation/references/genres/*` | 体裁生成规则；评价时按体裁选 P 或 N 插件 |
 
 修订计分卡时：先在本文件登记文献锚点，再改 `UNIFIED_SCORECARD_v1.md`，避免无出处加维。

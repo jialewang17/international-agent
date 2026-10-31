@@ -288,7 +288,7 @@ class PostGenerateRequest(BaseModel):
     )
     genre: Optional[str] = Field(
         default="",
-        description="体裁覆盖：post|news|feature|script；空则自动识别",
+        description="体裁覆盖：post|news|feature|indepth|script|faq；空则自动识别",
     )
 
 

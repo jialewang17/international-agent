@@ -1,0 +1,232 @@
+{
+  "main": {
+    "id": "d04dd99ff0e492a9",
+    "type": "split",
+    "children": [
+      {
+        "id": "daf20cdb6a965681",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "98a18ddf35fd3b50",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "对外交流·华侨传播.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "对外交流·华侨传播"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8ef13710028f94ae",
+    "type": "split",
+    "children": [
+      {
+        "id": "f8b0147c3aefc7ca",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3f0329c3dcf12999",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "c68dfc17cd5b5b73",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "f52646ef4fa77af3",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "ddb8415937fca8dc",
+    "type": "split",
+    "children": [
+      {
+        "id": "969329531dc44345",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "470736c48192f38b",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "对外交流·外来传入.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "反向链接"
+            }
+          },
+          {
+            "id": "ed19bac90b65111a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "出链"
+            }
+          },
+          {
+            "id": "9e7e265aeb017c65",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "825749af2b4c1340",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "2f7a8fd2d0c3fd48",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "泉州·饮食与海丝物产.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "98a18ddf35fd3b50",
+  "lastOpenFiles": [
+    "10 国家级名录/国家名录.md",
+    "对外交流·华侨传播.md",
+    "对外交流·联合国名录.md",
+    "对外交流·外来传入.md",
+    "对外交流·丝路往来.md",
+    "00_0 主题索引.md",
+    "00 概览.md",
+    "03 政策法规/关于进一步加强非物质文化遗产保护工作的意见.md",
+    "02 传承人/茅威涛.md",
+    "02 传承人/陈巧茹.md",
+    "10 国家级名录/国家名录·体例与来源.md",
+    "10 国家级名录/传统技艺/国家名录·传统技艺.md",
+    "10 国家级名录/传统技艺/第一批（2006）/国家名录·保安族腰刀锻制技艺.md",
+    "10 国家级名录/传统技艺/第二批（2008）/国家名录·民族乐器制作技艺（漳州蔡福美传统制鼓技艺）.md",
+    "10 国家级名录/传统技艺/第二批（2008）/国家名录·白沙茅龙笔制作技艺.md",
+    "10 国家级名录/传统技艺/第二批（2008）/国家名录·藏族碉楼营造技艺.md",
+    "10 国家级名录/传统技艺/第二批（2008）/国家名录·斑铜制作技艺.md",
+    "10 国家级名录/传统美术/第五批（2021）/国家名录·鲁绣.md",
+    "10 国家级名录/传统美术/第五批（2021）/国家名录·骨角雕（合浦角雕）.md",
+    "10 国家级名录/传统美术/第五批（2021）/国家名录·面人（天津面塑）.md",
+    "10 国家级名录/传统美术/第五批（2021）/国家名录·锡雕（锦州锡雕）.md",
+    "10 国家级名录/传统美术/第五批（2021）/国家名录·贝雕（北海贝雕）.md",
+    "10 国家级名录/传统美术/第五批（2021）/国家名录·藤编（汉中藤编）.md",
+    "10 国家级名录/传统美术/第五批（2021）/国家名录·藤编（怀远藤编）.md",
+    "10 国家级名录/传统美术/第五批（2021）/国家名录·藏族唐卡（郎卡杰唐卡）.md",
+    "10 国家级名录/传统美术/第五批（2021）/国家名录·藏族唐卡（齐吾岗派）.md",
+    "10 国家级名录/传统美术/第四批（2014）",
+    "10 国家级名录/传统美术/第五批（2021）",
+    "10 国家级名录/传统美术/第二批（2008）",
+    "10 国家级名录/传统美术/第三批（2011）",
+    "10 国家级名录/传统美术/第一批（2006）",
+    "10 国家级名录/传统美术",
+    "10 国家级名录/传统技艺/第四批（2014）",
+    "10 国家级名录/传统技艺/第五批（2021）",
+    "10 国家级名录/传统技艺/第二批（2008）",
+    "10 国家级名录/传统技艺/第三批（2011）",
+    "未命名 1.canvas",
+    "未命名.canvas"
+  ]
+}

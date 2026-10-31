@@ -53,7 +53,7 @@
 4. 若用户一次要「整套发布」，优先 `press_kit`。
 5. **未指定语种 → 英文（海外向）**；用户明确要求中文再出中文。  
    样例文件 `format_examples.md` 带中文对照，仅方便读懂结构，不成稿语种依据。
-6. **软虚构禁令**：未给的精确钟点/秒数、物种名、姓名性别、职业身份、制度背景、旁支情节、百分比等一律不写（细则见 `skills/china-storytelling.md`）。
+6. **软虚构禁令**：未给的精确钟点/秒数、物种名、姓名性别、职业身份、制度背景、旁支情节、百分比等一律不写（细则见 `skills/china-story-generation/references/writing-constraints.md`）。
 7. **同轮只调一次** `load_story_knowledge`。
 8. 用户说「形态还没想好」→ 先列 Tier-1 选项询问，确认后再生成。
 
@@ -209,7 +209,7 @@ partial_plan: 若可部分生成，说明将采用的临时结构（并标明非
 ## C. 互动 / 口径向
 
 ### C1. faq_mythbust 误解澄清 FAQ
-**Tier-2** · 体裁 skill：`skills/genres/china-story-faq-mythbust.md`
+**Tier-2** · 体裁 skill：`skills/china-story-generation/references/genres/faq.md`
 
 5–8 组「误解→澄清」（材料不足宁少）；可选 `retrieve_evidence`。
 

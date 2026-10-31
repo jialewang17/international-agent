@@ -1,0 +1,349 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:chinastory:evaluation:part3:result:v6.1",
+  "title": "ChinaStory Evaluation Part 3 v6.1 - v5.1 data contract (unchanged)",
+  "description": "v6.1 packaging move from api/schemas/ to eval/contracts/; fields unchanged. Deterministic semantic checks in utils/validate_evaluation.py. Does not equal backend api.schemas.EvaluationResult without mapping.",
+  "type": "object",
+  "required": [
+    "evaluation_id",
+    "task_id",
+    "version_id",
+    "rubric_version",
+    "status",
+    "dimensions",
+    "priority_issues",
+    "revision_suggestions",
+    "overall_score",
+    "return_to_part1",
+    "real_audience_evaluation",
+    "human_review",
+    "audit"
+  ],
+  "properties": {
+    "evaluation_id": {
+      "type": "string"
+    },
+    "task_id": {
+      "type": "string"
+    },
+    "version_id": {
+      "type": "string"
+    },
+    "rubric_version": {
+      "const": "CHINASTORY_CONTENT_QUALITY_RUBRIC_v2.1"
+    },
+    "status": {
+      "enum": [
+        "CREATED",
+        "PRECHECK",
+        "INSUFFICIENT_CONTEXT",
+        "SCORING",
+        "COMPLETED",
+        "REVISION_RECOMMENDED",
+        "RETURN_TO_PART1",
+        "HUMAN_REVIEW_PENDING"
+      ]
+    },
+    "execution_status": {
+      "enum": [
+        "COMPLETED",
+        "INSUFFICIENT_CONTEXT",
+        "RETURN_TO_PART1",
+        "FAILED"
+      ]
+    },
+    "review_decision": {
+      "enum": [
+        "REVISE",
+        "READY_FOR_HUMAN_REVIEW",
+        "RETURN_TO_PART1",
+        "NEEDS_HUMAN"
+      ]
+    },
+    "dimensions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/dimension"
+      },
+      "maxItems": 6
+    },
+    "priority_issues": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "object",
+            "required": [
+              "issue_id",
+              "problem"
+            ],
+            "properties": {
+              "issue_id": {
+                "type": "string"
+              },
+              "problem": {
+                "type": "string"
+              },
+              "severity": {
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "target_dimension": {
+                "$ref": "#/$defs/dimensionId"
+              }
+            },
+            "additionalProperties": true
+          }
+        ]
+      }
+    },
+    "revision_suggestions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/revisionInstruction"
+      }
+    },
+    "overall_score": {
+      "type": "null"
+    },
+    "return_to_part1": {
+      "type": "boolean"
+    },
+    "real_audience_evaluation": {
+      "type": "string",
+      "minLength": 1
+    },
+    "human_review": {
+      "const": "PENDING"
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "audit": {
+      "type": "object",
+      "required": [
+        "judge_model",
+        "prompt_version",
+        "rubric_version",
+        "calibration_set_version",
+        "timestamp"
+      ],
+      "properties": {
+        "judge_model": {
+          "type": "string"
+        },
+        "prompt_version": {
+          "type": "string"
+        },
+        "rubric_version": {
+          "const": "CHINASTORY_CONTENT_QUALITY_RUBRIC_v2.1"
+        },
+        "calibration_set_version": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "content_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "offset_unit": {
+          "const": "unicode_code_points"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "dimensionId": {
+      "enum": [
+        "cross_cultural_comprehensibility",
+        "cultural_expression_quality",
+        "audience_fit",
+        "narrative_engagement_potential",
+        "genre_platform_fit",
+        "naturalness_non_sloganeering"
+      ]
+    },
+    "span": {
+      "type": "object",
+      "required": [
+        "text",
+        "start",
+        "end"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "start": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "end": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "additionalProperties": true
+    },
+    "dimension": {
+      "type": "object",
+      "required": [
+        "dimension_id",
+        "score",
+        "confidence",
+        "evidence_spans",
+        "rationale",
+        "problems",
+        "revision_suggestion"
+      ],
+      "properties": {
+        "dimension_id": {
+          "$ref": "#/$defs/dimensionId"
+        },
+        "score": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "confidence": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confidence_status": {
+          "enum": [
+            "CALIBRATED",
+            "UNCALIBRATED",
+            "NOT_APPLICABLE"
+          ]
+        },
+        "evidence_spans": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/span"
+          }
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "problems": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "revision_suggestion": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "revisionInstruction": {
+      "type": "object",
+      "required": [
+        "target_dimension",
+        "problem",
+        "instruction",
+        "preserve"
+      ],
+      "properties": {
+        "target_dimension": {
+          "$ref": "#/$defs/dimensionId"
+        },
+        "problem": {
+          "type": "string"
+        },
+        "instruction": {
+          "type": "string"
+        },
+        "preserve": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "issue_id": {
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "location": {
+          "$ref": "#/$defs/span"
+        },
+        "expected_check": {
+          "type": "string"
+        },
+        "requires_fact_recheck": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "COMPLETED"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "dimensions": {
+            "minItems": 6,
+            "maxItems": 6
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "enum": [
+              "INSUFFICIENT_CONTEXT",
+              "RETURN_TO_PART1"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "dimensions": {
+            "maxItems": 0
+          }
+        }
+      }
+    }
+  ]
+}

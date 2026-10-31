@@ -1,0 +1,119 @@
+{
+  "evaluation_id": "eval-test-001",
+  "task_id": "task-test-001",
+  "version_id": "v1",
+  "rubric_version": "CHINASTORY_CONTENT_QUALITY_RUBRIC_v2.1",
+  "status": "COMPLETED",
+  "execution_status": "COMPLETED",
+  "review_decision": "REVISE",
+  "dimensions": [
+    {
+      "dimension_id": "cross_cultural_comprehensibility",
+      "score": 3,
+      "confidence": null,
+      "confidence_status": "UNCALIBRATED",
+      "evidence_spans": [
+        {
+          "text": "Suzhou embroidery",
+          "start": 0,
+          "end": 17
+        }
+      ],
+      "rationale": "Synthetic fixture only; not a real judged score.",
+      "problems": [
+        "Illustrative explanation may be needed."
+      ],
+      "revision_suggestion": "Explain the term using existing verified facts."
+    },
+    {
+      "dimension_id": "cultural_expression_quality",
+      "score": 3,
+      "confidence": null,
+      "confidence_status": "UNCALIBRATED",
+      "evidence_spans": [],
+      "rationale": "Synthetic fixture only; not a real judged score.",
+      "problems": [],
+      "revision_suggestion": ""
+    },
+    {
+      "dimension_id": "audience_fit",
+      "score": 3,
+      "confidence": null,
+      "confidence_status": "UNCALIBRATED",
+      "evidence_spans": [],
+      "rationale": "Synthetic fixture only; not a real judged score.",
+      "problems": [],
+      "revision_suggestion": ""
+    },
+    {
+      "dimension_id": "narrative_engagement_potential",
+      "score": 3,
+      "confidence": null,
+      "confidence_status": "UNCALIBRATED",
+      "evidence_spans": [],
+      "rationale": "Synthetic fixture only; not a real judged score.",
+      "problems": [],
+      "revision_suggestion": ""
+    },
+    {
+      "dimension_id": "genre_platform_fit",
+      "score": 3,
+      "confidence": null,
+      "confidence_status": "UNCALIBRATED",
+      "evidence_spans": [],
+      "rationale": "Synthetic fixture only; not a real judged score.",
+      "problems": [],
+      "revision_suggestion": ""
+    },
+    {
+      "dimension_id": "naturalness_non_sloganeering",
+      "score": 3,
+      "confidence": null,
+      "confidence_status": "UNCALIBRATED",
+      "evidence_spans": [],
+      "rationale": "Synthetic fixture only; not a real judged score.",
+      "problems": [],
+      "revision_suggestion": ""
+    }
+  ],
+  "priority_issues": [
+    {
+      "issue_id": "E-D1-001",
+      "problem": "Synthetic example: clarify unfamiliar term",
+      "severity": "medium",
+      "target_dimension": "cross_cultural_comprehensibility"
+    }
+  ],
+  "revision_suggestions": [
+    {
+      "target_dimension": "cross_cultural_comprehensibility",
+      "problem": "The term may be unfamiliar to new audiences.",
+      "instruction": "Add evidence-grounded explanation; do not add unsupported dates.",
+      "preserve": [
+        "verified_facts"
+      ],
+      "issue_id": "E-D1-001",
+      "severity": "medium",
+      "location": {
+        "text": "Suzhou embroidery",
+        "start": 0,
+        "end": 17
+      },
+      "expected_check": "Readers can understand the term without new facts.",
+      "requires_fact_recheck": true
+    }
+  ],
+  "overall_score": null,
+  "return_to_part1": false,
+  "real_audience_evaluation": "NOT_EVALUATED",
+  "human_review": "PENDING",
+  "audit": {
+    "judge_model": "synthetic-fixture-NOT-A-REAL-MODEL",
+    "prompt_version": "v4.1-fixture",
+    "rubric_version": "CHINASTORY_CONTENT_QUALITY_RUBRIC_v2.1",
+    "calibration_set_version": "UNCALIBRATED",
+    "timestamp": "2026-10-18T00:00:00Z",
+    "content_sha256": "a58f03fdf722faf59ca351f451daebec0f579b7979bd9d9ce2a80b0a92ed0a52",
+    "offset_unit": "unicode_code_points"
+  }
+}

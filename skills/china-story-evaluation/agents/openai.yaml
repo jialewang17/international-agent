@@ -1,0 +1,3 @@
+interface:
+  display_name: "ChinaStory Evaluation"
+  short_description: "按 D1–D6 评价中国故事内容并提出可追溯的修改指令"

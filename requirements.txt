@@ -27,3 +27,6 @@ uvicorn[standard]>=0.32.0
 # Local vector KB (Chroma; ONNX default embedding, no torch required)
 chromadb>=0.5.0
 # optional: sentence-transformers>=3.0.0  # only if you switch off DefaultEmbeddingFunction
+
+# ChinaStory Evaluation v6.1 JSON Schema validation
+jsonschema>=4

@@ -279,6 +279,67 @@ def build_story_news_prompt(
 
 
 
+_GENRE_LABELS: Dict[str, str] = {
+    "feature": "news feature (新闻特稿)",
+    "indepth": "in-depth / explanatory report (深度报道)",
+    "script": "short-video script (短视频脚本)",
+    "faq": "myth-busting explainer (误解澄清)",
+}
+
+
+def build_story_genre_prompt(
+    *,
+    genre: str,
+    theme: str,
+    evidence: List[Dict[str, str]],
+    country: str,
+    identity: str,
+    tone: str,
+    language: str,
+    max_words: int,
+    desired_effect: str,
+    skill_ids: Optional[List[str]] = None,
+) -> str:
+    """feature / indepth / script / faq 通用 prompt：结构完全交给该体裁的 TeamSkill 卡。
+
+    依据 v6.1《代码接线补丁》§4：通用内容生成器 + 专业体裁参考 + 独立输出 Schema，
+    不再把六类体裁硬塞进 Post 模板。
+    """
+    persona = build_persona(identity=identity, tone=tone, country=country)
+    evidence_lines = []
+    for i, ev in enumerate(evidence, 1):
+        src_type = ev.get("source_type") or "本地库"
+        line = (
+            f"Evidence#{i} [{src_type}] ({ev.get('category')}): {ev.get('statement')}"
+        )
+        if ev.get("source"):
+            line += f" | source: {ev.get('source')}"
+        evidence_lines.append(line)
+    evidence_block = (
+        "\n".join(evidence_lines)
+        if evidence_lines
+        else "(no verified evidence from user materials or local KB)"
+    )
+    ids = list(skill_ids) if skill_ids else list(skill_ids_for_genre(genre))
+    skill_block = format_skills_by_ids(*ids) or "(no skill loaded)"
+    tpl = _load_template("story_genre_prompt.txt")
+    return (
+        tpl.replace("{genre}", genre)
+        .replace("{genre_label}", _GENRE_LABELS.get(genre, genre))
+        .replace("{identity_label}", persona.get("identity_label", identity))
+        .replace("{identity_prompt}", persona.get("identity_prompt", ""))
+        .replace("{tone_label}", persona.get("tone_label", tone))
+        .replace("{tone_prompt}", persona.get("tone_prompt", ""))
+        .replace("{country}", country)
+        .replace("{desired_effect}", desired_effect)
+        .replace("{theme}", theme)
+        .replace("{language}", language)
+        .replace("{max_words}", str(max_words))
+        .replace("{skill_block}", skill_block)
+        .replace("{evidence_block}", evidence_block)
+    )
+
+
 def _legacy_evidence_projection(pack, original_rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
     """Compatibility projection derived from the canonical EvidencePack.
 
@@ -327,7 +388,8 @@ def run_story_post_generation(
     genre: Optional[str] = None,
 ) -> Dict[str, Any]:
     cats = _theme_to_categories(theme)
-    allowed = {"post", "news", "feature", "script"}
+    # v6.1：六体裁全部可显式指定（依据《代码接线补丁》§4）
+    allowed = {"post", "news", "feature", "indepth", "script", "faq"}
     override = (genre or "").strip().lower()
     if override in allowed:
         genre_info = {
@@ -468,6 +530,21 @@ def run_story_post_generation(
             skill_ids=skill_ids,
         )
         prompt_file = "prompt/story_news_prompt.txt"
+    elif genre in _GENRE_LABELS:
+        # feature / indepth / script / faq：结构与字段交给该体裁的 TeamSkill 卡
+        prompt = build_story_genre_prompt(
+            genre=genre,
+            theme=brief_for_prompt,
+            evidence=evidence,
+            country=country,
+            identity=identity,
+            tone=tone,
+            language=language,
+            max_words=max_words,
+            desired_effect=desired_effect,
+            skill_ids=skill_ids,
+        )
+        prompt_file = "prompt/story_genre_prompt.txt"
     else:
         prompt = build_story_post_prompt(
             theme=brief_for_prompt,
@@ -505,6 +582,7 @@ def run_story_post_generation(
             "genre_meta": genre_info,
             "evidence_used": evidence,
             "evidence_stats": {"user": n_user, "local": n_local},
+            "_evidence_pack": evidence_pack.model_dump(mode="json"),
             "wire_plan": parsed.get("wire_plan") or {},
             "headline": headline,
             "dateline": dateline,
@@ -533,6 +611,8 @@ def run_story_post_generation(
             **_pipeline_state(genre=genre, skill_ids=skill_ids, n_user=n_user, n_local=n_local, evidence_ok=True, aligned=True, has_draft=bool(body_out)),
         }
 
+    # 通用体裁（feature/indepth/script/faq）输出 body；post 输出 post。
+    body_text = str(parsed.get("post") or parsed.get("body") or "").strip()
     return {
         "theme": theme,
         "user_brief": user_brief or "",
@@ -543,12 +623,13 @@ def run_story_post_generation(
         "evidence_stats": {"user": n_user, "local": n_local},
         "_evidence_pack": evidence_pack.model_dump(mode="json"),
         "five_w": parsed.get("5w") or parsed.get("five_w") or {},
-        "title_or_hook": parsed.get("title_or_hook", ""),
-        "post": parsed.get("post", ""),
-        "article": "",
+        "title_or_hook": parsed.get("title_or_hook") or parsed.get("title") or "",
+        "post": body_text,
+        "article": body_text if genre in _GENRE_LABELS else "",
         "hashtags": parsed.get("hashtags", []),
         "ops_tips": parsed.get("ops_tips", []),
         "evidence_notes": parsed.get("evidence_notes", []),
+        "missing_fields": parsed.get("missing_fields", []),
         "identity": persona.get("identity_label"),
         "tone": persona.get("tone_label"),
         "country": country,
@@ -562,7 +643,7 @@ def run_story_post_generation(
         "prompt_file": prompt_file,
         "raw_model": raw if parsed.get("parse_warning") else None,
         "parse_warning": parsed.get("parse_warning"),
-        **_pipeline_state(genre=genre, skill_ids=skill_ids, n_user=n_user, n_local=n_local, evidence_ok=True, aligned=True, has_draft=bool((parsed.get("post") or "").strip())),
+        **_pipeline_state(genre=genre, skill_ids=skill_ids, n_user=n_user, n_local=n_local, evidence_ok=True, aligned=True, has_draft=bool(body_text)),
     }
 
 

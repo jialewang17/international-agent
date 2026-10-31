@@ -1,4 +1,4 @@
-"""体裁路由：按用户提示词关键词映射到 post/news/feature/script/faq。"""
+"""体裁路由：按用户提示词关键词映射到 post/news/feature/indepth/script/faq 六体裁。"""
 
 from __future__ import annotations
 
@@ -11,18 +11,31 @@ from langchain_core.tools import tool
 
 from utils.path import get_project_root
 
-# 匹配顺序：feature → news → script → faq → post（与 skills/genres/README.md 一致）
+# 匹配顺序：indepth → feature → news → script → faq → post（与 skills/README.md 一致）
+# indepth 必须排在 feature 之前，且 feature 不再包含「深度报道 / 专题稿 / 长篇深度 / in-depth」，
+# 否则深度报道会被 feature 抢走。依据：docs/chinastory_v6.1/history/handoff-to-backend/04-code-integration-patch.md §1.1
 _GENRE_PATTERNS: List[Tuple[str, List[str]]] = [
+    (
+        "indepth",
+        [
+            r"深度报道",
+            r"解释性报道",
+            r"调查报道",
+            r"专题报道",
+            r"长篇深度",
+            r"in[- ]?depth(?:\s+report|\s+story)?",
+            r"explainer\s+(?:report|longform|story)",
+        ],
+    ),
     (
         "feature",
         [
-            r"深度报道",
-            r"专题稿",
             r"特稿",
-            r"长篇深度",
+            r"非虚构长文",
+            r"长篇特写",
+            r"专题稿",
             r"\bfeature\b",
             r"\blongform\b",
-            r"\bin[- ]?depth\b",
         ],
     ),
     (
@@ -62,6 +75,7 @@ _GENRE_PATTERNS: List[Tuple[str, List[str]]] = [
         [
             r"误解澄清",
             r"澄清误解",
+            r"澄清[^。！？\n]{0,8}误解",
             r"辟谣",
             r"常见误解",
             r"常见误区",
@@ -105,6 +119,9 @@ _FORMAT_TO_GENRE: Dict[str, str] = {
     "newsletter_brief": "news",
     "press_kit": "news",
     "longform": "feature",
+    "in_depth_report": "indepth",
+    "indepth": "indepth",
+    "deep_dive_report": "indepth",
     "short_video": "script",
     "reel_hook": "script",
     "youtube_script": "script",
@@ -116,6 +133,7 @@ _GENRE_STATUS: Dict[str, str] = {
     "post": "complete",
     "news": "complete",
     "feature": "methods_in",
+    "indepth": "methods_in",
     "script": "methods_in",
     "faq": "methods_in",
 }
@@ -128,19 +146,22 @@ def skill_ids_for_genre(genre: str) -> List[str]:
     """Return the configured skill id for a recognized genre."""
     key = str(genre or "post").strip().lower()
     return [f"china_story_{key}"] if key in _GENRE_SKILL_REL else ["china_story_post"]
-
+# 六体裁卡统一切到 v6.1 新 Skill 的 references/genres/。
+# v6.1 起六体裁统一读 china-story-generation/references/genres/；旧 skills/genres/ 已于 2026-10-20 移除。
 _GENRE_SKILL_REL: Dict[str, str] = {
-    "post": "skills/genres/china-story-post.md",
-    "news": "skills/genres/china-story-news.md",
-    "feature": "skills/genres/china-story-feature.md",
-    "script": "skills/genres/china-story-script.md",
-    "faq": "skills/genres/china-story-faq-mythbust.md",
+    "post": "skills/china-story-generation/references/genres/post.md",
+    "news": "skills/china-story-generation/references/genres/news.md",
+    "feature": "skills/china-story-generation/references/genres/feature.md",
+    "indepth": "skills/china-story-generation/references/genres/indepth.md",
+    "script": "skills/china-story-generation/references/genres/script.md",
+    "faq": "skills/china-story-generation/references/genres/faq.md",
 }
 
 _DEFAULT_FORMAT: Dict[str, str] = {
     "post": "social_post",
     "news": "news_article",
     "feature": "longform",
+    "indepth": "in_depth_report",
     "script": "short_video",
     "faq": "faq_mythbust",
 }
@@ -201,11 +222,11 @@ def load_genre_skill_text(genre: str, max_chars: int = 8000) -> str:
 
 @tool
 def detect_content_genre(user_prompt: str, format_hint: str = "") -> str:
-    """根据用户提示词识别讲好中国故事的体裁（post/news/feature/script/faq）。
+    """根据用户提示词识别讲好中国故事的体裁（post/news/feature/indepth/script/faq）。
 
     Args:
         user_prompt: 用户原始需求文本。
-        format_hint: 可选，显式 format id（如 social_post、news_article、faq_mythbust）。
+        format_hint: 可选，显式 format id（如 social_post、news_article、in_depth_report、faq_mythbust）。
 
     Returns:
         JSON：genre、status、skill_file、default_format、matched_by。
