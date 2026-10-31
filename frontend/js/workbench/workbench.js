@@ -26,6 +26,7 @@
       genStatus: null,
       error: null,
       blocking: null,
+      candidates: [],   // P0-2: real model plan candidates (draft proposals)
     },
     ui: { stage: "DEFINE", preview: "instagram", ctxOpen: false, modal: false, lastEvent: "" },
   };
@@ -233,6 +234,7 @@
         }
         APP.live.taskId = res.data.task.task_id;
         APP.live.snapshot = res.data;
+        APP.live.candidates = [];  // fresh task: no stale candidates
         localStorage.setItem("wb.live.taskId", APP.live.taskId);
         APP.ui.stage = "GROUND";
         U.toast("任务已创建，进入 Ground");
@@ -393,17 +395,39 @@
     }
 
     const isDemo = APP.mode === "demo";
-    const directions = isDemo ? (snap.ground && snap.ground.directions) || getDemoDirections() : [];
-    count.textContent = directions.length + " 个";
+    const rawDirections = isDemo
+      ? (snap.ground && snap.ground.directions) || getDemoDirections()
+      : (APP.live.candidates || []);
+    count.textContent = rawDirections.length + " 个";
+    const genBtn = $("#btnGeneratePlan");
+    genBtn.hidden = isDemo || !APP.live.taskId || Boolean(snap.plan);
 
-    liveGap.hidden = isDemo || Boolean(snap.plan);
-    if (!isDemo && !snap.plan) {
-      list.innerHTML = '<p class="wb-muted">真实故事规划服务待接入：后端没有 Plan 生成器，前端不会伪造三个方向。</p>';
-    } else if (!directions.length) {
+    liveGap.hidden = isDemo || Boolean(snap.plan) || rawDirections.length > 0;
+    if (!isDemo && !snap.plan && !rawDirections.length) {
+      list.innerHTML = '<p class="wb-muted">还没有方向。点击「生成故事方向」：真实模型会基于已回填的 Ground 证据生成 2–3 个候选方向；不会伪造方向。</p>';
+    } else if (!rawDirections.length) {
       list.innerHTML = '<p class="wb-muted">暂无方向。</p>';
     } else {
       const selectedKey = (APP.mode === "demo") ? global.WB.demo.getState().selectedDirection : null;
-      list.innerHTML = directions.map(function (d) {
+      const cards = isDemo ? rawDirections : rawDirections.map(function (c, i) {
+        const p = c.plan || {};
+        const evUnion = [];
+        (p.sections || []).forEach(function (s) {
+          (s.evidence_ids || []).forEach(function (id) {
+            if (evUnion.indexOf(id) < 0) evUnion.push(id);
+          });
+        });
+        return {
+          key: "c" + i, label: "方向 " + (i + 1),
+          title: p.title || "", idea: p.central_message || "",
+          angle: c.angle || p.title || "",
+          content: (p.sections || []).map(function (s) { return s.title; }).join(" → "),
+          audience_note: "",
+          evidence_ids: evUnion,
+          gaps: p.evidence_gaps || [],
+        };
+      });
+      list.innerHTML = cards.map(function (d) {
         const sel = selectedKey === d.key ? " is-selected" : "";
         return '<article class="wb-direction' + sel + '">' +
           '<h3><span>' + U.esc(d.title) + '</span><span class="wb-dir-key">' + U.esc(d.label || d.key) + "</span></h3>" +
@@ -417,7 +441,11 @@
           "</article>";
       }).join("");
       $$("#planDirections [data-choose]").forEach(function (btn) {
-        btn.addEventListener("click", function () { chooseDirection(btn.getAttribute("data-choose")); });
+        btn.addEventListener("click", function () {
+          const key = btn.getAttribute("data-choose");
+          if (isDemo) chooseDirection(key);
+          else chooseCandidate(key);
+        });
       });
     }
 
@@ -458,7 +486,7 @@
     const canConfirm = Boolean(plan) && !snap.plan_update_pending && !confirmed;
     confirmBtn.disabled = !canConfirm;
     hint.textContent = !plan
-      ? (isDemo ? "先选择一个故事方向。" : "真实 Plan 待接入，暂时无法确认。")
+      ? (isDemo ? "先选择一个故事方向。" : "先生成并选择一个方向（真实模型输出），才能确认。")
       : snap.plan_update_pending ? "方案待重规划，不能确认。"
         : confirmed ? "本版本已确认；再次修改需要重新确认。" : "确认后锁定本次 Define 决策与 Plan 版本。";
     fillConfirmDefaults(snap);
@@ -474,6 +502,47 @@
     renderShell();
     renderPlan();
     U.toast("已选择方向 " + key + "，方案版本已更新");
+  }
+
+  /* P0-2: LIVE generation & candidate selection -------------------------- */
+
+  async function generatePlan() {
+    if (APP.mode === "demo") { U.toast("演示模式使用本地方向，无需生成", "bad"); return; }
+    if (!APP.live.taskId) { U.toast("还没有任务", "bad"); return; }
+    const btn = $("#btnGeneratePlan");
+    U.setLoading(btn, true);
+    try {
+      const res = await global.WB.storyApi.generatePlanCandidates(APP.live.taskId);
+      if (!res.ok) {
+        U.toast("生成失败：" + res.error.message, "bad");
+        return;
+      }
+      APP.live.candidates = (res.data && res.data.candidates) || [];
+      if (!APP.live.candidates.length) {
+        U.toast("模型没有返回可用方向", "bad");
+      }
+      renderPlan();
+    } finally {
+      U.setLoading(btn, false);
+    }
+  }
+
+  async function chooseCandidate(key) {
+    const index = Number(key);
+    const cand = (APP.live.candidates || [])[index];
+    if (!cand || !APP.live.taskId) {
+      U.toast("候选方向已过期，请重新生成", "bad");
+      return;
+    }
+    const res = await global.WB.storyApi.submitPlan(APP.live.taskId, cand.plan);
+    if (!res.ok) { U.toast("方案保存失败：" + res.error.message, "bad"); return; }
+    APP.live.snapshot = res.data;
+    APP.live.candidates = [];
+    renderShell();
+    renderPlan();
+    const rev = APP.live.snapshot && APP.live.snapshot.workflow
+      ? APP.live.snapshot.workflow.plan_revision : "?";
+    U.toast("方向已保存为方案 v" + rev + "；确认前可继续修改。");
   }
 
   function fillConfirmDefaults(snap) {
@@ -496,6 +565,7 @@
       this.setAttribute("aria-expanded", open ? "true" : "false");
     });
     $("#btnSendFeedback").addEventListener("click", sendFeedback);
+    $("#btnGeneratePlan").addEventListener("click", generatePlan);
     $("#btnOpenConfirm").addEventListener("click", openConfirmModal);
     $("#btnCloseConfirm").addEventListener("click", function () { toggleConfirm(false); });
     $("#btnCancelConfirm").addEventListener("click", function () { toggleConfirm(false); });
@@ -526,7 +596,14 @@
         box.value = "";
         renderShell();
         renderPlan();
-        U.toast("反馈已记录；旧方案已失效，等待真实规划服务生成新方案。", "bad");
+        const rev = res.data.plan_revision || {};
+        if (rev.status === "SUCCEEDED") {
+          U.toast("真实模型已生成新方案 v" + rev.plan_version + "；旧方案已失效，需重新确认 Gate A。");
+        } else if (rev.status === "FAILED") {
+          U.toast("反馈已记录，但模型修订失败：" + (rev.message || rev.code || "未知原因") + "（旧方案保持失效）", "bad");
+        } else {
+          U.toast("反馈已记录；当前没有旧方案可修订。", "bad");
+        }
       }
     } finally {
       U.setLoading(btn, false);

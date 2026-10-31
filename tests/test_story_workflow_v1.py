@@ -185,6 +185,14 @@ def test_router_feedback_is_not_claimed_completed(monkeypatch):
         ), pack=pack)
 
     monkeypatch.setattr(sr.ground_service, "run_ground", _stub_ground)
+    # P0-2: feedback now attempts a real revision. Stub the planner to a
+    # deterministic MODEL_UNAVAILABLE so the test never touches the network
+    # regardless of local credentials, and asserts the honest failure shape.
+    def _unavailable(*args, **kwargs):
+        from api.plan_service import PlanServiceError
+        raise PlanServiceError("MODEL_UNAVAILABLE", "stubbed: no model in tests")
+
+    monkeypatch.setattr(sr.plan_service, "revise_plan", _unavailable)
     app = FastAPI()
     app.include_router(sr.router)
     client = TestClient(app)
@@ -198,6 +206,11 @@ def test_router_feedback_is_not_claimed_completed(monkeypatch):
     service.save_plan(tid, NarrativePlan(title="旧计划"))
     r = client.post(f"/api/story-tasks/{tid}/feedback", json={"instruction":"人物优先"})
     assert r.status_code == 200
-    assert r.json()["data"]["planner_update_pending"] is True
+    data = r.json()["data"]
+    assert data["feedback_recorded"] is True
+    # P0-2: recording the feedback is not the same as revising the plan.
+    assert data["plan_revision"]["status"] == "FAILED"
+    assert data["plan_revision"]["code"] == "MODEL_UNAVAILABLE"
+    assert data["planner_update_pending"] is True
     r = client.post(f"/api/story-tasks/{tid}/confirm", json={"audience":"青年","genre":"post","language":"English"})
     assert r.status_code == 409

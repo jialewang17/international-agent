@@ -319,9 +319,10 @@ def run_checks(base: str) -> int:
     page.js("document.querySelector('.wb-stage-item[data-stage=\"PLAN\"]').click()")
     page.js("(async () => { await new Promise(r => setTimeout(r, 300)); return true; })()")
     check(
-        "LIVE Plan 不伪造三个方向",
+        "LIVE Plan 不伪造方向且提供真实生成入口（P0-2）",
         page.js("document.querySelectorAll('#planDirections .wb-direction').length") == 0
-        and page.js("document.querySelector('#planDirections').textContent.indexOf('待接入') >= 0"),
+        and page.js("document.querySelector('#btnGeneratePlan').hidden === false")
+        and page.js("document.querySelector('#planDirections').textContent.indexOf('生成故事方向') >= 0"),
         "",
     )
     check("LIVE Gate A 保持未确认", page.js(

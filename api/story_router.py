@@ -18,7 +18,8 @@ from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field, ConfigDict
 
 from api import ground_service
-from api.evidence_store import EvidencePackStore
+from api import plan_service
+from api.evidence_store import EvidencePackStore, EvidenceStoreError
 from api.story_session import (
     JointConfirmation, NarrativePlan, UserPlanFeedback, story_session_store,
 )
@@ -113,16 +114,100 @@ def _save_plan(task_id: str, body: NarrativePlan):
     return story_session_store.snapshot(task_id)
 
 
+@router.post("/{task_id}/plan/generate")
+def generate_plan(task_id: str):
+    """P0-2: real model plan generation from task + attached Ground pack.
+
+    Returns 2–3 distinct DRAFT candidates (never stored as the plan). Model
+    unavailable / bad output -> explicit 503 with a machine-readable code;
+    this endpoint never fabricates a plan.
+    """
+    try:
+        return _call(lambda: _generate_plan(task_id))
+    except HTTPException:
+        raise
+    except plan_service.PlanServiceError as exc:
+        raise HTTPException(
+            status_code=503,
+            detail={"gate": "plan", "code": exc.code, "reason": str(exc)},
+        )
+
+
+def _generate_plan(task_id: str):
+    session = story_session_store.get(task_id)
+    state = story_session_store.machine.get(task_id)
+    if state.stage != "PLAN":
+        raise WorkflowError(
+            "stage", "Plan generation requires the PLAN stage (complete Ground first)"
+        )
+    if not session.ground or not session.ground.evidence_pack_id:
+        raise WorkflowError(
+            "stage", "Plan generation requires an attached Ground EvidencePack"
+        )
+    if _evidence_pack_store is None:
+        raise WorkflowError("stage", "evidence pack store not bound")
+    try:
+        pack = _evidence_pack_store.get(session.ground.evidence_pack_id)
+    except EvidenceStoreError as exc:
+        raise WorkflowError(
+            "stage", f"attached EvidencePack no longer exists: {exc}"
+        ) from exc
+    candidates = plan_service.generate_plan_candidates(session.task, session.ground, pack)
+    return {
+        "candidates": [c.model_dump(mode="json") for c in candidates],
+        "evidence_pack_id": pack.evidence_pack_id,
+        "note": "候选方向为草稿提案；只有保存（POST /plan）后才有真实版本号。",
+    }
+
+
 @router.post("/{task_id}/feedback")
 def feedback(task_id: str, body: UserPlanFeedback):
     return _call(lambda: _feedback(task_id, body.instruction))
 
 
 def _feedback(task_id: str, instruction: str):
+    session = story_session_store.get(task_id)
+    prior_plan = session.plan  # captured before feedback_text invalidates it
     story_session_store.feedback_text(task_id, instruction)
-    # Do not pretend feedback text was interpreted into a new Plan by an LLM.
-    return {"feedback_recorded": True, "planner_update_pending": True,
-            "task": story_session_store.snapshot(task_id)}
+
+    # P0-2: attempt a REAL model revision. Recording the feedback is NOT the
+    # same as revising the plan: the response distinguishes the two, and on
+    # failure the plan stays invalidated (planner_update_pending=True).
+    revision: dict = {"status": "SKIPPED", "reason": "no prior plan to revise"}
+    if prior_plan is not None:
+        if session.ground and session.ground.evidence_pack_id and _evidence_pack_store is not None:
+            try:
+                pack = _evidence_pack_store.get(session.ground.evidence_pack_id)
+                revised = plan_service.revise_plan(
+                    session.task, prior_plan, instruction, session.ground, pack
+                )
+                story_session_store.save_plan(task_id, revised)
+                state = story_session_store.machine.get(task_id)
+                revision = {
+                    "status": "SUCCEEDED",
+                    "plan_version": state.plan_revision,
+                    "evidence_pack_id": pack.evidence_pack_id,
+                }
+            except EvidenceStoreError as exc:
+                revision = {"status": "FAILED", "code": "NO_EVIDENCE_PACK",
+                            "message": str(exc)}
+            except plan_service.PlanServiceError as exc:
+                logger.warning(
+                    "plan revision failed for task %s (%s): %s",
+                    task_id, exc.code, exc,
+                )
+                revision = {"status": "FAILED", "code": exc.code, "message": str(exc)}
+        else:
+            revision = {"status": "FAILED", "code": "NO_GROUND",
+                        "message": "任务缺少已回填的 Ground EvidencePack，无法修订"}
+
+    snapshot = story_session_store.snapshot(task_id)
+    # Do not pretend feedback text was interpreted into a new Plan by an LLM
+    # unless the real revision actually succeeded.
+    return {"feedback_recorded": True,
+            "planner_update_pending": snapshot["plan_update_pending"],
+            "plan_revision": revision,
+            "task": snapshot}
 
 
 @router.post("/{task_id}/confirm")

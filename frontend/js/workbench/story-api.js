@@ -45,6 +45,13 @@
       return call("POST", "/" + encodeURIComponent(taskId) + "/plan", payload);
     },
 
+    /* P0-2: POST /plan/generate — real model plan candidates from the
+       attached Ground EvidencePack. Draft proposals only; saving goes
+       through submitPlan. */
+    generatePlanCandidates: function (taskId) {
+      return call("POST", "/" + encodeURIComponent(taskId) + "/plan/generate", {});
+    },
+
     /* POST /feedback — records text and invalidates the previous plan only. */
     sendFeedback: function (taskId, instruction) {
       return call("POST", "/" + encodeURIComponent(taskId) + "/feedback", { instruction: instruction });

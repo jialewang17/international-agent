@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/static/css/workbench.css?v=20261101" />
+  <link rel="stylesheet" href="/static/css/workbench.css?v=20261102" />
 </head>
 <body data-mode="live">
   <a class="skip-link" href="#wbMain">跳到主工作区</a>
@@ -192,8 +192,8 @@
         </header>
 
         <div class="wb-banner is-warn" id="planLiveGap" hidden>
-          <strong>真实故事规划服务待接入</strong>
-          <p>当前后端没有 Plan 生成器：<code>/plan</code> 只接收已生成的 NarrativePlan，<code>/feedback</code> 只记录反馈并使旧方案失效。这里不会假装已经生成方案。</p>
+          <strong>还没有保存的方案</strong>
+          <p>点击右上角「生成故事方向」：后端会用真实模型基于已回填的 Ground 证据生成 2–3 个候选方向。模型凭据缺失或输出不合格时会明确报错，这里不会伪造方案。</p>
         </div>
 
         <div class="wb-plan-layout">
@@ -202,6 +202,7 @@
               <div class="wb-card-head">
                 <h2 class="wb-card-title">故事方向</h2>
                 <span class="wb-count" id="planDirectionCount">0 个</span>
+                <button type="button" class="wb-secondary" id="btnGeneratePlan" hidden>生成故事方向</button>
               </div>
               <div class="wb-direction-list" id="planDirections"><p class="wb-muted">暂无方向。</p></div>
             </div>
@@ -286,7 +287,7 @@
               <label class="wb-field"><span>你的修改意见</span>
                 <textarea class="wb-textarea" id="feedbackInput" rows="3" placeholder="例如：我更想突出年轻传承人，希望开头更有故事感。"></textarea></label>
               <button type="button" class="wb-secondary wb-block" id="btnSendFeedback">提交反馈</button>
-              <p class="wb-help" id="feedbackHint">LIVE 下反馈只被记录，旧方案随即失效，需要真实规划服务产出新方案。</p>
+              <p class="wb-help" id="feedbackHint">LIVE 下反馈会记录并触发真实模型修订：成功则产出新版本方案；模型不可用时旧方案保持失效（待重规划），页面会如实报告。</p>
             </div>
           </div>
         </div>
@@ -498,11 +499,11 @@
     </div>
   </div>
 
-  <script src="/static/js/workbench/utils.js?v=20261101"></script>
-  <script src="/static/js/workbench/story-api.js?v=20261101"></script>
-  <script src="/static/js/workbench/demo-adapter.js?v=20261101"></script>
-  <script src="/static/js/workbench/generation-adapter.js?v=20261101"></script>
-  <script src="/static/js/workbench/evaluation-adapter.js?v=20261101"></script>
-  <script src="/static/js/workbench/workbench.js?v=20261101"></script>
+  <script src="/static/js/workbench/utils.js?v=20261102"></script>
+  <script src="/static/js/workbench/story-api.js?v=20261102"></script>
+  <script src="/static/js/workbench/demo-adapter.js?v=20261102"></script>
+  <script src="/static/js/workbench/generation-adapter.js?v=20261102"></script>
+  <script src="/static/js/workbench/evaluation-adapter.js?v=20261102"></script>
+  <script src="/static/js/workbench/workbench.js?v=20261102"></script>
 </body>
 </html>
