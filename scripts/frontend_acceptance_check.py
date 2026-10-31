@@ -293,17 +293,27 @@ def run_checks(base: str) -> int:
     page.js("document.querySelector('.wb-stage-item[data-stage=\"DEFINE\"]').click()")
     page.js(
         "(() => { const t = document.querySelector('#topicInput');"
-        " t.value = '苏绣 LIVE 验收';"
+        " t.value = '苏绣';"
         " t.dispatchEvent(new Event('input', {bubbles: true}));"
         " document.querySelector('#btnStartExplore').click(); return true; })()"
     )
-    page.wait_for("WB.app.live.taskId && document.querySelector('#groundLiveGap').hidden === false", timeout=30, label="live task")
+    page.wait_for("WB.app.live.taskId && WB.app.live.snapshot && WB.app.live.snapshot.ground", timeout=30, label="live task")
     task_id = page.js("WB.app.live.taskId")
     check("LIVE 可通过真实 API 创建任务", bool(task_id) and not str(task_id).startswith("demo-"), task_id)
     check(
-        "LIVE Ground 如实提示资料缺口",
-        page.js("document.querySelector('#groundLiveGapText').textContent.indexOf('尚未回填') >= 0"),
-        page.js("document.querySelector('#groundLiveGapText').textContent.slice(0, 60)"),
+        "LIVE Ground 回填真实证据包与来源（P0-1）",
+        page.js("WB.app.live.snapshot.ground.evidence_pack_id.indexOf('ep_') === 0")
+        and page.js("WB.app.live.snapshot.ground.sources.length") > 0
+        and page.js("document.querySelector('#groundLiveGap').hidden === true"),
+        page.js("JSON.stringify({pack: WB.app.live.snapshot.ground.evidence_pack_id,"
+                " sources: WB.app.live.snapshot.ground.sources.length,"
+                " stage: WB.app.live.snapshot.workflow.stage})"),
+    )
+    check(
+        "LIVE 证据状态保持 NOT_EVALUATED 且 Gate B 未写入",
+        page.js("WB.app.live.snapshot.workflow.evidence_status") == "NOT_EVALUATED"
+        and page.js("JSON.stringify(WB.app.live.snapshot.workflow.gates).indexOf('\"B\"') < 0"),
+        page.js("WB.app.live.snapshot.workflow.evidence_status"),
     )
 
     page.js("document.querySelector('.wb-stage-item[data-stage=\"PLAN\"]').click()")

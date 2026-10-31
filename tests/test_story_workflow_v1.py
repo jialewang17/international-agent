@@ -4,6 +4,8 @@ from fastapi.testclient import TestClient
 from fastapi import FastAPI
 
 from api.schemas import GateDecision
+from api.evidence_adapter import build_evidence_pack
+from api.evidence_store import EvidencePackStore
 from api.workflow import WorkflowError, WorkflowStateMachine
 from api.story_session import (
     StorySessionStore, GroundDigest, NarrativePlan, StorySection,
@@ -11,8 +13,34 @@ from api.story_session import (
 )
 
 
+def _sample_pack():
+    return build_evidence_pack([
+        {
+            "category": "工艺",
+            "statement": "苏绣为中国四大名绣之一",
+            "source": "https://www.ihchina.cn/project_details/13978/",
+            "source_type": "本地库",
+        },
+        {
+            "category": "历史",
+            "statement": "苏绣技艺历史悠久，以精细雅洁著称",
+            "source": "https://dfzb.suzhou.gov.cn/dfzb/szdq/",
+            "source_type": "本地库",
+        },
+    ])
+
+
 def new_service():
-    return StorySessionStore(state_machine=WorkflowStateMachine())
+    service = StorySessionStore(
+        state_machine=WorkflowStateMachine(),
+        evidence_pack_store=EvidencePackStore(),
+    )
+    service.evidence_pack_store.put(_sample_pack())
+    return service
+
+
+def _pack_id(service):
+    return service.evidence_pack_store.all_packs()[0].evidence_pack_id
 
 
 def basic(service):
@@ -20,7 +48,7 @@ def basic(service):
     tid = s.task.task_id
     assert service.machine.get(tid).stage == "GROUND"
     service.attach_ground(tid, GroundDigest(
-        evidence_pack_id="EP-1", source_ids=["S1"], evidence_ids=["E1"],
+        evidence_pack_id=_pack_id(service), source_ids=["S1"], evidence_ids=["E1"],
         evidence_gaps=["需要更多人物证据"],
     ))
     assert service.machine.get(tid).stage == "PLAN"
@@ -74,7 +102,13 @@ def test_sufficient_current_evidence_allows_create():
 def test_sufficient_without_pack_is_rejected():
     s = new_service()
     t = s.start("苏绣").task.task_id
-    s.attach_ground(t, GroundDigest(evidence_gaps=["缺少来源"]))
+    # P0-1: attach_ground now refuses a digest without a real EvidencePack id.
+    with pytest.raises(WorkflowError):
+        s.attach_ground(t, GroundDigest(evidence_gaps=["缺少来源"]))
+    # The trusted-check guard itself must still reject SUFFICIENT when no
+    # canonical pack backs the digest (white-box setup of that state).
+    s.machine.advance(t, "PLAN")
+    s.get(t).ground = GroundDigest(evidence_gaps=["缺少来源"])
     s.save_plan(t, NarrativePlan(title="暂定"))
     with pytest.raises(WorkflowError) as exc:
         s.record_trusted_evidence_check(t, "SUFFICIENT")
@@ -135,15 +169,32 @@ def test_illegal_jump_fails():
 
 def test_router_feedback_is_not_claimed_completed(monkeypatch):
     import api.story_router as sr
+    from api.ground_service import GroundOutcome
     service = new_service()
+    packs = service.evidence_pack_store
     monkeypatch.setattr(sr, "story_session_store", service)
+    monkeypatch.setattr(sr, "_evidence_pack_store", packs)
+
+    def _stub_ground(topic, user_materials="", **kwargs):
+        pack = packs.all_packs()[0]
+        from api.story_session import GroundDigest as GD
+        return GroundOutcome(digest=GD(
+            evidence_pack_id=pack.evidence_pack_id,
+            source_ids=[s.source_id for s in pack.sources],
+            evidence_ids=[i.evidence_id for i in pack.items],
+        ), pack=pack)
+
+    monkeypatch.setattr(sr.ground_service, "run_ground", _stub_ground)
     app = FastAPI()
     app.include_router(sr.router)
     client = TestClient(app)
     start = client.post("/api/story-tasks", json={"topic":"苏绣"})
     assert start.status_code == 200
     tid = start.json()["data"]["task"]["task_id"]
-    service.attach_ground(tid, GroundDigest(evidence_pack_id="EP-TEST"))
+    # P0-1: _start already ran Ground and attached the real pack; the task is
+    # in PLAN with a digest backed by the bound canonical store.
+    assert service.machine.get(tid).stage == "PLAN"
+    assert service.get(tid).ground.evidence_pack_id == _pack_id(service)
     service.save_plan(tid, NarrativePlan(title="旧计划"))
     r = client.post(f"/api/story-tasks/{tid}/feedback", json={"instruction":"人物优先"})
     assert r.status_code == 200

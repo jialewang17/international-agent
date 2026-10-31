@@ -42,6 +42,7 @@ from api.coverage_service import (
 from api.versioning import ContentVersionStore, VersioningError  # noqa: E402
 from api.workflow import workflow_state_machine, WorkflowError  # noqa: E402
 from api.story_router import router as story_router  # noqa: E402
+import api.story_router as story_router_module  # noqa: E402, F401  (P0-1 store binding)
 from api.story_session import story_session_store  # noqa: E402
 
 FRONTEND_DIR = ROOT / "frontend"
@@ -57,6 +58,14 @@ evidence_pack_store = EvidencePackStore()
 claim_store = ClaimStore()
 claim_extractor = DeterministicClaimExtractor()
 evaluation_result_store = EvaluationResultStore()
+
+# --- P0-1 Ground wiring -----------------------------------------------------
+# The Story Task flow and the generation path must see the SAME canonical
+# EvidencePack store. Binding is done here (after the stores exist) so the
+# story router can persist Ground packs and StorySessionStore can verify
+# evidence_pack_id existence instead of trusting bare strings.
+story_router_module.bind_evidence_pack_store(evidence_pack_store)
+story_session_store.bind_evidence_pack_store(evidence_pack_store)
 
 PRESET_CHIPS = [
     {"label": "光伏羊通稿", "theme": "新闻通稿：青海塔拉滩光伏羊——牧光互补与治沙增收", "scene": "post"},

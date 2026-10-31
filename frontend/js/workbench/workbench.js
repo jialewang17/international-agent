@@ -271,18 +271,29 @@
     const ground = snap.ground;
     const sources = (ground && ground.sources) || [];
     if (!ground) {
+      const realGaps = snap.ground_gaps || [];
+      const emptyOutcome = realGaps.length > 0 || Boolean(snap.ground_note);
       liveGap.hidden = false;
-      liveGap.querySelector("#groundLiveGapText").textContent =
-        "后端 Story Task 尚未回填 EvidencePack：当前阶段为 " + (snap.workflow.stage || "GROUND") +
-        "，证据状态 " + (snap.workflow.evidence_status || "NOT_EVALUATED") + "。这是真实缺口，不补假数据。";
-      sumBox.innerHTML = '<p class="wb-muted">真实 Ground 检索服务尚未接入，因此没有知识摘要。</p>';
-      gapBox.innerHTML = '<li>缺少 EvidencePack 回填：Plan 阶段将无法保存方案（后端会拒绝）。</li>';
+      liveGap.querySelector("#groundLiveGapText").textContent = emptyOutcome
+        ? "Ground 检索未产生可用证据：任务保持 GROUND，未伪造证据包。真实缺口见下方，Plan 无法开始。"
+        : "后端 Story Task 尚未回填 EvidencePack：当前阶段为 " + (snap.workflow.stage || "GROUND") +
+          "，证据状态 " + (snap.workflow.evidence_status || "NOT_EVALUATED") + "。这是真实缺口，不补假数据。";
+      sumBox.innerHTML = emptyOutcome
+        ? "<p>" + U.esc(snap.ground_note || "Ground 检索未产生可用证据。") + "</p>"
+        : '<p class="wb-muted">真实 Ground 检索服务尚未接入，因此没有知识摘要。</p>';
+      gapBox.innerHTML = emptyOutcome && realGaps.length
+        ? realGaps.map(function (g) { return "<li>" + U.esc(g) + "</li>"; }).join("")
+        : (emptyOutcome
+          ? '<li>Ground 检索未产生可用证据。</li>'
+          : '<li>缺少 EvidencePack 回填：Plan 阶段将无法保存方案（后端会拒绝）。</li>');
       srcBox.innerHTML = '<p class="wb-muted">没有真实来源。LIVE 模式不会用演示资料代替。</p>';
       count.textContent = "0 条";
       nextBtn.disabled = true;
       reason.hidden = false;
-      reason.textContent = "后端未回填 Ground 结果，Plan 会因缺少 Ground summary 被拒绝。";
-      noteBox.textContent = "";
+      reason.textContent = emptyOutcome
+        ? "Ground 检索未产生可用证据：请补充主题关键词或参考资料后新建任务。"
+        : "后端未回填 Ground 结果，Plan 会因缺少 Ground summary 被拒绝。";
+      noteBox.textContent = emptyOutcome ? "" : "";
       return;
     }
 
@@ -309,7 +320,7 @@
           '<span class="wb-tag ' + statusClass + '">' + statusText + "</span></div>" +
           "<p>" + U.esc(src.summary || "") + "</p>" +
           (src.knowledge_point ? '<div class="wb-src-meta"><span>知识点：' + U.esc(src.knowledge_point) + "</span></div>" : "") +
-          (src.url ? '<a href="' + U.esc(src.url) + '" target="_blank" rel="noopener">' + U.esc(src.url) + "</a>" : "") +
+          (src.url || src.uri ? '<a href="' + U.esc(src.url || src.uri) + '" target="_blank" rel="noopener">' + U.esc(src.url || src.uri) + "</a>" : "") +
           "</article>";
       }).join("");
     }

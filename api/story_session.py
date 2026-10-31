@@ -11,7 +11,8 @@ from uuid import uuid4
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from api.schemas import GateDecision
+from api.evidence_store import EvidencePackStore, EvidenceStoreError
+from api.schemas import GateDecision, Source
 from api.workflow import WorkflowError, WorkflowStateMachine, workflow_state_machine
 
 GENRES = frozenset({"post", "news", "feature", "indepth", "script", "faq"})
@@ -46,6 +47,9 @@ class GroundDigest(BaseModel):
     suggestions: List[StorySuggestion] = Field(default_factory=list)
     evidence_gaps: List[str] = Field(default_factory=list)
     retrieval_note: str = ""
+    # P0-1: verbatim projection of the canonical EvidencePack sources so the
+    # frontend can render real source cards. Never fabricated; spans stay [].
+    sources: List[Source] = Field(default_factory=list)
 
 
 class StorySection(BaseModel):
@@ -91,12 +95,26 @@ class StorySession:
     feedback: List[str] = field(default_factory=list)
     joint_confirmed: bool = False
     plan_update_pending: bool = False
+    # P0-1: truthful Ground failure info while ``ground`` is still None.
+    # Only meaningful in the GROUND stage; never fakes a completed Ground.
+    ground_gaps: List[str] = field(default_factory=list)
+    ground_note: str = ""
 
 
 class StorySessionStore:
-    def __init__(self, state_machine: Optional[WorkflowStateMachine] = None):
+    def __init__(self, state_machine: Optional[WorkflowStateMachine] = None,
+                 evidence_pack_store: Optional[EvidencePackStore] = None):
         self.machine = state_machine or workflow_state_machine
         self._sessions: Dict[str, StorySession] = {}
+        self.evidence_pack_store = evidence_pack_store
+
+    def bind_evidence_pack_store(self, store: EvidencePackStore) -> None:
+        """Bind the shared canonical EvidencePack store (P0-1).
+
+        attach_ground refuses to trust any evidence_pack_id it cannot verify
+        against this store; fail closed if no store is bound.
+        """
+        self.evidence_pack_store = store
 
     def exists(self, task_id: str) -> bool:
         return task_id in self._sessions
@@ -116,13 +134,52 @@ class StorySessionStore:
         return self._sessions[task_id]
 
     def attach_ground(self, task_id: str, digest: GroundDigest) -> StorySession:
-        """Call from Ground integration only (not user-supplied evidence)."""
+        """Call from Ground integration only (not user-supplied evidence).
+
+        P0-1: the digest must reference an EvidencePack that actually exists
+        in the bound canonical store. A bare non-empty string is no longer
+        accepted; a missing/unbound store fails closed.
+        """
         session = self.get(task_id)
         state = self.machine.get(task_id)
         if state.stage != "GROUND":
             raise WorkflowError("stage", "Ground can only be attached in GROUND")
+        if not digest.evidence_pack_id:
+            raise WorkflowError(
+                "B", "Ground digest must reference a canonical EvidencePack"
+            )
+        if self.evidence_pack_store is None:
+            raise WorkflowError(
+                "B", "evidence pack store not bound; cannot verify EvidencePack"
+            )
+        try:
+            self.evidence_pack_store.get(digest.evidence_pack_id)
+        except EvidenceStoreError as exc:
+            raise WorkflowError(
+                "B",
+                f"evidence_pack_id {digest.evidence_pack_id} does not exist "
+                "in the canonical store; refusing to attach Ground",
+            ) from exc
         session.ground = digest
+        session.ground_gaps = []
+        session.ground_note = ""
         self.machine.advance(task_id, "PLAN")
+        return session
+
+    def record_ground_failure(self, task_id: str, gaps: List[str],
+                              note: str = "") -> StorySession:
+        """Record a real, empty Ground outcome. Task stays in GROUND.
+
+        This does NOT attach a digest, does NOT advance the stage, and does
+        NOT create any evidence: it only stores the truthful gaps so the UI
+        can show why Plan is blocked.
+        """
+        session = self.get(task_id)
+        state = self.machine.get(task_id)
+        if state.stage != "GROUND":
+            raise WorkflowError("stage", "Ground failure can only be recorded in GROUND")
+        session.ground_gaps = list(gaps or [])
+        session.ground_note = note or ""
         return session
 
     def save_plan(self, task_id: str, plan: NarrativePlan) -> StorySession:
@@ -201,6 +258,8 @@ class StorySessionStore:
         return {
             "task": session.task.model_dump(),
             "ground": session.ground.model_dump() if session.ground else None,
+            "ground_gaps": list(session.ground_gaps),
+            "ground_note": session.ground_note,
             "plan": session.plan.model_dump() if session.plan else None,
             "feedback": list(session.feedback),
             "joint_confirmed": session.joint_confirmed,

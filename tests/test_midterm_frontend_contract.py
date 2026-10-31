@@ -15,7 +15,8 @@ from pathlib import Path
 from fastapi.testclient import TestClient
 
 from api import main as api_main
-from api.story_session import StorySessionStore
+from api.evidence_store import EvidencePackStore
+from api.story_session import StorySessionStore, NarrativePlan
 import api.story_router as story_router
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -117,47 +118,63 @@ def test_root_serves_workbench_and_tools_serves_legacy(monkeypatch):
 
 def _fresh_client(monkeypatch):
     store = StorySessionStore()
+    packs = EvidencePackStore()
+    store.bind_evidence_pack_store(packs)
     monkeypatch.setattr(story_router, "story_session_store", store)
+    monkeypatch.setattr(story_router, "_evidence_pack_store", packs)
     monkeypatch.setattr(api_main, "story_session_store", store, raising=False)
     return TestClient(api_main.app), store
 
 
-def test_live_flow_reports_real_ground_gap_and_blocks_gates(monkeypatch):
-    client, _ = _fresh_client(monkeypatch)
+def test_live_flow_ground_real_and_gates_hold(monkeypatch):
+    """P0-1: real Ground now runs on create; gates must still hold."""
+    client, store = _fresh_client(monkeypatch)
 
     created = client.post("/api/story-tasks", json={"topic": "苏绣", "user_materials": ""})
     assert created.status_code == 200
     body = created.json()["data"]
     task_id = body["task"]["task_id"]
-    assert body["workflow"]["stage"] == "GROUND"
-    assert body["ground"] is None  # no invented evidence
+    assert body["workflow"]["stage"] == "PLAN"  # real Ground completed
+    ground = body["ground"]
+    assert ground is not None and ground["evidence_pack_id"].startswith("ep_")
+    assert ground["sources"]  # real source cards for the frontend
+    # the pack really exists in the bound canonical store
+    assert store.evidence_pack_store.get(ground["evidence_pack_id"])
 
     snapshot = client.get("/api/story-tasks/" + task_id)
     assert snapshot.status_code == 200
     assert snapshot.json()["data"]["workflow"]["evidence_status"] == "NOT_EVALUATED"
+    assert snapshot.json()["data"]["workflow"]["gates"] == {}
 
-    # Plan cannot be saved without a real Ground summary.
+    # Plan can now be saved (real Ground summary exists).
     plan = client.post("/api/story-tasks/" + task_id + "/plan", json={"title": "草案"})
-    assert plan.status_code == 409
-    assert "Ground" in plan.json()["detail"]["reason"]
+    assert plan.status_code == 200
 
-    # Gate A cannot be fabricated by the client.
+    # Gate A still requires the joint confirmation endpoint.
+    enter = client.post("/api/story-tasks/" + task_id + "/enter-create")
+    assert enter.status_code == 409
+    assert enter.json()["detail"]["gate"] == "A"
+
     confirm = client.post(
         "/api/story-tasks/" + task_id + "/confirm",
         json={"audience": "青年", "genre": "post", "language": "English"},
     )
-    assert confirm.status_code == 409
+    assert confirm.status_code == 200
 
+    # Gate A confirmed, but no trusted Gate B -> Create still refused.
     enter = client.post("/api/story-tasks/" + task_id + "/enter-create")
     assert enter.status_code == 409
-    assert enter.json()["detail"]["gate"] == "A"
+    assert enter.json()["detail"]["gate"] == "B"
+    snap = client.get("/api/story-tasks/" + task_id).json()["data"]
+    assert snap["workflow"]["evidence_status"] == "NOT_EVALUATED"
 
 
 def test_gate_b_is_not_writable_over_http(monkeypatch):
     client, store = _fresh_client(monkeypatch)
     task_id = client.post("/api/story-tasks", json={"topic": "苏绣"}).json()["data"]["task"]["task_id"]
-    store.attach_ground(task_id, __import__("api.story_session", fromlist=["GroundDigest"]).GroundDigest(evidence_pack_id="EP-1"))
-    store.save_plan(task_id, __import__("api.story_session", fromlist=["NarrativePlan"]).NarrativePlan(title="草案"))
+    # P0-1: real Ground already attached a canonical pack on create.
+    assert store.machine.get(task_id).stage == "PLAN"
+    store.save_plan(task_id, NarrativePlan(title="草案"))
 
     resp = client.post(
         "/api/workflow/" + task_id + "/gate",
