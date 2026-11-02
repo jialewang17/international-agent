@@ -501,7 +501,14 @@ def test_skill_load_diagnostics_are_complete_and_safe(stub_gates, monkeypatch):
 
     assert diag["requested_method_id"] == "china_story_post"
     assert diag["loaded_method_id"] == "china_story_post"
-    assert diag["loaded_files"] == [GENRE_CONTRACTS["post"].method_path]
+    # 体裁卡必须是第一张；其后的 always_on（intl_comm / evidence_user_materials）
+    # 是 G-10 要求的常开规则，属本轮新增行为，见 tests/test_step_audit.py。
+    assert diag["loaded_files"][0] == GENRE_CONTRACTS["post"].method_path
+    assert [f for f in diag["loaded_files"] if f.startswith("skills/china-story-generation/references/genres/")] == [
+        GENRE_CONTRACTS["post"].method_path
+    ]
+    assert diag["always_on_required"] == ["intl_comm", "evidence_user_materials"]
+    assert diag["always_on_loaded"] == ["intl_comm", "evidence_user_materials"]
     assert diag["load_status"] == "ok"
     assert diag["error_reason"] is None
     assert diag["routing_source"] == "user_override"

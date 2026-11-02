@@ -284,12 +284,18 @@ def get_active_skills_for_query(query: str, force_reload: bool = False) -> List[
     active: List[SkillInfo] = []
     used = set()
 
+    # G-10：always_on（立场 + 证据硬约束）先占位，且**不参与** max_active_skills
+    # 与总字符预算竞争——此前它和普通技能一起排队，预算不足时会被 `continue` 掉，
+    # 等于把证据规则挤出上下文。
+    always_on: List[SkillInfo] = []
     for sid in cfg.always_on:
         skill = available.get(sid)
         if not skill:
             continue
-        active.append(skill)
+        always_on.append(skill)
         used.add(sid)
+    reserved_chars = sum(len(s.content or "") for s in always_on)
+    active.extend(always_on)
 
     if cfg.auto_activate:
         scored: List[tuple[float, SkillInfo]] = []
@@ -303,10 +309,12 @@ def get_active_skills_for_query(query: str, force_reload: bool = False) -> List[
         for _, skill in scored[: max(0, cfg.max_active_skills)]:
             active.append(skill)
 
-    # 控制总字符预算
-    limited: List[SkillInfo] = []
-    total_chars = 0
+    # 控制总字符预算（always_on 已占的额度先扣掉，剩余额度只影响普通技能）
+    limited: List[SkillInfo] = list(always_on)
+    total_chars = reserved_chars
     for skill in active:
+        if skill.skill_id in {s.skill_id for s in always_on}:
+            continue
         content_len = len(skill.content or "")
         if cfg.max_total_chars > 0 and total_chars + content_len > cfg.max_total_chars:
             continue
@@ -433,6 +441,46 @@ def load_required_skills(
         chars=len(text),
         sha256=sha256(text.encode("utf-8")).hexdigest(),
     )
+
+
+def resolve_always_on(
+    force_reload: bool = False,
+) -> tuple[List[str], List[Dict[str, str]]]:
+    """解析 `config/skills.yaml` 的 ``always_on``：返回 (可用 id 列表, 问题列表)。
+
+    G-10 要求「任何实现不得把证据规则挤出上下文」。旧实现（含
+    ``get_active_skills_for_query``）对不可用的 always_on 只做 ``continue``，
+    等于**静默丢失**立场与证据硬约束。本函数把这件事变成可判定结果：
+
+    * 返回的 id 列表按配置顺序，供调用方无条件并入本轮必需技能；
+    * 问题列表逐条给出 ``skill_id`` + ``reason``（``not_registered`` /
+      ``disabled`` / ``load_failed`` / ``empty``），由生成链路升级为硬失败。
+
+    纯读取，不做加载决策，因此不会和 ``load_required_skills`` 的严格语义冲突。
+    """
+    registry = get_skill_registry(force_reload=force_reload)
+    usable: List[str] = []
+    problems: List[Dict[str, str]] = []
+    if not registry.config.enabled:
+        problems.append({"skill_id": "*", "reason": "skills_disabled"})
+        return usable, problems
+
+    for sid in registry.config.always_on:
+        skill = registry.skills.get(sid)
+        if skill is None:
+            problems.append({"skill_id": sid, "reason": "not_registered"})
+            continue
+        if not skill.enabled:
+            problems.append({"skill_id": sid, "reason": "disabled"})
+            continue
+        if skill.error:
+            problems.append({"skill_id": sid, "reason": f"load_failed: {skill.error}"})
+            continue
+        if not (skill.content or "").strip():
+            problems.append({"skill_id": sid, "reason": "empty"})
+            continue
+        usable.append(sid)
+    return usable, problems
 
 
 def format_skill_catalog_for_prompt(force_reload: bool = False) -> str:

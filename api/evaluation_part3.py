@@ -17,7 +17,8 @@ is accepted. Malformed output is rejected, never silently repaired.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Dict, List, Optional, Protocol, Sequence
+from hashlib import sha256
+from typing import Any, Dict, List, Optional, Protocol, Sequence, Tuple
 from uuid import uuid4
 
 from api.rubric_loader import (
@@ -34,6 +35,8 @@ from api.schemas import (
     EvaluationResult,
     RevisionSuggestion,
 )
+from utils import step_audit as sa
+from utils.step_audit import StepAudit
 
 PART3 = "part3_chinastory_quality"
 
@@ -129,9 +132,54 @@ def evaluate_part3(
     evaluation_id: str = "",
     task_id: str = "",
 ) -> EvaluationResult:
-    """Run Part 3 content-quality evaluation. Fails closed by design."""
+    """Run Part 3 content-quality evaluation. Fails closed by design.
+
+    返回签名与历史版本完全一致；需要步骤审计（E00–E05）时调用
+    :func:`evaluate_part3_with_audit`。
+    """
+    result, _audit = evaluate_part3_with_audit(
+        content_version_id,
+        content,
+        task_context,
+        judge,
+        rubric=rubric,
+        part1_status=part1_status,
+        evaluation_id=evaluation_id,
+        task_id=task_id,
+    )
+    return result
+
+
+def evaluate_part3_with_audit(
+    content_version_id: str,
+    content: str,
+    task_context: Optional[Dict[str, Any]],
+    judge: Optional[ChinaStoryJudge],
+    *,
+    rubric: Optional[Rubric] = None,
+    part1_status: str = "",
+    evaluation_id: str = "",
+    task_id: str = "",
+) -> Tuple[EvaluationResult, Dict[str, Any]]:
+    """同 :func:`evaluate_part3`，额外返回 E00–E05 的步骤审计。
+
+    审计是**伴生数据**，不写进 ``EvaluationResult``——那个模型是与后端/前端共用的
+    契约，本模块不擅自加字段。调用方（API / CLI / 测试）可自行持久化这份审计。
+    """
     rubric = rubric or load_rubric()
     evaluation_id = evaluation_id or str(uuid4())
+    content_sha = sha256((content or "").encode("utf-8")).hexdigest()
+
+    audit = StepAudit(
+        sa.PIPELINE_EVALUATION,
+        context={
+            "evaluation_id": evaluation_id,
+            "content_version_id": content_version_id,
+            "task_id": task_id,
+            "part1_status": part1_status,
+            "judge": getattr(judge, "name", "none"),
+        },
+    )
 
     base = dict(
         evaluation_id=evaluation_id,
@@ -141,48 +189,110 @@ def evaluate_part3(
     )
 
     if judge is None:
-        return EvaluationResult(
-            **base,
-            status=STATUS_INSUFFICIENT_CONTEXT,
-            issues=["no ChinaStory judge configured; refusing to fabricate dimension scores"],
-            rubric_version=rubric.rubric_version,
-            human_review="PENDING",
-            audit=EvaluationAuditMetadata(
-                evaluator="none",
-                evaluator_type="unconfigured",
+        audit.ok("E00", part1_status=part1_status, content_sha256=content_sha)
+        audit.ok("E01", rubric_version=rubric.rubric_version)
+        audit.blocked("E02", "judge_unconfigured")
+        return (
+            EvaluationResult(
+                **base,
+                status=STATUS_INSUFFICIENT_CONTEXT,
+                issues=["no ChinaStory judge configured; refusing to fabricate dimension scores"],
                 rubric_version=rubric.rubric_version,
-                part1_status=part1_status,
+                human_review="PENDING",
+                audit=EvaluationAuditMetadata(
+                    evaluator="none",
+                    evaluator_type="unconfigured",
+                    rubric_version=rubric.rubric_version,
+                    part1_status=part1_status,
+                ),
             ),
+            audit.finish(),
         )
 
     if not content or not content.strip():
-        return EvaluationResult(
-            **base,
-            status=STATUS_INSUFFICIENT_CONTEXT,
-            issues=["empty content"],
-            rubric_version=rubric.rubric_version,
-            audit=EvaluationAuditMetadata(
-                evaluator=judge.name,
-                evaluator_type="judge",
+        audit.blocked("E00", "empty_content", part1_status=part1_status)
+        return (
+            EvaluationResult(
+                **base,
+                status=STATUS_INSUFFICIENT_CONTEXT,
+                issues=["empty content"],
                 rubric_version=rubric.rubric_version,
-                part1_status=part1_status,
+                audit=EvaluationAuditMetadata(
+                    evaluator=judge.name,
+                    evaluator_type="judge",
+                    rubric_version=rubric.rubric_version,
+                    part1_status=part1_status,
+                ),
             ),
+            audit.finish(),
         )
+
+    audit.ok("E00", part1_status=part1_status, content_sha256=content_sha, content_chars=len(content))
+    audit.ok(
+        "E01",
+        rubric_version=rubric.rubric_version,
+        dimensions_expected=len(rubric.dimension_ids),
+    )
 
     try:
         raw = judge.judge(content, task_context or {}, rubric)
-    except Part3Error:
+    except Part3Error as exc:
+        audit.failed("E02", f"judge_error: {exc}")
+        exc.step_audit = audit.finish()  # type: ignore[attr-defined]
         raise
     except Exception as exc:  # judge blew up -> never silently pass
-        raise Part3Error(f"judge failed: {exc}") from exc
+        audit.failed("E02", f"judge_crashed: {exc}")
+        error = Part3Error(f"judge failed: {exc}")
+        error.step_audit = audit.finish()  # type: ignore[attr-defined]
+        raise error from exc
 
-    dimensions = _validate_dimensions(raw, rubric)
-    issues, suggestions = _collect_issues(raw, rubric)
+    try:
+        dimensions = _validate_dimensions(raw, rubric)
+    except Part3Error as exc:
+        audit.failed("E02", str(exc))
+        exc.step_audit = audit.finish()  # type: ignore[attr-defined]
+        raise
+    audit.ok(
+        "E02",
+        dimensions_count=len(dimensions),
+        score_vector=[d.score for d in dimensions],
+        judge=getattr(judge, "name", ""),
+        model=getattr(judge, "model", ""),
+    )
+
+    try:
+        issues, suggestions = _collect_issues(raw, rubric)
+    except Part3Error as exc:
+        audit.failed("E03", str(exc))
+        exc.step_audit = audit.finish()  # type: ignore[attr-defined]
+        raise
+
+    span_report = _span_check(content, dimensions, issues)
+    if span_report["mismatched"]:
+        audit.failed(
+            "E03",
+            "evidence_span_mismatch",
+            spans_checked=span_report["checked"],
+            mismatched=span_report["mismatched"],
+        )
+        # 偏移对不上等于"引用了原文里不存在的话"，必须变成可修改项，不能静默通过。
+        issues.append(
+            EvaluationIssue(
+                issue_id="span-mismatch",
+                dimension_id="system",
+                severity="blocking",
+                problem="evidence_spans 与 content.text 偏移不一致（start/end 无法精确匹配原文）",
+                reason="Part 3 要求 content.text[start:end] == span.text",
+            )
+        )
+        issues.sort(key=_issue_sort_key)
+    else:
+        audit.ok("E03", spans_checked=span_report["checked"], suggestions_count=len(suggestions))
+
     returns_to_part1 = _structured_return_to_part1(raw)
-
     status = STATUS_RETURN_TO_PART1 if returns_to_part1 else _resolve_status(dimensions, issues)
 
-    audit = EvaluationAuditMetadata(
+    metadata = EvaluationAuditMetadata(
         evaluator=judge.name,
         evaluator_type="judge",
         rubric_version=rubric.rubric_version,
@@ -192,7 +302,7 @@ def evaluate_part3(
         part1_status=part1_status,
     )
 
-    return EvaluationResult(
+    result = EvaluationResult(
         **base,
         status=status,
         issues=[i.problem for i in issues],
@@ -204,8 +314,100 @@ def evaluate_part3(
         overall_score=None,  # rubric §5.2: no default aggregation
         return_to_part1=returns_to_part1,
         human_review="PENDING",
-        audit=audit,
+        audit=metadata,
     )
+
+    audit.ok(
+        "E04",
+        result_status=status,
+        overall_score="null",
+        human_review=result.human_review,
+        return_to_part1=returns_to_part1,
+    )
+
+    # E05：Skill 侧的确定性机器校验（Schema 校验仍由后端跑 utils/validate_evaluation.py）。
+    checks = deterministic_checks(result, content)
+    if checks["passed"]:
+        audit.ok(
+            "E05",
+            checks=checks["checks"],
+            spans_checked=checks["spans_checked"],
+            content_sha256=checks["content_sha256"],
+            backend_schema_check="pending_backend",
+        )
+    else:
+        failures = [k for k, v in checks["checks"].items() if not v]
+        audit.failed("E05", f"deterministic_checks_failed: {failures}", checks=checks["checks"])
+
+    return result, audit.finish()
+
+
+def deterministic_checks(result: EvaluationResult, content: str) -> Dict[str, Any]:
+    """E05 的确定性校验（不依赖 LLM、不依赖 jsonschema）。
+
+    对应 SKILL.md §4 末条要求后端执行的检查项里，Skill 侧能独立完成的部分：
+    六维唯一性、分值区间、跨度精确匹配、正文哈希、状态组合自洽。
+    Schema 结构校验仍由 ``utils/validate_evaluation.py`` 在后端执行。
+    """
+    dims = list(result.dimensions or [])
+    dim_ids = [d.dimension_id for d in dims]
+    spans_checked = 0
+    spans_ok = True
+    for dim in dims:
+        for span in dim.evidence_spans or []:
+            start, end, text = getattr(span, "start", None), getattr(span, "end", None), getattr(span, "text", "")
+            if start is None or end is None:
+                continue
+            spans_checked += 1
+            if content[start:end] != text:
+                spans_ok = False
+
+    checks = {
+        "six_dimensions_unique": (
+            len(dim_ids) == len(set(dim_ids)) == len(CANONICAL_DIMENSION_IDS)
+            and set(dim_ids) == set(CANONICAL_DIMENSION_IDS)
+        ),
+        "scores_in_range": all(
+            isinstance(d.score, int) and MIN_SCORE <= d.score <= MAX_SCORE for d in dims
+        ),
+        "spans_exact": spans_ok,
+        "content_sha256_recorded": bool(deterministic_content_hash(content)),
+        "status_combo_consistent": (
+            result.overall_score is None
+            and result.human_review == "PENDING"
+            and result.status not in FORBIDDEN_STATUSES
+        ),
+    }
+    return {
+        "checks": checks,
+        "passed": all(checks.values()),
+        "spans_checked": spans_checked,
+        "content_sha256": deterministic_content_hash(content),
+    }
+
+
+def deterministic_content_hash(content: str) -> str:
+    """正文 SHA-256（供审计与后端校验对齐）。"""
+    return sha256((content or "").encode("utf-8")).hexdigest()
+
+
+def _span_check(
+    content: str,
+    dimensions: Sequence[DimensionResult],
+    issues: Sequence[EvaluationIssue],
+) -> Dict[str, Any]:
+    """逐条核对 content[start:end] == span.text，返回不匹配计数。"""
+    checked = 0
+    mismatched = 0
+    for item in list(dimensions) + list(issues):
+        for span in getattr(item, "evidence_spans", None) or []:
+            start, end = getattr(span, "start", None), getattr(span, "end", None)
+            if start is None or end is None:
+                continue
+            checked += 1
+            if content[start:end] != getattr(span, "text", ""):
+                mismatched += 1
+    return {"checked": checked, "mismatched": mismatched}
 
 
 # --------------------------------------------------------------------------- #

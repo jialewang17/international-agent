@@ -1,0 +1,190 @@
+{
+  "_note": "成功路径：E00–E05 全部 OK；分数与 confidence 由 StubJudge 给，是结构样例，不是真实评分，也不构成校准结论。",
+  "evaluation_status": "HUMAN_REVIEW_PENDING",
+  "overall_score": null,
+  "human_review": "PENDING",
+  "dimensions": [
+    {
+      "dimension_id": "cross_cultural_comprehensibility",
+      "score": 4,
+      "confidence": 0.5
+    },
+    {
+      "dimension_id": "cultural_expression_quality",
+      "score": 4,
+      "confidence": 0.5
+    },
+    {
+      "dimension_id": "audience_fit",
+      "score": 4,
+      "confidence": 0.5
+    },
+    {
+      "dimension_id": "narrative_engagement_potential",
+      "score": 4,
+      "confidence": 0.5
+    },
+    {
+      "dimension_id": "genre_platform_fit",
+      "score": 4,
+      "confidence": 0.5
+    },
+    {
+      "dimension_id": "naturalness_non_sloganeering",
+      "score": 4,
+      "confidence": 0.5
+    }
+  ],
+  "step_audit": {
+    "pipeline": "evaluation",
+    "context": {
+      "evaluation_id": "bb53535a-dcee-422b-81e5-fe392830a9bd",
+      "content_version_id": "ver-2026-11-02-01",
+      "task_id": "",
+      "part1_status": "PASS",
+      "judge": "stub-judge"
+    },
+    "steps": [
+      {
+        "step_id": "E00",
+        "name": "前置检查与 Part 1 门禁",
+        "stage": "Part 3 / Precheck",
+        "required": true,
+        "status": "OK",
+        "reason": "",
+        "detail": {
+          "part1_status": "PASS",
+          "content_sha256": "6375245c84e9e55d8062ca7ebb10e20ad301923a8fda65f5a8274d528ea1fa45",
+          "content_chars": 28
+        },
+        "contract": "读齐 evaluation_id/task/version/rubric/受众/正文/part1_status；Part 1 未通过即 RETURN_TO_PART1，不产出六维分数。",
+        "evidence": [
+          "skills/china-story-evaluation/references/step-contracts.md::### E00",
+          "skills/china-story-evaluation/SKILL.md::## 1. 调用前置检查（MUST）",
+          "api/evaluation.py::if part1.status != PART1_PASS:"
+        ]
+      },
+      {
+        "step_id": "E01",
+        "name": "资料加载（Rubric 与专项检查）",
+        "stage": "Part 3 / Load",
+        "required": true,
+        "status": "OK",
+        "reason": "",
+        "detail": {
+          "rubric_version": "CHINASTORY_CONTENT_QUALITY_RUBRIC_v2.1",
+          "dimensions_expected": 6
+        },
+        "contract": "加载正式 Rubric v2.1 的 D1–D6 行为锚点、跨文化检查、本体裁专项检查与修改指令规则；Rubric 不可读则停止评分。",
+        "evidence": [
+          "skills/china-story-evaluation/references/step-contracts.md::### E01",
+          "skills/china-story-evaluation/SKILL.md::## 2. 加载资料（按需读取）",
+          "api/rubric_loader.py::def load_rubric("
+        ]
+      },
+      {
+        "step_id": "E02",
+        "name": "逐维评价（D1–D6 独立评分）",
+        "stage": "Part 3 / Score",
+        "required": true,
+        "status": "OK",
+        "reason": "",
+        "detail": {
+          "dimensions_count": 6,
+          "score_vector": [
+            4,
+            4,
+            4,
+            4,
+            4,
+            4
+          ],
+          "judge": "stub-judge",
+          "model": "stub-model-v1"
+        },
+        "contract": "六维各自对照 BARS 给 1–5 整数分，维度唯一、不平均、不跨维代替；裁判输出不合法即失败，不做静默修补。",
+        "evidence": [
+          "skills/china-story-evaluation/references/step-contracts.md::### E02",
+          "skills/china-story-evaluation/SKILL.md::## 3. 逐维度评价（六维均独立，不平均）",
+          "api/evaluation_part3.py::def _validate_dimensions("
+        ]
+      },
+      {
+        "step_id": "E03",
+        "name": "原文定位与最小修改指令",
+        "stage": "Part 3 / Locate",
+        "required": true,
+        "status": "OK",
+        "reason": "",
+        "detail": {
+          "spans_checked": 6,
+          "suggestions_count": 0
+        },
+        "contract": "evidence_spans 用码点下标且 content.text[start:end] == span.text；扣分必须转成定位明确、可复核的最小修改指令。",
+        "evidence": [
+          "skills/china-story-evaluation/references/step-contracts.md::### E03",
+          "skills/china-story-evaluation/SKILL.md::`content.text[start:end] == span.text` 必须成立",
+          "utils/validate_evaluation.py::def validate_result("
+        ]
+      },
+      {
+        "step_id": "E04",
+        "name": "输出结构与状态",
+        "stage": "Part 3 / Output",
+        "required": true,
+        "status": "OK",
+        "reason": "",
+        "detail": {
+          "result_status": "HUMAN_REVIEW_PENDING",
+          "overall_score": "null",
+          "human_review": "PENDING",
+          "return_to_part1": false
+        },
+        "contract": "保留 v2.1 顶层字段；overall_score 固定 null、human_review=PENDING、永不输出 APPROVED。",
+        "evidence": [
+          "skills/china-story-evaluation/references/step-contracts.md::### E04",
+          "skills/china-story-evaluation/SKILL.md::## 4. 输出结构与状态（兼容优先）",
+          "api/evaluation_part3.py::FORBIDDEN_STATUSES = frozenset({\"APPROVED\", \"PUBLISHED\"})"
+        ]
+      },
+      {
+        "step_id": "E05",
+        "name": "机器校验与校准留痕",
+        "stage": "Part 3 / Audit",
+        "required": true,
+        "status": "OK",
+        "reason": "",
+        "detail": {
+          "checks": {
+            "six_dimensions_unique": true,
+            "scores_in_range": true,
+            "spans_exact": true,
+            "content_sha256_recorded": true,
+            "status_combo_consistent": true
+          },
+          "spans_checked": 6,
+          "content_sha256": "6375245c84e9e55d8062ca7ebb10e20ad301923a8fda65f5a8274d528ea1fa45",
+          "backend_schema_check": "pending_backend"
+        },
+        "contract": "Schema + 确定性校验（六维唯一、分值、跨度、哈希、状态组合）由后端执行；未校准须标 UNCALIBRATED，不得伪造 confidence。",
+        "evidence": [
+          "skills/china-story-evaluation/references/step-contracts.md::### E05",
+          "skills/china-story-evaluation/SKILL.md::## 5. 公正性、稳定性与校准（实验要求）",
+          "utils/validate_evaluation.py::SCHEMA_PATH = PROJECT_ROOT / \"eval\" / \"contracts\" / \"evaluation-result-v6.1.schema.json\""
+        ]
+      }
+    ],
+    "verdict": "COMPLETE",
+    "not_run": [],
+    "first_blocked": null,
+    "first_failed": null,
+    "completed": [
+      "E00",
+      "E01",
+      "E02",
+      "E03",
+      "E04",
+      "E05"
+    ]
+  }
+}

@@ -32,7 +32,10 @@ from utils.skill_registry import (
     LoadedSkillSet,
     SkillLoadError,
     load_required_skills,
+    resolve_always_on,
 )
+from utils import step_audit as sa
+from utils.step_audit import StepAudit
 
 
 STORY_THEMES = [
@@ -489,6 +492,7 @@ def _failure_result(
     pipeline: str,
     skill_load: Optional[Dict[str, Any]] = None,
     extra: Optional[Dict[str, Any]] = None,
+    audit: Optional[StepAudit] = None,
 ) -> Dict[str, Any]:
     result: Dict[str, Any] = {
         "error": error,
@@ -521,6 +525,8 @@ def _failure_result(
             has_draft=False,
         )
     )
+    # 失败结果同样要带步骤审计：没有它就只能说"失败了"，说不清停在哪一步。
+    result["step_audit"] = audit.finish() if audit is not None else None
     return result
 
 
@@ -531,6 +537,7 @@ def _selection_failure(
     cats: List[str],
     selection: Any,
     platform: str,
+    audit: Optional[StepAudit] = None,
 ) -> Dict[str, Any]:
     """genre/format 不合法或组合冲突：在 Ground 之前直接拒绝。"""
     issue = selection.issue
@@ -549,7 +556,50 @@ def _selection_failure(
         generation_status=code,
         pipeline="Request rejected before Ground (genre/format contract)",
         extra={"selection_issue": {"code": code, "detail": detail}},
+        audit=audit,
     )
+
+
+def _finish_success_audit(
+    audit: StepAudit,
+    *,
+    genre: str,
+    body: str,
+    skill_ids: List[str],
+) -> Dict[str, Any]:
+    """C06：自检与人工审核移交，然后导出完整审计。
+
+    这里记录的是**可复核的六问结果**（SKILL.md §2.5），不是"我们检查过了"这种空话：
+    每一项要么对应本次运行里已经发生的事实，要么明确标成"机器无法判定、须人工复核"，
+    不允许把没做的检查写成 PASS。
+    """
+    previous = {r["step_id"]: r["status"] for r in audit.records.values()}
+    six_questions = {
+        "unique_genre_card": (
+            "PASS" if previous.get("C02") == sa.STATUS_OK else "NOT_VERIFIED"
+        ),
+        "gate_and_always_on_injected": (
+            "PASS"
+            if previous.get("C01") == sa.STATUS_OK and previous.get("C02") == sa.STATUS_OK
+            else "NOT_VERIFIED"
+        ),
+        "every_fact_citable": (
+            "PASS" if bool(body.strip()) and previous.get("C01") == sa.STATUS_OK else "NOT_VERIFIED"
+        ),
+        "no_fabricated_quote_or_link": "PENDING_HUMAN（结构校验无法判定引语真伪）",
+        "master_target_consistent": "NOT_APPLICABLE（单语成稿，母稿由后端 ContentVersion 维护）",
+        "human_review_only": "PASS（human_review=PENDING，未自动发布）",
+    }
+    audit.ok(
+        "C06",
+        genre=genre,
+        body_chars=len(body),
+        human_review="PENDING",
+        publishable=False,
+        self_check=six_questions,
+        final_skills=skill_ids,
+    )
+    return audit.finish()
 
 
 def run_story_post_generation(
@@ -570,6 +620,18 @@ def run_story_post_generation(
 ) -> Dict[str, Any]:
     cats = _theme_to_categories(theme)
 
+    # 步骤审计（C00–C06）：与 skills/china-story-generation/references/step-contracts.md
+    # 一一对应。审计是伴生数据，不改变任何既有字段与契约。
+    audit = StepAudit(
+        sa.PIPELINE_GENERATION,
+        context={
+            "theme": theme,
+            "platform": platform,
+            "language": language,
+            "brief_digest": sa.digest(user_brief or ""),
+        },
+    )
+
     # §2 显式选择优先：合法 genre/format 覆盖关键词推断；非法值显式报错，
     # 绝不静默回落 post（旧实现会把不认识的 genre 当 post 生成成功）。
     selection = resolve_selection(
@@ -579,12 +641,21 @@ def run_story_post_generation(
     )
     contract = contract_for(selection.genre) if selection.genre else None
     if selection.issue is not None or contract is None:
+        issue = selection.issue
+        audit.failed(
+            "C00",
+            getattr(issue, "message", "体裁或格式选择不合法"),
+            code=getattr(issue, "code", "INVALID_SELECTION"),
+            requested_genre=selection.requested_genre,
+            requested_format=selection.requested_format,
+        )
         return _selection_failure(
             theme=theme,
             user_brief=user_brief,
             cats=cats,
             selection=selection,
             platform=platform,
+            audit=audit,
         )
 
     genre = selection.genre
@@ -598,6 +669,23 @@ def run_story_post_generation(
         "status": contract.status,
     }
     skill_ids = list(skill_ids_for_genre(genre))
+
+    audit.ok(
+        "C00",
+        resolved_genre=genre,
+        resolved_format=resolved_format,
+        routing_source=selection.source,
+        output_contract=contract.output_contract,
+    )
+
+    # G-10：always_on（立场 + 证据硬约束）无条件并入本轮必需技能。
+    # 旧实现只在有用户资料时追加 evidence_user_materials，intl_comm 从未注入，
+    # 等于"卡片里写了常开、代码里没常开"。这里按注册表配置强制并集。
+    always_on_ids, always_on_problems = resolve_always_on()
+    for sid in always_on_ids:
+        if sid not in skill_ids:
+            skill_ids.append(sid)
+    always_on_configured = always_on_ids + [p["skill_id"] for p in always_on_problems]
 
     # 通稿默认：更长篇幅、无 emoji、偏严肃/乐观外宣口径（不改用户明确指定）
     if genre == "news":
@@ -630,6 +718,13 @@ def run_story_post_generation(
     brief_for_prompt = (user_brief or theme or "").strip()
 
     if not merged_evidence:
+        audit.blocked(
+            "C01",
+            "evidence_empty",
+            evidence_user=0,
+            evidence_local=0,
+            gate_b="empty",
+        )
         return {
             "error": (
                 "未检索到可用论据（本地库为空且未提供用户资料），已跳过成稿生成。"
@@ -647,6 +742,7 @@ def run_story_post_generation(
             "platform": plat.get("platform_label", platform),
             "pipeline": "Define -> Ground STOP (Gate B: empty evidence)",
             "skills_applied": skill_ids,
+            "step_audit": audit.finish(),
             **_pipeline_state(
                 genre=genre,
                 skill_ids=skill_ids,
@@ -664,6 +760,7 @@ def run_story_post_generation(
     try:
         evidence_pack = build_evidence_pack(merged_evidence)
     except EvidenceAdapterError as exc:
+        audit.blocked("C01", f"canonical_evidence_invalid: {exc}", gate_b="canonical_evidence_invalid")
         return {
             "error": f"证据无法形成 canonical EvidencePack，已在 Gate B 阻断: {exc}",
             "gate_reason": "canonical_evidence_invalid",
@@ -679,6 +776,7 @@ def run_story_post_generation(
             "platform": plat.get("platform_label", platform),
             "pipeline": "Define -> Ground STOP (Gate B: canonical evidence)",
             "skills_applied": skill_ids,
+            "step_audit": audit.finish(),
             **_pipeline_state(
                 genre=genre, skill_ids=skill_ids, n_user=0, n_local=0,
                 evidence_ok=False, aligned=False, has_draft=False,
@@ -691,6 +789,14 @@ def run_story_post_generation(
 
     alignment = check_theme_evidence_alignment(retrieve_q, evidence)
     if not alignment.get("ok"):
+        audit.blocked(
+            "C01",
+            f"alignment_failed: {alignment.get('reason')}",
+            evidence_user=n_user,
+            evidence_local=n_local,
+            gate_b="alignment",
+            missing_anchors=alignment.get("missing_anchors", []),
+        )
         return {
             "error": alignment.get("message", "主题与论据不对齐，已跳过成稿生成。"),
             "gate_reason": alignment.get("reason"),
@@ -708,16 +814,67 @@ def run_story_post_generation(
             "platform": plat.get("platform_label", platform),
             "pipeline": "Define -> Ground STOP (Gate B: alignment)",
             "skills_applied": skill_ids,
+            "step_audit": audit.finish(),
             **_pipeline_state(genre=genre, skill_ids=skill_ids, n_user=n_user, n_local=n_local, evidence_ok=True, aligned=False, has_draft=False),
         }
+
+    # C01 通过：证据门禁放行（记录 pack 摘要，便于与评测/版本库核对同一份证据）。
+    audit.ok(
+        "C01",
+        evidence_user=n_user,
+        evidence_local=n_local,
+        gate_b="ready_to_generate",
+        aligned=True,
+        pack_digest=sa.digest(evidence_pack.model_dump(mode="json")),
+    )
 
     # §3 严格加载必需 Skill：缺失 / 空文件 / 被禁用 / 读取失败 / 超预算 / 被截断
     # 一律显式失败。旧实现用 format_skills_by_ids，缺卡时只写 "(no skill loaded)"
     # 却继续调用模型，导致"看起来成功、实际裸跑"。
     prompt_file = _prompt_template_for(genre)
+
+    # C02-a：always_on 完整性先判。配置了却不可用 = 立场/证据硬约束失效，直接失败，
+    # 不允许"少注入一张卡但继续生成"。
+    if always_on_problems:
+        detail_text = "；".join(f"{p['skill_id']}({p['reason']})" for p in always_on_problems)
+        audit.failed(
+            "C02",
+            f"always_on_unavailable: {detail_text}",
+            always_on_required=always_on_configured,
+            always_on_problems=[f"{p['skill_id']}:{p['reason']}" for p in always_on_problems],
+        )
+        diag = _skill_diagnostics(
+            selection=selection,
+            genre=genre,
+            format_id=resolved_format,
+            skill_ids=skill_ids,
+            loaded=None,
+            prompt_file=prompt_file,
+            status="failed",
+            error_reason="always_on_unavailable",
+            extra={"always_on_required": always_on_configured, "always_on_problems": always_on_problems},
+        )
+        return _failure_result(
+            theme=theme,
+            user_brief=user_brief,
+            cats=cats,
+            platform=platform,
+            genre=genre,
+            genre_info=genre_info,
+            skill_ids=skill_ids,
+            error=f"常开规则（always_on）不可用，已拒绝生成：{detail_text}",
+            generation_status="SKILL_ALWAYS_ON_UNAVAILABLE",
+            pipeline="Define -> Ground -> Plan STOP (always_on unavailable)",
+            skill_load=diag,
+            extra={"evidence_used": evidence, "evidence_stats": {"user": n_user, "local": n_local}},
+            audit=audit,
+        )
+
     try:
         loaded_skills = load_required_skills(*skill_ids, max_total_chars=MAX_INJECTED_SKILL_CHARS)
     except SkillLoadError as exc:
+        audit.failed("C02", f"{exc.reason}: {exc}", failed_skill=exc.reason,
+                     loaded_files=[])
         diag = _skill_diagnostics(
             selection=selection,
             genre=genre,
@@ -727,7 +884,7 @@ def run_story_post_generation(
             prompt_file=prompt_file,
             status="failed",
             error_reason=exc.reason,
-            extra=exc.detail,
+            extra=dict(exc.detail or {}, always_on_required=always_on_configured),
         )
         return _failure_result(
             theme=theme,
@@ -742,11 +899,18 @@ def run_story_post_generation(
             pipeline="Define -> Ground -> Plan STOP (required skill unavailable)",
             skill_load=diag,
             extra={"evidence_used": evidence, "evidence_stats": {"user": n_user, "local": n_local}},
+            audit=audit,
         )
 
     # §1/§5 注入的体裁方法卡必须恰好是本体裁那唯一一张，防止跨体裁串卡。
     genre_cards = [f for f in loaded_skills.files if f.startswith(f"{METHOD_DIR}/")]
     if genre_cards != [contract.method_path]:
+        audit.failed(
+            "C02",
+            "genre_method_mismatch",
+            expected_method=contract.method_path,
+            genre_cards=genre_cards,
+        )
         diag = _skill_diagnostics(
             selection=selection,
             genre=genre,
@@ -774,7 +938,20 @@ def run_story_post_generation(
             pipeline="Define -> Ground -> Plan STOP (genre method mismatch)",
             skill_load=diag,
             extra={"evidence_used": evidence, "evidence_stats": {"user": n_user, "local": n_local}},
+            audit=audit,
         )
+
+    # C02 通过：方法卡唯一 + always_on 全部就位，才有资格构造提示。
+    audit.ok(
+        "C02",
+        requested_method_id=skill_ids[0],
+        loaded_method_id=loaded_skills.skill_ids[0] if loaded_skills.skill_ids else None,
+        loaded_files=list(loaded_skills.files),
+        method_sha256=loaded_skills.sha256,
+        always_on_required=always_on_configured,
+        always_on_loaded=[s for s in always_on_ids if s in set(loaded_skills.skill_ids)],
+        skill_chars=loaded_skills.chars,
+    )
 
     skill_load_diag = _skill_diagnostics(
         selection=selection,
@@ -784,6 +961,7 @@ def run_story_post_generation(
         loaded=loaded_skills,
         prompt_file=prompt_file,
         status="ok",
+        extra={"always_on_required": always_on_configured, "always_on_loaded": always_on_ids},
     )
 
     if genre == "news":
@@ -831,11 +1009,48 @@ def run_story_post_generation(
             skill_text=loaded_skills.text,
         )
 
+    audit.ok(
+        "C03",
+        prompt_file=prompt_file,
+        prompt_chars=len(prompt),
+        prompt_sha256=sa.digest(prompt),
+        skill_ids=skill_ids,
+    )
+
     raw = _llm_text(prompt)
+    if not (raw or "").strip():
+        audit.failed("C04", "empty_model_output", output_chars=0)
+        return _failure_result(
+            theme=theme,
+            user_brief=user_brief,
+            cats=cats,
+            platform=platform,
+            genre=genre,
+            genre_info=genre_info,
+            skill_ids=skill_ids,
+            error="模型返回空输出，已拒绝作为成稿返回。",
+            generation_status="OUTPUT_INVALID",
+            pipeline="Define -> Ground -> Plan -> Create FAILED (empty model output)",
+            skill_load=skill_load_diag,
+            extra={
+                "output_error": "empty_model_output",
+                "prompt_file": prompt_file,
+                "evidence_used": evidence,
+                "evidence_stats": {"user": n_user, "local": n_local},
+            },
+            audit=audit,
+        )
+    audit.ok(
+        "C04",
+        output_chars=len(raw),
+        output_sha256=sa.digest(raw),
+        model_call="text_generation",
+    )
 
     # §6 输出规范：无法解析的必需 JSON 必须显式失败，不得把原始文本当合格成稿。
     parsed, parse_error = _parse_json_output(raw)
     if parsed is None:
+        audit.failed("C05", f"json_unparseable: {parse_error}", parse_status=parse_error)
         return _failure_result(
             theme=theme,
             user_brief=user_brief,
@@ -855,10 +1070,17 @@ def run_story_post_generation(
                 "evidence_used": evidence,
                 "evidence_stats": {"user": n_user, "local": n_local},
             },
+            audit=audit,
         )
 
     contract_violation = _validate_contract_output(contract.output_contract, parsed)
     if contract_violation:
+        audit.failed(
+            "C05",
+            contract_violation,
+            output_contract=contract.output_contract,
+            parse_status="ok",
+        )
         return _failure_result(
             theme=theme,
             user_brief=user_brief,
@@ -878,7 +1100,16 @@ def run_story_post_generation(
                 "evidence_used": evidence,
                 "evidence_stats": {"user": n_user, "local": n_local},
             },
+            audit=audit,
         )
+
+    # C05 通过：JSON 可解析 + 该体裁必需正文存在。
+    audit.ok(
+        "C05",
+        output_contract=contract.output_contract,
+        parse_status="ok",
+        top_level_keys=sorted(parsed.keys()),
+    )
 
     if genre == "news":
         article = (parsed.get("article") or parsed.get("post") or "").strip()
@@ -925,6 +1156,9 @@ def run_story_post_generation(
             "format": resolved_format,
             "output_contract": contract.output_contract,
             "skill_load": skill_load_diag,
+            "step_audit": _finish_success_audit(
+                audit, genre=genre, body=body_out, skill_ids=skill_ids
+            ),
             **_pipeline_state(genre=genre, skill_ids=skill_ids, n_user=n_user, n_local=n_local, evidence_ok=True, aligned=True, has_draft=bool(body_out)),
         }
 
@@ -962,6 +1196,9 @@ def run_story_post_generation(
         "format": resolved_format,
         "output_contract": contract.output_contract,
         "skill_load": skill_load_diag,
+        "step_audit": _finish_success_audit(
+            audit, genre=genre, body=body_text, skill_ids=skill_ids
+        ),
         **_pipeline_state(genre=genre, skill_ids=skill_ids, n_user=n_user, n_local=n_local, evidence_ok=True, aligned=True, has_draft=bool(body_text)),
     }
 

@@ -8,6 +8,12 @@ description: 中国故事国际传播内容质量评价 Skill。供 ChinaStory A
 > **边界**：只执行 ChinaStory Evaluation Pipeline **Part 3（表达与跨文化传播质量）**。Part 1 判事实和证据；Part 2 在接入时执行外部跨语言评估；Generation 负责重写；Gate C 由人批准。[E02/E05][S01–S03]
 >
 > **唯一正式评分准则**：项目仓库 `eval/CHINASTORY_CONTENT_QUALITY_RUBRIC_v2.1.md`；本 Skill **不定义新的评分权重、不改变 D1–D6、不产生总分或发布决定**。[S01]
+>
+> **步骤契约**：[step-contracts.md](references/step-contracts.md) 把下面六节固化为 **E00–E05**
+> （输入 / 动作 / 产出 / 依据 / 停机条件 / 审计字段）。后端可用
+> `api.evaluation_part3.evaluate_part3_with_audit()` 取得逐步审计；`evaluate_part3()` 的
+> 返回值保持不变，`EvaluationResult` 契约不新增字段。
+
 
 ## 1. 调用前置检查（MUST）
 

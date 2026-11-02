@@ -65,6 +65,12 @@ evidence_pack:     # 来自 Ground 阶段，经 Gate B
 
 ## 2. 执行流程（不可跳过）
 
+> **步骤契约**：本节的七个子步骤已固化为 [step-contracts.md](references/step-contracts.md)
+> 的 **C00–C06**（输入 / 动作 / 产出 / 依据 / 停机条件 / 审计字段）。运行时每一步的真实状态
+> 由 `utils/step_audit.py` 记录在结果的 `step_audit` 里；只有 `verdict=COMPLETE` 才代表
+> 七步全部实际执行，失败时 `step_audit.not_run` 会列出**没跑**的步骤。
+> 改流程必须同时改契约与依据锚点，否则 `scripts/step_audit_check.py --evidence` 会报错。
+
 ### 2.0 门禁前置（G-08 / G-10）
 
 **v6.1 起，旧工具 `load_story_knowledge` 不再作为生成前置步骤**：当前生成流程（`tools/story_post_gen.py`）经 `config/skills.yaml` 注册表加载方法卡，不调用该工具；它仅在旧 Agent 工具环（`config/tools.yaml`）中保留，供旧链路兼容。v6.1 的前置门禁由以下两项承担，**不可跳过**：

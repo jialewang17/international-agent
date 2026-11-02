@@ -1,0 +1,179 @@
+{
+  "_note": "失败路径：模型输出不是 JSON，C05 拒绝返回，C06 标 NOT_RUN。",
+  "generation_status": "OUTPUT_INVALID",
+  "error": "模型输出不是可解析的 JSON（invalid_json），已拒绝作为成稿返回。",
+  "step_audit": {
+    "pipeline": "generation",
+    "context": {
+      "theme": "苏绣",
+      "platform": "instagram",
+      "language": "English",
+      "brief_digest": "sha256:e3b0c44298fc1c14"
+    },
+    "steps": [
+      {
+        "step_id": "C00",
+        "name": "选择与输入契约校验",
+        "stage": "DEFINE",
+        "required": true,
+        "status": "OK",
+        "reason": "",
+        "detail": {
+          "resolved_genre": "post",
+          "resolved_format": "social_post",
+          "routing_source": "user_override",
+          "output_contract": "post5w"
+        },
+        "contract": "解析 genre/format（显式优先），校验 TaskContext 必需字段；非法 genre / 不存在的 format / 组合冲突一律显式拒绝，不回落 post。",
+        "evidence": [
+          "skills/china-story-generation/references/step-contracts.md::### C00",
+          "skills/china-story-generation/SKILL.md::## 1. 输入契约（调用方必须提供）",
+          "utils/genre_contracts.py::def check_selection("
+        ]
+      },
+      {
+        "step_id": "C01",
+        "name": "证据门禁（Gate B）",
+        "stage": "GROUND",
+        "required": true,
+        "status": "OK",
+        "reason": "",
+        "detail": {
+          "evidence_user": 0,
+          "evidence_local": 2,
+          "gate_b": "ready_to_generate",
+          "aligned": true,
+          "pack_digest": "sha256:034b4040466bfd66"
+        },
+        "contract": "从 canonical EvidencePack 与对齐结果取得可写授权；证据为空 / 适配失败 / 主题不对齐 => 只输出阻塞原因，不产出成稿。",
+        "evidence": [
+          "skills/china-story-generation/references/step-contracts.md::### C01",
+          "skills/china-story-generation/SKILL.md::[G-08] 证据门禁（事实硬门禁）",
+          "api/evidence_adapter.py::def build_evidence_pack("
+        ]
+      },
+      {
+        "step_id": "C02",
+        "name": "方法加载与体裁隔离",
+        "stage": "PLAN",
+        "required": true,
+        "status": "OK",
+        "reason": "",
+        "detail": {
+          "requested_method_id": "china_story_post",
+          "loaded_method_id": "china_story_post",
+          "loaded_files": [
+            "skills/china-story-generation/references/genres/post.md",
+            "skills/intl-comm.md",
+            "skills/evidence-user-materials.md"
+          ],
+          "method_sha256": "3e2d6508116026d6eff58a92158ce40dabeac468dba240064c5f9d30442ce5cf",
+          "always_on_required": [
+            "intl_comm",
+            "evidence_user_materials"
+          ],
+          "always_on_loaded": [
+            "intl_comm",
+            "evidence_user_materials"
+          ],
+          "skill_chars": 16015
+        },
+        "contract": "严格加载体裁方法卡 + always_on 常开规则；缺失/空/禁用/截断/超预算一律失败，且注入的体裁卡必须恰好是本体裁那一张。",
+        "evidence": [
+          "skills/china-story-generation/references/step-contracts.md::### C02",
+          "skills/china-story-generation/SKILL.md::[G-10] 证据共享规则始终激活",
+          "utils/skill_registry.py::def load_required_skills(",
+          "config/skills.yaml::always_on:"
+        ]
+      },
+      {
+        "step_id": "C03",
+        "name": "提示构造（证据投影 + 方法注入）",
+        "stage": "PLAN",
+        "required": true,
+        "status": "OK",
+        "reason": "",
+        "detail": {
+          "prompt_file": "prompt/story_post_prompt.txt",
+          "prompt_chars": 21902,
+          "prompt_sha256": "sha256:d3cfa1bacd6aff19",
+          "skill_ids": [
+            "china_story_post",
+            "intl_comm",
+            "evidence_user_materials"
+          ]
+        },
+        "contract": "用同一份 EvidencePack 的兼容投影构造提示，注入方法卡正文，不引入第二事实源，不跨体裁串卡。",
+        "evidence": [
+          "skills/china-story-generation/references/step-contracts.md::### C03",
+          "tools/story_post_gen.py::def build_story_genre_prompt(",
+          "skills/china-story-generation/SKILL.md::**体裁隔离（不可串味）**："
+        ]
+      },
+      {
+        "step_id": "C04",
+        "name": "成稿生成（LLM）",
+        "stage": "CREATE",
+        "required": true,
+        "status": "OK",
+        "reason": "",
+        "detail": {
+          "output_chars": 16,
+          "output_sha256": "sha256:c7b642a532444dc3",
+          "model_call": "text_generation"
+        },
+        "contract": "调用模型产出候选稿；空输出即失败。模型不得新增证据外事实，不得自动发布。",
+        "evidence": [
+          "skills/china-story-generation/references/step-contracts.md::### C04",
+          "tools/story_post_gen.py::def _llm_text(",
+          "skills/china-story-generation/SKILL.md::宁短勿编；不抄教材范文；"
+        ]
+      },
+      {
+        "step_id": "C05",
+        "name": "输出契约校验",
+        "stage": "CREATE",
+        "required": true,
+        "status": "FAILED",
+        "reason": "json_unparseable: invalid_json",
+        "detail": {
+          "parse_status": "invalid_json"
+        },
+        "contract": "JSON 可解析 + 该体裁必需正文存在；任一不满足即 OUTPUT_INVALID，不得把原始文本当合格成稿。",
+        "evidence": [
+          "skills/china-story-generation/references/step-contracts.md::### C05",
+          "tools/story_post_gen.py::def _validate_contract_output(",
+          "utils/genre_contracts.py::OUTPUT_WIRE = \"wire\""
+        ]
+      },
+      {
+        "step_id": "C06",
+        "name": "自检与人工审核移交",
+        "stage": "REVISE_AUDIT",
+        "required": true,
+        "status": "NOT_RUN",
+        "reason": "未执行（运行在上游步骤终止）",
+        "detail": {},
+        "contract": "执行输出前自检，写出 human_review=PENDING 与可追溯字段，明确仅供人工审核；Gate C 不在本 Skill 内。",
+        "evidence": [
+          "skills/china-story-generation/references/step-contracts.md::### C06",
+          "skills/china-story-generation/SKILL.md::## 2.5 输出前自检（六问）",
+          "api/workflow.py::GATE_STAGE = {\"A\": \"DEFINE\", \"B\": \"GROUND\", \"C\": \"REVISE_AUDIT\"}"
+        ]
+      }
+    ],
+    "verdict": "FAILED",
+    "not_run": [
+      "C06"
+    ],
+    "first_blocked": null,
+    "first_failed": "C05",
+    "completed": [
+      "C00",
+      "C01",
+      "C02",
+      "C03",
+      "C04"
+    ]
+  }
+}
