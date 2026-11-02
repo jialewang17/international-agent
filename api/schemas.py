@@ -276,6 +276,15 @@ class PostGenerateRequest(BaseModel):
         default="",
         description="体裁覆盖：post|news|feature|indepth|script|faq；空则自动识别",
     )
+    format: Optional[str] = Field(
+        default="",
+        description=(
+            "体裁内格式，如 social_post / news_article / longform / in_depth_report / "
+            "short_video / faq_mythbust；空则用该体裁默认格式。"
+            "post 的 thread / visual_story / caption_only 目前只有方法定义，"
+            "调用会返回 UNSUPPORTED_GENERATION 而不是伪装成功。"
+        ),
+    )
 
 
 class TopicsRequest(BaseModel):

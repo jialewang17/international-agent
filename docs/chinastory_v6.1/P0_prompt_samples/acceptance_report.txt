@@ -1,0 +1,40 @@
+==============================================================================
+P0 六体裁接入验收（不调用真实大模型）
+==============================================================================
+
+[1] 映射一致性（genre ↔ skill_id ↔ 方法卡 ↔ format）
+    skills.yaml 与契约差异项：0
+    post     -> china_story_post         post.md      default=social_post      supported=social_post    file=OK
+    news     -> china_story_news         news.md      default=news_article     supported=news_article   file=OK
+    feature  -> china_story_feature      feature.md   default=longform         supported=longform       file=OK
+    indepth  -> china_story_indepth      indepth.md   default=in_depth_report  supported=in_depth_report file=OK
+    script   -> china_story_script       script.md    default=short_video      supported=short_video    file=OK
+    faq      -> china_story_faq          faq.md       default=faq_mythbust     supported=faq_mythbust   file=OK
+
+[2] 六体裁真实链路（路由 / 加载 / 注入 / 输出）
+    genre    format           路由来源          加载    注入字符    状态      正文    字段
+    post     social_post      user_override ok    12912   OK      Y     hashtags=1
+              loaded_method=china_story_post files=['skills/china-story-generation/references/genres/post.md'] 仅注入本体裁卡=True
+    news     news_article     user_override ok    5934    OK      Y     headline=Y
+              loaded_method=china_story_news files=['skills/china-story-generation/references/genres/news.md'] 仅注入本体裁卡=True
+    feature  longform         user_override ok    3365    OK      Y     article=Y
+              loaded_method=china_story_feature files=['skills/china-story-generation/references/genres/feature.md'] 仅注入本体裁卡=True
+    indepth  in_depth_report  user_override ok    3157    OK      Y     article=Y
+              loaded_method=china_story_indepth files=['skills/china-story-generation/references/genres/indepth.md'] 仅注入本体裁卡=True
+    script   short_video      user_override ok    998     OK      Y     article=Y
+              loaded_method=china_story_script files=['skills/china-story-generation/references/genres/script.md'] 仅注入本体裁卡=True
+    faq      faq_mythbust     user_override ok    899     OK      Y     article=Y
+              loaded_method=china_story_faq files=['skills/china-story-generation/references/genres/faq.md'] 仅注入本体裁卡=True
+
+[3] 失败路径（必须显式失败，不得伪装成功）
+    非法体裁 genre=story                   -> status=INVALID_GENRE            post=空 调用模型=否
+    体裁/格式冲突 news+social_post           -> status=GENRE_FORMAT_CONFLICT    post=空 调用模型=否
+    未实现格式 post+thread                  -> status=UNSUPPORTED_GENERATION   post=空 调用模型=否
+
+[4] 显式选择优先于关键词
+    theme='写一篇苏绣的深度报道' + genre=post -> post (source=user_override)
+    theme='写一条 instagram 帖文介绍苏绣' + genre=indepth -> indepth (source=user_override)
+
+[5] 已导出脱敏 Prompt 组装样例：docs\chinastory_v6.1\P0_prompt_samples
+    prompt_post_sample.txt: 18799 字符
+    prompt_news_sample.txt: 11863 字符

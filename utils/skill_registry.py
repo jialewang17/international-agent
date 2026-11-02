@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from hashlib import sha256
 from pathlib import Path
 from typing import Dict, List, Optional
 
@@ -36,6 +37,27 @@ class SkillInfo:
     truncated: bool = False
     source: str = "configured"
     error: Optional[str] = None
+    raw_chars: int = 0
+
+
+class SkillLoadError(RuntimeError):
+    """必需 Skill 无法完整加载时抛出（P0 §3：不允许带着空 Skill 继续生成）。"""
+
+    def __init__(self, reason: str, message: str, detail: Optional[Dict[str, object]] = None):
+        super().__init__(message)
+        self.reason = reason
+        self.detail: Dict[str, object] = detail or {}
+
+
+@dataclass(frozen=True)
+class LoadedSkillSet:
+    """严格加载成功后的结果：正文、来源文件、字符数与内容指纹。"""
+
+    text: str
+    skill_ids: tuple[str, ...]
+    files: tuple[str, ...]
+    chars: int
+    sha256: str
 
 
 @dataclass
@@ -113,15 +135,15 @@ def _build_cache_key(config_path: Path) -> tuple[Optional[float]]:
         return (None,)
 
 
-def _load_skill_file(path: Path, max_chars: int) -> tuple[str, bool, Optional[str]]:
+def _load_skill_file(path: Path, max_chars: int) -> tuple[str, bool, Optional[str], int]:
     if not path.exists():
-        return "", False, "file_not_found"
+        return "", False, "file_not_found", 0
     try:
         raw = path.read_text(encoding="utf-8", errors="replace").strip()
         text, truncated = _clamp(raw, max_chars)
-        return text, truncated, None
+        return text, truncated, None, len(raw)
     except Exception as exc:
-        return "", False, str(exc)
+        return "", False, str(exc), 0
 
 
 def clear_skill_registry_cache() -> None:
@@ -168,7 +190,7 @@ def get_skill_registry(force_reload: bool = False) -> SkillRegistry:
         keywords = _normalize_list(meta_dict.get("keywords"))
         title = str(meta_dict.get("title", skill_id)).strip() or skill_id
 
-        content, truncated, err = _load_skill_file(file_path, config.max_chars_per_skill)
+        content, truncated, err, raw_chars = _load_skill_file(file_path, config.max_chars_per_skill)
         if err:
             load_errors.append({"skill_id": skill_id, "error": err, "file": str(file_path)})
 
@@ -184,6 +206,7 @@ def get_skill_registry(force_reload: bool = False) -> SkillRegistry:
             truncated=truncated,
             source="configured",
             error=err,
+            raw_chars=raw_chars,
         )
 
     if config.discover_files:
@@ -193,7 +216,7 @@ def get_skill_registry(force_reload: bool = False) -> SkillRegistry:
                 sid = _to_skill_id(path.stem)
                 if sid in skills:
                     continue
-                content, truncated, err = _load_skill_file(path, config.max_chars_per_skill)
+                content, truncated, err, raw_chars = _load_skill_file(path, config.max_chars_per_skill)
                 if err:
                     load_errors.append({"skill_id": sid, "error": err, "file": str(path)})
                 skills[sid] = SkillInfo(
@@ -208,6 +231,7 @@ def get_skill_registry(force_reload: bool = False) -> SkillRegistry:
                     truncated=truncated,
                     source="discovered",
                     error=err,
+                    raw_chars=raw_chars,
                 )
 
     registry = SkillRegistry(
@@ -316,6 +340,99 @@ def format_skills_by_ids(*skill_ids: str, force_reload: bool = False) -> str:
             continue
         parts.append(f"### TeamSkill::{skill.skill_id}\n{skill.content.strip()}")
     return "\n\n".join(parts).strip()
+
+
+def _rel_path(path: Path) -> str:
+    try:
+        return str(path.resolve().relative_to(get_project_root().resolve())).replace("\\", "/")
+    except Exception:
+        return str(path)
+
+
+def load_required_skills(
+    *skill_ids: str,
+    max_total_chars: Optional[int] = None,
+    force_reload: bool = False,
+) -> LoadedSkillSet:
+    """严格加载必需的 Skill；任何异常都抛错，绝不返回空内容让生成器继续。
+
+    与 ``format_skills_by_ids`` 的区别：后者为兼容旧调用保留"跳过缺失项"的行为，
+    会把空 Skill 静默注入 prompt（P0 §3 明确禁止）。生成链路必须使用本函数。
+    """
+    registry = get_skill_registry(force_reload=force_reload)
+    if not registry.config.enabled:
+        raise SkillLoadError(
+            "skills_disabled",
+            "技能层已被配置关闭（skills.yaml enabled=false），无法加载体裁方法卡",
+            {"config_path": str(registry.config_path)},
+        )
+
+    requested = [_to_skill_id(raw) for raw in skill_ids if str(raw or "").strip()]
+    if not requested:
+        raise SkillLoadError("no_skill_requested", "未指定必需 Skill id")
+
+    parts: List[str] = []
+    files: List[str] = []
+    used: List[str] = []
+    for sid in requested:
+        skill = registry.skills.get(sid)
+        if skill is None:
+            raise SkillLoadError(
+                "skill_not_registered",
+                f"Skill 未在 skills.yaml 注册：{sid}",
+                {"skill_id": sid},
+            )
+        if not skill.enabled:
+            raise SkillLoadError(
+                "skill_disabled",
+                f"Skill 已被禁用：{sid}",
+                {"skill_id": sid, "file": _rel_path(skill.file_path)},
+            )
+        if skill.error:
+            raise SkillLoadError(
+                "skill_load_failed",
+                f"Skill 读取失败：{sid}（{skill.error}）",
+                {"skill_id": sid, "file": _rel_path(skill.file_path), "error": skill.error},
+            )
+        if not (skill.content or "").strip():
+            raise SkillLoadError(
+                "skill_empty",
+                f"Skill 内容为空：{sid}",
+                {"skill_id": sid, "file": _rel_path(skill.file_path)},
+            )
+        if skill.truncated:
+            raise SkillLoadError(
+                "skill_truncated",
+                (
+                    f"Skill 被截断：{sid} 需要 {skill.raw_chars} 字符，"
+                    f"当前单卡预算 {registry.config.max_chars_per_skill} 字符"
+                ),
+                {
+                    "skill_id": sid,
+                    "file": _rel_path(skill.file_path),
+                    "raw_chars": skill.raw_chars,
+                    "budget": registry.config.max_chars_per_skill,
+                },
+            )
+        parts.append(f"### TeamSkill::{skill.skill_id}\n{skill.content.strip()}")
+        files.append(_rel_path(skill.file_path))
+        used.append(sid)
+
+    text = "\n\n".join(parts)
+    if max_total_chars is not None and max_total_chars > 0 and len(text) > max_total_chars:
+        raise SkillLoadError(
+            "skill_budget_exceeded",
+            f"Skill 合计 {len(text)} 字符，超出本轮预算 {max_total_chars}",
+            {"chars": len(text), "budget": max_total_chars, "skill_ids": used},
+        )
+
+    return LoadedSkillSet(
+        text=text,
+        skill_ids=tuple(used),
+        files=tuple(files),
+        chars=len(text),
+        sha256=sha256(text.encode("utf-8")).hexdigest(),
+    )
 
 
 def format_skill_catalog_for_prompt(force_reload: bool = False) -> str:
