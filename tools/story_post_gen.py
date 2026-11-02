@@ -19,10 +19,20 @@ from tools.kb_local import (
     retrieve_statements,
 )
 from utils.path import get_prompt_dir
-from tools.genre_router import GENRE_STATUS, detect_genre, skill_ids_for_genre
+from tools.genre_router import resolve_selection, skill_ids_for_genre
 from tools.user_materials import merge_evidence, normalize_user_materials
 from api.evidence_adapter import EvidenceAdapterError, build_evidence_pack
-from utils.skill_registry import format_skills_by_ids
+from utils.genre_contracts import (
+    METHOD_DIR,
+    OUTPUT_POST,
+    OUTPUT_WIRE,
+    contract_for,
+)
+from utils.skill_registry import (
+    LoadedSkillSet,
+    SkillLoadError,
+    load_required_skills,
+)
 
 
 STORY_THEMES = [
@@ -39,6 +49,22 @@ STORY_THEMES = [
 
 def _load_template(name: str) -> str:
     return (get_prompt_dir() / name).read_text(encoding="utf-8")
+
+
+# 单轮注入的技能正文上限（远大于六张体裁卡中最大的一张，仅作异常保护）。
+MAX_INJECTED_SKILL_CHARS = 40000
+
+
+def _skill_block_for(skill_ids: List[str], skill_text: Optional[str]) -> str:
+    """返回要注入 prompt 的技能正文；调用方未预加载时走严格加载器。
+
+    严格加载失败会抛 SkillLoadError —— 生成链路必须显式失败，
+    不允许把 "(no skill loaded)" 写进 prompt 却继续生成（P0 §3/§4）。
+    """
+    if skill_text is not None:
+        return skill_text.strip()
+    loaded = load_required_skills(*skill_ids, max_total_chars=MAX_INJECTED_SKILL_CHARS)
+    return loaded.text
 
 
 def _llm_text(prompt: str) -> str:
@@ -107,29 +133,53 @@ def _pipeline_state(
     ]
     return {"pipeline_steps": stages, "gates": gates}
 
-def _extract_json(raw: str) -> Dict[str, Any]:
+def _parse_json_output(raw: str) -> tuple[Optional[Dict[str, Any]], Optional[str]]:
+    """解析模型 JSON；失败返回 (None, 原因)，不再把原始文本当成合格成稿。
+
+    P0 §6：模型产生无法解析的必需 JSON 时返回 OUTPUT_INVALID，
+    不允许把整段原始文本塞进 ``post`` 字段伪装成功。
+    """
     text = (raw or "").strip()
+    if not text:
+        return None, "empty_output"
     if text.startswith("```"):
         text = re.sub(r"^```(?:json)?\s*", "", text)
         text = re.sub(r"\s*```$", "", text)
     try:
-        return json.loads(text)
+        data = json.loads(text)
+        if isinstance(data, dict):
+            return data, None
+        return None, "json_not_an_object"
     except Exception:
-        m = re.search(r"\{[\s\S]*\}", text)
-        if m:
-            try:
-                return json.loads(m.group(0))
-            except Exception:
-                pass
-    return {
-        "5w": {},
-        "post": text,
-        "hashtags": [],
-        "title_or_hook": "",
-        "ops_tips": [],
-        "evidence_notes": [],
-        "parse_warning": "model output was not valid JSON; raw text put into post",
-    }
+        pass
+    m = re.search(r"\{[\s\S]*\}", text)
+    if m:
+        try:
+            data = json.loads(m.group(0))
+            if isinstance(data, dict):
+                return data, None
+        except Exception:
+            pass
+    return None, "invalid_json"
+
+
+def _non_empty(value: Any) -> str:
+    return value.strip() if isinstance(value, str) else ""
+
+
+def _validate_contract_output(output_contract: str, parsed: Dict[str, Any]) -> Optional[str]:
+    """按体裁输出契约校验必需正文；缺正文即 OUTPUT_INVALID（P0 §6）。"""
+    if output_contract == OUTPUT_WIRE:
+        if not (_non_empty(parsed.get("article")) or _non_empty(parsed.get("post"))):
+            return "新闻通稿缺少 article 正文，按 OUTPUT_INVALID 拒绝返回。"
+        return None
+    if output_contract == OUTPUT_POST:
+        if not (_non_empty(parsed.get("post")) or _non_empty(parsed.get("body"))):
+            return "社交帖文缺少 post 正文，按 OUTPUT_INVALID 拒绝返回。"
+        return None
+    if not (_non_empty(parsed.get("body")) or _non_empty(parsed.get("post"))):
+        return "该体裁缺少 body 正文，按 OUTPUT_INVALID 拒绝返回。"
+    return None
 
 
 def _theme_to_categories(theme: str) -> List[str]:
@@ -167,6 +217,7 @@ def build_story_post_prompt(
     desired_effect: str,
     genre: str = "post",
     skill_ids: Optional[List[str]] = None,
+    skill_text: Optional[str] = None,
 ) -> str:
     persona = build_persona(identity=identity, tone=tone, country=country)
     plat = resolve_platform(platform)
@@ -191,10 +242,11 @@ def build_story_post_prompt(
     )
     tpl = _load_template("story_post_prompt.txt")
     ids = list(skill_ids) if skill_ids else list(skill_ids_for_genre(genre))
-    skill_block = format_skills_by_ids(*ids) or "(no skill loaded)"
+    skill_block = _skill_block_for(ids, skill_text)
     genre_note = (
-        f"Detected content genre: {genre}. "
-        "For social posts, keep it short (Lasswell 5W + caption), NOT Southern Weekly longform."
+        f"Detected content genre: {genre} (format: social_post). "
+        "Keep it short (Lasswell 5W + caption), NOT Southern Weekly longform. "
+        "Do not write a news wire, a feature or a deep-dive under this genre."
         if genre == "post"
         else (
             f"Detected content genre: {genre}. "
@@ -235,6 +287,7 @@ def build_story_news_prompt(
     max_words: int,
     desired_effect: str,
     skill_ids: Optional[List[str]] = None,
+    skill_text: Optional[str] = None,
 ) -> str:
     """新闻通稿专用 prompt：与帖文 5W 模板完全分离。"""
     persona = build_persona(identity=identity, tone=tone, country=country)
@@ -253,7 +306,7 @@ def build_story_news_prompt(
         else "(no verified evidence from user materials or local KB)"
     )
     ids = list(skill_ids) if skill_ids else list(skill_ids_for_genre("news"))
-    skill_block = format_skills_by_ids(*ids) or "(no skill loaded)"
+    skill_block = _skill_block_for(ids, skill_text)
     genre_note = (
         "Detected content genre: news. Use china_story_news wire structure only. "
         "Do NOT apply china_story_post 5W caption rules, emojis, or Gen Z CTA."
@@ -299,6 +352,7 @@ def build_story_genre_prompt(
     max_words: int,
     desired_effect: str,
     skill_ids: Optional[List[str]] = None,
+    skill_text: Optional[str] = None,
 ) -> str:
     """feature / indepth / script / faq 通用 prompt：结构完全交给该体裁的 TeamSkill 卡。
 
@@ -321,7 +375,7 @@ def build_story_genre_prompt(
         else "(no verified evidence from user materials or local KB)"
     )
     ids = list(skill_ids) if skill_ids else list(skill_ids_for_genre(genre))
-    skill_block = format_skills_by_ids(*ids) or "(no skill loaded)"
+    skill_block = _skill_block_for(ids, skill_text)
     tpl = _load_template("story_genre_prompt.txt")
     return (
         tpl.replace("{genre}", genre)
@@ -372,6 +426,132 @@ def _legacy_evidence_projection(pack, original_rows: List[Dict[str, Any]]) -> Li
         projected.append(row)
     return projected
 
+_PROMPT_BY_GENRE = {
+    "post": "prompt/story_post_prompt.txt",
+    "news": "prompt/story_news_prompt.txt",
+}
+_DEFAULT_GENRE_PROMPT = "prompt/story_genre_prompt.txt"
+
+
+def _prompt_template_for(genre: str) -> str:
+    return _PROMPT_BY_GENRE.get(genre, _DEFAULT_GENRE_PROMPT)
+
+
+def _skill_diagnostics(
+    *,
+    selection: Any,
+    genre: str,
+    format_id: str,
+    skill_ids: List[str],
+    loaded: Optional[LoadedSkillSet],
+    prompt_file: str,
+    status: str,
+    error_reason: Optional[str] = None,
+    extra: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    """可审计的加载诊断（P0 §7）。
+
+    区分“路由成功”“加载成功”“生成成功”：``load_status`` 只描述加载，
+    ``loaded_method_id`` 来自真实读到的文件，而不是期望中的 skill id。
+    """
+    diag: Dict[str, Any] = {
+        "requested_genre": getattr(selection, "requested_genre", None),
+        "requested_format": getattr(selection, "requested_format", None),
+        "routing_source": getattr(selection, "source", None),
+        "resolved_genre": genre,
+        "resolved_format": format_id,
+        "requested_method_id": skill_ids[0] if skill_ids else None,
+        "loaded_method_id": loaded.skill_ids[0] if loaded and loaded.skill_ids else None,
+        "loaded_files": list(loaded.files) if loaded else [],
+        "load_status": status,
+        "error_reason": error_reason,
+        "skill_chars": loaded.chars if loaded else 0,
+        "skill_sha256": loaded.sha256 if loaded else None,
+        "truncated": False,
+        "prompt_template": prompt_file,
+    }
+    if extra:
+        diag.update(extra)
+    return diag
+
+
+def _failure_result(
+    *,
+    theme: str,
+    user_brief: Optional[str],
+    cats: List[str],
+    platform: str,
+    genre: str,
+    genre_info: Dict[str, Any],
+    skill_ids: List[str],
+    error: str,
+    generation_status: str,
+    pipeline: str,
+    skill_load: Optional[Dict[str, Any]] = None,
+    extra: Optional[Dict[str, Any]] = None,
+) -> Dict[str, Any]:
+    result: Dict[str, Any] = {
+        "error": error,
+        "generation_status": generation_status,
+        "theme": theme,
+        "user_brief": user_brief or "",
+        "categories": cats,
+        "genre": genre,
+        "genre_meta": genre_info,
+        "evidence_used": [],
+        "evidence_stats": {"user": 0, "local": 0},
+        "post": "",
+        "article": "",
+        "platform": resolve_platform(platform).get("platform_label", platform),
+        "pipeline": pipeline,
+        "skills_applied": skill_ids,
+    }
+    if skill_load is not None:
+        result["skill_load"] = skill_load
+    if extra:
+        result.update(extra)
+    result.update(
+        _pipeline_state(
+            genre=genre,
+            skill_ids=skill_ids,
+            n_user=0,
+            n_local=0,
+            evidence_ok=False,
+            aligned=False,
+            has_draft=False,
+        )
+    )
+    return result
+
+
+def _selection_failure(
+    *,
+    theme: str,
+    user_brief: Optional[str],
+    cats: List[str],
+    selection: Any,
+    platform: str,
+) -> Dict[str, Any]:
+    """genre/format 不合法或组合冲突：在 Ground 之前直接拒绝。"""
+    issue = selection.issue
+    code = getattr(issue, "code", "INVALID_SELECTION")
+    message = getattr(issue, "message", "体裁或格式选择不合法")
+    detail = dict(getattr(issue, "detail", {}) or {})
+    return _failure_result(
+        theme=theme,
+        user_brief=user_brief,
+        cats=cats,
+        platform=platform,
+        genre=selection.genre or "",
+        genre_info={"genre": selection.genre, "format": selection.format, "source": selection.source},
+        skill_ids=[],
+        error=message,
+        generation_status=code,
+        pipeline="Request rejected before Ground (genre/format contract)",
+        extra={"selection_issue": {"code": code, "detail": detail}},
+    )
+
+
 def run_story_post_generation(
     *,
     theme: str,
@@ -386,23 +566,37 @@ def run_story_post_generation(
     user_materials: Optional[Any] = None,
     user_brief: Optional[str] = None,
     genre: Optional[str] = None,
+    format: Optional[str] = None,  # noqa: A002 —— 字段名与 API / 前端一致
 ) -> Dict[str, Any]:
     cats = _theme_to_categories(theme)
-    # v6.1：六体裁全部可显式指定（依据《代码接线补丁》§4）
-    allowed = {"post", "news", "feature", "indepth", "script", "faq"}
-    override = (genre or "").strip().lower()
-    if override in allowed:
-        genre_info = {
-            "genre": override,
-            "label": override,
-            "matched_keyword": "frontend_select",
-            "source": "user_override",
-            "status": GENRE_STATUS.get(override, "unknown"),
-        }
-        genre = override
-    else:
-        genre_info = detect_genre((user_brief or "") + " " + theme)
-        genre = genre_info.get("genre") or "post"
+
+    # §2 显式选择优先：合法 genre/format 覆盖关键词推断；非法值显式报错，
+    # 绝不静默回落 post（旧实现会把不认识的 genre 当 post 生成成功）。
+    selection = resolve_selection(
+        genre=genre,
+        format_id=format,
+        text=((user_brief or "") + " " + theme),
+    )
+    contract = contract_for(selection.genre) if selection.genre else None
+    if selection.issue is not None or contract is None:
+        return _selection_failure(
+            theme=theme,
+            user_brief=user_brief,
+            cats=cats,
+            selection=selection,
+            platform=platform,
+        )
+
+    genre = selection.genre
+    resolved_format = selection.format
+    genre_info = {
+        "genre": genre,
+        "label": contract.label,
+        "format": resolved_format,
+        "matched_keyword": selection.matched_by,
+        "source": selection.source,
+        "status": contract.status,
+    }
     skill_ids = list(skill_ids_for_genre(genre))
 
     # 通稿默认：更长篇幅、无 emoji、偏严肃/乐观外宣口径（不改用户明确指定）
@@ -517,6 +711,81 @@ def run_story_post_generation(
             **_pipeline_state(genre=genre, skill_ids=skill_ids, n_user=n_user, n_local=n_local, evidence_ok=True, aligned=False, has_draft=False),
         }
 
+    # §3 严格加载必需 Skill：缺失 / 空文件 / 被禁用 / 读取失败 / 超预算 / 被截断
+    # 一律显式失败。旧实现用 format_skills_by_ids，缺卡时只写 "(no skill loaded)"
+    # 却继续调用模型，导致"看起来成功、实际裸跑"。
+    prompt_file = _prompt_template_for(genre)
+    try:
+        loaded_skills = load_required_skills(*skill_ids, max_total_chars=MAX_INJECTED_SKILL_CHARS)
+    except SkillLoadError as exc:
+        diag = _skill_diagnostics(
+            selection=selection,
+            genre=genre,
+            format_id=resolved_format,
+            skill_ids=skill_ids,
+            loaded=None,
+            prompt_file=prompt_file,
+            status="failed",
+            error_reason=exc.reason,
+            extra=exc.detail,
+        )
+        return _failure_result(
+            theme=theme,
+            user_brief=user_brief,
+            cats=cats,
+            platform=platform,
+            genre=genre,
+            genre_info=genre_info,
+            skill_ids=skill_ids,
+            error=f"体裁方法卡加载失败：{exc}",
+            generation_status="SKILL_UNAVAILABLE",
+            pipeline="Define -> Ground -> Plan STOP (required skill unavailable)",
+            skill_load=diag,
+            extra={"evidence_used": evidence, "evidence_stats": {"user": n_user, "local": n_local}},
+        )
+
+    # §1/§5 注入的体裁方法卡必须恰好是本体裁那唯一一张，防止跨体裁串卡。
+    genre_cards = [f for f in loaded_skills.files if f.startswith(f"{METHOD_DIR}/")]
+    if genre_cards != [contract.method_path]:
+        diag = _skill_diagnostics(
+            selection=selection,
+            genre=genre,
+            format_id=resolved_format,
+            skill_ids=skill_ids,
+            loaded=loaded_skills,
+            prompt_file=prompt_file,
+            status="failed",
+            error_reason="genre_method_mismatch",
+            extra={"expected_method": contract.method_path, "genre_cards": genre_cards},
+        )
+        return _failure_result(
+            theme=theme,
+            user_brief=user_brief,
+            cats=cats,
+            platform=platform,
+            genre=genre,
+            genre_info=genre_info,
+            skill_ids=skill_ids,
+            error=(
+                f"体裁方法注入异常：期望 {contract.method_path}，"
+                f"实际 {genre_cards or '未注入任何体裁卡'}"
+            ),
+            generation_status="SKILL_CONTRACT_VIOLATION",
+            pipeline="Define -> Ground -> Plan STOP (genre method mismatch)",
+            skill_load=diag,
+            extra={"evidence_used": evidence, "evidence_stats": {"user": n_user, "local": n_local}},
+        )
+
+    skill_load_diag = _skill_diagnostics(
+        selection=selection,
+        genre=genre,
+        format_id=resolved_format,
+        skill_ids=skill_ids,
+        loaded=loaded_skills,
+        prompt_file=prompt_file,
+        status="ok",
+    )
+
     if genre == "news":
         prompt = build_story_news_prompt(
             theme=brief_for_prompt,
@@ -528,8 +797,8 @@ def run_story_post_generation(
             max_words=max_words,
             desired_effect=desired_effect,
             skill_ids=skill_ids,
+            skill_text=loaded_skills.text,
         )
-        prompt_file = "prompt/story_news_prompt.txt"
     elif genre in _GENRE_LABELS:
         # feature / indepth / script / faq：结构与字段交给该体裁的 TeamSkill 卡
         prompt = build_story_genre_prompt(
@@ -543,8 +812,8 @@ def run_story_post_generation(
             max_words=max_words,
             desired_effect=desired_effect,
             skill_ids=skill_ids,
+            skill_text=loaded_skills.text,
         )
-        prompt_file = "prompt/story_genre_prompt.txt"
     else:
         prompt = build_story_post_prompt(
             theme=brief_for_prompt,
@@ -559,11 +828,57 @@ def run_story_post_generation(
             desired_effect=desired_effect,
             genre=genre,
             skill_ids=skill_ids,
+            skill_text=loaded_skills.text,
         )
-        prompt_file = "prompt/story_post_prompt.txt"
 
     raw = _llm_text(prompt)
-    parsed = _extract_json(raw)
+
+    # §6 输出规范：无法解析的必需 JSON 必须显式失败，不得把原始文本当合格成稿。
+    parsed, parse_error = _parse_json_output(raw)
+    if parsed is None:
+        return _failure_result(
+            theme=theme,
+            user_brief=user_brief,
+            cats=cats,
+            platform=platform,
+            genre=genre,
+            genre_info=genre_info,
+            skill_ids=skill_ids,
+            error=f"模型输出不是可解析的 JSON（{parse_error}），已拒绝作为成稿返回。",
+            generation_status="OUTPUT_INVALID",
+            pipeline="Define -> Ground -> Plan -> Create FAILED (output not valid JSON)",
+            skill_load=skill_load_diag,
+            extra={
+                "output_error": parse_error,
+                "raw_model_preview": (raw or "")[:400],
+                "prompt_file": prompt_file,
+                "evidence_used": evidence,
+                "evidence_stats": {"user": n_user, "local": n_local},
+            },
+        )
+
+    contract_violation = _validate_contract_output(contract.output_contract, parsed)
+    if contract_violation:
+        return _failure_result(
+            theme=theme,
+            user_brief=user_brief,
+            cats=cats,
+            platform=platform,
+            genre=genre,
+            genre_info=genre_info,
+            skill_ids=skill_ids,
+            error=contract_violation,
+            generation_status="OUTPUT_INVALID",
+            pipeline="Define -> Ground -> Plan -> Create FAILED (output contract violated)",
+            skill_load=skill_load_diag,
+            extra={
+                "output_error": "missing_required_body",
+                "output_contract": contract.output_contract,
+                "prompt_file": prompt_file,
+                "evidence_used": evidence,
+                "evidence_stats": {"user": n_user, "local": n_local},
+            },
+        )
 
     if genre == "news":
         article = (parsed.get("article") or parsed.get("post") or "").strip()
@@ -606,8 +921,10 @@ def run_story_post_generation(
             ),
             "skills_applied": skill_ids,
             "prompt_file": prompt_file,
-            "raw_model": raw if parsed.get("parse_warning") else None,
-            "parse_warning": parsed.get("parse_warning"),
+            "generation_status": "OK",
+            "format": resolved_format,
+            "output_contract": contract.output_contract,
+            "skill_load": skill_load_diag,
             **_pipeline_state(genre=genre, skill_ids=skill_ids, n_user=n_user, n_local=n_local, evidence_ok=True, aligned=True, has_draft=bool(body_out)),
         }
 
@@ -641,8 +958,10 @@ def run_story_post_generation(
         ),
         "skills_applied": skill_ids,
         "prompt_file": prompt_file,
-        "raw_model": raw if parsed.get("parse_warning") else None,
-        "parse_warning": parsed.get("parse_warning"),
+        "generation_status": "OK",
+        "format": resolved_format,
+        "output_contract": contract.output_contract,
+        "skill_load": skill_load_diag,
         **_pipeline_state(genre=genre, skill_ids=skill_ids, n_user=n_user, n_local=n_local, evidence_ok=True, aligned=True, has_draft=bool(body_text)),
     }
 
@@ -659,13 +978,15 @@ def generate_china_story_post(
     use_emoji: bool = True,
     desired_effect: str = "Increase curiosity and positive understanding of China through a concrete, shareable story.",
     user_materials: str = "",
+    genre: str = "",
+    format: str = "",  # noqa: A002 —— 与 API 字段名保持一致
 ) -> str:
     """
-    描述：【主动传播主工具】生成「讲好中国故事」成稿（默认社交帖文；提示含「新闻通稿/通稿」等则走新闻体裁）。
-    流程：主题解析 → 体裁识别 → 用户资料 + 本地检索 → 对齐门控 → 帖文(5W)或通稿(wire)生成（人工审核）。
+    描述：【主动传播主工具】生成「讲好中国故事」成稿（默认社交帖文；可显式指定六体裁之一）。
+    流程：体裁/格式校验 → 用户资料 + 本地检索 → 对齐门控 → 严格加载体裁方法卡 → 成稿生成（人工审核）。
     使用时机：用户要发帖、写新闻通稿、策划内容、生成中国故事草稿时（不是回复别人评论时）。
     输入：
-    - theme（必填）：主题/角度；写「新闻通稿」等词可路由到 news skill
+    - theme（必填）：主题/角度
     - country：目标受众国家，默认 America
     - identity：political_commentator / comedian / online_influencer / scientist / rapper
     - tone：sarcastic / humorous / serious / optimistic / cold
@@ -675,7 +996,11 @@ def generate_china_story_post(
     - use_emoji：是否可用 emoji（通稿强制关闭）
     - desired_effect：期望传播效果（一句话）
     - user_materials：用户粘贴资料（可空行分段）；与本地库合并进 evidence_used
-    输出：JSON；帖文含 five_w/post/hashtags；通稿含 wire_plan/headline/article（并镜像到 post 便于前端展示）。
+    - genre：显式体裁 post/news/feature/indepth/script/faq；留空则自动识别
+    - format：体裁内格式，如 social_post / news_article；留空用该体裁默认格式
+    输出：JSON；帖文含 five_w/post/hashtags；通稿含 wire_plan/headline/article（并镜像到 post 便于前端展示）；
+         失败时含 error + generation_status（INVALID_GENRE / GENRE_FORMAT_CONFLICT /
+         UNSUPPORTED_GENERATION / SKILL_UNAVAILABLE / OUTPUT_INVALID）。
     """
     theme = (theme or "").strip()
     if not theme:
@@ -692,6 +1017,8 @@ def generate_china_story_post(
             use_emoji=bool(use_emoji),
             desired_effect=desired_effect,
             user_materials=user_materials or None,
+            genre=genre or None,
+            format=format or None,
         )
         # ``_evidence_pack`` is an internal API handoff; the tool keeps its
         # legacy JSON surface while /api/posts/generate persists the pack.

@@ -1,14 +1,27 @@
-"""体裁路由：按用户提示词关键词映射到 post/news/feature/indepth/script/faq 六体裁。"""
+"""体裁路由：按用户提示词关键词映射到 post/news/feature/indepth/script/faq 六体裁。
+
+映射表（genre ↔ skill_id ↔ 方法卡路径 ↔ format）统一由 utils.genre_contracts 提供，
+本模块只负责"关键词识别"与"显式选择的优先级处理"，不再维护第二份映射。
+依据：P0 六体裁接入修复任务 §1（统一映射）、§2（保护显式选择）。
+"""
 
 from __future__ import annotations
 
 import json
 import re
-from pathlib import Path
+from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
 from langchain_core.tools import tool
 
+from utils.genre_contracts import (
+    GENRE_CONTRACTS,
+    SelectionIssue,
+    canonicalize_format,
+    check_selection,
+    contract_for,
+    skill_ids_for,
+)
 from utils.path import get_project_root
 
 # 匹配顺序：indepth → feature → news → script → faq → post（与 skills/README.md 一致）
@@ -110,73 +123,55 @@ _GENRE_PATTERNS: List[Tuple[str, List[str]]] = [
     ),
 ]
 
-_FORMAT_TO_GENRE: Dict[str, str] = {
-    "social_post": "post",
-    "thread": "post",
-    "caption_only": "post",
-    "visual_story": "post",
-    "news_article": "news",
-    "newsletter_brief": "news",
-    "press_kit": "news",
-    "longform": "feature",
-    "in_depth_report": "indepth",
-    "indepth": "indepth",
-    "deep_dive_report": "indepth",
-    "short_video": "script",
-    "reel_hook": "script",
-    "youtube_script": "script",
-    "faq_mythbust": "faq",
-    "faq": "faq",
+# 兼容旧调用方：分期状态现在由契约给出，避免两处写法不一致。
+GENRE_STATUS: Dict[str, str] = {
+    genre: contract.status for genre, contract in GENRE_CONTRACTS.items()
 }
 
-_GENRE_STATUS: Dict[str, str] = {
-    "post": "complete",
-    "news": "complete",
-    "feature": "methods_in",
-    "indepth": "methods_in",
-    "script": "methods_in",
-    "faq": "methods_in",
-}
 
-# Public aliases used by the story generation tool.
-GENRE_STATUS = _GENRE_STATUS
+@dataclass(frozen=True)
+class GenreSelection:
+    """一次生成请求的最终体裁/格式选择结果。"""
+
+    genre: str
+    format: str
+    source: str  # user_override | format | format_eq | keyword | default
+    matched_by: str
+    issue: Optional[SelectionIssue] = None
+    requested_genre: Optional[str] = None
+    requested_format: Optional[str] = None
+
+    def as_dict(self) -> Dict[str, object]:
+        return {
+            "genre": self.genre,
+            "format": self.format,
+            "source": self.source,
+            "matched_by": self.matched_by,
+            "requested_genre": self.requested_genre,
+            "requested_format": self.requested_format,
+            "issue": None
+            if self.issue is None
+            else {"code": self.issue.code, "message": self.issue.message, "detail": self.issue.detail},
+        }
 
 
 def skill_ids_for_genre(genre: str) -> List[str]:
-    """Return the configured skill id for a recognized genre."""
-    key = str(genre or "post").strip().lower()
-    return [f"china_story_{key}"] if key in _GENRE_SKILL_REL else ["china_story_post"]
-# 六体裁卡统一切到 v6.1 新 Skill 的 references/genres/。
-# v6.1 起六体裁统一读 china-story-generation/references/genres/；旧 skills/genres/ 已于 2026-10-20 移除。
-_GENRE_SKILL_REL: Dict[str, str] = {
-    "post": "skills/china-story-generation/references/genres/post.md",
-    "news": "skills/china-story-generation/references/genres/news.md",
-    "feature": "skills/china-story-generation/references/genres/feature.md",
-    "indepth": "skills/china-story-generation/references/genres/indepth.md",
-    "script": "skills/china-story-generation/references/genres/script.md",
-    "faq": "skills/china-story-generation/references/genres/faq.md",
-}
+    """返回该体裁在 skills.yaml 注册的兼容 skill id；非法体裁返回空列表。
 
-_DEFAULT_FORMAT: Dict[str, str] = {
-    "post": "social_post",
-    "news": "news_article",
-    "feature": "longform",
-    "indepth": "in_depth_report",
-    "script": "short_video",
-    "faq": "faq_mythbust",
-}
+    不再回落到 ``china_story_post``：静默回落会让非法体裁伪装成 post 生成成功
+    （P0 §2）。空列表交给严格加载器显式报错。
+    """
+    return skill_ids_for(genre)
 
 
 def resolve_format_alias(format_id: Optional[str]) -> Optional[str]:
     """将 zip content_formats ID 映射到仓库体裁 ID。"""
-    if not format_id:
-        return None
-    key = str(format_id).strip().lower().replace("-", "_")
-    return _FORMAT_TO_GENRE.get(key)
+    canonical = canonicalize_format(format_id)
+    return canonical[0] if canonical else None
 
 
 def detect_genre(text: str, format_hint: Optional[str] = None) -> Dict[str, str]:
-    """根据提示词与可选 format 提示识别体裁。"""
+    """根据提示词与可选 format 提示识别体裁（自动识别，不含显式选择校验）。"""
     hint_genre = resolve_format_alias(format_hint)
     if hint_genre:
         return _pack(hint_genre, matched_by=f"format:{format_hint}")
@@ -196,22 +191,90 @@ def detect_genre(text: str, format_hint: Optional[str] = None) -> Dict[str, str]
     return _pack("post", matched_by="default")
 
 
+def resolve_selection(
+    *,
+    genre: Optional[str] = None,
+    format_id: Optional[str] = None,
+    text: str = "",
+) -> GenreSelection:
+    """显式选择优先于关键词推断，并校验 genre/format 组合。
+
+    优先级（P0 §2）：
+    1. 调用方显式给出的合法 genre（用户在前端选择）
+    2. 调用方显式给出的合法 format
+    3. 提示词中的 ``format=...``
+    4. 关键词自动识别
+    5. 仅当以上都没有时才落到默认 post，并标记 source=default
+    """
+    explicit_genre = str(genre or "").strip()
+    explicit_format = str(format_id or "").strip()
+
+    resolved_genre, resolved_format, issue = check_selection(explicit_genre, explicit_format)
+    if issue is not None:
+        return GenreSelection(
+            genre=resolved_genre or "",
+            format=resolved_format or "",
+            source="user_override" if explicit_genre else "format",
+            matched_by=f"rejected:{issue.code}",
+            issue=issue,
+            requested_genre=explicit_genre or None,
+            requested_format=explicit_format or None,
+        )
+
+    if explicit_genre:
+        contract = GENRE_CONTRACTS[resolved_genre]
+        return GenreSelection(
+            genre=resolved_genre,
+            format=resolved_format or contract.default_format,
+            source="user_override",
+            matched_by="frontend_select",
+            requested_genre=explicit_genre,
+            requested_format=explicit_format or None,
+        )
+
+    if explicit_format:
+        return GenreSelection(
+            genre=resolved_genre,
+            format=resolved_format,
+            source="format",
+            matched_by=f"format:{explicit_format}",
+            requested_format=explicit_format,
+        )
+
+    blob = text or ""
+    m = re.search(r"format\s*=\s*([a-zA-Z0-9_\-]+)", blob, re.I)
+    detected = detect_genre(blob, format_hint=m.group(1) if m else None)
+    detected_genre = detected.get("genre") or "post"
+    contract = contract_for(detected_genre)
+    is_default = detected.get("matched_by") == "default"
+    source = "default" if is_default else ("format_eq" if str(detected.get("matched_by", "")).startswith("format_eq") else "keyword")
+    return GenreSelection(
+        genre=detected_genre,
+        format=contract.default_format if contract else "",
+        source=source,
+        matched_by=str(detected.get("matched_by", "")),
+        requested_genre=None,
+        requested_format=None,
+    )
+
+
 def _pack(genre: str, matched_by: str) -> Dict[str, str]:
+    contract = contract_for(genre)
     return {
         "genre": genre,
-        "status": _GENRE_STATUS.get(genre, "unknown"),
-        "skill_file": _GENRE_SKILL_REL.get(genre, ""),
-        "default_format": _DEFAULT_FORMAT.get(genre, "social_post"),
+        "status": contract.status if contract else "unknown",
+        "skill_file": contract.method_path if contract else "",
+        "default_format": contract.default_format if contract else "",
         "matched_by": matched_by,
     }
 
 
 def load_genre_skill_text(genre: str, max_chars: int = 8000) -> str:
-    """读取体裁 skill 正文（供注入或调试）。"""
-    rel = _GENRE_SKILL_REL.get(genre)
-    if not rel:
+    """读取体裁 skill 正文（仅用于调试/检视；生成链路走严格加载器）。"""
+    contract = contract_for(genre)
+    if not contract:
         return ""
-    path = get_project_root() / rel
+    path = get_project_root() / contract.method_path
     if not path.exists():
         return ""
     text = path.read_text(encoding="utf-8", errors="replace").strip()

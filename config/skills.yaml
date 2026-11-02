@@ -6,7 +6,9 @@ discover_files: false
 
 # v6.1：单卡上限从 3600 提到 12000，否则 references/genres/post.md(7051)、
 # news.md(5903)、china-story-generation/SKILL.md(11316) 均会被截断。
-max_chars_per_skill: 12000
+# P0 修复：post.md 升到 v3.2 后为 12881 字符，12000 会静默砍掉尾部（自检清单与来源索引）。
+# 严格加载器现在把"被截断"视为加载失败，因此单卡预算上调到 16000 以容纳最长卡片。
+max_chars_per_skill: 16000
 max_active_skills: 3
 max_total_chars: 24000
 
